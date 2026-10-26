@@ -511,7 +511,7 @@ class ZlinkyCard extends HTMLElement {
     if (c.show_graph && curve && curve.length > 1) {
       var peak = Math.max(...curve.map((p) => p.v));
       graph = '<div class="section">' +
-        `<div class="section-title"><span>${this._t('last_24h')}</span><span class="aside">${zlEsc(this._t('peak').replace('{v}', zlPower(lang, peak, m.mainUnit)))}</span></div>` +
+        `<div class="section-title"><ha-icon icon="mdi:chart-areaspline"></ha-icon><span>${this._t('last_24h')}</span><span class="aside">${zlEsc(this._t('peak').replace('{v}', zlPower(lang, peak, m.mainUnit)))}</span></div>` +
         `<div class="graph">${zlSpark(curve)}</div></div>`;
     }
 
@@ -559,7 +559,7 @@ class ZlinkyCard extends HTMLElement {
         return `<div class="phase"><span class="pn">L${n}</span><div class="bar"><div class="fill" style="width:${w.toFixed(1)}%"></div></div>` +
           `<span class="pv">${a == null ? '—' : `${zlNum(lang, a, 1)} A`}</span><span class="pv dim">${v == null ? '' : `${zlNum(lang, v, 0)} V`}</span></div>`;
       });
-      phases = `<div class="section"><div class="section-title"><span>${this._t('phases')}</span></div>${lines.join('')}</div>`;
+      phases = `<div class="section"><div class="section-title"><ha-icon icon="mdi:transmission-tower"></ha-icon><span>${this._t('phases')}</span></div>${lines.join('')}</div>`;
     }
 
     this.shadowRoot.innerHTML = this._styles(m.color) + '<ha-card>' +
@@ -649,7 +649,7 @@ class ZlinkyCard extends HTMLElement {
         ' background: color-mix(in srgb, var(--zl-color) 15%, transparent); color: var(--zl-color); }' +
       '.badge ha-icon { --mdc-icon-size: 32px; }' +
       '.info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }' +
-      '.big .val { font-size: 32px; font-weight: 400; line-height: 1.1; color: var(--primary-text-color); white-space: nowrap; }' +
+      '.big .val { font-size: 30px; font-weight: 400; line-height: 1.1; color: var(--primary-text-color); white-space: nowrap; }' +
       'ha-card.mini .big .val { font-size: 24px; }' +
       '.chips { display: flex; flex-wrap: wrap; gap: 6px; }' +
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px;' +
@@ -670,9 +670,10 @@ class ZlinkyCard extends HTMLElement {
       '.tv small, .iv small { font-size: 11px; font-weight: 400; color: var(--secondary-text-color); }' +
       '.tc { font-size: 11px; font-weight: 500; color: var(--zl-green); }' +
       '.section { display: flex; flex-direction: column; gap: 6px; }' +
-      '.section-title { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; font-weight: 500;' +
-        ' color: var(--secondary-text-color); text-transform: uppercase; letter-spacing: 0.04em; }' +
-      '.section-title .aside { text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 11px; }' +
+      '.section-title { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; text-transform: uppercase;' +
+        ' letter-spacing: .04em; color: var(--secondary-text-color); }' +
+      '.section-title ha-icon { --mdc-icon-size: 16px; }' +
+      '.section-title .aside { margin-left: auto; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 11px; }' +
       '.graph { height: 64px; border-radius: 10px; overflow: hidden; }' +
       '.spark { width: 100%; height: 100%; display: block; }' +
       '.spark-c { stop-color: var(--zl-color); } .spark-l { stroke: var(--zl-color); }' +
