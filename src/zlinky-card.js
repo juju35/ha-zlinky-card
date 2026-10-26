@@ -774,7 +774,7 @@ class ZlinkyCardEditor extends HTMLElement {
     var t = (k) => zlT(this._lang(), k);
     var mini = this.mini || /-mini-card$/.test(this._config.type || '');
     return [
-      { name: 'device_id', selector: { device: { filter: [{ manufacturer: 'LiXee' }] } } },
+      { name: 'device_id', selector: { device: { filter: [{ manufacturer: 'LiXee' }, { model: 'ZLinky_TIC' }] } } },
       {
         type: 'grid', name: '', schema: [
           { name: 'name', selector: { text: {} } },
