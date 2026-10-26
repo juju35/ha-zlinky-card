@@ -72,6 +72,7 @@ export async function render(shots, { icons = {}, hass = {}, extra = "" } = {}) 
   // A fresh page per shot: re-running the scripts in the same realm would redeclare their globals.
   for (const s of shots) {
     const page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1000, height: 2000 }, timezoneId: "UTC" });
+    page.on("pageerror", (err) => console.error(`${s.file}: ${err.message}`));
     await page.clock.setFixedTime(NOW);
     await page.setContent(pageHtml(s.theme, s.width));
     await page.addScriptTag({ content: haElements(icons) + extra });
@@ -88,7 +89,13 @@ export async function render(shots, { icons = {}, hass = {}, extra = "" } = {}) 
     );
     if (s.after) await s.after(page);
     await page.waitForTimeout(400);
-    await page.locator(s.type).screenshot({ path: `${root}screenshots/${s.file}.png`, animations: "disabled" });
+    // The card plus the 16px page padding around it, on the theme background.
+    const box = await page.locator("#root").boundingBox();
+    await page.screenshot({
+      path: `${root}screenshots/${s.file}.png`,
+      clip: { x: 0, y: 0, width: s.width + 32, height: Math.ceil(box.height) + 32 },
+      animations: "disabled",
+    });
     console.log(`screenshots/${s.file}.png`);
     await page.close();
   }
@@ -142,10 +149,10 @@ const ws = `window.__ws = async (msg) => {
 
 await render(
   [
-    { file: "card", type: "zlinky-card", theme: "light", width: 400, config: { price: 0.2016, tiers: ["Heures creuses", "Heures pleines"], language: "fr" } },
-    { file: "card-dark", type: "zlinky-card", theme: "dark", width: 400, config: { price: 0.2016, tiers: ["Off-peak", "Peak"] } },
-    { file: "mini", type: "zlinky-mini-card", theme: "light", width: 400, config: { price: 0.2016, language: "fr" } },
-    { file: "mini-dark", type: "zlinky-mini-card", theme: "dark", width: 400, config: { price: 0.2016 } },
+    { file: "card", type: "zlinky-card", theme: "light", width: 460, config: { price: 0.2016, tiers: ["Off-peak", "Peak"] } },
+    { file: "card-dark", type: "zlinky-card", theme: "dark", width: 460, config: { price: 0.2016, tiers: ["Off-peak", "Peak"] } },
+    { file: "mini", type: "zlinky-mini-card", theme: "light", width: 380, config: { price: 0.2016 } },
+    { file: "mini-dark", type: "zlinky-mini-card", theme: "dark", width: 380, config: { price: 0.2016 } },
   ],
   { icons, hass, extra: ws }
 );
