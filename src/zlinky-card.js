@@ -33,7 +33,7 @@ var ZlI18n = {
     ed_show_stats: 'Consommations',
     ed_show_index: 'Index du compteur',
     ed_show_phases: 'Détail des phases',
-    ed_show_logo: 'Logo Linky',
+    ed_show_logo: 'Icône compteur',
     ed_zoom: 'Bouton détail',
     ed_zoom_helper: 'Bouton en haut à droite qui passe la mini-carte en carte complète et inversement',
     zoom_in: 'Afficher la carte complète',
@@ -86,7 +86,7 @@ var ZlI18n = {
     ed_show_stats: 'Consumption',
     ed_show_index: 'Meter index',
     ed_show_phases: 'Phase details',
-    ed_show_logo: 'Linky logo',
+    ed_show_logo: 'Meter icon',
     ed_zoom: 'Detail button',
     ed_zoom_helper: 'Button at the top right that switches the mini card to the full card and back',
     zoom_in: 'Show the full card',
@@ -190,17 +190,6 @@ function zlFindDevice(hass) {
 }
 
 // ── Artwork ──────────────────────────────────────────────────────────────────
-// Logo: a Linky-green tile with the meter's screen and a lightning bolt.
-var ZL_LOGO = '<svg class="logo" viewBox="0 0 48 48" role="img" aria-label="Linky"><title>Linky</title>' +
-  '<defs><linearGradient id="zl-logo-g" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">' +
-    '<stop offset="0" stop-color="#e2ec4f"/><stop offset=".55" stop-color="#b9cc1c"/><stop offset="1" stop-color="#8aa30c"/></linearGradient>' +
-  '<linearGradient id="zl-logo-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef4c4"/></linearGradient></defs>' +
-  '<rect x="1" y="1" width="46" height="46" rx="13" fill="url(#zl-logo-g)"/>' +
-  '<path d="M1 20Q24 10 47 16V14Q47 1 34 1H14Q1 1 1 14Z" fill="#fff" opacity=".18"/>' +
-  '<rect x="9" y="10" width="30" height="16" rx="4.5" fill="url(#zl-logo-s)"/>' +
-  '<path d="M26.5 12.5L19 19.4h5l-2.6 5.1 7.6-7h-5Z" fill="#8aa30c"/>' +
-  '<circle cx="17" cy="34" r="3" fill="#fff"/><circle cx="31" cy="34" r="3" fill="#fff" opacity=".7"/></svg>';
-
 // Front view of the meter. Its screen shows the live power and its LED blinks faster as the load rises.
 function zlMeterArt(screen) {
   return '<svg viewBox="0 0 80 100" aria-hidden="true">' +
@@ -466,7 +455,8 @@ class ZlinkyCard extends HTMLElement {
       statusText: online ? this._t(`load_${level}`) : this._t('offline'),
       mainText: main != null ? zlPower(lang, main, mainUnit) : '—',
       screen: online && main != null ? zlPower(lang, main, mainUnit).replace(/\s/g, ' ') : '- - -',
-      logo: c.show_logo === false ? '' : `<span class="logo-wrap">${ZL_LOGO}</span>`,
+      // Header icon: an electric meter in a round badge, in the load color.
+      logo: c.show_logo === false ? '' : '<span class="hbadge"><ha-icon icon="mdi:meter-electric-outline"></ha-icon></span>',
     };
   }
 
@@ -628,9 +618,11 @@ class ZlinkyCard extends HTMLElement {
       'button { all: unset; box-sizing: border-box; cursor: pointer; }' +
       'button:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; border-radius: 8px; }' +
       '.header { display: flex; align-items: center; gap: 10px; }' +
-      '.logo-wrap { display: flex; flex-shrink: 0; }' +
-      '.logo { width: 40px; height: 40px; filter: drop-shadow(0 2px 4px rgba(120,140,0,0.25)); }' +
-      'ha-card.mini .logo { width: 32px; height: 32px; }' +
+      '.hbadge { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none;' +
+        ' background: color-mix(in srgb, var(--zl-color) 16%, transparent); color: var(--zl-color); }' +
+      '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
+      'ha-card.mini .hbadge { width: 32px; height: 32px; }' +
+      'ha-card.mini .hbadge ha-icon { --mdc-icon-size: 20px; }' +
       '.titles { flex: 1; min-width: 0; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +

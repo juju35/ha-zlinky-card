@@ -127,7 +127,7 @@ entities:
 | `show_graph` | ❌ | `true` | 24 h power curve |
 | `show_index` | ❌ | `true` | Meter index, tiers and injection |
 | `show_phases` | ❌ | `true` | Per-phase details (three-phase meters only) |
-| `show_logo` | ❌ | `true` | Linky logo in the header |
+| `show_logo` | ❌ | `true` | Meter icon in the header |
 | `zoom` | ❌ | `true` | Mini card only: detail button that unfolds the full card |
 | `language` | ❌ | HA language | `en` or `fr` |
 | `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `injection`, `tariff`, `tier1`…`tier6` |
