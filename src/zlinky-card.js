@@ -617,7 +617,8 @@ class ZlinkyCard extends HTMLElement {
       '.empty { display: flex; align-items: center; gap: 10px; color: var(--secondary-text-color); }' +
       'button { all: unset; box-sizing: border-box; cursor: pointer; }' +
       'button:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; border-radius: 8px; }' +
-      '.header { display: flex; align-items: center; gap: 10px; }' +
+      // The body starts 8px under the header (the card gap is 12px between body blocks).
+      '.header { display: flex; align-items: center; gap: 10px; margin-bottom: -4px; }' +
       '.hbadge { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none;' +
         ' background: color-mix(in srgb, var(--zl-color) 16%, transparent); color: var(--zl-color); }' +
       '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
