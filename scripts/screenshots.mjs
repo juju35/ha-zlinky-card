@@ -1,7 +1,10 @@
 // Renders the card with mock data and saves the README screenshots.
 // Usage: npm run build && npm run screenshots
 import { chromium } from "playwright";
-import { readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -65,29 +68,35 @@ const pageHtml = (theme, width) => `<!doctype html><html><head><meta charset="ut
          font-family: Roboto, "Segoe UI", Helvetica, Arial, sans-serif; width: ${width}px; }
 </style></head><body><div id="root"></div></body></html>`;
 
+// Opens one shot { file, type, theme, width, config, hass?, after? } in a fresh page and returns it.
+// A fresh page per shot: re-running the scripts in the same realm would redeclare their globals.
+async function openCard(browser, s, { icons = {}, hass = {}, extra = "" }) {
+  const page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1000, height: 2000 }, timezoneId: "UTC" });
+  page.on("pageerror", (err) => console.error(`${s.file}: ${err.message}`));
+  await page.clock.setFixedTime(NOW);
+  await page.setContent(pageHtml(s.theme, s.width));
+  await page.addScriptTag({ content: haElements(icons) + extra });
+  await page.addScriptTag({ content: cardJs });
+  await page.evaluate(
+    ({ type, config, hass, dark }) => {
+      const el = document.createElement(type);
+      el.setConfig({ type: `custom:${type}`, ...config });
+      el.hass = { states: {}, entities: {}, devices: {}, language: "en", locale: { language: "en" },
+                  themes: { darkMode: dark }, callService: async () => {}, callWS: async () => ({}), ...hass, ...(window.__ws ? { callWS: window.__ws } : {}) };
+      document.getElementById("root").appendChild(el);
+    },
+    { type: s.type, config: s.config || {}, hass: { ...hass, ...(s.hass || {}) }, dark: s.theme === "dark" }
+  );
+  if (s.after) await s.after(page);
+  return page;
+}
+
 // Renders each shot { file, type, theme, width, config, hass?, after? } into screenshots/<file>.png.
 // extra: more stand-in elements, as script source.
 export async function render(shots, { icons = {}, hass = {}, extra = "" } = {}) {
   const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
-  // A fresh page per shot: re-running the scripts in the same realm would redeclare their globals.
   for (const s of shots) {
-    const page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1000, height: 2000 }, timezoneId: "UTC" });
-    page.on("pageerror", (err) => console.error(`${s.file}: ${err.message}`));
-    await page.clock.setFixedTime(NOW);
-    await page.setContent(pageHtml(s.theme, s.width));
-    await page.addScriptTag({ content: haElements(icons) + extra });
-    await page.addScriptTag({ content: cardJs });
-    await page.evaluate(
-      ({ type, config, hass, dark }) => {
-        const el = document.createElement(type);
-        el.setConfig({ type: `custom:${type}`, ...config });
-        el.hass = { states: {}, entities: {}, devices: {}, language: "en", locale: { language: "en" },
-                    themes: { darkMode: dark }, callService: async () => {}, callWS: async () => ({}), ...hass, ...(window.__ws ? { callWS: window.__ws } : {}) };
-        document.getElementById("root").appendChild(el);
-      },
-      { type: s.type, config: s.config || {}, hass: { ...hass, ...(s.hass || {}) }, dark: s.theme === "dark" }
-    );
-    if (s.after) await s.after(page);
+    const page = await openCard(browser, s, { icons, hass, extra });
     await page.waitForTimeout(400);
     // The card plus the 16px page padding around it, on the theme background.
     const box = await page.locator("#root").boundingBox();
@@ -100,6 +109,31 @@ export async function render(shots, { icons = {}, hass = {}, extra = "" } = {}) 
     await page.close();
   }
   await browser.close();
+}
+
+// Records one shot as a looping GIF (screenshots/<file>.gif) — needs ffmpeg on PATH. Every animation is paused and
+// stepped frame by frame, so the GIF is identical whatever the machine's speed.
+export async function animate(shot, { icons = {}, hass = {}, extra = "", fps = 20, seconds = 3 } = {}) {
+  const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
+  const page = await openCard(browser, shot, { icons, hass, extra });
+  await page.waitForTimeout(300);
+  const box = await page.locator("#root").boundingBox();
+  const clip = { x: 0, y: 0, width: shot.width + 32, height: Math.ceil(box.height) + 32 };
+  const dir = mkdtempSync(join(tmpdir(), "zl-frames-"));
+  const frames = Math.round(fps * seconds);
+  for (let i = 0; i < frames; i++) {
+    await page.evaluate((t) => { for (const a of document.getAnimations()) { a.pause(); a.currentTime = t; } }, (i * 1000) / fps);
+    await page.screenshot({ path: join(dir, `f${String(i).padStart(3, "0")}.png`), clip });
+  }
+  await browser.close();
+  const out = `${root}screenshots/${shot.file}.gif`;
+  execFileSync("ffmpeg", [
+    "-y", "-loglevel", "error", "-framerate", String(fps), "-i", join(dir, "f%03d.png"),
+    "-vf", `scale=${clip.width}:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=bayer:bayer_scale=4`,
+    "-loop", "0", out,
+  ]);
+  rmSync(dir, { recursive: true });
+  console.log(`screenshots/${shot.file}.gif`);
 }
 
 const icons = {
@@ -156,5 +190,10 @@ await render(
     { file: "mini", type: "zlinky-mini-card", theme: "light", width: 380, config: { price: 0.2016 } },
     { file: "mini-dark", type: "zlinky-mini-card", theme: "dark", width: 380, config: { price: 0.2016 } },
   ],
+  { icons, hass, extra: ws }
+);
+
+await animate(
+  { file: "live", type: "zlinky-card", theme: "light", width: 460, config: { price: 0.2016, tiers: ["Off-peak", "Peak"] } },
   { icons, hass, extra: ws }
 );
