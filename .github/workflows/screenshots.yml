@@ -1,0 +1,61 @@
+name: Screenshots
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "scripts/**"
+
+# Protected main is never pushed to: the job commits the refreshed screenshots
+# back onto the pull request's own branch, so they land through the normal merge.
+permissions:
+  contents: write
+
+concurrency:
+  group: screenshots-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  screenshots:
+    name: Render screenshots
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # ffmpeg is required to assemble the GIFs and is not preinstalled; Roboto keeps text faithful. Retry to ride
+      # out a flaky apt mirror, cap the wait so it can never hang the job, and fail loudly if ffmpeg is still missing.
+      - name: Install ffmpeg and Roboto
+        timeout-minutes: 8
+        run: |
+          for i in 1 2 3; do
+            sudo apt-get update && sudo apt-get install -y ffmpeg fonts-roboto && break
+            echo "apt attempt $i failed, retrying in 10s"; sleep 10
+          done
+          ffmpeg -version > /dev/null
+      - run: npm run build
+      - name: Render screenshots
+        run: |
+          set -o pipefail
+          npm run screenshots 2>&1 | tee /tmp/screenshots.log || {
+            echo "::error::screenshots failed: $(tail -c 1200 /tmp/screenshots.log | tr -d '\r' | tr '\n' ' ')"
+            exit 1
+          }
+      - name: Commit refreshed screenshots
+        run: |
+          if [ -z "$(git status --porcelain screenshots)" ]; then
+            echo "No screenshot changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add screenshots
+          git commit -m "chore: refresh screenshots [skip ci]"
+          git push

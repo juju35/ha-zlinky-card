@@ -12,6 +12,10 @@ Pick the ZLinky, the card finds all its entities by itself.
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=juju35&repository=ha-zlinky-card&category=plugin)
 
+While the meter is online, the card animates: the LED blinks and glows, faster as power rises. It settles to a still card when offline (and honours `prefers-reduced-motion`).
+
+![ZLinky card, live meter animation](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live.gif)
+
 | Card | Dark theme |
 |---|---|
 | ![ZLinky card](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card.png) | ![ZLinky card, dark theme](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-dark.png) |
@@ -139,7 +143,7 @@ Tiers are listed only when more than one carries an index. The phase section app
 ```bash
 npm run build        # builds dist/zlinky-card.js
 npm test             # unit tests
-npm run screenshots  # regenerates the README screenshots (Playwright)
+npm run screenshots  # regenerates the README screenshots and live.gif (Playwright + ffmpeg)
 ```
 
 ## License
