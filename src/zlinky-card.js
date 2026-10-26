@@ -33,7 +33,7 @@ var ZlI18n = {
     ed_show_stats: 'Consommations',
     ed_show_index: 'Index du compteur',
     ed_show_phases: 'Détail des phases',
-    ed_show_logo: 'Logo Linky',
+    ed_show_logo: 'Icône compteur',
     ed_zoom: 'Bouton détail',
     ed_zoom_helper: 'Bouton en haut à droite qui passe la mini-carte en carte complète et inversement',
     zoom_in: 'Afficher la carte complète',
@@ -86,7 +86,7 @@ var ZlI18n = {
     ed_show_stats: 'Consumption',
     ed_show_index: 'Meter index',
     ed_show_phases: 'Phase details',
-    ed_show_logo: 'Linky logo',
+    ed_show_logo: 'Meter icon',
     ed_zoom: 'Detail button',
     ed_zoom_helper: 'Button at the top right that switches the mini card to the full card and back',
     zoom_in: 'Show the full card',
@@ -190,17 +190,6 @@ function zlFindDevice(hass) {
 }
 
 // ── Artwork ──────────────────────────────────────────────────────────────────
-// Logo: a Linky-green tile with the meter's screen and a lightning bolt.
-var ZL_LOGO = '<svg class="logo" viewBox="0 0 48 48" role="img" aria-label="Linky"><title>Linky</title>' +
-  '<defs><linearGradient id="zl-logo-g" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">' +
-    '<stop offset="0" stop-color="#e2ec4f"/><stop offset=".55" stop-color="#b9cc1c"/><stop offset="1" stop-color="#8aa30c"/></linearGradient>' +
-  '<linearGradient id="zl-logo-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef4c4"/></linearGradient></defs>' +
-  '<rect x="1" y="1" width="46" height="46" rx="13" fill="url(#zl-logo-g)"/>' +
-  '<path d="M1 20Q24 10 47 16V14Q47 1 34 1H14Q1 1 1 14Z" fill="#fff" opacity=".18"/>' +
-  '<rect x="9" y="10" width="30" height="16" rx="4.5" fill="url(#zl-logo-s)"/>' +
-  '<path d="M26.5 12.5L19 19.4h5l-2.6 5.1 7.6-7h-5Z" fill="#8aa30c"/>' +
-  '<circle cx="17" cy="34" r="3" fill="#fff"/><circle cx="31" cy="34" r="3" fill="#fff" opacity=".7"/></svg>';
-
 // Front view of the meter. Its screen shows the live power and its LED blinks faster as the load rises.
 function zlMeterArt(screen) {
   return '<svg viewBox="0 0 80 100" aria-hidden="true">' +
@@ -466,7 +455,8 @@ class ZlinkyCard extends HTMLElement {
       statusText: online ? this._t(`load_${level}`) : this._t('offline'),
       mainText: main != null ? zlPower(lang, main, mainUnit) : '—',
       screen: online && main != null ? zlPower(lang, main, mainUnit).replace(/\s/g, ' ') : '- - -',
-      logo: c.show_logo === false ? '' : `<span class="logo-wrap">${ZL_LOGO}</span>`,
+      // Header icon: an electric meter in a round badge, in the load color.
+      logo: c.show_logo === false ? '' : '<span class="hbadge"><ha-icon icon="mdi:meter-electric-outline"></ha-icon></span>',
     };
   }
 
@@ -521,7 +511,7 @@ class ZlinkyCard extends HTMLElement {
     if (c.show_graph && curve && curve.length > 1) {
       var peak = Math.max(...curve.map((p) => p.v));
       graph = '<div class="section">' +
-        `<div class="section-title"><span>${this._t('last_24h')}</span><span class="aside">${zlEsc(this._t('peak').replace('{v}', zlPower(lang, peak, m.mainUnit)))}</span></div>` +
+        `<div class="section-title"><ha-icon icon="mdi:chart-areaspline"></ha-icon><span>${this._t('last_24h')}</span><span class="aside">${zlEsc(this._t('peak').replace('{v}', zlPower(lang, peak, m.mainUnit)))}</span></div>` +
         `<div class="graph">${zlSpark(curve)}</div></div>`;
     }
 
@@ -569,7 +559,7 @@ class ZlinkyCard extends HTMLElement {
         return `<div class="phase"><span class="pn">L${n}</span><div class="bar"><div class="fill" style="width:${w.toFixed(1)}%"></div></div>` +
           `<span class="pv">${a == null ? '—' : `${zlNum(lang, a, 1)} A`}</span><span class="pv dim">${v == null ? '' : `${zlNum(lang, v, 0)} V`}</span></div>`;
       });
-      phases = `<div class="section"><div class="section-title"><span>${this._t('phases')}</span></div>${lines.join('')}</div>`;
+      phases = `<div class="section"><div class="section-title"><ha-icon icon="mdi:transmission-tower"></ha-icon><span>${this._t('phases')}</span></div>${lines.join('')}</div>`;
     }
 
     this.shadowRoot.innerHTML = this._styles(m.color) + '<ha-card>' +
@@ -627,10 +617,13 @@ class ZlinkyCard extends HTMLElement {
       '.empty { display: flex; align-items: center; gap: 10px; color: var(--secondary-text-color); }' +
       'button { all: unset; box-sizing: border-box; cursor: pointer; }' +
       'button:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; border-radius: 8px; }' +
-      '.header { display: flex; align-items: center; gap: 10px; }' +
-      '.logo-wrap { display: flex; flex-shrink: 0; }' +
-      '.logo { width: 40px; height: 40px; filter: drop-shadow(0 2px 4px rgba(120,140,0,0.25)); }' +
-      'ha-card.mini .logo { width: 32px; height: 32px; }' +
+      // The body starts 8px under the header (the card gap is 12px between body blocks).
+      '.header { display: flex; align-items: center; gap: 10px; margin-bottom: -4px; }' +
+      '.hbadge { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none;' +
+        ' background: color-mix(in srgb, var(--zl-color) 16%, transparent); color: var(--zl-color); }' +
+      '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
+      'ha-card.mini .hbadge { width: 32px; height: 32px; }' +
+      'ha-card.mini .hbadge ha-icon { --mdc-icon-size: 20px; }' +
       '.titles { flex: 1; min-width: 0; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
@@ -657,7 +650,7 @@ class ZlinkyCard extends HTMLElement {
         ' background: color-mix(in srgb, var(--zl-color) 15%, transparent); color: var(--zl-color); }' +
       '.badge ha-icon { --mdc-icon-size: 32px; }' +
       '.info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }' +
-      '.big .val { font-size: 32px; font-weight: 400; line-height: 1.1; color: var(--primary-text-color); white-space: nowrap; }' +
+      '.big .val { font-size: 30px; font-weight: 400; line-height: 1.1; color: var(--primary-text-color); white-space: nowrap; }' +
       'ha-card.mini .big .val { font-size: 24px; }' +
       '.chips { display: flex; flex-wrap: wrap; gap: 6px; }' +
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px;' +
@@ -678,9 +671,10 @@ class ZlinkyCard extends HTMLElement {
       '.tv small, .iv small { font-size: 11px; font-weight: 400; color: var(--secondary-text-color); }' +
       '.tc { font-size: 11px; font-weight: 500; color: var(--zl-green); }' +
       '.section { display: flex; flex-direction: column; gap: 6px; }' +
-      '.section-title { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; font-weight: 500;' +
-        ' color: var(--secondary-text-color); text-transform: uppercase; letter-spacing: 0.04em; }' +
-      '.section-title .aside { text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 11px; }' +
+      '.section-title { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; text-transform: uppercase;' +
+        ' letter-spacing: .04em; color: var(--secondary-text-color); }' +
+      '.section-title ha-icon { --mdc-icon-size: 16px; }' +
+      '.section-title .aside { margin-left: auto; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 11px; }' +
       '.graph { height: 64px; border-radius: 10px; overflow: hidden; }' +
       '.spark { width: 100%; height: 100%; display: block; }' +
       '.spark-c { stop-color: var(--zl-color); } .spark-l { stroke: var(--zl-color); }' +
