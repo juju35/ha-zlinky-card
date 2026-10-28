@@ -39,7 +39,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - An animated Linky meter: its screen shows the live power and its LED blinks faster as the load rises
 - Tap any value to open its history
 - Visual editor in the dashboard UI (no YAML needed)
-- English and French, follows the Home Assistant language
+- English, French, German and Spanish, follows the Home Assistant language
 - Light and dark theme compatible
 - Single file, no dependencies, HACS-ready
 
@@ -135,7 +135,7 @@ entities:
 | `show_phases` | ❌ | `true` | Per-phase details (three-phase meters only) |
 | `show_logo` | ❌ | `true` | Meter icon in the header |
 | `zoom` | ❌ | `true` | Mini card only: detail button that unfolds the full card |
-| `language` | ❌ | HA language | `en` or `fr` |
+| `language` | ❌ | HA language | `en`, `fr`, `de` or `es` |
 | `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `injection`, `tariff`, `tier1`…`tier6` |
 
 Tiers are listed only when more than one carries an index. The phase section appears only when phases 2 or 3 report a voltage. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
