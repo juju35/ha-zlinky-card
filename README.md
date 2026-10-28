@@ -14,7 +14,9 @@ Pick the ZLinky, the card finds all its entities by itself.
 
 While the meter is online, the card animates: the LED blinks and glows, faster as power rises. It settles to a still card when offline (and honours `prefers-reduced-motion`).
 
-![ZLinky card, live meter animation](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live.gif)
+| Normal load — green gauge, slow LED blink | High load — red gauge, fast LED blink near the subscribed power |
+|---|---|
+| ![ZLinky card, live meter animation at normal load](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live.gif) | ![ZLinky card, live meter animation at high load](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-high.gif) |
 
 | Card | Dark theme |
 |---|---|
@@ -57,7 +59,7 @@ Click the button below to add the repository directly:
 
 Or manually:
 
-1. Open HACS → **Frontend** → **⋮** → **Custom repositories**
+1. Open HACS → **Dashboard** → **⋮** → **Custom repositories**
 2. Add `https://github.com/juju35/ha-zlinky-card` — Category: **Dashboard** (Lovelace)
 3. Search for **ZLinky Card** and install it
 4. Clear your browser cache and refresh
@@ -136,14 +138,14 @@ entities:
 | `language` | ❌ | HA language | `en` or `fr` |
 | `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `injection`, `tariff`, `tier1`…`tier6` |
 
-Tiers are listed only when more than one carries an index. The phase section appears only when phases 2 or 3 report a voltage.
+Tiers are listed only when more than one carries an index. The phase section appears only when phases 2 or 3 report a voltage. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
 
 ## Development
 
 ```bash
 npm run build        # builds dist/zlinky-card.js
 npm test             # unit tests
-npm run screenshots  # regenerates the README screenshots and live.gif (Playwright + ffmpeg)
+npm run screenshots  # regenerates the README screenshots and the live GIFs (Playwright + ffmpeg)
 ```
 
 ## License

@@ -197,3 +197,16 @@ await animate(
   { file: "live", type: "zlinky-card", theme: "light", width: 460, config: { price: 0.2016, tiers: ["Off-peak", "Peak"] } },
   { icons, hass, extra: ws }
 );
+
+// High load: near the subscribed power the gauge turns red and the LED blinks much faster.
+const highStates = {
+  ...states,
+  [`${p}puissance`]: { ...states[`${p}puissance`], state: "5620" },
+  [`${p}puissance_apparente`]: { ...states[`${p}puissance_apparente`], state: "5810" },
+  [`${p}courant`]: { ...states[`${p}courant`], state: "25" },
+};
+await animate(
+  { file: "live-high", type: "zlinky-card", theme: "light", width: 460,
+    config: { price: 0.2016, tiers: ["Off-peak", "Peak"] }, hass: { states: highStates } },
+  { icons, hass, extra: ws }
+);

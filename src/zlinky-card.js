@@ -29,6 +29,8 @@ var ZlI18n = {
     ed_subscribed_power_helper: 'Sert à la jauge de charge ; 6 kVA par défaut',
     ed_price: 'Prix du kWh',
     ed_price_helper: 'Optionnel : affiche le coût à côté des consommations',
+    ed_tiers: 'Noms des index',
+    ed_tiers_helper: 'Dans l\'ordre des index 1 à 6 (ex. Heures creuses, Heures pleines)',
     ed_show_graph: 'Courbe 24 h',
     ed_show_stats: 'Consommations',
     ed_show_index: 'Index du compteur',
@@ -82,6 +84,8 @@ var ZlI18n = {
     ed_subscribed_power_helper: 'Used for the load gauge; 6 kVA by default',
     ed_price: 'Price per kWh',
     ed_price_helper: 'Optional: shows the cost next to the consumption',
+    ed_tiers: 'Tier names',
+    ed_tiers_helper: 'In index order, 1 to 6 (e.g. Off-peak, Peak)',
     ed_show_graph: '24 h graph',
     ed_show_stats: 'Consumption',
     ed_show_index: 'Meter index',
@@ -286,6 +290,9 @@ function zlSpark(points) {
 }
 
 var ZL_STATS_REFRESH = 5 * 60000;
+// After a failed recorder call the tiles show "—": retry on the next update past this delay
+// instead of sitting on the failure for the whole refresh window.
+var ZL_STATS_RETRY = 30000;
 
 // ── Base card ────────────────────────────────────────────────────────────────
 class ZlinkyCard extends HTMLElement {
@@ -415,10 +422,11 @@ class ZlinkyCard extends HTMLElement {
     this._statsBusy = true;
     this._statsKey = key;
     this._statsAt = Date.now();
+    var failed = false;
     var change = (period, offset) => (r.ent.energy
       ? hass.callWS({ type: 'recorder/statistic_during_period', statistic_id: r.ent.energy,
         calendar: { period: period, offset: offset }, types: ['change'], units: { energy: 'kWh' } })
-        .then((x) => (x?.change != null ? Number(x.change) : null)).catch(() => null)
+        .then((x) => (x?.change != null ? Number(x.change) : null)).catch(() => { failed = true; return null; })
       : Promise.resolve(null));
     var curve = wantCurve
       ? hass.callWS({ type: 'recorder/statistics_during_period', statistic_ids: [curveId], period: '5minute', types: ['mean'],
@@ -429,11 +437,12 @@ class ZlinkyCard extends HTMLElement {
             t: typeof p.start === 'number' ? p.start : Date.parse(p.start),
             v: Number(p.mean) * (unitK ? 1000 : 1),
           })).filter((p) => Number.isFinite(p.t) && Number.isFinite(p.v));
-        }).catch(() => [])
+        }).catch(() => { failed = true; return []; })
       : Promise.resolve([]);
     Promise.all([change('day', 0), change('day', -1), change('month', 0), curve]).then((res) => {
       this._stats = { today: res[0], yesterday: res[1], month: res[2], curve: res[3] };
       this._statsVer = (this._statsVer || 0) + 1;
+      if (failed) this._statsAt = Date.now() - ZL_STATS_REFRESH + ZL_STATS_RETRY;
     }).finally(() => {
       this._statsBusy = false;
       this._update();
@@ -510,7 +519,7 @@ class ZlinkyCard extends HTMLElement {
     if (!m.online) chips.push(`<span class="chip"><ha-icon icon="mdi:lan-disconnect"></ha-icon>${this._t('offline')}</span>`);
     var hero = '<div class="hero">' + this._picture(m) +
       '<div class="info">' +
-        `<button class="big" data-more="${zlEsc(ent.apparent_power || ent.power || '')}"><span class="val">${zlEsc(m.mainText)}</span></button>` +
+        this._big(ent.apparent_power || ent.power, m.mainText) +
         (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') + this._loadBar(m) +
       '</div></div>';
 
@@ -587,6 +596,13 @@ class ZlinkyCard extends HTMLElement {
     return `<button class="row" data-more="${zlEsc(id || '')}"><span>${zlEsc(label)}</span><span class="rv">${zlEsc(value)}</span></button>`;
   }
 
+  // The main power readout: a more-info button, or a plain span when no power entity is resolved
+  // (a button there would show a pointer cursor and do nothing).
+  _big(id, text) {
+    var val = `<span class="val">${zlEsc(text)}</span>`;
+    return id ? `<button class="big" data-more="${zlEsc(id)}">${val}</button>` : `<span class="big">${val}</span>`;
+  }
+
   _miniHtml(m) {
     var today = this._stats?.today;
     var lines = [];
@@ -601,7 +617,7 @@ class ZlinkyCard extends HTMLElement {
       '</div>' +
       '<div class="content">' + this._picture(m) +
         '<div class="info">' +
-          `<button class="big" data-more="${zlEsc(m.ent.apparent_power || m.ent.power || '')}"><span class="val">${zlEsc(m.mainText)}</span></button>` +
+          this._big(m.ent.apparent_power || m.ent.power, m.mainText) +
           this._loadBar(m) + lines.join('') +
         '</div></div>' +
     '</ha-card>';
@@ -792,6 +808,7 @@ class ZlinkyCardEditor extends HTMLElement {
           { name: 'price', selector: { number: { min: 0, max: 2, step: 0.0001, mode: 'box' } } },
         ],
       },
+      { name: 'tiers', selector: { text: { multiple: true } } },
       {
         type: 'grid', name: '', schema: [
           { name: 'show_stats', selector: { boolean: {} } },
@@ -838,6 +855,7 @@ class ZlinkyCardEditor extends HTMLElement {
     Object.keys(value).forEach((key) => {
       if (value[key] === '' || value[key] === null || value[key] === undefined) delete value[key];
     });
+    if (Array.isArray(value.tiers) && !value.tiers.filter((t) => t).length) delete value.tiers;
     Object.keys(ZL_EDITOR_DEFAULTS).forEach((key) => {
       if (value[key] === ZL_EDITOR_DEFAULTS[key]) delete value[key];
     });
