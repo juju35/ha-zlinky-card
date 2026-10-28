@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.0 - 2026-10-28
+### Features
+- German and Spanish translations of both cards and the visual editor; the editor's language option now offers Deutsch and Español.
+
 ## 1.3.0 - 2026-10-28
 ### Features
 - Visual editor: the `tiers` option (names of the meter indexes) can now be set from the editor, as a multiple text field; it is dropped from the config when left empty.
