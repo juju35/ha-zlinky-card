@@ -185,6 +185,28 @@ test("mini card fetches the 24 h curve only once unfolded", async () => {
   assert.equal(calls.filter((c) => c.type === "recorder/statistics_during_period").length, 1);
 });
 
+test("a failed stats fetch retries after 30 s instead of the full refresh window", async () => {
+  const callWS = () => Promise.reject(new Error("recorder down"));
+  const card = make(ZlinkyCard, zhaHass({ callWS }));
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(card._stats.today, null);
+  // _statsAt was backdated so the fetch is stale again in ~30 s, not in 5 min.
+  const age = Date.now() - card._statsAt;
+  assert.ok(age >= 5 * 60000 - 30000 - 1000, `stats age ${age} ms`);
+});
+
+test("the main readout is a plain span when no power entity is resolved", () => {
+  const hass = zhaHass();
+  for (const id of Object.keys(hass.states)) {
+    if (/puissance/.test(id)) { delete hass.states[id]; delete hass.entities[id]; }
+  }
+  const card = make(ZlinkyCard, hass);
+  assert.match(card.shadowRoot.innerHTML, /<span class="big">/);
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /<button class="big"/);
+  const withPower = make(ZlinkyCard, zhaHass());
+  assert.match(withPower.shadowRoot.innerHTML, /<button class="big" data-more="/);
+});
+
 test("entity role matching is cached until the registry or config changes", () => {
   const card = make(ZlinkyCard, zhaHass());
   const r1 = card._resolve();
