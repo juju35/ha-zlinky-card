@@ -352,6 +352,10 @@ class ZlinkyCard extends HTMLElement {
   _resolve() {
     var hass = this._hass, c = this._config;
     var deviceId = this._deviceId();
+    // Role matching only depends on the registry, the device and the config: cache it and rebuild
+    // only when one of them changes (`hass.entities` is replaced on registry updates, `_config` on setConfig).
+    var cache = this._resolved;
+    if (cache && cache.reg === hass.entities && cache.config === c && cache.r.deviceId === deviceId) return cache.r;
     var list = zlDeviceEntities(hass, deviceId);
     var over = c.entities || {};
     var ent = {};
@@ -363,7 +367,9 @@ class ZlinkyCard extends HTMLElement {
       var taken = Object.values(ent);
       ent[role] = zlFindRole(hass, list.filter((e) => taken.indexOf(e.entity_id) < 0), role);
     });
-    return { deviceId: deviceId, ent: ent };
+    var r = { deviceId: deviceId, ent: ent };
+    this._resolved = { reg: hass.entities, config: c, r: r };
+    return r;
   }
 
   _st(id) { return id && this._hass.states[id]; }
@@ -399,7 +405,11 @@ class ZlinkyCard extends HTMLElement {
   _fetchStats(r) {
     var c = this._config, hass = this._hass;
     if (!hass.callWS || this._statsBusy) return;
-    var key = `${r.ent.energy}|${r.ent.apparent_power || r.ent.power}`;
+    var curveId = r.ent.apparent_power || r.ent.power;
+    // The 24 h curve (288 points) is only fetched when it will be drawn: `show_graph` on the full
+    // card, or the mini once unfolded. The flag is part of the key, so unfolding refetches at once.
+    var wantCurve = !!(curveId && c.show_graph && !this._compact());
+    var key = `${r.ent.energy}|${curveId}|${wantCurve ? 1 : 0}`;
     var fresh = this._statsKey === key && Date.now() - (this._statsAt || 0) < ZL_STATS_REFRESH;
     if (fresh || (!c.show_stats && !c.show_graph && !this._compact())) return;
     this._statsBusy = true;
@@ -410,8 +420,7 @@ class ZlinkyCard extends HTMLElement {
         calendar: { period: period, offset: offset }, types: ['change'], units: { energy: 'kWh' } })
         .then((x) => (x?.change != null ? Number(x.change) : null)).catch(() => null)
       : Promise.resolve(null));
-    var curveId = r.ent.apparent_power || r.ent.power;
-    var curve = curveId
+    var curve = wantCurve
       ? hass.callWS({ type: 'recorder/statistics_during_period', statistic_ids: [curveId], period: '5minute', types: ['mean'],
         start_time: new Date(Date.now() - 24 * 3600000).toISOString() })
         .then((x) => {

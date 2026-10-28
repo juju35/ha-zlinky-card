@@ -165,6 +165,41 @@ test("statistics: today / yesterday / month with cost, and the 24 h curve", asyn
   assert.equal(calls.length, 4);
 });
 
+test("show_graph: false skips the 24 h curve query but keeps the tiles", async () => {
+  const calls = [];
+  const callWS = (msg) => { calls.push(msg); return Promise.resolve({ change: 1 }); };
+  make(ZlinkyCard, zhaHass({ callWS }), { show_graph: false });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 3);
+  assert.equal(calls.filter((c) => c.type === "recorder/statistics_during_period").length, 0);
+});
+
+test("mini card fetches the 24 h curve only once unfolded", async () => {
+  const calls = [];
+  const callWS = (msg) => { calls.push(msg); return Promise.resolve(msg.statistic_ids ? {} : { change: 1 }); };
+  const card = make(ZlinkyMiniCard, zhaHass({ callWS }));
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "recorder/statistics_during_period").length, 0);
+  card._setZoom(true);
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "recorder/statistics_during_period").length, 1);
+});
+
+test("entity role matching is cached until the registry or config changes", () => {
+  const card = make(ZlinkyCard, zhaHass());
+  const r1 = card._resolve();
+  assert.equal(card._resolve(), r1);
+  card.hass = { ...card._hass };
+  assert.equal(card._resolve(), r1);
+  card.hass = zhaHass();
+  const r2 = card._resolve();
+  assert.notEqual(r2, r1);
+  assert.deepEqual(r2.ent, r1.ent);
+  card.setConfig({ entities: { power: "sensor.other_power" } });
+  card.hass = zhaHass();
+  assert.equal(card._resolve().ent.power, "sensor.other_power");
+});
+
 test("mini card: compact, unfolds with the detail button", () => {
   const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
   assert.match(card.shadowRoot.innerHTML, /class="mini"/);
