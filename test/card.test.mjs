@@ -2,11 +2,12 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
 
-const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, customElements } = loadCard("zlinky-card.js", [
+const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, ZlI18n, customElements } = loadCard("zlinky-card.js", [
   "ZlinkyCard",
   "ZlinkyMiniCard",
   "zlFindDevice",
   "zlSpark",
+  "ZlI18n",
 ]);
 
 const st = (state, attributes = {}) => ({ state, attributes });
@@ -245,4 +246,18 @@ test("escapes user text and registers the cards", () => {
 test("sparkline needs at least two points", () => {
   assert.equal(zlSpark([{ t: 1, v: 2 }]), "");
   assert.match(zlSpark([{ t: 1, v: 2 }, { t: 2, v: 4 }]), /<path/);
+});
+
+test("I18N parity: every language has exactly the English keys and placeholders", () => {
+  const ref = ZlI18n.en;
+  const holes = (v) => (String(v).match(/\{\w+\}/g) || []).sort();
+  for (const lang of ["fr", "de", "es"]) {
+    assert.deepEqual(Object.keys(ZlI18n[lang]).sort(), Object.keys(ref).sort(), lang);
+    for (const k of Object.keys(ref)) assert.deepEqual(holes(ZlI18n[lang][k]), holes(ref[k]), `${lang}.${k}`);
+  }
+});
+
+test("renders in German and Spanish", () => {
+  assert.match(make(ZlinkyCard, zhaHass(), { language: "de" }).shadowRoot.innerHTML, /Letzte 24 h|Geringe Last/);
+  assert.match(make(ZlinkyCard, zhaHass(), { language: "es" }).shadowRoot.innerHTML, /Últimas 24 h|Carga baja/);
 });
