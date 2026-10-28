@@ -399,7 +399,11 @@ class ZlinkyCard extends HTMLElement {
   _fetchStats(r) {
     var c = this._config, hass = this._hass;
     if (!hass.callWS || this._statsBusy) return;
-    var key = `${r.ent.energy}|${r.ent.apparent_power || r.ent.power}`;
+    var curveId = r.ent.apparent_power || r.ent.power;
+    // The 24 h curve (288 points) is only fetched when it will be drawn: `show_graph` on the full
+    // card, or the mini once unfolded. The flag is part of the key, so unfolding refetches at once.
+    var wantCurve = !!(curveId && c.show_graph && !this._compact());
+    var key = `${r.ent.energy}|${curveId}|${wantCurve ? 1 : 0}`;
     var fresh = this._statsKey === key && Date.now() - (this._statsAt || 0) < ZL_STATS_REFRESH;
     if (fresh || (!c.show_stats && !c.show_graph && !this._compact())) return;
     this._statsBusy = true;
@@ -410,8 +414,7 @@ class ZlinkyCard extends HTMLElement {
         calendar: { period: period, offset: offset }, types: ['change'], units: { energy: 'kWh' } })
         .then((x) => (x?.change != null ? Number(x.change) : null)).catch(() => null)
       : Promise.resolve(null));
-    var curveId = r.ent.apparent_power || r.ent.power;
-    var curve = curveId
+    var curve = wantCurve
       ? hass.callWS({ type: 'recorder/statistics_during_period', statistic_ids: [curveId], period: '5minute', types: ['mean'],
         start_time: new Date(Date.now() - 24 * 3600000).toISOString() })
         .then((x) => {
