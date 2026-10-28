@@ -185,6 +185,21 @@ test("mini card fetches the 24 h curve only once unfolded", async () => {
   assert.equal(calls.filter((c) => c.type === "recorder/statistics_during_period").length, 1);
 });
 
+test("entity role matching is cached until the registry or config changes", () => {
+  const card = make(ZlinkyCard, zhaHass());
+  const r1 = card._resolve();
+  assert.equal(card._resolve(), r1);
+  card.hass = { ...card._hass };
+  assert.equal(card._resolve(), r1);
+  card.hass = zhaHass();
+  const r2 = card._resolve();
+  assert.notEqual(r2, r1);
+  assert.deepEqual(r2.ent, r1.ent);
+  card.setConfig({ entities: { power: "sensor.other_power" } });
+  card.hass = zhaHass();
+  assert.equal(card._resolve().ent.power, "sensor.other_power");
+});
+
 test("mini card: compact, unfolds with the detail button", () => {
   const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
   assert.match(card.shadowRoot.innerHTML, /class="mini"/);

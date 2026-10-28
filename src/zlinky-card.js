@@ -352,6 +352,10 @@ class ZlinkyCard extends HTMLElement {
   _resolve() {
     var hass = this._hass, c = this._config;
     var deviceId = this._deviceId();
+    // Role matching only depends on the registry, the device and the config: cache it and rebuild
+    // only when one of them changes (`hass.entities` is replaced on registry updates, `_config` on setConfig).
+    var cache = this._resolved;
+    if (cache && cache.reg === hass.entities && cache.config === c && cache.r.deviceId === deviceId) return cache.r;
     var list = zlDeviceEntities(hass, deviceId);
     var over = c.entities || {};
     var ent = {};
@@ -363,7 +367,9 @@ class ZlinkyCard extends HTMLElement {
       var taken = Object.values(ent);
       ent[role] = zlFindRole(hass, list.filter((e) => taken.indexOf(e.entity_id) < 0), role);
     });
-    return { deviceId: deviceId, ent: ent };
+    var r = { deviceId: deviceId, ent: ent };
+    this._resolved = { reg: hass.entities, config: c, r: r };
+    return r;
   }
 
   _st(id) { return id && this._hass.states[id]; }
