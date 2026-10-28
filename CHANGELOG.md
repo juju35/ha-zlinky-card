@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.3.0 - 2026-10-28
+### Features
+- Visual editor: the `tiers` option (names of the meter indexes) can now be set from the editor, as a multiple text field; it is dropped from the config when left empty.
+
+### Fixes
+- The 24 h power curve is only fetched from the recorder when the graph is shown (not with `show_graph: false`, nor while the mini card is folded); unfolding the mini card loads it immediately.
+- Entity role matching is cached and only recomputed when the entity registry, the device or the config changes, instead of on every Home Assistant state update.
+- After a failed recorder call, the consumption tiles retry after about 30 s instead of showing a dash for the whole 5 min refresh window.
+- The main power value is no longer a clickable more-info button when no power entity is resolved.
+
+### Documentation
+- README: live animation GIFs (normal and high load), HACS "Dashboard" category naming, note on the Zigbee2MQTT EASF07-EASF10 distributor indexes not covered by `tier1`-`tier6`.
+
 ## 1.2.0 - 2026-10-26
 ### Fixes
 - Visual editor: the device picker only listed devices from the "LiXee" manufacturer, so ZLinky_TIC meters exposed through Zigbee2MQTT (which often lack that manufacturer but carry the `ZLinky_TIC` model) were missing from the dropdown. A second filter on the model is added, so both LiXee and Zigbee2MQTT ZLinky devices now appear. No impact on automatic discovery.
