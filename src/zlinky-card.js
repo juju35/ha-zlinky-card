@@ -567,7 +567,8 @@ class ZlinkyCard extends HTMLElement {
     var wantCurve = !!(curveId && c.show_graph && !this._compact());
     var key = `${r.ent.energy}|${curveId}|${wantCurve ? 1 : 0}`;
     var fresh = this._statsKey === key && Date.now() - (this._statsAt || 0) < ZL_STATS_REFRESH;
-    if (fresh || (!c.show_stats && !c.show_graph && !this._compact())) return;
+    // Nothing to fetch when neither the tiles (or the mini's "today" line) nor the curve are shown.
+    if (fresh || !(c.show_stats || wantCurve)) return;
     this._statsBusy = true;
     this._statsKey = key;
     this._statsAt = Date.now();
@@ -776,7 +777,7 @@ class ZlinkyCard extends HTMLElement {
   }
 
   _miniHtml(m) {
-    var today = this._stats?.today;
+    var today = this._config.show_stats ? this._stats?.today : null;
     var lines = [];
     if (today != null) {
       var cost = this._cost(today);

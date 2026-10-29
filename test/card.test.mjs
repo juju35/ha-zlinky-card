@@ -412,3 +412,43 @@ test("editor: every field has a translated label, and the device field its helpe
     }
   }
 });
+
+test("mini card: show_stats: false hides today's line and skips the recorder query", async () => {
+  const calls = [];
+  const callWS = (msg) => { calls.push(msg); return Promise.resolve(msg.statistic_ids ? {} : { change: 2 }); };
+  const card = make(ZlinkyMiniCard, zhaHass({ callWS }), { language: "en", show_stats: false });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.length, 0);
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /mdi:calendar-today/);
+  // Unfolded, the 24 h curve is still fetched since show_graph is on.
+  card._setZoom(true);
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "recorder/statistics_during_period").length, 1);
+});
+
+test("mini card: today's line is shown by default", async () => {
+  const callWS = (msg) => Promise.resolve(msg.statistic_ids ? {} : { change: 2 });
+  const card = make(ZlinkyMiniCard, zhaHass({ callWS }), { language: "en" });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.match(card.shadowRoot.innerHTML, /mdi:calendar-today/);
+});
+
+test("full card: show_stats: false still fetches the 24 h curve and shows no tiles", async () => {
+  const calls = [];
+  const callWS = (msg) => { calls.push(msg); return Promise.resolve(msg.statistic_ids ? {} : { change: 2 }); };
+  const card = make(ZlinkyCard, zhaHass({ callWS }), { show_stats: false });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "recorder/statistics_during_period").length, 1);
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /class="tile"/);
+});
+
+test("mini card: turning show_stats back on fetches today's consumption", async () => {
+  const calls = [];
+  const callWS = (msg) => { calls.push(msg); return Promise.resolve(msg.statistic_ids ? {} : { change: 2 }); };
+  const card = make(ZlinkyMiniCard, zhaHass({ callWS }), { language: "en", show_stats: false });
+  await new Promise((r) => setTimeout(r, 10));
+  card.setConfig({ language: "en", show_stats: true });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 3);
+  assert.match(card.shadowRoot.innerHTML, /mdi:calendar-today/);
+});
