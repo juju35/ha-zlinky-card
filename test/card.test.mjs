@@ -390,3 +390,65 @@ test("re-renders patch the DOM in place (meter and gauge nodes are kept)", () =>
   assert.deepEqual(picture.attrs, { class: "picture" });
   assert.equal(picture.childNodes.length, 0);
 });
+
+// Every leaf field of the editor schema, grids and expandables flattened.
+function schemaLeaves(schema) {
+  return schema.flatMap((s) => (s.schema ? schemaLeaves(s.schema) : [s]));
+}
+
+test("editor: every field has a translated label, and the device field its helper", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  for (const lang of ["en", "fr", "de", "es"]) {
+    for (const type of ["custom:zlinky-card", "custom:zlinky-mini-card"]) {
+      const ed = new Editor();
+      ed.setConfig({ type, language: lang });
+      ed.hass = zhaHass();
+      for (const s of schemaLeaves(ed._form.schema)) {
+        const label = ed._form.computeLabel(s);
+        assert.ok(label && !/^(ed|en)_/.test(label), `${lang} ${type} ${s.name}: ${label}`);
+      }
+      const helper = ed._form.computeHelper({ name: "device_id" });
+      assert.ok(helper && !/^ed_/.test(helper), `${lang} device_id helper: ${helper}`);
+    }
+  }
+});
+
+test("mini card: show_stats: false hides today's line and skips the recorder query", async () => {
+  const calls = [];
+  const callWS = (msg) => { calls.push(msg); return Promise.resolve(msg.statistic_ids ? {} : { change: 2 }); };
+  const card = make(ZlinkyMiniCard, zhaHass({ callWS }), { language: "en", show_stats: false });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.length, 0);
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /mdi:calendar-today/);
+  // Unfolded, the 24 h curve is still fetched since show_graph is on.
+  card._setZoom(true);
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "recorder/statistics_during_period").length, 1);
+});
+
+test("mini card: today's line is shown by default", async () => {
+  const callWS = (msg) => Promise.resolve(msg.statistic_ids ? {} : { change: 2 });
+  const card = make(ZlinkyMiniCard, zhaHass({ callWS }), { language: "en" });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.match(card.shadowRoot.innerHTML, /mdi:calendar-today/);
+});
+
+test("full card: show_stats: false still fetches the 24 h curve and shows no tiles", async () => {
+  const calls = [];
+  const callWS = (msg) => { calls.push(msg); return Promise.resolve(msg.statistic_ids ? {} : { change: 2 }); };
+  const card = make(ZlinkyCard, zhaHass({ callWS }), { show_stats: false });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "recorder/statistics_during_period").length, 1);
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /class="tile"/);
+});
+
+test("mini card: turning show_stats back on fetches today's consumption", async () => {
+  const calls = [];
+  const callWS = (msg) => { calls.push(msg); return Promise.resolve(msg.statistic_ids ? {} : { change: 2 }); };
+  const card = make(ZlinkyMiniCard, zhaHass({ callWS }), { language: "en", show_stats: false });
+  await new Promise((r) => setTimeout(r, 10));
+  card.setConfig({ language: "en", show_stats: true });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 3);
+  assert.match(card.shadowRoot.innerHTML, /mdi:calendar-today/);
+});

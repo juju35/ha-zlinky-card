@@ -20,8 +20,8 @@ var ZlI18n = {
     injection: 'Injection',
     phases: 'Phases',
     no_device: 'Aucun ZLinky trouvé',
-    ed_device: 'ZLinky',
-    ed_device_helper: 'Appareil LiXee ZLinky_TIC (ZHA ou Zigbee2MQTT)',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'Appareil LiXee ZLinky_TIC (ZHA ou Zigbee2MQTT)',
     ed_name: 'Nom',
     ed_name_helper: 'Laisser vide pour « Linky »',
     ed_icon: 'Icône',
@@ -75,8 +75,8 @@ var ZlI18n = {
     injection: 'Injection',
     phases: 'Phases',
     no_device: 'No ZLinky found',
-    ed_device: 'ZLinky',
-    ed_device_helper: 'LiXee ZLinky_TIC device (ZHA or Zigbee2MQTT)',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'LiXee ZLinky_TIC device (ZHA or Zigbee2MQTT)',
     ed_name: 'Name',
     ed_name_helper: 'Leave empty for "Linky"',
     ed_icon: 'Icon',
@@ -130,8 +130,8 @@ var ZlI18n = {
     injection: 'Einspeisung',
     phases: 'Phasen',
     no_device: 'Kein ZLinky gefunden',
-    ed_device: 'ZLinky',
-    ed_device_helper: 'LiXee-ZLinky_TIC-Gerät (ZHA oder Zigbee2MQTT)',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'LiXee-ZLinky_TIC-Gerät (ZHA oder Zigbee2MQTT)',
     ed_name: 'Name',
     ed_name_helper: 'Leer lassen für „Linky“',
     ed_icon: 'Symbol',
@@ -185,8 +185,8 @@ var ZlI18n = {
     injection: 'Inyección',
     phases: 'Fases',
     no_device: 'No se ha encontrado ningún ZLinky',
-    ed_device: 'ZLinky',
-    ed_device_helper: 'Dispositivo LiXee ZLinky_TIC (ZHA o Zigbee2MQTT)',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'Dispositivo LiXee ZLinky_TIC (ZHA o Zigbee2MQTT)',
     ed_name: 'Nombre',
     ed_name_helper: 'Déjalo vacío para «Linky»',
     ed_icon: 'Icono',
@@ -567,7 +567,8 @@ class ZlinkyCard extends HTMLElement {
     var wantCurve = !!(curveId && c.show_graph && !this._compact());
     var key = `${r.ent.energy}|${curveId}|${wantCurve ? 1 : 0}`;
     var fresh = this._statsKey === key && Date.now() - (this._statsAt || 0) < ZL_STATS_REFRESH;
-    if (fresh || (!c.show_stats && !c.show_graph && !this._compact())) return;
+    // Nothing to fetch when neither the tiles (or the mini's "today" line) nor the curve are shown.
+    if (fresh || !(c.show_stats || wantCurve)) return;
     this._statsBusy = true;
     this._statsKey = key;
     this._statsAt = Date.now();
@@ -776,7 +777,7 @@ class ZlinkyCard extends HTMLElement {
   }
 
   _miniHtml(m) {
-    var today = this._stats?.today;
+    var today = this._config.show_stats ? this._stats?.today : null;
     var lines = [];
     if (today != null) {
       var cost = this._cost(today);

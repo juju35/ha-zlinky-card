@@ -94,7 +94,7 @@ type: custom:zlinky-mini-card
 subscribed_power: 9
 ```
 
-The mini card shows the meter, the live power, the load gauge and today's consumption. The detail button (top right) unfolds the full card; a click anywhere else on the page folds it back. It takes the same options as the full card, plus `zoom`.
+The mini card shows the meter, the live power, the load gauge and today's consumption (hidden with `show_stats: false`). The detail button (top right) unfolds the full card; a click anywhere else on the page folds it back. It takes the same options as the full card, plus `zoom`.
 
 ### Full options
 
