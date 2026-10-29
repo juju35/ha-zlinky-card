@@ -2,11 +2,12 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
 
-const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, ZlI18n, customElements } = loadCard("zlinky-card.js", [
+const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, zlMorph, ZlI18n, customElements } = loadCard("zlinky-card.js", [
   "ZlinkyCard",
   "ZlinkyMiniCard",
   "zlFindDevice",
   "zlSpark",
+  "zlMorph",
   "ZlI18n",
 ]);
 
@@ -260,4 +261,132 @@ test("I18N parity: every language has exactly the English keys and placeholders"
 test("renders in German and Spanish", () => {
   assert.match(make(ZlinkyCard, zhaHass(), { language: "de" }).shadowRoot.innerHTML, /Letzte 24 h|Geringe Last/);
   assert.match(make(ZlinkyCard, zhaHass(), { language: "es" }).shadowRoot.innerHTML, /Últimas 24 h|Carga baja/);
+});
+
+test("finds Zigbee2MQTT entities carrying Home Assistant's _2 de-duplication suffix", () => {
+  const z = "sensor.zlinky_";
+  const states = {
+    [`${z}east_2`]: st("1200", { device_class: "energy", unit_of_measurement: "kWh" }),
+    [`${z}easf01_2`]: st("800", { device_class: "energy", unit_of_measurement: "kWh" }),
+    [`${z}sinsts_2`]: st("1.2", { device_class: "apparent_power", unit_of_measurement: "kVA" }),
+    [`${z}irms1_2`]: st("5", { device_class: "current", unit_of_measurement: "A" }),
+    [`${z}irms2_2`]: st("3", { device_class: "current", unit_of_measurement: "A" }),
+    [`${z}urms1_2`]: st("231", { device_class: "voltage", unit_of_measurement: "V" }),
+    [`${z}power_3`]: st("900", { device_class: "power", unit_of_measurement: "W" }),
+  };
+  const entities = {};
+  for (const id of Object.keys(states)) entities[id] = { entity_id: id, device_id: "m1" };
+  const hass = { language: "en", states, entities, devices: { m1: { name: "Linky", model: "ZLinky_TIC" } } };
+  const card = make(ZlinkyCard, hass);
+  const { ent } = card._resolve();
+  assert.equal(ent.energy, `${z}east_2`);
+  assert.equal(ent.tier1, `${z}easf01_2`);
+  assert.equal(ent.apparent_power, `${z}sinsts_2`);
+  assert.equal(ent.current, `${z}irms1_2`);
+  assert.equal(ent.current_b, `${z}irms2_2`);
+  assert.equal(ent.voltage, `${z}urms1_2`);
+  assert.equal(ent.power, `${z}power_3`);
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /Offline/);
+});
+
+test("an entity whose state appears after the first resolve is picked up", () => {
+  const hass = zhaHass();
+  const id = "sensor.lixee_zlinky_tic_puissance_apparente";
+  const saved = hass.states[id];
+  delete hass.states[id];
+  const card = make(ZlinkyCard, hass);
+  assert.notEqual(card._resolve().ent.apparent_power, id);
+  // Same registry object, the state now exists (HA finished starting).
+  card.hass = { ...hass, states: { ...hass.states, [id]: saved } };
+  assert.equal(card._resolve().ent.apparent_power, id);
+});
+
+test("the ZLinky device lookup is memoized per device registry object", () => {
+  const hass = zhaHass();
+  let scans = 0;
+  const devices = new Proxy(hass.devices, { ownKeys: (t) => { scans++; return Reflect.ownKeys(t); } });
+  const h = { ...hass, devices };
+  assert.equal(zlFindDevice(h), "z1");
+  assert.equal(zlFindDevice({ ...h }), "z1");
+  assert.equal(scans, 1);
+});
+
+test("a partial stats failure keeps the previous values instead of dashes", async () => {
+  let fail = false;
+  const callWS = (msg) => {
+    if (msg.type === "recorder/statistics_during_period") return Promise.resolve({});
+    if (fail && msg.calendar.offset === -1) return Promise.reject(new Error("timeout"));
+    return Promise.resolve({ change: msg.calendar.offset === -1 ? 9.8 : 4.2 });
+  };
+  const card = make(ZlinkyCard, zhaHass({ callWS }));
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(card._stats.yesterday, 9.8);
+  fail = true;
+  card._statsAt = 0;
+  card.hass = zhaHass({ callWS });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(card._stats.yesterday, 9.8);
+  assert.equal(card._stats.today, 4.2);
+});
+
+test("a stats reply for a previous config is ignored", async () => {
+  let release;
+  const gate = new Promise((r) => { release = r; });
+  const calls = [];
+  const callWS = (msg) => {
+    calls.push(msg);
+    return calls.length <= 4 ? gate.then(() => ({ change: 111 })) : Promise.resolve({ change: 2 });
+  };
+  const card = make(ZlinkyCard, zhaHass({ callWS }));
+  card.setConfig({ entities: { energy: "sensor.lixee_zlinky_tic_consommation_partie_1" } });
+  release();
+  await new Promise((r) => setTimeout(r, 10));
+  assert.notEqual(card._stats.today, 111);
+  assert.equal(card._stats.today, 2);
+  assert.ok(calls.slice(4).some((c) => c.statistic_id === "sensor.lixee_zlinky_tic_consommation_partie_1"));
+});
+
+// Minimal DOM nodes, enough for zlMorph.
+class FakeNode {
+  constructor(name, attrs = {}, kids = [], text = null) {
+    this.nodeName = name;
+    this.nodeType = name === "#text" ? 3 : 1;
+    this.nodeValue = text;
+    this.attrs = { ...attrs };
+    this.childNodes = [];
+    for (const k of kids) this.appendChild(k);
+  }
+  get attributes() { return Object.entries(this.attrs).map(([name, value]) => ({ name, value })); }
+  hasAttribute(n) { return n in this.attrs; }
+  getAttribute(n) { return n in this.attrs ? this.attrs[n] : null; }
+  setAttribute(n, v) { this.attrs[n] = v; }
+  removeAttribute(n) { delete this.attrs[n]; }
+  appendChild(n) { n.parent?.removeChild(n); n.parent = this; this.childNodes.push(n); return n; }
+  removeChild(n) { this.childNodes.splice(this.childNodes.indexOf(n), 1); n.parent = null; return n; }
+  replaceChild(n, old) { n.parent?.removeChild(n); this.childNodes[this.childNodes.indexOf(old)] = n; n.parent = this; old.parent = null; return old; }
+}
+const txt = (v) => new FakeNode("#text", {}, [], v);
+
+test("re-renders patch the DOM in place (meter and gauge nodes are kept)", () => {
+  const picture = new FakeNode("DIV", { class: "picture live", style: "--zl-blink:2.00s" }, [txt("300 VA")]);
+  const fill = new FakeNode("DIV", { class: "fill", style: "width:5%" });
+  const chip = new FakeNode("BUTTON", { class: "chip" });
+  const root = new FakeNode("ROOT", {}, [picture, fill, chip]);
+  const next = new FakeNode("ROOT", {}, [
+    new FakeNode("DIV", { class: "picture live", style: "--zl-blink:1.00s" }, [txt("4 200 VA")]),
+    new FakeNode("DIV", { class: "fill", style: "width:70%" }),
+    new FakeNode("SPAN", { class: "chip" }),
+  ]);
+  zlMorph(root, next);
+  assert.equal(root.childNodes[0], picture);
+  assert.equal(picture.attrs.style, "--zl-blink:1.00s");
+  assert.equal(picture.childNodes[0].nodeValue, "4 200 VA");
+  assert.equal(root.childNodes[1], fill);
+  assert.equal(fill.attrs.style, "width:70%");
+  assert.equal(root.childNodes[2].nodeName, "SPAN");
+  zlMorph(root, new FakeNode("ROOT", {}, [new FakeNode("DIV", { class: "picture" })]));
+  assert.equal(root.childNodes.length, 1);
+  assert.equal(root.childNodes[0], picture);
+  assert.deepEqual(picture.attrs, { class: "picture" });
+  assert.equal(picture.childNodes.length, 0);
 });

@@ -126,7 +126,7 @@ var ZlI18n = {
     last_24h: 'Letzte 24 h',
     peak: 'max. {v}',
     index: 'Zählerstand',
-    tier: 'Zählerstand {n}',
+    tier: 'Zählwerk {n}',
     injection: 'Einspeisung',
     phases: 'Phasen',
     no_device: 'Kein ZLinky gefunden',
@@ -139,7 +139,7 @@ var ZlI18n = {
     ed_subscribed_power_helper: 'Für die Lastanzeige; standardmäßig 6 kVA',
     ed_price: 'Preis pro kWh',
     ed_price_helper: 'Optional: zeigt die Kosten neben dem Verbrauch an',
-    ed_tiers: 'Namen der Tarifzählwerke',
+    ed_tiers: 'Namen der Zählwerke',
     ed_tiers_helper: 'In der Reihenfolge der Zählwerke 1 bis 6 (z. B. HC Nebenzeit, HP Hauptzeit)',
     ed_show_graph: '24-h-Verlauf',
     ed_show_stats: 'Verbrauch',
@@ -165,7 +165,7 @@ var ZlI18n = {
     en_voltage_c: 'Spannung Phase 3',
     en_injection: 'Zählerstand Einspeisung',
     en_tariff: 'Tarifperiode',
-    en_tier1: 'Zählerstand 1', en_tier2: 'Zählerstand 2', en_tier3: 'Zählerstand 3', en_tier4: 'Zählerstand 4', en_tier5: 'Zählerstand 5', en_tier6: 'Zählerstand 6',
+    en_tier1: 'Zählwerk 1', en_tier2: 'Zählwerk 2', en_tier3: 'Zählwerk 3', en_tier4: 'Zählwerk 4', en_tier5: 'Zählwerk 5', en_tier6: 'Zählwerk 6',
   },
   es: {
     title: 'Linky',
@@ -236,20 +236,22 @@ function zlEsc(s) {
 // ── Entity discovery ─────────────────────────────────────────────────────────
 // Roles the card looks for on the device. Each matcher tries the entity registry translation_key first,
 // then the entity_id suffix (ZHA French / English slugs and Zigbee2MQTT TIC labels), then the device class.
-var ZL_PHASE = /(phase_[bc23]|_ph_[bc]|_l[23]$|[23]$)/;
+// Zigbee2MQTT per-phase labels end in a letter + phase digit (`irms2`, `sinsts3`): a bare `_2` / `_3` is
+// Home Assistant's de-duplication suffix (re-paired device, second ZLinky), not a phase.
+var ZL_PHASE = /(phase_[bc23]|_ph_[bc]|_l[23]$|[a-z][23]$)/;
 var ZL_TIER = /(partie|tranche|tier|easf|index)_?0?([1-6])/;
 var ZL_ROLES = {
   energy: { keys: ['summation_delivered'], id: /(_consommation|_summation_delivered|_east|_base|_energy|_energie)$/,
     test: (id, s) => s.attributes.device_class === 'energy' && !ZL_TIER.test(id) && !/(received|recu|injection|eait)/.test(id) },
   injection: { keys: ['summation_received'], id: /(_summation_received|_cumul_recu|_eait|_injection)$/ },
   power: { keys: ['active_power', 'power'], id: /(_puissance|_active_power|_power|_ccasn)$/,
-    test: (id, s) => s.attributes.device_class === 'power' && !ZL_PHASE.test(id) && !/(total|max)/.test(id) },
+    test: (id, s) => s.attributes.device_class === 'power' && !zlIsPhase(id) && !/(total|max)/.test(id) },
   apparent_power: { keys: ['apparent_power'], id: /(_puissance_apparente|_apparent_power|_sinsts|_papp)$/,
-    test: (id, s) => s.attributes.device_class === 'apparent_power' && !ZL_PHASE.test(id) },
+    test: (id, s) => s.attributes.device_class === 'apparent_power' && !zlIsPhase(id) },
   current: { keys: ['rms_current', 'current'], id: /(_courant|_rms_current|_current|_irms1?|_iinst1?)$/,
-    test: (id, s) => s.attributes.device_class === 'current' && !ZL_PHASE.test(id) && !/max/.test(id) },
+    test: (id, s) => s.attributes.device_class === 'current' && !zlIsPhase(id) && !/max/.test(id) },
   voltage: { keys: ['rms_voltage', 'voltage'], id: /(_tension|_rms_voltage|_voltage|_urms1?)$/,
-    test: (id, s) => s.attributes.device_class === 'voltage' && !ZL_PHASE.test(id) },
+    test: (id, s) => s.attributes.device_class === 'voltage' && !zlIsPhase(id) },
   current_b: { keys: ['rms_current_ph_b'], id: /(courant_phase_b|rms_current_ph_b|_irms2|_iinst2)$/ },
   current_c: { keys: ['rms_current_ph_c'], id: /(courant_phase_c|rms_current_ph_c|_irms3|_iinst3)$/ },
   voltage_b: { keys: ['rms_voltage_ph_b'], id: /(tension_phase_b|rms_voltage_ph_b|_urms2)$/ },
@@ -261,6 +263,16 @@ for (var zlN = 1; zlN <= 6; zlN++) {
     id: new RegExp(`(consommation_(partie|tranche)_${zlN}|tier${zlN}_summation_delivered|_easf0${zlN}|_index_${zlN})$`) };
 }
 var ZL_TIERS = [1, 2, 3, 4, 5, 6].map((n) => `tier${n}`);
+
+// An entity_id without Home Assistant's de-duplication suffix (`sensor.zlinky_sinsts_2` -> `sensor.zlinky_sinsts`).
+// Only used as a fallback: `_index_1` legitimately ends in `_1`.
+function zlBaseId(id) {
+  return id.replace(/_\d+$/, '');
+}
+
+function zlIsPhase(id) {
+  return ZL_PHASE.test(id) || ZL_PHASE.test(zlBaseId(id));
+}
 var ZL_OVERRIDABLE = ['energy', 'power', 'apparent_power', 'current', 'voltage', 'current_b', 'current_c', 'voltage_b', 'voltage_c',
   'injection', 'tariff'].concat(ZL_TIERS);
 
@@ -289,7 +301,7 @@ function zlDeviceEntities(hass, deviceId) {
 function zlFindRole(hass, list, role) {
   var m = ZL_ROLES[role];
   var hit = list.find((e) => m.keys.indexOf(e.translation_key) >= 0);
-  if (!hit && m.id) hit = list.find((e) => m.id.test(e.entity_id));
+  if (!hit && m.id) hit = list.find((e) => m.id.test(e.entity_id)) || list.find((e) => m.id.test(zlBaseId(e.entity_id)));
   if (!hit && m.test) hit = list.find((e) => m.test(e.entity_id, hass.states[e.entity_id]));
   return hit ? hit.entity_id : undefined;
 }
@@ -298,9 +310,35 @@ function zlIsZlinky(dev) {
   return !!dev && /zlinky/i.test(`${dev.model || ''} ${dev.model_id || ''} ${dev.name || ''}`);
 }
 
+// Memoized per `hass.devices` object (only replaced on device registry updates): without a `device_id`
+// the card looks the ZLinky up on every state update.
+var zlDeviceLookup = new WeakMap();
 function zlFindDevice(hass) {
   if (!hass?.devices) return undefined;
-  return Object.keys(hass.devices).find((id) => zlIsZlinky(hass.devices[id]));
+  if (!zlDeviceLookup.has(hass.devices)) {
+    zlDeviceLookup.set(hass.devices, Object.keys(hass.devices).find((id) => zlIsZlinky(hass.devices[id])));
+  }
+  return zlDeviceLookup.get(hass.devices);
+}
+
+// ── DOM patching ─────────────────────────────────────────────────────────────
+// Brings `from`'s children in line with `to`'s, position by position: nodes of the same kind are kept
+// and updated (text, attributes, then their own children), the others are replaced, added or removed.
+function zlMorph(from, to) {
+  var a = Array.from(from.childNodes), b = Array.from(to.childNodes);
+  b.forEach((nb, i) => {
+    var na = a[i];
+    if (!na) { from.appendChild(nb); return; }
+    if (na.nodeType !== nb.nodeType || na.nodeName !== nb.nodeName) { from.replaceChild(nb, na); return; }
+    if (nb.nodeType !== 1) {
+      if (na.nodeValue !== nb.nodeValue) na.nodeValue = nb.nodeValue;
+      return;
+    }
+    Array.from(na.attributes).forEach((at) => { if (!nb.hasAttribute(at.name)) na.removeAttribute(at.name); });
+    Array.from(nb.attributes).forEach((at) => { if (na.getAttribute(at.name) !== at.value) na.setAttribute(at.name, at.value); });
+    zlMorph(na, nb);
+  });
+  for (var i = a.length - 1; i >= b.length; i--) from.removeChild(a[i]);
 }
 
 // ── Artwork ──────────────────────────────────────────────────────────────────
@@ -469,11 +507,12 @@ class ZlinkyCard extends HTMLElement {
   _resolve() {
     var hass = this._hass, c = this._config;
     var deviceId = this._deviceId();
-    // Role matching only depends on the registry, the device and the config: cache it and rebuild
-    // only when one of them changes (`hass.entities` is replaced on registry updates, `_config` on setConfig).
-    var cache = this._resolved;
-    if (cache && cache.reg === hass.entities && cache.config === c && cache.r.deviceId === deviceId) return cache.r;
+    // Role matching only depends on the registry, the device, the config and which of the device's entities
+    // have a state: cache it and rebuild only when one of them changes (`hass.entities` is replaced on registry
+    // updates, `_config` on setConfig; an entity whose state appears late, e.g. while HA starts, changes the count).
     var list = zlDeviceEntities(hass, deviceId);
+    var cache = this._resolved;
+    if (cache && cache.reg === hass.entities && cache.config === c && cache.r.deviceId === deviceId && cache.n === list.length) return cache.r;
     var over = c.entities || {};
     var ent = {};
     // Phase entities first, so the single-phase matchers skip what they already took.
@@ -485,7 +524,7 @@ class ZlinkyCard extends HTMLElement {
       ent[role] = zlFindRole(hass, list.filter((e) => taken.indexOf(e.entity_id) < 0), role);
     });
     var r = { deviceId: deviceId, ent: ent };
-    this._resolved = { reg: hass.entities, config: c, r: r };
+    this._resolved = { reg: hass.entities, config: c, n: list.length, r: r };
     return r;
   }
 
@@ -550,7 +589,16 @@ class ZlinkyCard extends HTMLElement {
         }).catch(() => { failed = true; return []; })
       : Promise.resolve([]);
     Promise.all([change('day', 0), change('day', -1), change('month', 0), curve]).then((res) => {
-      this._stats = { today: res[0], yesterday: res[1], month: res[2], curve: res[3] };
+      // A reply for a previous config (setConfig while in flight) is dropped: the next update refetches.
+      if (this._statsKey !== key) return;
+      var next = { key: key, today: res[0], yesterday: res[1], month: res[2], curve: res[3] };
+      var prev = this._stats;
+      // On a partial failure, keep the previous values of the same query rather than falling back to "—".
+      if (failed && prev && prev.key === key) {
+        ['today', 'yesterday', 'month'].forEach((k) => { if (next[k] == null) next[k] = prev[k]; });
+        if (!next.curve.length) next.curve = prev.curve;
+      }
+      this._stats = next;
       this._statsVer = (this._statsVer || 0) + 1;
       if (failed) this._statsAt = Date.now() - ZL_STATS_REFRESH + ZL_STATS_RETRY;
     }).finally(() => {
@@ -610,12 +658,12 @@ class ZlinkyCard extends HTMLElement {
   _render(r) {
     var c = this._config, ent = r.ent;
     if (!r.deviceId && !c.entities) {
-      this.shadowRoot.innerHTML = `${this._styles()}<ha-card><div class="empty"><ha-icon icon="mdi:meter-electric-outline"></ha-icon>${this._t('no_device')}</div></ha-card>`;
+      this._setHtml(`${this._styles()}<ha-card><div class="empty"><ha-icon icon="mdi:meter-electric-outline"></ha-icon>${this._t('no_device')}</div></ha-card>`);
       return;
     }
     var m = this._model(r);
     if (this._compact()) {
-      this.shadowRoot.innerHTML = this._miniHtml(m);
+      this._setHtml(this._miniHtml(m));
       return;
     }
     var lang = m.lang;
@@ -690,12 +738,26 @@ class ZlinkyCard extends HTMLElement {
       phases = `<div class="section"><div class="section-title"><ha-icon icon="mdi:transmission-tower"></ha-icon><span>${this._t('phases')}</span></div>${lines.join('')}</div>`;
     }
 
-    this.shadowRoot.innerHTML = this._styles(m.color) + '<ha-card>' +
+    this._setHtml(this._styles(m.color) + '<ha-card>' +
       '<div class="header">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(m.sub)}</div></div>` +
         `<span class="st"><span class="dot"></span>${zlEsc(m.statusText)}</span>` + this._zoomButton() +
       '</div>' + hero + stats + graph + index + phases +
-    '</ha-card>';
+    '</ha-card>');
+  }
+
+  // The first render sets innerHTML; later ones patch the existing DOM in place, so the meter's LED
+  // animation is not restarted on every power reading, the gauges' width transition plays and the
+  // keyboard focus stays on its chip or row.
+  _setHtml(html) {
+    var root = this.shadowRoot;
+    if (!root.firstChild) {
+      root.innerHTML = html;
+      return;
+    }
+    var tpl = document.createElement('template');
+    tpl.innerHTML = html;
+    zlMorph(root, tpl.content);
   }
 
   _chip(icon, text, id) {
