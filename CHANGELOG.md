@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.2 - 2026-10-29
+### Fixes
+- Visual editor: the device field now shows its translated label ("ZLinky") and help text instead of "ed_device_id".
+- Mini card: `show_stats: false` now hides today's consumption on the folded card, and the recorder is no longer queried for it.
+
 ## 1.4.1 - 2026-10-29
 ### Fixes
 - Discovery: entities renamed by Home Assistant with a `_2` / `_3` suffix (re-paired ZLinky, second ZLinky) are found again; on Zigbee2MQTT the card could show "Offline" with no values.
