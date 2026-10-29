@@ -390,3 +390,25 @@ test("re-renders patch the DOM in place (meter and gauge nodes are kept)", () =>
   assert.deepEqual(picture.attrs, { class: "picture" });
   assert.equal(picture.childNodes.length, 0);
 });
+
+// Every leaf field of the editor schema, grids and expandables flattened.
+function schemaLeaves(schema) {
+  return schema.flatMap((s) => (s.schema ? schemaLeaves(s.schema) : [s]));
+}
+
+test("editor: every field has a translated label, and the device field its helper", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  for (const lang of ["en", "fr", "de", "es"]) {
+    for (const type of ["custom:zlinky-card", "custom:zlinky-mini-card"]) {
+      const ed = new Editor();
+      ed.setConfig({ type, language: lang });
+      ed.hass = zhaHass();
+      for (const s of schemaLeaves(ed._form.schema)) {
+        const label = ed._form.computeLabel(s);
+        assert.ok(label && !/^(ed|en)_/.test(label), `${lang} ${type} ${s.name}: ${label}`);
+      }
+      const helper = ed._form.computeHelper({ name: "device_id" });
+      assert.ok(helper && !/^ed_/.test(helper), `${lang} device_id helper: ${helper}`);
+    }
+  }
+});
