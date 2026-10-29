@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.4.1 - 2026-10-29
+### Fixes
+- Discovery: entities renamed by Home Assistant with a `_2` / `_3` suffix (re-paired ZLinky, second ZLinky) are found again; on Zigbee2MQTT the card could show "Offline" with no values.
+- The card now updates its content in place: the meter's LED no longer restarts its blink on every power reading, the load and phase gauges animate, and the keyboard focus stays on the selected value.
+- An entity that only gets its state after the card first loads (Home Assistant still starting) is now picked up without waiting for a registry change.
+- When only part of the recorder statistics fails to load, the other consumption tiles keep their previous values instead of showing "—".
+- After a config change, a statistics reply for the previous config no longer briefly shows the old values.
+- German: the tariff indexes are consistently called "Zählwerk" (the total stays "Zählerstand").
+- Without a `device_id`, the ZLinky lookup is no longer repeated on every state update.
+
+### Documentation
+- README: Translations table.
+
 ## 1.4.0 - 2026-10-28
 ### Features
 - German and Spanish translations of both cards and the visual editor; the editor's language option now offers Deutsch and Español.
