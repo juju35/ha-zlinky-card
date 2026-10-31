@@ -14,9 +14,10 @@ Pick the ZLinky, the card finds all its entities by itself.
 
 While the meter is online, the card animates: the LED blinks and glows, faster as power rises. It settles to a still card when offline (and honours `prefers-reduced-motion`).
 
-| Normal load — green gauge, slow LED blink | High load — red gauge, fast LED blink near the subscribed power |
-|---|---|
-| ![ZLinky card, live meter animation at normal load](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live.gif) | ![ZLinky card, live meter animation at high load](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-high.gif) |
+| | Light | Dark |
+|---|---|---|
+| Normal load — green gauge, slow LED blink | ![ZLinky card, live meter animation at normal load](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live.gif) | ![ZLinky card, live meter animation at normal load, dark theme](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-dark.gif) |
+| High load — red gauge, fast LED blink near the subscribed power | ![ZLinky card, live meter animation at high load](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-high.gif) | ![ZLinky card, live meter animation at high load, dark theme](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-high-dark.gif) |
 
 | Card | Dark theme |
 |---|---|
