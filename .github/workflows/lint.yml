@@ -2,6 +2,8 @@ name: Lint
 
 on:
   workflow_dispatch:
+  # Called by Release, so that a version is published only once these checks pass.
+  workflow_call:
   push:
     branches: [main]
   pull_request:
