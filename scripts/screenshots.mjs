@@ -193,7 +193,13 @@ await render(
   { icons, hass, extra: ws }
 );
 
-await animate(
+// Every animation is recorded in both themes with the same setup: <file>.gif light, <file>-dark.gif dark.
+const animateBoth = async (shot, opts) => {
+  await animate(shot, opts);
+  await animate({ ...shot, file: `${shot.file}-dark`, theme: "dark" }, opts);
+};
+
+await animateBoth(
   { file: "live", type: "zlinky-card", theme: "light", width: 460, config: { price: 0.2016, tiers: ["Off-peak", "Peak"] } },
   { icons, hass, extra: ws }
 );
@@ -205,7 +211,7 @@ const highStates = {
   [`${p}puissance_apparente`]: { ...states[`${p}puissance_apparente`], state: "5810" },
   [`${p}courant`]: { ...states[`${p}courant`], state: "25" },
 };
-await animate(
+await animateBoth(
   { file: "live-high", type: "zlinky-card", theme: "light", width: 460,
     config: { price: 0.2016, tiers: ["Off-peak", "Peak"] }, hass: { states: highStates } },
   { icons, hass, extra: ws }
