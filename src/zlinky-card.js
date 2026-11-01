@@ -20,11 +20,13 @@ var ZlI18n = {
     injection: 'Injection',
     phases: 'Phases',
     no_device: 'Aucun ZLinky trouvé',
+    no_sensor: 'Aucun capteur ZLinky reconnu : choisissez-les dans « {e} »',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'Appareil LiXee ZLinky_TIC (ZHA ou Zigbee2MQTT)',
     ed_name: 'Nom',
     ed_name_helper: 'Laisser vide pour « Linky »',
     ed_icon: 'Icône',
+    ed_icon_helper: 'Remplace l\'illustration du compteur',
     ed_subscribed_power: 'Puissance souscrite (kVA)',
     ed_subscribed_power_helper: 'Sert à la jauge de charge ; 6 kVA par défaut',
     ed_price: 'Prix du kWh',
@@ -75,11 +77,13 @@ var ZlI18n = {
     injection: 'Injection',
     phases: 'Phases',
     no_device: 'No ZLinky found',
+    no_sensor: 'No ZLinky sensor found: set them under “{e}”',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'LiXee ZLinky_TIC device (ZHA or Zigbee2MQTT)',
     ed_name: 'Name',
     ed_name_helper: 'Leave empty for "Linky"',
     ed_icon: 'Icon',
+    ed_icon_helper: 'Replaces the meter illustration',
     ed_subscribed_power: 'Subscribed power (kVA)',
     ed_subscribed_power_helper: 'Used for the load gauge; 6 kVA by default',
     ed_price: 'Price per kWh',
@@ -130,11 +134,13 @@ var ZlI18n = {
     injection: 'Einspeisung',
     phases: 'Phasen',
     no_device: 'Kein ZLinky gefunden',
+    no_sensor: 'Kein ZLinky-Sensor erkannt: unter „{e}“ festlegen',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'LiXee-ZLinky_TIC-Gerät (ZHA oder Zigbee2MQTT)',
     ed_name: 'Name',
     ed_name_helper: 'Leer lassen für „Linky“',
     ed_icon: 'Symbol',
+    ed_icon_helper: 'Ersetzt die Zählerabbildung',
     ed_subscribed_power: 'Vertragliche Anschlussleistung (kVA)',
     ed_subscribed_power_helper: 'Für die Lastanzeige; standardmäßig 6 kVA',
     ed_price: 'Preis pro kWh',
@@ -185,11 +191,13 @@ var ZlI18n = {
     injection: 'Inyección',
     phases: 'Fases',
     no_device: 'No se ha encontrado ningún ZLinky',
+    no_sensor: 'No se ha reconocido ningún sensor del ZLinky: elíjalos en «{e}»',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'Dispositivo LiXee ZLinky_TIC (ZHA o Zigbee2MQTT)',
     ed_name: 'Nombre',
     ed_name_helper: 'Déjalo vacío para «Linky»',
     ed_icon: 'Icono',
+    ed_icon_helper: 'Sustituye la ilustración del contador',
     ed_subscribed_power: 'Potencia contratada (kVA)',
     ed_subscribed_power_helper: 'Se usa para el indicador de carga; 6 kVA por defecto',
     ed_price: 'Precio por kWh',
@@ -240,11 +248,13 @@ var ZlI18n = {
     injection: 'Предаја у мрежу',
     phases: 'Фазе',
     no_device: 'Није пронађен ниједан ZLinky',
+    no_sensor: 'Није препознат ниједан сензор ZLinky: изаберите их у „{e}“',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'Уређај LiXee ZLinky_TIC (ZHA или Zigbee2MQTT)',
     ed_name: 'Назив',
     ed_name_helper: 'Оставите празно за „Linky“',
     ed_icon: 'Иконица',
+    ed_icon_helper: 'Замењује илустрацију бројила',
     ed_subscribed_power: 'Уговорена снага (kVA)',
     ed_subscribed_power_helper: 'Користи се за мерач оптерећења; подразумевано 6 kVA',
     ed_price: 'Цена по kWh',
@@ -295,11 +305,13 @@ var ZlI18n = {
     injection: 'Predaja u mrežu',
     phases: 'Faze',
     no_device: 'Nije pronađen nijedan ZLinky',
+    no_sensor: 'Nije prepoznat nijedan senzor ZLinky: izaberite ih u „{e}“',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'Uređaj LiXee ZLinky_TIC (ZHA ili Zigbee2MQTT)',
     ed_name: 'Naziv',
     ed_name_helper: 'Ostavite prazno za „Linky“',
     ed_icon: 'Ikonica',
+    ed_icon_helper: 'Zamenjuje ilustraciju brojila',
     ed_subscribed_power: 'Ugovorena snaga (kVA)',
     ed_subscribed_power_helper: 'Koristi se za merač opterećenja; podrazumevano 6 kVA',
     ed_price: 'Cena po kWh',
@@ -350,11 +362,13 @@ var ZlI18n = {
     injection: 'Immissione',
     phases: 'Fasi',
     no_device: 'Nessun ZLinky trovato',
+    no_sensor: 'Nessun sensore ZLinky riconosciuto: sceglili in «{e}»',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'Dispositivo LiXee ZLinky_TIC (ZHA o Zigbee2MQTT)',
     ed_name: 'Nome',
     ed_name_helper: 'Lascia vuoto per «Linky»',
     ed_icon: 'Icona',
+    ed_icon_helper: 'Sostituisce l\'illustrazione del contatore',
     ed_subscribed_power: 'Potenza impegnata (kVA)',
     ed_subscribed_power_helper: 'Usata per l\'indicatore di carico; 6 kVA predefiniti',
     ed_price: 'Prezzo per kWh',
@@ -405,11 +419,13 @@ var ZlI18n = {
     injection: 'Teruglevering',
     phases: 'Fasen',
     no_device: 'Geen ZLinky gevonden',
+    no_sensor: 'Geen ZLinky-sensor herkend: kies ze onder “{e}”',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'LiXee ZLinky_TIC-apparaat (ZHA of Zigbee2MQTT)',
     ed_name: 'Naam',
     ed_name_helper: 'Leeg laten voor "Linky"',
     ed_icon: 'Pictogram',
+    ed_icon_helper: 'Vervangt de afbeelding van de meter',
     ed_subscribed_power: 'Aansluitvermogen (kVA)',
     ed_subscribed_power_helper: 'Gebruikt voor de belastingsmeter; standaard 6 kVA',
     ed_price: 'Prijs per kWh',
@@ -460,11 +476,13 @@ var ZlI18n = {
     injection: 'Injeção',
     phases: 'Fases',
     no_device: 'Nenhum ZLinky encontrado',
+    no_sensor: 'Nenhum sensor ZLinky reconhecido: escolha-os em «{e}»',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'Dispositivo LiXee ZLinky_TIC (ZHA ou Zigbee2MQTT)',
     ed_name: 'Nome',
     ed_name_helper: 'Deixe vazio para «Linky»',
     ed_icon: 'Ícone',
+    ed_icon_helper: 'Substitui a ilustração do contador',
     ed_subscribed_power: 'Potência contratada (kVA)',
     ed_subscribed_power_helper: 'Usada no indicador de carga; 6 kVA por omissão',
     ed_price: 'Preço por kWh',
@@ -515,11 +533,13 @@ var ZlI18n = {
     injection: 'Oddawanie do sieci',
     phases: 'Fazy',
     no_device: 'Nie znaleziono żadnego ZLinky',
+    no_sensor: 'Nie rozpoznano żadnego czujnika ZLinky: wybierz je w „{e}”',
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'Urządzenie LiXee ZLinky_TIC (ZHA lub Zigbee2MQTT)',
     ed_name: 'Nazwa',
     ed_name_helper: 'Pozostaw puste, aby użyć „Linky”',
     ed_icon: 'Ikona',
+    ed_icon_helper: 'Zastępuje ilustrację licznika',
     ed_subscribed_power: 'Moc umowna (kVA)',
     ed_subscribed_power_helper: 'Używana przez wskaźnik obciążenia; domyślnie 6 kVA',
     ed_price: 'Cena za kWh',
@@ -578,6 +598,12 @@ function zlT(lang, key) {
 
 function zlEsc(s) {
   return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+// A section title whose trailing unit ("24 h", "24 u") keeps its case under the titles' text-transform: uppercase
+// (the hour symbol is "h", "LAST 24 H" is wrong).
+function zlUnitCase(text) {
+  return zlEsc(text).replace(/(\d[\s\u00a0]+)(\S+)$/, '$1<span class="unit">$2</span>');
 }
 
 // ── Entity discovery ─────────────────────────────────────────────────────────
@@ -836,7 +862,9 @@ class ZlinkyCard extends HTMLElement {
 
   getCardSize() { return 6; }
 
-  getGridOptions() { return { columns: 12, min_columns: 6 }; }
+  // 9 columns at least: narrower (6 columns of a 320 px phone section, ~156 px) the meter, the reading and the
+  // three tiles cannot share the width. The mini card fits 6.
+  getGridOptions() { return { columns: 12, min_columns: 9 }; }
 
   _lang() {
     return zlLang((this._config?.language) || (this._hass?.language) || document.documentElement.lang || 'en');
@@ -872,7 +900,8 @@ class ZlinkyCard extends HTMLElement {
       var taken = Object.values(ent);
       ent[role] = zlFindRole(hass, list.filter((e) => taken.indexOf(e.entity_id) < 0), role);
     });
-    var r = { deviceId: deviceId, ent: ent };
+    // `n`: how many of the device's sensors have a state (tells "no sensor recognised" from "still starting").
+    var r = { deviceId: deviceId, ent: ent, n: list.length };
     this._resolved = { reg: hass.entities, config: c, n: list.length, r: r };
     return r;
   }
@@ -899,7 +928,7 @@ class ZlinkyCard extends HTMLElement {
       var s = r.ent[k] && hass.states[r.ent[k]];
       return s ? s.state : null;
     }));
-    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, this._zoomed, this._statsKey, this._statsVer, states]);
+    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, states]);
     if (sig === this._sig) return;
     this._sig = sig;
     this._r = r;
@@ -1011,6 +1040,11 @@ class ZlinkyCard extends HTMLElement {
       this._setHtml(`${this._styles()}<ha-card><div class="empty"><ha-icon icon="mdi:meter-electric-outline"></ha-icon>${this._t('no_device')}</div></ha-card>`);
       return;
     }
+    if (this._noSensor(r)) {
+      var msg = this._t('no_sensor').replace('{e}', this._t('ed_entities'));
+      this._setHtml(`${this._styles()}<ha-card><div class="empty"><ha-icon icon="mdi:meter-electric-outline"></ha-icon>${zlEsc(msg)}</div></ha-card>`);
+      return;
+    }
     var m = this._model(r);
     if (this._compact()) {
       this._setHtml(this._miniHtml(m));
@@ -1037,7 +1071,7 @@ class ZlinkyCard extends HTMLElement {
     if (c.show_graph && curve && curve.length > 1) {
       var peak = Math.max(...curve.map((p) => p.v));
       graph = '<div class="section">' +
-        `<div class="section-title"><ha-icon icon="mdi:chart-areaspline"></ha-icon><span>${this._t('last_24h')}</span><span class="aside">${zlEsc(this._t('peak').replace('{v}', zlPower(lang, peak, m.mainUnit)))}</span></div>` +
+        `<div class="section-title"><ha-icon icon="mdi:chart-areaspline"></ha-icon><span>${zlUnitCase(this._t('last_24h'))}</span><span class="aside">${zlEsc(this._t('peak').replace('{v}', zlPower(lang, peak, m.mainUnit)))}</span></div>` +
         `<div class="graph">${zlSpark(curve)}</div></div>`;
     }
 
@@ -1089,11 +1123,29 @@ class ZlinkyCard extends HTMLElement {
     }
 
     this._setHtml(this._styles(m.color) + '<ha-card>' +
-      '<div class="header">' + m.logo +
+      '<div class="header sub2">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(m.sub)}</div></div>` +
-        `<span class="st"><span class="dot"></span><span class="stt">${zlEsc(m.statusText)}</span></span>` + this._zoomButton() +
+        this._pill(m) + this._zoomButton() +
       '</div>' + hero + stats + graph + index + phases +
     '</ha-card>');
+  }
+
+  // The device is there but none of the sensors that tell its state (index, apparent or active power) was
+  // recognised: unexpected naming, disabled entities or the wrong device. "Offline" would send the user looking
+  // at the module; the card asks for the entities instead. Not while the device's sensors have no state at all
+  // (the integration is still starting): that stays "Offline" until they come.
+  _noSensor(r) {
+    var ent = r.ent;
+    if (ent.energy || ent.apparent_power || ent.power) return false;
+    if (r.n) return true;
+    var reg = this._hass.entities && r.deviceId ? zlRegistryByDevice(this._hass.entities).get(r.deviceId) || [] : [];
+    return !reg.some((e) => e.entity_id.indexOf('sensor.') === 0);
+  }
+
+  // The status pill. On a narrow card it shows its dot only: the status stays in its tooltip and accessible name.
+  _pill(m) {
+    var s = zlEsc(m.statusText);
+    return `<span class="st" role="img" title="${s}" aria-label="${s}"><span class="dot"></span><span class="stt">${s}</span></span>`;
   }
 
   // The first render sets innerHTML; later ones patch the existing DOM in place, so the meter's LED
@@ -1129,13 +1181,15 @@ class ZlinkyCard extends HTMLElement {
     var today = this._config.show_stats ? this._stats?.today : null;
     var lines = [];
     if (today != null) {
-      var cost = this._cost(today);
-      lines.push(`<div class="line"><ha-icon icon="mdi:calendar-today"></ha-icon><span>${this._t('today')} · ${zlNum(m.lang, today, 1)} kWh${cost ? ` · ${zlEsc(cost)}` : ''}</span></div>`);
+      // Each part is kept whole: on a narrow card the line wraps between them instead of cutting the cost off.
+      var parts = [this._t('today'), `${zlNum(m.lang, today, 1)} kWh`, this._cost(today)].filter((x) => x);
+      var segs = parts.map((x, i) => `<span class="seg">${zlEsc(x)}${i < parts.length - 1 ? ' ·' : ''}</span>`).join(' ');
+      lines.push(`<div class="line"><ha-icon icon="mdi:calendar-today"></ha-icon><span>${segs}</span></div>`);
     }
     return this._styles(m.color) + '<ha-card class="mini">' +
       '<div class="header">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div></div>` +
-        `<span class="st"><span class="dot"></span><span class="stt">${zlEsc(m.statusText)}</span></span>` + this._zoomButton() +
+        this._pill(m) + this._zoomButton() +
       '</div>' +
       '<div class="content">' + this._picture(m) +
         '<div class="info">' +
@@ -1160,10 +1214,12 @@ class ZlinkyCard extends HTMLElement {
   _styles(color) {
     return '<style>' +
       ':host { display: block; height: 100%; --zl-color: ' + (color || ZL_LOAD_COLORS.off) + '; --zl-green: color-mix(in srgb, #9ab00f 50%, var(--primary-text-color, #212121)); }' +
-      'ha-card { height: 100%; box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; gap: 12px; }' +
+      // A size container: on a narrow card (Sections view, 6 columns) its parts follow the card's width (see @container).
+      'ha-card { height: 100%; box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; gap: 12px; container-type: inline-size; }' +
       '.empty { display: flex; align-items: center; gap: 10px; color: var(--secondary-text-color); }' +
-      'button { all: unset; box-sizing: border-box; cursor: pointer; }' +
-      'button:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; border-radius: 8px; }' +
+      // The 8px radius is the buttons' default, so the focus ring follows the round detail button and the chips.
+      'button { all: unset; box-sizing: border-box; cursor: pointer; border-radius: 8px; }' +
+      'button:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; }' +
       // The body starts 8px under the header (the card gap is 12px between body blocks).
       '.header { display: flex; align-items: center; gap: 10px; margin-bottom: -4px; }' +
       '.hbadge { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none;' +
@@ -1171,16 +1227,19 @@ class ZlinkyCard extends HTMLElement {
       '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
       'ha-card.mini .hbadge { width: 32px; height: 32px; }' +
       'ha-card.mini .hbadge ha-icon { --mdc-icon-size: 20px; }' +
-      // The name keeps at least ~5 characters ("Linky"): past that a long status pill ellipsizes instead.
-      '.titles { flex: 1; min-width: 2.4em; }' +
+      // The name keeps about 4 characters and its ellipsis: past that the status pill gives way.
+      '.titles { flex: 1 1 auto; min-width: 5ch; font-size: 16px; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
-      '.st { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 1; min-width: 0; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
+      '.st { display: inline-flex; align-items: center; gap: 4px; flex: 0 1 auto; min-width: 0; max-width: 50%; overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
         ' white-space: nowrap; background: color-mix(in srgb, var(--zl-color) 15%, transparent);' +
         ' color: color-mix(in srgb, var(--zl-color) 50%, var(--primary-text-color, #212121)); }' +
-      '.stt { overflow: hidden; text-overflow: ellipsis; }' +
+      '.stt { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
+      // With a subtitle the titles span two lines: the pill and the detail button stay on the title's line.
+      '.header.sub2 .st { align-self: flex-start; margin-top: 4px; }' +
+      '.header.sub2 .zoom { align-self: flex-start; margin-top: 0; }' +
       '.dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--zl-color); }' +
-      '.zoom { flex-shrink: 0; width: 24px; height: 24px; margin: -4px -4px -4px 0; border-radius: 50%;' +
+      '.zoom { flex: none; width: 24px; height: 24px; margin: -4px -4px -4px 0; border-radius: 50%;' +
         ' display: grid; place-items: center; color: var(--secondary-text-color); }' +
       '.zoom ha-icon { --mdc-icon-size: 16px; }' +
       '.zoom:hover { background: color-mix(in srgb, var(--secondary-text-color) 16%, transparent); color: var(--primary-text-color); }' +
@@ -1200,8 +1259,10 @@ class ZlinkyCard extends HTMLElement {
         ' background: color-mix(in srgb, var(--zl-color) 15%, transparent); color: var(--zl-color); }' +
       '.badge ha-icon { --mdc-icon-size: 32px; }' +
       '.info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }' +
-      '.big .val { font-size: 30px; font-weight: 400; line-height: 1.1; color: var(--primary-text-color); white-space: nowrap; }' +
-      'ha-card.mini .big .val { font-size: 24px; }' +
+      // The reading scales down with the card (cqi: % of its width) and ellipsizes rather than leave the card.
+      '.big .val { display: block; font-size: 30px; font-size: clamp(22px, 13cqi, 30px); font-weight: 400; line-height: 1.1; color: var(--primary-text-color);' +
+        ' white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+      'ha-card.mini .big .val { font-size: 24px; font-size: clamp(16px, 14cqi, 24px); }' +
       '.chips { display: flex; flex-wrap: wrap; gap: 6px; }' +
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px;' +
         ' background: var(--secondary-background-color, rgba(128,128,128,0.12)); color: var(--secondary-text-color); }' +
@@ -1212,18 +1273,20 @@ class ZlinkyCard extends HTMLElement {
       '.fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, color-mix(in srgb, var(--zl-color) 55%, transparent), var(--zl-color)); transition: width 0.6s ease; }' +
       '.line { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--secondary-text-color); min-width: 0; }' +
       '.line ha-icon { --mdc-icon-size: 14px; flex-shrink: 0; }' +
-      '.line span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }' +
+      '.line > span { min-width: 0; }' +
+      '.seg { display: inline-block; max-width: 100%; vertical-align: top; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }' +
       '.tile { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 12px; min-width: 0;' +
         ' background: var(--secondary-background-color, rgba(128,128,128,0.1)); }' +
       '.tl { font-size: 11px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
-      '.tv { font-size: 18px; font-weight: 500; color: var(--primary-text-color); white-space: nowrap; }' +
+      '.tv { font-size: 18px; font-weight: 500; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.tv small, .iv small { font-size: 11px; font-weight: 400; color: var(--secondary-text-color); }' +
       '.tc { font-size: 11px; font-weight: 500; color: var(--zl-green); }' +
       '.section { display: flex; flex-direction: column; gap: 6px; }' +
       '.section-title { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; text-transform: uppercase;' +
         ' letter-spacing: .04em; color: var(--secondary-text-color); }' +
       '.section-title ha-icon { --mdc-icon-size: 16px; }' +
+      '.section-title .unit { text-transform: none; }' +
       '.section-title .aside { margin-left: auto; text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 11px; }' +
       '.graph { height: 64px; border-radius: 10px; overflow: hidden; }' +
       '.spark { width: 100%; height: 100%; display: block; }' +
@@ -1238,6 +1301,12 @@ class ZlinkyCard extends HTMLElement {
       '.phase { display: grid; grid-template-columns: 22px 1fr 52px 40px; align-items: center; gap: 8px; font-size: 12px; }' +
       '.pn { font-weight: 500; color: var(--secondary-text-color); }' +
       '.pv { text-align: right; color: var(--primary-text-color); white-space: nowrap; } .pv.dim { color: var(--secondary-text-color); }' +
+      // Narrow card (6 columns of the Sections view, ~156 to 250 px): the tiles put their unit under the value and
+      // let their label wrap, the meter shrinks; then the mini's meter gets smaller and the pill shows its dot only.
+      '@container (max-width: 300px) { .hero { gap: 10px; } .picture { width: 56px; height: 70px; } .tile { padding: 8px; }' +
+        ' .tl { white-space: normal; overflow-wrap: break-word; } .tv small { display: block; } }' +
+      '@container (max-width: 200px) { ha-card.mini .picture { width: 36px; height: 45px; } ha-card.mini .content { gap: 8px; } }' +
+      '@container (max-width: 180px) { .header { gap: 8px; } .stt { display: none; } .st { padding: 5px; } }' +
     '</style>';
   }
 }
