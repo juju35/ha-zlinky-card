@@ -638,3 +638,137 @@ test("prefers-reduced-motion also stops the load gauges' width transition", () =
   assert.match(block[1], /\.picture \*[^}]*animation: none/);
   assert.match(block[1], /\.fill \{[^}]*transition: none/);
 });
+
+// ── Review pass 9 ────────────────────────────────────────────────────────────
+
+// The ZLinky device with only sensors the card does not use (link quality, RSSI): wrong device or unexpected naming.
+function noRoleHass(withStates = true) {
+  const ids = ["sensor.lixee_zlinky_tic_rssi", "sensor.lixee_zlinky_tic_lqi"];
+  const states = {};
+  const entities = {};
+  for (const id of ids) {
+    entities[id] = { entity_id: id, device_id: "z1" };
+    if (withStates) states[id] = st("-60", { device_class: "signal_strength", unit_of_measurement: "dBm" });
+  }
+  return { language: "en", states, entities, devices: { z1: { name: "LiXee ZLinky_TIC", model: "ZLinky_TIC" } } };
+}
+
+test("a ZLinky without any recognised sensor says so instead of showing Offline", () => {
+  for (const Card of [ZlinkyCard, ZlinkyMiniCard]) {
+    const html = make(Card, noRoleHass()).shadowRoot.innerHTML;
+    assert.doesNotMatch(html, /Offline/);
+    assert.match(html, /No ZLinky sensor found/);
+    // It points at the editor section where the entities can be set by hand.
+    assert.match(html, /Entities \(advanced\)/);
+  }
+  // Translated, like the rest of the card.
+  assert.match(make(ZlinkyCard, { ...noRoleHass(), language: "fr" }).shadowRoot.innerHTML, /Entités \(avancé\)/);
+});
+
+test("a ZLinky whose sensors have no state yet (integration still starting) is still Offline, not 'no sensor'", () => {
+  const html = make(ZlinkyCard, noRoleHass(false)).shadowRoot.innerHTML;
+  assert.match(html, /Offline/);
+  assert.doesNotMatch(html, /No ZLinky sensor found/);
+  // Once the sensors get their state and none is a meter reading, the card says so (re-rendered, not stuck on Offline).
+  const card = make(ZlinkyCard, noRoleHass(false));
+  card.hass = noRoleHass(true);
+  assert.match(card.shadowRoot.innerHTML, /No ZLinky sensor found/);
+  // And a recognised meter with every entity unavailable stays Offline too.
+  const hass = zhaHass();
+  for (const id of Object.keys(hass.states)) if (id.includes("zlinky")) hass.states[id] = st("unavailable");
+  assert.doesNotMatch(make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML, /No ZLinky sensor found/);
+});
+
+test("the 24 h section title keeps the hour symbol in lower case (no 'LAST 24 H')", async () => {
+  const callWS = (msg) => {
+    if (msg.type === "recorder/statistic_during_period") return Promise.resolve({ change: 1 });
+    const now = Date.now();
+    return Promise.resolve({ [msg.statistic_ids[0]]: [{ start: now - 600000, mean: 300 }, { start: now - 300000, mean: 1500 }] });
+  };
+  for (const [language, unit] of [["en", "h"], ["pl", "h"], ["sr-Latn", "h"], ["nl", "u"]]) {
+    const card = make(ZlinkyCard, zhaHass({ callWS }), { language });
+    await new Promise((r) => setTimeout(r, 10));
+    assert.match(card.shadowRoot.innerHTML, new RegExp(`24 <span class="unit">${unit}</span>`), language);
+  }
+  assert.match(cardCss(), /\.section-title \.unit \{ text-transform: none; \}/);
+});
+
+test("editor: the icon field says it replaces the meter illustration, in every language", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  for (const lang of Object.keys(ZlI18n)) {
+    const ed = new Editor();
+    ed.setConfig({ type: "custom:zlinky-card", language: lang });
+    ed.hass = zhaHass();
+    const helper = ed._form.computeHelper({ name: "icon" });
+    assert.ok(helper && !/^ed_/.test(helper), `${lang}: ${helper}`);
+  }
+  assert.match(ZlI18n.en.ed_icon_helper, /illustration/);
+});
+
+// The CSS rules of a selector, as written in the card's <style> (several blocks are merged).
+function rules(css, selector) {
+  const esc = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return [...css.matchAll(new RegExp(`(?:^|[}>;])\\s*${esc} \\{([^}]*)\\}`, "g"))].map((m) => m[1]).join(";");
+}
+
+test("focus ring: the generic button rule does not square off the round detail button and chips", () => {
+  const css = cardCss();
+  assert.doesNotMatch(rules(css, "button:focus-visible"), /border-radius/);
+  assert.match(rules(css, ".zoom"), /border-radius: 50%/);
+  assert.match(rules(css, ".chip"), /border-radius: 12px/);
+});
+
+test("narrow header: the title keeps ~4 characters, the pill shrinks and turns into its dot, buttons never shrink", () => {
+  const css = cardCss();
+  assert.match(rules(css, "ha-card"), /container-type: inline-size/);
+  const titles = rules(css, ".titles");
+  assert.match(titles, /flex: 1 1 auto/);
+  assert.match(titles, /min-width: [4-6]ch/);
+  const pill = rules(css, ".st");
+  assert.match(pill, /flex: 0 1 auto/);
+  assert.match(pill, /min-width: 0/);
+  assert.match(pill, /max-width: 50%/);
+  assert.match(rules(css, ".zoom"), /flex: none/);
+  assert.match(css, /@container \(max-width: \d+px\) \{[^@]*\.stt \{ display: none; \}/);
+  // Shown as a dot only, the status stays in the tooltip and for screen readers.
+  for (const Card of [ZlinkyCard, ZlinkyMiniCard]) {
+    const html = make(Card, zhaHass(), { language: "en" }).shadowRoot.innerHTML;
+    assert.match(html, /<span class="st" role="img" title="Low load" aria-label="Low load">/);
+  }
+});
+
+test("with a subtitle, the status pill sits on the title's line", () => {
+  const css = cardCss();
+  assert.match(make(ZlinkyCard, zhaHass()).shadowRoot.innerHTML, /<div class="header sub2">/);
+  assert.doesNotMatch(make(ZlinkyMiniCard, zhaHass()).shadowRoot.innerHTML, /header sub2/);
+  assert.match(rules(css, ".header.sub2 .st"), /align-self: flex-start/);
+});
+
+test("narrow mini card: the meter shrinks, the reading ellipsizes and today's line wraps instead of being cut", async () => {
+  const callWS = (msg) => Promise.resolve(msg.statistic_ids ? {} : { change: 11.8 });
+  const card = make(ZlinkyMiniCard, { ...zhaHass({ callWS }), config: { currency: "EUR" } }, { language: "en", price: 0.2 });
+  await new Promise((r) => setTimeout(r, 10));
+  const html = card.shadowRoot.innerHTML;
+  // Each part of today's line is kept whole: the line wraps between them.
+  assert.match(html, /<span class="seg">Today ·<\/span> <span class="seg">11\.8 kWh ·<\/span> <span class="seg">€2\.36<\/span>/);
+  // Without a price, no cost part and no trailing separator.
+  const noPrice = make(ZlinkyMiniCard, zhaHass({ callWS }), { language: "en" });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.match(noPrice.shadowRoot.innerHTML, /<span class="seg">11\.8 kWh<\/span><\/span>/);
+  const css = html;
+  assert.doesNotMatch(rules(css, ".line > span"), /nowrap/);
+  assert.match(rules(css, ".big .val"), /text-overflow: ellipsis/);
+  assert.match(rules(css, ".big .val"), /font-size: clamp\(/);
+  assert.match(css, /@container \(max-width: \d+px\) \{[^@]*ha-card\.mini \.picture \{ width: \d+px; height: \d+px; \}/);
+});
+
+test("narrow full card: the tiles' unit goes under the value, and the card asks for 9 columns at least", () => {
+  const css = cardCss();
+  assert.match(css, /@container \(max-width: \d+px\) \{[^@]*\.tv small \{ display: block; \}/);
+  assert.deepEqual({ ...make(ZlinkyCard, zhaHass()).getGridOptions() }, { columns: 12, min_columns: 9 });
+  // The mini card still fits 6 columns, and unfolded it follows the full card.
+  const mini = make(ZlinkyMiniCard, zhaHass());
+  assert.deepEqual({ ...mini.getGridOptions() }, { columns: 6, min_columns: 6 });
+  mini._setZoom(true);
+  assert.deepEqual({ ...mini.getGridOptions() }, { columns: 12, min_columns: 9 });
+});
