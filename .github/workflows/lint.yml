@@ -28,9 +28,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Same Biome version as the pre-commit hook (one version, set in .pre-commit-config.yaml and bumped there by
+      # Dependabot); the hook's rev, its additional_dependencies and biome.json's $schema must all agree.
+      - name: Read Biome version from .pre-commit-config.yaml
+        id: biome-version
+        run: |
+          version=$(sed -n 's/.*"@biomejs\/biome@\([0-9.]*\)".*/\1/p' .pre-commit-config.yaml)
+          rev=$(awk '/biomejs\/pre-commit/ {f=1} f && /rev:/ {gsub(/[" ]|rev:|v/, ""); print; exit}' .pre-commit-config.yaml)
+          schema=$(sed -n 's/.*schemas\/\([0-9.]*\)\/schema.json.*/\1/p' biome.json)
+          echo "additional_dependencies=$version rev=$rev biome.json=$schema"
+          test -n "$version"
+          if [ "$rev" != "$version" ] || [ "$schema" != "$version" ]; then
+            echo "::error::Biome versions differ: pre-commit rev $rev, additional_dependencies $version, biome.json \$schema $schema"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
       - uses: biomejs/setup-biome@4c91541eaada48f67d7dbd7833600ce162b68f51 # v2
         with:
-          version: 2.6.2
+          version: ${{ steps.biome-version.outputs.version }}
       - run: biome ci --reporter=github .
   duplication:
     name: Duplication (jscpd)

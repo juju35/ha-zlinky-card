@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.3 - 2026-10-29
+### Fixes
+- Better contrast in the light theme: the cost under each consumption tile and the load status text ("Low load", "High load"…) are now easy to read; the status dot and badge keep the load color.
+- With "reduce motion" enabled in the system settings, the load and phase gauges no longer animate (the meter's LED already stopped blinking).
+- The card's in-place updates no longer touch the content of the icon elements it contains (no visible change in Home Assistant, where icons draw in their own shadow DOM; the README screenshots got their icons back).
+
 ## 1.4.2 - 2026-10-29
 ### Fixes
 - Visual editor: the device field now shows its translated label ("ZLinky") and help text instead of "ed_device_id".

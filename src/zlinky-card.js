@@ -336,6 +336,8 @@ function zlMorph(from, to) {
     }
     Array.from(na.attributes).forEach((at) => { if (!nb.hasAttribute(at.name)) na.removeAttribute(at.name); });
     Array.from(nb.attributes).forEach((at) => { if (na.getAttribute(at.name) !== at.value) na.setAttribute(at.name, at.value); });
+    // A custom element left empty by the template (ha-icon) owns its children: they are its own rendering, keep them.
+    if (!nb.childNodes.length && (nb.localName || '').indexOf('-') > 0) return;
     zlMorph(na, nb);
   });
   for (var i = a.length - 1; i >= b.length; i--) from.removeChild(a[i]);
@@ -810,7 +812,7 @@ class ZlinkyCard extends HTMLElement {
 
   _styles(color) {
     return '<style>' +
-      ':host { display: block; height: 100%; --zl-color: ' + (color || ZL_LOAD_COLORS.off) + '; --zl-green: color-mix(in srgb, #9ab00f 75%, var(--primary-text-color, #212121)); }' +
+      ':host { display: block; height: 100%; --zl-color: ' + (color || ZL_LOAD_COLORS.off) + '; --zl-green: color-mix(in srgb, #9ab00f 50%, var(--primary-text-color, #212121)); }' +
       'ha-card { height: 100%; box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; gap: 12px; }' +
       '.empty { display: flex; align-items: center; gap: 10px; color: var(--secondary-text-color); }' +
       'button { all: unset; box-sizing: border-box; cursor: pointer; }' +
@@ -826,7 +828,8 @@ class ZlinkyCard extends HTMLElement {
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.st { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
-        ' white-space: nowrap; background: color-mix(in srgb, var(--zl-color) 15%, transparent); color: var(--zl-color); }' +
+        ' white-space: nowrap; background: color-mix(in srgb, var(--zl-color) 15%, transparent);' +
+        ' color: color-mix(in srgb, var(--zl-color) 50%, var(--primary-text-color, #212121)); }' +
       '.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--zl-color); }' +
       '.zoom { flex-shrink: 0; width: 24px; height: 24px; margin: -4px -4px -4px 0; border-radius: 50%;' +
         ' display: grid; place-items: center; color: var(--secondary-text-color); }' +
@@ -843,7 +846,7 @@ class ZlinkyCard extends HTMLElement {
       '.picture.live .glow { animation: zl-glow var(--zl-blink, 2s) ease-in-out infinite; }' +
       '@keyframes zl-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }' +
       '@keyframes zl-glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.1; } }' +
-      '@media (prefers-reduced-motion: reduce) { .picture * { animation: none !important; } }' +
+      '@media (prefers-reduced-motion: reduce) { .picture * { animation: none !important; } .fill { transition: none; } }' +
       '.badge { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;' +
         ' background: color-mix(in srgb, var(--zl-color) 15%, transparent); color: var(--zl-color); }' +
       '.badge ha-icon { --mdc-icon-size: 32px; }' +

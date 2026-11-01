@@ -54,10 +54,11 @@ customElements.define("ha-icon", class extends HTMLElement {
   static get observedAttributes() { return ["icon"]; }
   connectedCallback() { this._draw(); }
   attributeChangedCallback() { this._draw(); }
+  // Draws in its own shadow root, as the real (Lit) ha-icon does: the card's DOM patching never sees the <svg>.
   _draw() {
     const path = ICONS[(this.getAttribute("icon") || "").replace("mdi:", "")] || "";
     this.style.display = "inline-flex";
-    this.innerHTML = '<svg viewBox="0 0 24 24" style="width:var(--mdc-icon-size,24px);height:var(--mdc-icon-size,24px);fill:currentColor"><path d="' + path + '"/></svg>';
+    (this.shadowRoot || this.attachShadow({ mode: "open" })).innerHTML = '<svg viewBox="0 0 24 24" style="width:var(--mdc-icon-size,24px);height:var(--mdc-icon-size,24px);fill:currentColor"><path d="' + path + '"/></svg>';
   }
 });`;
 
@@ -122,7 +123,19 @@ export async function animate(shot, { icons = {}, hass = {}, extra = "", fps = 2
   const dir = mkdtempSync(join(tmpdir(), "zl-frames-"));
   const frames = Math.round(fps * seconds);
   for (let i = 0; i < frames; i++) {
-    await page.evaluate((t) => { for (const a of document.getAnimations()) { a.pause(); a.currentTime = t; } }, (i * 1000) / fps);
+    // document.getAnimations() does not see the card's shadow DOM: collect the animations of every shadow root, so
+    // they are really paused and stepped (otherwise each frame catches them at wall-clock time and the GIF changes).
+    const stepped = await page.evaluate((t) => {
+      const all = [];
+      const walk = (r) => {
+        all.push(...r.getAnimations());
+        for (const el of r.querySelectorAll("*")) if (el.shadowRoot) walk(el.shadowRoot);
+      };
+      walk(document);
+      for (const a of all) { a.pause(); a.currentTime = t; }
+      return all.length;
+    }, (i * 1000) / fps);
+    if (!stepped) throw new Error(`${shot.file}: no animation to record`);
     await page.screenshot({ path: join(dir, `f${String(i).padStart(3, "0")}.png`), clip });
   }
   await browser.close();
