@@ -1216,6 +1216,12 @@ class ZlinkyCard extends HTMLElement {
       ':host { display: block; height: 100%; --zl-color: ' + (color || ZL_LOAD_COLORS.off) + '; --zl-green: color-mix(in srgb, #9ab00f 50%, var(--primary-text-color, #212121)); }' +
       // A size container: on a narrow card (Sections view, 6 columns) its parts follow the card's width (see @container).
       'ha-card { height: 100%; box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; gap: 12px; container-type: inline-size; }' +
+      // A size container has no width of its own: in a shrink-to-fit parent (layout-card, button-card, an inline-block,
+      // a grid's auto column) the card fell to its 24 px of padding. This invisible row of 10 breakable boxes gives the
+      // card a preferred width (the full card's 400 px, the mini's 245 px) while its minimum stays one box wide, so in
+      // a 1fr 1fr grid or a horizontal stack the card still shrinks to its column and never overflows it.
+      '.sizer { height: 0; overflow: hidden; visibility: hidden; font-size: 0; line-height: 0; }' +
+      '.sizer i { display: inline-block; width: ' + (this._compact() ? '24.5px' : '40px') + '; }' +
       '.empty { display: flex; align-items: center; gap: 10px; color: var(--secondary-text-color); }' +
       // The 8px radius is the buttons' default, so the focus ring follows the round detail button and the chips.
       'button { all: unset; box-sizing: border-box; cursor: pointer; border-radius: 8px; }' +
@@ -1227,8 +1233,9 @@ class ZlinkyCard extends HTMLElement {
       '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
       'ha-card.mini .hbadge { width: 32px; height: 32px; }' +
       'ha-card.mini .hbadge ha-icon { --mdc-icon-size: 20px; }' +
-      // The name keeps about 4 characters and its ellipsis: past that the status pill gives way.
-      '.titles { flex: 1 1 auto; min-width: 5ch; font-size: 16px; }' +
+      // The name and the pill share the line from a zero basis: the pill keeps its whole label and the name gives way
+      // first, down to about 4 characters and its ellipsis; only past that does the pill shrink.
+      '.titles { flex: 1 1 0; min-width: 5ch; font-size: 16px; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.st { display: inline-flex; align-items: center; gap: 4px; flex: 0 1 auto; min-width: 0; max-width: 50%; overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
@@ -1303,11 +1310,13 @@ class ZlinkyCard extends HTMLElement {
       '.pv { text-align: right; color: var(--primary-text-color); white-space: nowrap; } .pv.dim { color: var(--secondary-text-color); }' +
       // Narrow card (6 columns of the Sections view, ~156 to 250 px): the tiles put their unit under the value and
       // let their label wrap, the meter shrinks; then the mini's meter gets smaller and the pill shows its dot only.
-      '@container (max-width: 300px) { .hero { gap: 10px; } .picture { width: 56px; height: 70px; } .tile { padding: 8px; }' +
+      // Below 300 px the header's gaps tighten (10 → 6 px), so "Moderate load" still fits whole next to the name at 245 px.
+      '@container (max-width: 300px) { .header { gap: 6px; } .hero { gap: 10px; } .picture { width: 56px; height: 70px; } .tile { padding: 8px; }' +
         ' .tl { white-space: normal; overflow-wrap: break-word; } .tv small { display: block; } }' +
       '@container (max-width: 200px) { ha-card.mini .picture { width: 36px; height: 45px; } ha-card.mini .content { gap: 8px; } }' +
-      '@container (max-width: 180px) { .header { gap: 8px; } .stt { display: none; } .st { padding: 5px; } }' +
-    '</style>';
+      // At the mini's narrowest (156 px) the dot-only pill keeps its 16 px (the name its 4 characters): it never gets squashed.
+      '@container (max-width: 180px) { .titles { min-width: 4ch; } .stt { display: none; } .st { flex: none; padding: 5px; } }' +
+    '</style><div class="sizer" aria-hidden="true">' + '<i></i> '.repeat(10) + '</div>';
   }
 }
 
@@ -1361,7 +1370,8 @@ class ZlinkyMiniCard extends ZlinkyCard {
   // From the keyboard (Enter / Space: no click count), the focus follows to the button that replaced this one.
   _toggleZoom(ev) {
     this._setZoom(!this._zoomed);
-    if (ev.detail === 0) this.shadowRoot.querySelector('.zoom')?.focus();
+    // preventScroll: the card changes height, the page must not jump to the button.
+    if (ev.detail === 0) this.shadowRoot.querySelector('.zoom')?.focus({ preventScroll: true });
   }
 }
 
