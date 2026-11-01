@@ -222,7 +222,354 @@ var ZlI18n = {
     en_tariff: 'Periodo tarifario',
     en_tier1: 'Índice 1', en_tier2: 'Índice 2', en_tier3: 'Índice 3', en_tier4: 'Índice 4', en_tier5: 'Índice 5', en_tier6: 'Índice 6',
   },
+  sr: {
+    title: 'Linky',
+    meter: 'ZLinky бројило',
+    load_low: 'Мало оптерећење',
+    load_mid: 'Умерено оптерећење',
+    load_high: 'Велико оптерећење',
+    offline: 'Ван мреже',
+    of_subscribed: 'од {p} kVA уговорене снаге',
+    today: 'Данас',
+    yesterday: 'Јуче',
+    month: 'Овај месец',
+    last_24h: 'Последња 24 h',
+    peak: 'макс. {v}',
+    index: 'Стање бројила',
+    tier: 'Тарифа {n}',
+    injection: 'Предаја у мрежу',
+    phases: 'Фазе',
+    no_device: 'Није пронађен ниједан ZLinky',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'Уређај LiXee ZLinky_TIC (ZHA или Zigbee2MQTT)',
+    ed_name: 'Назив',
+    ed_name_helper: 'Оставите празно за „Linky“',
+    ed_icon: 'Иконица',
+    ed_subscribed_power: 'Уговорена снага (kVA)',
+    ed_subscribed_power_helper: 'Користи се за мерач оптерећења; подразумевано 6 kVA',
+    ed_price: 'Цена по kWh',
+    ed_price_helper: 'Опционо: приказује трошак поред потрошње',
+    ed_tiers: 'Називи тарифа',
+    ed_tiers_helper: 'Редом по тарифама од 1 до 6 (нпр. Нижа тарифа, Виша тарифа)',
+    ed_show_graph: 'Крива за 24 h',
+    ed_show_stats: 'Потрошња',
+    ed_show_index: 'Стање бројила',
+    ed_show_phases: 'Детаљи фаза',
+    ed_show_logo: 'Иконица бројила',
+    ed_zoom: 'Дугме за детаље',
+    ed_zoom_helper: 'Дугме у горњем десном углу које пребацује мини картицу на пун приказ и назад',
+    zoom_in: 'Прикажи целу картицу',
+    zoom_out: 'Назад на компактни приказ',
+    ed_language: 'Језик',
+    ed_language_helper: 'Оставите празно да бисте пратили језик Home Assistant-а',
+    ed_entities: 'Ентитети (напредно)',
+    ed_entities_helper: 'Аутоматски се откривају са уређаја; попуните само да бисте наметнули ентитет',
+    en_energy: 'Укупно стање',
+    en_power: 'Активна снага',
+    en_apparent_power: 'Привидна снага',
+    en_current: 'Струја',
+    en_voltage: 'Напон',
+    en_current_b: 'Струја фазе 2',
+    en_current_c: 'Струја фазе 3',
+    en_voltage_b: 'Напон фазе 2',
+    en_voltage_c: 'Напон фазе 3',
+    en_injection: 'Стање предаје у мрежу',
+    en_tariff: 'Тарифни период',
+    en_tier1: 'Тарифа 1', en_tier2: 'Тарифа 2', en_tier3: 'Тарифа 3', en_tier4: 'Тарифа 4', en_tier5: 'Тарифа 5', en_tier6: 'Тарифа 6',
+  },
+  'sr-Latn': {
+    title: 'Linky',
+    meter: 'ZLinky brojilo',
+    load_low: 'Malo opterećenje',
+    load_mid: 'Umereno opterećenje',
+    load_high: 'Veliko opterećenje',
+    offline: 'Van mreže',
+    of_subscribed: 'od {p} kVA ugovorene snage',
+    today: 'Danas',
+    yesterday: 'Juče',
+    month: 'Ovaj mesec',
+    last_24h: 'Poslednja 24 h',
+    peak: 'maks. {v}',
+    index: 'Stanje brojila',
+    tier: 'Tarifa {n}',
+    injection: 'Predaja u mrežu',
+    phases: 'Faze',
+    no_device: 'Nije pronađen nijedan ZLinky',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'Uređaj LiXee ZLinky_TIC (ZHA ili Zigbee2MQTT)',
+    ed_name: 'Naziv',
+    ed_name_helper: 'Ostavite prazno za „Linky“',
+    ed_icon: 'Ikonica',
+    ed_subscribed_power: 'Ugovorena snaga (kVA)',
+    ed_subscribed_power_helper: 'Koristi se za merač opterećenja; podrazumevano 6 kVA',
+    ed_price: 'Cena po kWh',
+    ed_price_helper: 'Opciono: prikazuje trošak pored potrošnje',
+    ed_tiers: 'Nazivi tarifa',
+    ed_tiers_helper: 'Redom po tarifama od 1 do 6 (npr. Niža tarifa, Viša tarifa)',
+    ed_show_graph: 'Kriva za 24 h',
+    ed_show_stats: 'Potrošnja',
+    ed_show_index: 'Stanje brojila',
+    ed_show_phases: 'Detalji faza',
+    ed_show_logo: 'Ikonica brojila',
+    ed_zoom: 'Dugme za detalje',
+    ed_zoom_helper: 'Dugme u gornjem desnom uglu koje prebacuje mini karticu na pun prikaz i nazad',
+    zoom_in: 'Prikaži celu karticu',
+    zoom_out: 'Nazad na kompaktni prikaz',
+    ed_language: 'Jezik',
+    ed_language_helper: 'Ostavite prazno da biste pratili jezik Home Assistant-a',
+    ed_entities: 'Entiteti (napredno)',
+    ed_entities_helper: 'Automatski se otkrivaju sa uređaja; popunite samo da biste nametnuli entitet',
+    en_energy: 'Ukupno stanje',
+    en_power: 'Aktivna snaga',
+    en_apparent_power: 'Prividna snaga',
+    en_current: 'Struja',
+    en_voltage: 'Napon',
+    en_current_b: 'Struja faze 2',
+    en_current_c: 'Struja faze 3',
+    en_voltage_b: 'Napon faze 2',
+    en_voltage_c: 'Napon faze 3',
+    en_injection: 'Stanje predaje u mrežu',
+    en_tariff: 'Tarifni period',
+    en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
+  },
+  it: {
+    title: 'Linky',
+    meter: 'Contatore ZLinky',
+    load_low: 'Carico basso',
+    load_mid: 'Carico moderato',
+    load_high: 'Carico elevato',
+    offline: 'Non in linea',
+    of_subscribed: 'di {p} kVA di potenza impegnata',
+    today: 'Oggi',
+    yesterday: 'Ieri',
+    month: 'Questo mese',
+    last_24h: 'Ultime 24 h',
+    peak: 'max {v}',
+    index: 'Lettura',
+    tier: 'Fascia {n}',
+    injection: 'Immissione',
+    phases: 'Fasi',
+    no_device: 'Nessun ZLinky trovato',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'Dispositivo LiXee ZLinky_TIC (ZHA o Zigbee2MQTT)',
+    ed_name: 'Nome',
+    ed_name_helper: 'Lascia vuoto per «Linky»',
+    ed_icon: 'Icona',
+    ed_subscribed_power: 'Potenza impegnata (kVA)',
+    ed_subscribed_power_helper: 'Usata per l\'indicatore di carico; 6 kVA predefiniti',
+    ed_price: 'Prezzo per kWh',
+    ed_price_helper: 'Facoltativo: mostra il costo accanto ai consumi',
+    ed_tiers: 'Nomi delle fasce',
+    ed_tiers_helper: 'Nell\'ordine delle fasce da 1 a 6 (es. Fuori punta, Punta)',
+    ed_show_graph: 'Curva 24 h',
+    ed_show_stats: 'Consumi',
+    ed_show_index: 'Letture del contatore',
+    ed_show_phases: 'Dettaglio delle fasi',
+    ed_show_logo: 'Icona del contatore',
+    ed_zoom: 'Pulsante dettaglio',
+    ed_zoom_helper: 'Pulsante in alto a destra che passa dalla mini scheda alla scheda completa e viceversa',
+    zoom_in: 'Mostra la scheda completa',
+    zoom_out: 'Torna alla vista compatta',
+    ed_language: 'Lingua',
+    ed_language_helper: 'Lascia vuoto per seguire la lingua di Home Assistant',
+    ed_entities: 'Entità (avanzate)',
+    ed_entities_helper: 'Rilevate automaticamente dal dispositivo; da compilare solo per forzare un\'entità',
+    en_energy: 'Lettura totale',
+    en_power: 'Potenza attiva',
+    en_apparent_power: 'Potenza apparente',
+    en_current: 'Corrente',
+    en_voltage: 'Tensione',
+    en_current_b: 'Corrente fase 2',
+    en_current_c: 'Corrente fase 3',
+    en_voltage_b: 'Tensione fase 2',
+    en_voltage_c: 'Tensione fase 3',
+    en_injection: 'Lettura immissione',
+    en_tariff: 'Fascia oraria',
+    en_tier1: 'Fascia 1', en_tier2: 'Fascia 2', en_tier3: 'Fascia 3', en_tier4: 'Fascia 4', en_tier5: 'Fascia 5', en_tier6: 'Fascia 6',
+  },
+  nl: {
+    title: 'Linky',
+    meter: 'ZLinky-meter',
+    load_low: 'Lage belasting',
+    load_mid: 'Matige belasting',
+    load_high: 'Hoge belasting',
+    offline: 'Offline',
+    of_subscribed: 'van {p} kVA aansluitvermogen',
+    today: 'Vandaag',
+    yesterday: 'Gisteren',
+    month: 'Deze maand',
+    last_24h: 'Laatste 24 u',
+    peak: 'max. {v}',
+    index: 'Meterstand',
+    tier: 'Telwerk {n}',
+    injection: 'Teruglevering',
+    phases: 'Fasen',
+    no_device: 'Geen ZLinky gevonden',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'LiXee ZLinky_TIC-apparaat (ZHA of Zigbee2MQTT)',
+    ed_name: 'Naam',
+    ed_name_helper: 'Leeg laten voor "Linky"',
+    ed_icon: 'Pictogram',
+    ed_subscribed_power: 'Aansluitvermogen (kVA)',
+    ed_subscribed_power_helper: 'Gebruikt voor de belastingsmeter; standaard 6 kVA',
+    ed_price: 'Prijs per kWh',
+    ed_price_helper: 'Optioneel: toont de kosten naast het verbruik',
+    ed_tiers: 'Namen van de telwerken',
+    ed_tiers_helper: 'In de volgorde van telwerk 1 tot 6 (bijv. Daluren, Piekuren)',
+    ed_show_graph: '24-uursgrafiek',
+    ed_show_stats: 'Verbruik',
+    ed_show_index: 'Meterstanden',
+    ed_show_phases: 'Details per fase',
+    ed_show_logo: 'Meterpictogram',
+    ed_zoom: 'Detailknop',
+    ed_zoom_helper: 'Knop rechtsboven die de minikaart naar de volledige kaart omschakelt en terug',
+    zoom_in: 'Volledige kaart tonen',
+    zoom_out: 'Terug naar de compacte weergave',
+    ed_language: 'Taal',
+    ed_language_helper: 'Leeg laten om de taal van Home Assistant te volgen',
+    ed_entities: 'Entiteiten (geavanceerd)',
+    ed_entities_helper: 'Automatisch gedetecteerd via het apparaat; alleen invullen om een entiteit te forceren',
+    en_energy: 'Totale meterstand',
+    en_power: 'Actief vermogen',
+    en_apparent_power: 'Schijnbaar vermogen',
+    en_current: 'Stroom',
+    en_voltage: 'Spanning',
+    en_current_b: 'Stroom fase 2',
+    en_current_c: 'Stroom fase 3',
+    en_voltage_b: 'Spanning fase 2',
+    en_voltage_c: 'Spanning fase 3',
+    en_injection: 'Meterstand teruglevering',
+    en_tariff: 'Tariefperiode',
+    en_tier1: 'Telwerk 1', en_tier2: 'Telwerk 2', en_tier3: 'Telwerk 3', en_tier4: 'Telwerk 4', en_tier5: 'Telwerk 5', en_tier6: 'Telwerk 6',
+  },
+  pt: {
+    title: 'Linky',
+    meter: 'Contador ZLinky',
+    load_low: 'Carga baixa',
+    load_mid: 'Carga moderada',
+    load_high: 'Carga elevada',
+    offline: 'Sem ligação',
+    of_subscribed: 'de {p} kVA de potência contratada',
+    today: 'Hoje',
+    yesterday: 'Ontem',
+    month: 'Este mês',
+    last_24h: 'Últimas 24 h',
+    peak: 'máx. {v}',
+    index: 'Leitura',
+    tier: 'Leitura {n}',
+    injection: 'Injeção',
+    phases: 'Fases',
+    no_device: 'Nenhum ZLinky encontrado',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'Dispositivo LiXee ZLinky_TIC (ZHA ou Zigbee2MQTT)',
+    ed_name: 'Nome',
+    ed_name_helper: 'Deixe vazio para «Linky»',
+    ed_icon: 'Ícone',
+    ed_subscribed_power: 'Potência contratada (kVA)',
+    ed_subscribed_power_helper: 'Usada no indicador de carga; 6 kVA por omissão',
+    ed_price: 'Preço por kWh',
+    ed_price_helper: 'Opcional: mostra o custo junto aos consumos',
+    ed_tiers: 'Nomes das leituras',
+    ed_tiers_helper: 'Pela ordem das leituras 1 a 6 (p. ex. Vazio, Fora de vazio)',
+    ed_show_graph: 'Curva de 24 h',
+    ed_show_stats: 'Consumos',
+    ed_show_index: 'Leituras do contador',
+    ed_show_phases: 'Detalhe das fases',
+    ed_show_logo: 'Ícone do contador',
+    ed_zoom: 'Botão de detalhe',
+    ed_zoom_helper: 'Botão no canto superior direito que alterna entre o mini cartão e o cartão completo',
+    zoom_in: 'Mostrar o cartão completo',
+    zoom_out: 'Voltar à vista compacta',
+    ed_language: 'Idioma',
+    ed_language_helper: 'Deixe vazio para seguir o idioma do Home Assistant',
+    ed_entities: 'Entidades (avançado)',
+    ed_entities_helper: 'Detetadas automaticamente a partir do dispositivo; preencha apenas para forçar uma entidade',
+    en_energy: 'Leitura total',
+    en_power: 'Potência ativa',
+    en_apparent_power: 'Potência aparente',
+    en_current: 'Corrente',
+    en_voltage: 'Tensão',
+    en_current_b: 'Corrente fase 2',
+    en_current_c: 'Corrente fase 3',
+    en_voltage_b: 'Tensão fase 2',
+    en_voltage_c: 'Tensão fase 3',
+    en_injection: 'Leitura de injeção',
+    en_tariff: 'Período tarifário',
+    en_tier1: 'Leitura 1', en_tier2: 'Leitura 2', en_tier3: 'Leitura 3', en_tier4: 'Leitura 4', en_tier5: 'Leitura 5', en_tier6: 'Leitura 6',
+  },
+  pl: {
+    title: 'Linky',
+    meter: 'Licznik ZLinky',
+    load_low: 'Małe obciążenie',
+    load_mid: 'Średnie obciążenie',
+    load_high: 'Duże obciążenie',
+    offline: 'Brak połączenia',
+    of_subscribed: 'z {p} kVA mocy umownej',
+    today: 'Dzisiaj',
+    yesterday: 'Wczoraj',
+    month: 'Ten miesiąc',
+    last_24h: 'Ostatnie 24 h',
+    peak: 'maks. {v}',
+    index: 'Stan licznika',
+    tier: 'Strefa {n}',
+    injection: 'Oddawanie do sieci',
+    phases: 'Fazy',
+    no_device: 'Nie znaleziono żadnego ZLinky',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'Urządzenie LiXee ZLinky_TIC (ZHA lub Zigbee2MQTT)',
+    ed_name: 'Nazwa',
+    ed_name_helper: 'Pozostaw puste, aby użyć „Linky”',
+    ed_icon: 'Ikona',
+    ed_subscribed_power: 'Moc umowna (kVA)',
+    ed_subscribed_power_helper: 'Używana przez wskaźnik obciążenia; domyślnie 6 kVA',
+    ed_price: 'Cena za kWh',
+    ed_price_helper: 'Opcjonalnie: pokazuje koszt obok zużycia',
+    ed_tiers: 'Nazwy stref',
+    ed_tiers_helper: 'W kolejności stref od 1 do 6 (np. Strefa nocna, Strefa dzienna)',
+    ed_show_graph: 'Wykres 24 h',
+    ed_show_stats: 'Zużycie',
+    ed_show_index: 'Stany licznika',
+    ed_show_phases: 'Szczegóły faz',
+    ed_show_logo: 'Ikona licznika',
+    ed_zoom: 'Przycisk szczegółów',
+    ed_zoom_helper: 'Przycisk w prawym górnym rogu, który przełącza minikartę na pełną kartę i z powrotem',
+    zoom_in: 'Pokaż pełną kartę',
+    zoom_out: 'Wróć do widoku kompaktowego',
+    ed_language: 'Język',
+    ed_language_helper: 'Pozostaw puste, aby używać języka Home Assistant',
+    ed_entities: 'Encje (zaawansowane)',
+    ed_entities_helper: 'Wykrywane automatycznie z urządzenia; wypełnij tylko, aby wymusić encję',
+    en_energy: 'Stan łączny',
+    en_power: 'Moc czynna',
+    en_apparent_power: 'Moc pozorna',
+    en_current: 'Prąd',
+    en_voltage: 'Napięcie',
+    en_current_b: 'Prąd fazy 2',
+    en_current_c: 'Prąd fazy 3',
+    en_voltage_b: 'Napięcie fazy 2',
+    en_voltage_c: 'Napięcie fazy 3',
+    en_injection: 'Stan energii oddanej',
+    en_tariff: 'Strefa taryfowa',
+    en_tier1: 'Strefa 1', en_tier2: 'Strefa 2', en_tier3: 'Strefa 3', en_tier4: 'Strefa 4', en_tier5: 'Strefa 5', en_tier6: 'Strefa 6',
+  },
 };
+
+// Card language: the full code when the dictionary has it (`sr-Latn`), else its base (`fr-FR` -> `fr`), else English.
+function zlLang(lang) {
+  var l = String(lang || 'en');
+  if (ZlI18n[l]) return l;
+  l = l.split('-')[0];
+  return ZlI18n[l] ? l : 'en';
+}
+
+// Locale for Intl: Home Assistant's full locale (`pt-PT`, `de-CH`) when its base is the card language,
+// else the card language itself. A bare `pt` means European Portuguese here (the dictionary's variant).
+function zlFmtLang(lang, haLang) {
+  var ha = String(haLang || '');
+  // (Not when HA's code is another card language of its own, e.g. `sr-Latn` with the card forced to `sr`.)
+  var l = !lang.includes('-') && !ZlI18n[ha] && ha.split('-')[0] === lang ? ha : lang;
+  return l === 'pt' ? 'pt-PT' : l;
+}
 
 function zlT(lang, key) {
   var strings = ZlI18n[lang] || ZlI18n.en;
@@ -492,12 +839,12 @@ class ZlinkyCard extends HTMLElement {
   getGridOptions() { return { columns: 12, min_columns: 6 }; }
 
   _lang() {
-    var l = (this._config?.language) || (this._hass?.language) || document.documentElement.lang || 'en';
-    l = l.split('-')[0];
-    return ZlI18n[l] ? l : 'en';
+    return zlLang((this._config?.language) || (this._hass?.language) || document.documentElement.lang || 'en');
   }
 
   _t(k) { return zlT(this._lang(), k); }
+
+  _fmtLang() { return zlFmtLang(this._lang(), this._hass?.locale?.language || this._hass?.language); }
 
   _deviceId() {
     var hass = this._hass, c = this._config;
@@ -552,7 +899,7 @@ class ZlinkyCard extends HTMLElement {
       var s = r.ent[k] && hass.states[r.ent[k]];
       return s ? s.state : null;
     }));
-    var sig = JSON.stringify([this._lang(), r.deviceId, this._zoomed, this._statsKey, this._statsVer, states]);
+    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, this._zoomed, this._statsKey, this._statsVer, states]);
     if (sig === this._sig) return;
     this._sig = sig;
     this._r = r;
@@ -616,7 +963,7 @@ class ZlinkyCard extends HTMLElement {
   _zoomButton() { return ''; }
 
   _model(r) {
-    var c = this._config, ent = r.ent, lang = this._lang();
+    var c = this._config, ent = r.ent, lang = this._fmtLang();
     var name = c.name || this._t('title');
     var online = this._avail(ent.energy) || this._avail(ent.apparent_power) || this._avail(ent.power);
     var watts = this._avail(ent.power) ? zlBase(this._st(ent.power)) : null;
@@ -655,7 +1002,7 @@ class ZlinkyCard extends HTMLElement {
   _cost(kwh) {
     var price = Number(this._config.price);
     if (!(price > 0) || kwh == null) return '';
-    return zlMoney(this._lang(), kwh * price, this._hass.config?.currency);
+    return zlMoney(this._fmtLang(), kwh * price, this._hass.config?.currency);
   }
 
   _render(r) {
@@ -744,7 +1091,7 @@ class ZlinkyCard extends HTMLElement {
     this._setHtml(this._styles(m.color) + '<ha-card>' +
       '<div class="header">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(m.sub)}</div></div>` +
-        `<span class="st"><span class="dot"></span>${zlEsc(m.statusText)}</span>` + this._zoomButton() +
+        `<span class="st"><span class="dot"></span><span class="stt">${zlEsc(m.statusText)}</span></span>` + this._zoomButton() +
       '</div>' + hero + stats + graph + index + phases +
     '</ha-card>');
   }
@@ -788,7 +1135,7 @@ class ZlinkyCard extends HTMLElement {
     return this._styles(m.color) + '<ha-card class="mini">' +
       '<div class="header">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div></div>` +
-        `<span class="st"><span class="dot"></span>${zlEsc(m.statusText)}</span>` + this._zoomButton() +
+        `<span class="st"><span class="dot"></span><span class="stt">${zlEsc(m.statusText)}</span></span>` + this._zoomButton() +
       '</div>' +
       '<div class="content">' + this._picture(m) +
         '<div class="info">' +
@@ -824,13 +1171,15 @@ class ZlinkyCard extends HTMLElement {
       '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
       'ha-card.mini .hbadge { width: 32px; height: 32px; }' +
       'ha-card.mini .hbadge ha-icon { --mdc-icon-size: 20px; }' +
-      '.titles { flex: 1; min-width: 0; }' +
+      // The name keeps at least ~5 characters ("Linky"): past that a long status pill ellipsizes instead.
+      '.titles { flex: 1; min-width: 2.4em; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
-      '.st { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
+      '.st { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 1; min-width: 0; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
         ' white-space: nowrap; background: color-mix(in srgb, var(--zl-color) 15%, transparent);' +
         ' color: color-mix(in srgb, var(--zl-color) 50%, var(--primary-text-color, #212121)); }' +
-      '.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--zl-color); }' +
+      '.stt { overflow: hidden; text-overflow: ellipsis; }' +
+      '.dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--zl-color); }' +
       '.zoom { flex-shrink: 0; width: 24px; height: 24px; margin: -4px -4px -4px 0; border-radius: 50%;' +
         ' display: grid; place-items: center; color: var(--secondary-text-color); }' +
       '.zoom ha-icon { --mdc-icon-size: 16px; }' +
@@ -967,8 +1316,7 @@ class ZlinkyCardEditor extends HTMLElement {
   }
 
   _lang() {
-    var lang = ((this._config?.language) || (this._hass?.language) || 'en').split('-')[0];
-    return ZlI18n[lang] ? lang : 'en';
+    return zlLang((this._config?.language) || (this._hass?.language) || 'en');
   }
 
   _schema() {
@@ -996,7 +1344,7 @@ class ZlinkyCardEditor extends HTMLElement {
       },
       {
         name: 'language',
-        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }] } },
+        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português (Portugal)' }, { value: 'pl', label: 'Polski' }] } },
       },
       {
         type: 'expandable', name: 'entities', title: t('ed_entities'), flatten: false,

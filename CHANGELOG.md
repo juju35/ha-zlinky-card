@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.5 - 2026-11-01
+### Features
+- Added Italian, Dutch, European Portuguese and Polish translations of both cards and the visual editor; the editor's language option now offers Italiano (`it`), Nederlands (`nl`), Português (Portugal) (`pt`) and Polski (`pl`). Regional variants such as `it-IT`, `nl-BE`, `pt-BR` or `pl-PL` pick them automatically (`pt-BR` uses the European Portuguese texts, with Home Assistant's number and currency format).
+
+## 1.4.4 - 2026-11-01
+### Features
+- Added Serbian (Cyrillic and Latin) translations of both cards and the visual editor; the editor's language option now offers Српски (`sr`) and Srpski (latinica) (`sr-Latn`), and `sr-Latn` is picked automatically when Home Assistant uses it.
+
 ## 1.4.3 - 2026-10-29
 ### Fixes
 - Better contrast in the light theme: the cost under each consumption tile and the load status text ("Low load", "High load"…) are now easy to read; the status dot and badge keep the load color.
