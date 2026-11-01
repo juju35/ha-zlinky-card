@@ -356,6 +356,7 @@ class FakeNode {
     this.childNodes = [];
     for (const k of kids) this.appendChild(k);
   }
+  get localName() { return this.nodeType === 1 ? this.nodeName.toLowerCase() : undefined; }
   get attributes() { return Object.entries(this.attrs).map(([name, value]) => ({ name, value })); }
   hasAttribute(n) { return n in this.attrs; }
   getAttribute(n) { return n in this.attrs ? this.attrs[n] : null; }
@@ -451,4 +452,80 @@ test("mini card: turning show_stats back on fetches today's consumption", async 
   await new Promise((r) => setTimeout(r, 10));
   assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 3);
   assert.match(card.shadowRoot.innerHTML, /mdi:calendar-today/);
+});
+
+// A custom element (ha-icon) draws its own content: the template never has it, so a re-render must not strip it.
+test("re-renders keep what a custom element drew, but still update its attributes", () => {
+  const svg = new FakeNode("svg", {});
+  const icon = new FakeNode("HA-ICON", { icon: "mdi:arrow-expand" }, [svg]);
+  const root = new FakeNode("ROOT", {}, [new FakeNode("BUTTON", { class: "zoom" }, [icon])]);
+  zlMorph(root, new FakeNode("ROOT", {}, [new FakeNode("BUTTON", { class: "zoom" }, [new FakeNode("HA-ICON", { icon: "mdi:arrow-collapse" })])]));
+  assert.equal(root.childNodes[0].childNodes[0], icon);
+  assert.equal(icon.attrs.icon, "mdi:arrow-collapse");
+  assert.deepEqual(icon.childNodes, [svg]);
+});
+
+test("re-renders still patch the children a custom element gets from the template (ha-card)", () => {
+  const val = new FakeNode("SPAN", { class: "val" }, [txt("300 VA")]);
+  const card = new FakeNode("HA-CARD", {}, [val, new FakeNode("DIV", { class: "old" })]);
+  const root = new FakeNode("ROOT", {}, [card]);
+  zlMorph(root, new FakeNode("ROOT", {}, [new FakeNode("HA-CARD", {}, [new FakeNode("SPAN", { class: "val" }, [txt("4 200 VA")])])]));
+  assert.equal(root.childNodes[0], card);
+  assert.equal(card.childNodes.length, 1);
+  assert.equal(val.childNodes[0].nodeValue, "4 200 VA");
+});
+
+// WCAG 2.x relative luminance / contrast ratio, and CSS color-mix(in srgb, A p%, B) on opaque colors.
+const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+const mixRgb = (a, b, p) => a.map((v, i) => v * p + b[i] * (1 - p));
+const lum = (c) => {
+  const [r, g, b] = c.map((v) => ((v /= 255) <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrast = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+// Home Assistant's default themes (and the README screenshots' tile background, #ececec).
+const THEMES = {
+  light: { text: "#212121", card: "#ffffff", tiles: ["#e5e5e5", "#ececec"] },
+  dark: { text: "#e1e1e1", card: "#1c1c1c", tiles: ["#282828"] },
+};
+const LOAD = { low: "#43a047", mid: "#ffa600", high: "#db4437", off: "#9e9e9e" };
+function cardCss() {
+  return make(ZlinkyCard, zhaHass(), { language: "en" }).shadowRoot.innerHTML;
+}
+function mixShare(css, re) {
+  const m = css.match(re);
+  assert.ok(m, `${re} not found in the card styles`);
+  return Number(m[1]) / 100;
+}
+
+test("contrast: the tiles' cost text reaches 4.5:1 in light and dark themes", () => {
+  const css = cardCss();
+  assert.match(css, /\.tc \{[^}]*color: var\(--zl-green\)/);
+  const p = mixShare(css, /--zl-green: color-mix\(in srgb, #9ab00f (\d+)%, var\(--primary-text-color/);
+  for (const t of Object.values(THEMES)) {
+    const fg = mixRgb(rgb("#9ab00f"), rgb(t.text), p);
+    for (const bg of t.tiles) assert.ok(contrast(fg, rgb(bg)) >= 4.5, `${contrast(fg, rgb(bg)).toFixed(2)}:1 on ${bg}`);
+  }
+});
+
+test("contrast: the status pill text reaches 4.5:1 for every load level, light and dark", () => {
+  const css = cardCss();
+  const st = css.match(/\.st \{[^}]*\}/)[0];
+  const m = st.match(/color: color-mix\(in srgb, var\(--zl-color\) (\d+)%, var\(--primary-text-color/);
+  const p = m ? Number(m[1]) / 100 : 1; // a plain var(--zl-color) is the load color itself
+  for (const t of Object.values(THEMES)) {
+    for (const [level, c] of Object.entries(LOAD)) {
+      const fg = mixRgb(rgb(c), rgb(t.text), p);
+      const bg = mixRgb(rgb(c), rgb(t.card), 0.15); // the pill's 15% tint over the card
+      assert.ok(contrast(fg, bg) >= 4.5, `${level}: ${contrast(fg, bg).toFixed(2)}:1`);
+    }
+  }
+});
+
+test("prefers-reduced-motion also stops the load gauges' width transition", () => {
+  const css = cardCss();
+  const block = css.match(/@media \(prefers-reduced-motion: reduce\) \{(.*?\})\s*\}/);
+  assert.ok(block, "no reduced-motion block");
+  assert.match(block[1], /\.picture \*[^}]*animation: none/);
+  assert.match(block[1], /\.fill \{[^}]*transition: none/);
 });
