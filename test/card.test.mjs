@@ -255,9 +255,13 @@ test("sparkline needs at least two points", () => {
 test("I18N parity: every language has exactly the English keys and placeholders", () => {
   const ref = ZlI18n.en;
   const holes = (v) => (String(v).match(/\{\w+\}/g) || []).sort();
-  for (const lang of ["fr", "de", "es", "sr", "sr-Latn"]) {
+  for (const lang of ["fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl"]) {
+    assert.ok(ZlI18n[lang], lang);
     assert.deepEqual(Object.keys(ZlI18n[lang]).sort(), Object.keys(ref).sort(), lang);
-    for (const k of Object.keys(ref)) assert.deepEqual(holes(ZlI18n[lang][k]), holes(ref[k]), `${lang}.${k}`);
+    for (const k of Object.keys(ref)) {
+      assert.deepEqual(holes(ZlI18n[lang][k]), holes(ref[k]), `${lang}.${k}`);
+      assert.ok(String(ZlI18n[lang][k]).trim(), `${lang}.${k} is empty`);
+    }
   }
 });
 
@@ -275,10 +279,11 @@ test("language resolution: full code, then its base, then English", () => {
   assert.equal(zlLang("fr-FR"), "fr");
   assert.equal(zlLang("sr-Latn"), "sr-Latn");
   assert.equal(zlLang("sr"), "sr");
-  assert.equal(zlLang("pt-BR"), "en");
+  assert.equal(zlLang("pt-BR"), "pt");
+  assert.equal(zlLang("ja"), "en");
   assert.equal(zlLang(undefined), "en");
   const Editor = customElements.get("zlinky-card-editor");
-  for (const [code, want] of [["fr-FR", "fr"], ["sr-Latn", "sr-Latn"], ["sr", "sr"], ["pt-BR", "en"]]) {
+  for (const [code, want] of [["fr-FR", "fr"], ["sr-Latn", "sr-Latn"], ["sr", "sr"], ["pt-BR", "pt"], ["pl-PL", "pl"], ["ja", "en"]]) {
     // Home Assistant's language, no card option.
     assert.equal(make(ZlinkyCard, { ...zhaHass(), language: code })._lang(), want, `card hass ${code}`);
     const ed = new Editor();
@@ -310,6 +315,56 @@ test("editor: Serbian language options", () => {
   const opts = ed._form.schema.find((s) => s.name === "language").selector.select.options;
   assert.ok(opts.some((o) => o.value === "sr" && o.label === "Српски"));
   assert.ok(opts.some((o) => o.value === "sr-Latn" && o.label === "Srpski (latinica)"));
+});
+
+test("language resolution: Italian, Dutch, Portuguese and Polish", () => {
+  for (const [code, want] of [
+    ["it-IT", "it"],
+    ["nl-BE", "nl"],
+    ["pt", "pt"],
+    ["pt-BR", "pt"],
+    ["pl-PL", "pl"],
+    ["sr-Latn", "sr-Latn"],
+    ["ja", "en"],
+  ]) {
+    assert.equal(zlLang(code), want, code);
+  }
+});
+
+test("editor: Italian, Dutch, Portuguese and Polish language options", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  ed.setConfig({ type: "custom:zlinky-card" });
+  ed.hass = zhaHass();
+  const opts = ed._form.schema.find((s) => s.name === "language").selector.select.options;
+  for (const [value, label] of [["it", "Italiano"], ["nl", "Nederlands"], ["pt", "Português (Portugal)"], ["pl", "Polski"]]) {
+    assert.ok(opts.some((o) => o.value === value && o.label === label), value);
+  }
+  // Every option has a dictionary, and every dictionary an option.
+  assert.deepEqual([...opts.map((o) => o.value)].sort(), [...Object.keys(ZlI18n)].sort());
+});
+
+test("renders in Italian, Dutch, Portuguese and Polish", () => {
+  const html = (language) => make(ZlinkyCard, zhaHass(), { language }).shadowRoot.innerHTML;
+  assert.match(html("it"), /Ultime 24 h|Carico basso/);
+  assert.match(html("nl"), /Laatste 24 u|Lage belasting/);
+  assert.match(html("pt"), /Últimas 24 h|Carga baixa/);
+  assert.match(html("pl"), /Ostatnie 24 h|Małe obciążenie/);
+});
+
+test("Intl formatting follows Home Assistant's full locale when it matches the card language", () => {
+  const fmt = (hass, config = {}) => make(ZlinkyCard, { ...zhaHass(), ...hass }, config)._fmtLang();
+  // A bare `pt` is European Portuguese: 2,38 € and 18 343, not the Brazilian € 2,38 and 18.343.
+  assert.equal(fmt({ language: "pt" }), "pt-PT");
+  assert.equal(zlMoney(fmt({ language: "pt" }), 2.38, "EUR").replace(/\s/g, " "), "2,38 €");
+  assert.equal(zlNum(fmt({ language: "pt" }), 18343, 0).replace(/\s/g, " "), "18 343");
+  // HA's full locale is used when its base is the card language.
+  assert.equal(fmt({ language: "pt-BR" }), "pt-BR");
+  assert.equal(fmt({ language: "de", locale: { language: "de-CH" } }), "de-CH");
+  // The card's language option still wins: a non-matching HA locale is ignored.
+  assert.equal(fmt({ language: "pt-BR" }, { language: "pl" }), "pl");
+  assert.equal(fmt({ language: "sr" }, { language: "sr-Latn" }), "sr-Latn");
+  assert.equal(fmt({ language: "sr-Latn" }, { language: "sr" }), "sr");
 });
 
 test("renders in German and Spanish", () => {
@@ -453,7 +508,7 @@ function schemaLeaves(schema) {
 
 test("editor: every field has a translated label, and the device field its helper", () => {
   const Editor = customElements.get("zlinky-card-editor");
-  for (const lang of ["en", "fr", "de", "es", "sr", "sr-Latn"]) {
+  for (const lang of ["en", "fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl"]) {
     for (const type of ["custom:zlinky-card", "custom:zlinky-mini-card"]) {
       const ed = new Editor();
       ed.setConfig({ type, language: lang });
