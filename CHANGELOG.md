@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.4.6 - 2026-11-01
+### Fixes
+- Mini card on a phone (6 columns, about 156 to 186 px): the live reading no longer runs past the card's edge, the meter gets smaller, today's line wraps instead of cutting off the cost, and the status pill keeps its colored dot with the status in its tooltip.
+- Narrow full card: the consumption tiles put their unit under the value and let their label wrap instead of overflowing; the full card now needs 9 columns at least in the Sections view (6 columns left too little room for the meter, the reading and the three tiles).
+- The status pill stays on the title's line (it sat between the title and the subtitle), keeps its whole label while the title still has room ("Moderate load" no longer turns into "Mod…" next to a long name) and, on the narrowest mini card, keeps a round, uncut dot.
+- Inside layout-card, button-card or any parent that sizes the card to its content, the card no longer collapses to a thin strip: it takes its usual width (and still shrinks to fit a two-column grid or a horizontal stack).
+- A ZLinky on which none of the meter's sensors is recognised now says "No ZLinky sensor found" and points to **Entities (advanced)**, instead of showing the meter "Offline".
+- The 24 h curve's title no longer capitalises the hour symbol ("LAST 24 h", not "LAST 24 H").
+- The keyboard focus ring follows the round detail button and the chips; opening or closing the mini card's detail from the keyboard no longer scrolls the page to the button.
+- Visual editor: the **Icon** field now explains that it replaces the meter illustration (all languages).
+
 ## 1.4.5 - 2026-11-01
 ### Features
 - Added Italian, Dutch, European Portuguese and Polish translations of both cards and the visual editor; the editor's language option now offers Italiano (`it`), Nederlands (`nl`), Português (Portugal) (`pt`) and Polski (`pl`). Regional variants such as `it-IT`, `nl-BE`, `pt-BR` or `pl-PL` pick them automatically (`pt-BR` uses the European Portuguese texts, with Home Assistant's number and currency format).
@@ -8,7 +19,7 @@
 ### Features
 - Added Serbian (Cyrillic and Latin) translations of both cards and the visual editor; the editor's language option now offers Српски (`sr`) and Srpski (latinica) (`sr-Latn`), and `sr-Latn` is picked automatically when Home Assistant uses it.
 
-## 1.4.3 - 2026-10-29
+## 1.4.3 - 2026-11-01
 ### Fixes
 - Better contrast in the light theme: the cost under each consumption tile and the load status text ("Low load", "High load"…) are now easy to read; the status dot and badge keep the load color.
 - With "reduce motion" enabled in the system settings, the load and phase gauges no longer animate (the meter's LED already stopped blinking).
