@@ -722,7 +722,6 @@ test("narrow header: the title keeps ~4 characters, the pill shrinks and turns i
   const css = cardCss();
   assert.match(rules(css, "ha-card"), /container-type: inline-size/);
   const titles = rules(css, ".titles");
-  assert.match(titles, /flex: 1 1 auto/);
   assert.match(titles, /min-width: [4-6]ch/);
   const pill = rules(css, ".st");
   assert.match(pill, /flex: 0 1 auto/);
@@ -771,4 +770,68 @@ test("narrow full card: the tiles' unit goes under the value, and the card asks 
   assert.deepEqual({ ...mini.getGridOptions() }, { columns: 6, min_columns: 6 });
   mini._setZoom(true);
   assert.deepEqual({ ...mini.getGridOptions() }, { columns: 12, min_columns: 9 });
+});
+
+test("the status pill keeps its whole label while the name has room: the name block shares the line from a zero basis", () => {
+  const css = cardCss();
+  // flex: 1 1 auto let the name's own width win, so "Moderate load" became "Mod…" next to a long name at 245-320 px.
+  assert.match(rules(css, ".titles"), /flex: 1 1 0[;\s]/);
+  assert.doesNotMatch(rules(css, ".titles"), /flex: 1 1 auto/);
+  assert.match(rules(css, ".st"), /flex: 0 1 auto; min-width: 0/);
+});
+
+test("narrowest mini card (156 px): the dot-only pill never shrinks below its 16 px, the name keeps 4 characters", () => {
+  const css = make(ZlinkyMiniCard, zhaHass(), { language: "en" }).shadowRoot.innerHTML;
+  const m = css.match(/@container \(max-width: (\d+)px\) \{([^@]*\.stt \{ display: none; \}[^@]*)\}/);
+  assert.ok(m, "no container tier hides the pill text");
+  assert.ok(Number(m[1]) >= 156, "the tier covers the mini card's minimum width");
+  assert.match(m[2], /\.st \{[^}]*flex: none/);
+  assert.match(m[2], /\.titles \{ min-width: 4ch; \}/);
+});
+
+test("in a shrink-to-fit parent the card keeps a preferred width, yet still shrinks in a 1fr 1fr grid", () => {
+  // container-type: inline-size gives ha-card no intrinsic width: it fell to ~24 px in an inline-block / layout-card.
+  // contain-intrinsic-inline-size (or a px min-width on the host) fixed that but also made it the card's minimum
+  // width, so in a 1fr 1fr grid or a horizontal stack the card refused to shrink and overflowed its column.
+  for (const [Card, w] of [[ZlinkyCard, 40], [ZlinkyMiniCard, 24.5]]) {
+    const html = make(Card, zhaHass(), { language: "en" }).shadowRoot.innerHTML;
+    assert.match(rules(html, "ha-card"), /container-type: inline-size/);
+    assert.doesNotMatch(html, /contain-intrinsic/);
+    assert.doesNotMatch(rules(html, ":host"), /min-width: *[1-9]/);
+    // Outside the size container, 10 breakable boxes: preferred width 10 boxes, minimum width one box.
+    const sizer = html.match(/<div class="sizer" aria-hidden="true">((?:<i><\/i> )+)<\/div><ha-card/);
+    assert.ok(sizer, "no sizer before ha-card");
+    assert.equal(sizer[1].match(/<i>/g).length, 10);
+    assert.match(rules(html, ".sizer"), /height: 0;.*visibility: hidden/);
+    assert.match(rules(html, ".sizer i"), new RegExp(`display: inline-block; width: ${w}px`));
+  }
+  // Unfolded, the mini card asks for the full card's width.
+  const mini = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+  mini._setZoom(true);
+  assert.match(rules(mini.shadowRoot.innerHTML, ".sizer i"), /width: 40px/);
+});
+
+test("keyboard zoom: the focus moves to the new detail button without scrolling the page", () => {
+  const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+  const calls = [];
+  const fake = { focus: (...args) => calls.push(args) };
+  const query = card.shadowRoot.querySelector;
+  card.shadowRoot.querySelector = (sel) => (sel === ".zoom" ? fake : query.call(card.shadowRoot, sel));
+  card._toggleZoom({ detail: 0 });
+  assert.equal(calls.length, 1);
+  assert.deepEqual({ ...calls[0][0] }, { preventScroll: true });
+  // A mouse click (detail >= 1) leaves the focus where the click put it.
+  card._toggleZoom({ detail: 1 });
+  assert.equal(calls.length, 1);
+});
+
+test("at 245 px the header's gaps tighten so a short status label (\"Moderate load\") stays whole next to the name", () => {
+  // With 10 px gaps the mini card at 245 px had 90 px for the pill: "Moderate load" (97 px) became "Moderate l…".
+  const css = make(ZlinkyMiniCard, zhaHass(), { language: "en" }).shadowRoot.innerHTML;
+  const tier = css.match(/@container \(max-width: 300px\) \{(.*?)\} \}/)[1];
+  assert.match(tier, /\.header \{ gap: 6px; \}/);
+  // No narrower tier widens the gap again.
+  for (const m of css.matchAll(/@container \(max-width: (\d+)px\) \{(.*?)\} \}/g)) {
+    if (Number(m[1]) < 300) assert.doesNotMatch(m[2], /\.header \{[^}]*gap/);
+  }
 });
