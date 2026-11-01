@@ -202,6 +202,9 @@ await render(
     { file: "card-dark", type: "zlinky-card", theme: "dark", width: 460, config: { price: 0.2016, tiers: ["Off-peak", "Peak"] } },
     { file: "mini", type: "zlinky-mini-card", theme: "light", width: 380, config: { price: 0.2016 } },
     { file: "mini-dark", type: "zlinky-mini-card", theme: "dark", width: 380, config: { price: 0.2016 } },
+    // The mini card's real width on a phone: 6 columns of a ~380 px section.
+    { file: "mini-narrow", type: "zlinky-mini-card", theme: "light", width: 180, config: { price: 0.2016 } },
+    { file: "mini-narrow-dark", type: "zlinky-mini-card", theme: "dark", width: 180, config: { price: 0.2016 } },
   ],
   { icons, hass, extra: ws }
 );
