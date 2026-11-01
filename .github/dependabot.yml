@@ -7,6 +7,13 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+  - package-ecosystem: pre-commit
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      pre-commit:
+        patterns: ["*"]
   # Playwright only renders the README screenshots; major bumps are taken by hand.
   - package-ecosystem: npm
     directory: /
