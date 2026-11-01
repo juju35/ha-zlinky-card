@@ -2,13 +2,16 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
 
-const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, zlMorph, ZlI18n, customElements } = loadCard("zlinky-card.js", [
+const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, zlMorph, ZlI18n, zlLang, zlNum, zlMoney, customElements } = loadCard("zlinky-card.js", [
   "ZlinkyCard",
   "ZlinkyMiniCard",
   "zlFindDevice",
   "zlSpark",
   "zlMorph",
   "ZlI18n",
+  "zlLang",
+  "zlNum",
+  "zlMoney",
 ]);
 
 const st = (state, attributes = {}) => ({ state, attributes });
@@ -252,10 +255,61 @@ test("sparkline needs at least two points", () => {
 test("I18N parity: every language has exactly the English keys and placeholders", () => {
   const ref = ZlI18n.en;
   const holes = (v) => (String(v).match(/\{\w+\}/g) || []).sort();
-  for (const lang of ["fr", "de", "es"]) {
+  for (const lang of ["fr", "de", "es", "sr", "sr-Latn"]) {
     assert.deepEqual(Object.keys(ZlI18n[lang]).sort(), Object.keys(ref).sort(), lang);
     for (const k of Object.keys(ref)) assert.deepEqual(holes(ZlI18n[lang][k]), holes(ref[k]), `${lang}.${k}`);
   }
+});
+
+// Proper nouns, brands and units (Linky, ZLinky, LiXee, ZHA, kVA, kWh, h, Home Assistant) are the only Latin
+// words allowed in the Cyrillic dictionary; the Latin one has no Cyrillic at all.
+const SR_LATIN_OK = /\b(Z?Linky|LiXee|ZLinky_TIC|ZHA|Zigbee2MQTT|Home Assistant|kVA|kWh|h)\b|\{\w+\}/g;
+test("Serbian: no Latin letters in sr (apart from names and units), no Cyrillic in sr-Latn", () => {
+  for (const [k, v] of Object.entries(ZlI18n.sr)) {
+    assert.doesNotMatch(v.replace(SR_LATIN_OK, ""), /[A-Za-z]/, `sr.${k}: ${v}`);
+  }
+  for (const [k, v] of Object.entries(ZlI18n["sr-Latn"])) assert.doesNotMatch(v, /[\u0400-\u04ff]/, `sr-Latn.${k}: ${v}`);
+});
+
+test("language resolution: full code, then its base, then English", () => {
+  assert.equal(zlLang("fr-FR"), "fr");
+  assert.equal(zlLang("sr-Latn"), "sr-Latn");
+  assert.equal(zlLang("sr"), "sr");
+  assert.equal(zlLang("pt-BR"), "en");
+  assert.equal(zlLang(undefined), "en");
+  const Editor = customElements.get("zlinky-card-editor");
+  for (const [code, want] of [["fr-FR", "fr"], ["sr-Latn", "sr-Latn"], ["sr", "sr"], ["pt-BR", "en"]]) {
+    // Home Assistant's language, no card option.
+    assert.equal(make(ZlinkyCard, { ...zhaHass(), language: code })._lang(), want, `card hass ${code}`);
+    const ed = new Editor();
+    ed.setConfig({ type: "custom:zlinky-card" });
+    ed.hass = { ...zhaHass(), language: code };
+    assert.equal(ed._lang(), want, `editor hass ${code}`);
+  }
+  // The card option still wins over Home Assistant's language.
+  assert.equal(make(ZlinkyCard, { ...zhaHass(), language: "sr-Latn" }, { language: "de" })._lang(), "de");
+});
+
+test("renders in Serbian, Cyrillic and Latin (numbers and money included)", () => {
+  const cyr = make(ZlinkyCard, { ...zhaHass(), language: "sr" }).shadowRoot.innerHTML;
+  assert.match(cyr, /Мало оптерећење/);
+  assert.match(cyr, /од 6 kVA уговорене снаге/);
+  const lat = make(ZlinkyCard, { ...zhaHass(), language: "sr-Latn" }).shadowRoot.innerHTML;
+  assert.match(lat, /Malo opterećenje/);
+  assert.match(lat, /od 6 kVA ugovorene snage/);
+  assert.doesNotMatch(lat, /[\u0400-\u04ff]/);
+  // Intl formatting in sr-Latn stays Latin.
+  assert.doesNotMatch(`${zlNum("sr-Latn", 1234.5, 1)} ${zlMoney("sr-Latn", 12.5, "RSD")}`, /[\u0400-\u04ff]/);
+});
+
+test("editor: Serbian language options", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  ed.setConfig({ type: "custom:zlinky-card" });
+  ed.hass = zhaHass();
+  const opts = ed._form.schema.find((s) => s.name === "language").selector.select.options;
+  assert.ok(opts.some((o) => o.value === "sr" && o.label === "Српски"));
+  assert.ok(opts.some((o) => o.value === "sr-Latn" && o.label === "Srpski (latinica)"));
 });
 
 test("renders in German and Spanish", () => {
@@ -399,7 +453,7 @@ function schemaLeaves(schema) {
 
 test("editor: every field has a translated label, and the device field its helper", () => {
   const Editor = customElements.get("zlinky-card-editor");
-  for (const lang of ["en", "fr", "de", "es"]) {
+  for (const lang of ["en", "fr", "de", "es", "sr", "sr-Latn"]) {
     for (const type of ["custom:zlinky-card", "custom:zlinky-mini-card"]) {
       const ed = new Editor();
       ed.setConfig({ type, language: lang });

@@ -222,7 +222,125 @@ var ZlI18n = {
     en_tariff: 'Periodo tarifario',
     en_tier1: 'Índice 1', en_tier2: 'Índice 2', en_tier3: 'Índice 3', en_tier4: 'Índice 4', en_tier5: 'Índice 5', en_tier6: 'Índice 6',
   },
+  sr: {
+    title: 'Linky',
+    meter: 'ZLinky бројило',
+    load_low: 'Мало оптерећење',
+    load_mid: 'Умерено оптерећење',
+    load_high: 'Велико оптерећење',
+    offline: 'Ван мреже',
+    of_subscribed: 'од {p} kVA уговорене снаге',
+    today: 'Данас',
+    yesterday: 'Јуче',
+    month: 'Овај месец',
+    last_24h: 'Последња 24 h',
+    peak: 'макс. {v}',
+    index: 'Стање бројила',
+    tier: 'Тарифа {n}',
+    injection: 'Предаја у мрежу',
+    phases: 'Фазе',
+    no_device: 'Није пронађен ниједан ZLinky',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'Уређај LiXee ZLinky_TIC (ZHA или Zigbee2MQTT)',
+    ed_name: 'Назив',
+    ed_name_helper: 'Оставите празно за „Linky“',
+    ed_icon: 'Иконица',
+    ed_subscribed_power: 'Уговорена снага (kVA)',
+    ed_subscribed_power_helper: 'Користи се за мерач оптерећења; подразумевано 6 kVA',
+    ed_price: 'Цена по kWh',
+    ed_price_helper: 'Опционо: приказује трошак поред потрошње',
+    ed_tiers: 'Називи тарифа',
+    ed_tiers_helper: 'Редом по тарифама од 1 до 6 (нпр. Нижа тарифа, Виша тарифа)',
+    ed_show_graph: 'Крива за 24 h',
+    ed_show_stats: 'Потрошња',
+    ed_show_index: 'Стање бројила',
+    ed_show_phases: 'Детаљи фаза',
+    ed_show_logo: 'Иконица бројила',
+    ed_zoom: 'Дугме за детаље',
+    ed_zoom_helper: 'Дугме у горњем десном углу које пребацује мини картицу на пун приказ и назад',
+    zoom_in: 'Прикажи целу картицу',
+    zoom_out: 'Назад на компактни приказ',
+    ed_language: 'Језик',
+    ed_language_helper: 'Оставите празно да бисте пратили језик Home Assistant-а',
+    ed_entities: 'Ентитети (напредно)',
+    ed_entities_helper: 'Аутоматски се откривају са уређаја; попуните само да бисте наметнули ентитет',
+    en_energy: 'Укупно стање',
+    en_power: 'Активна снага',
+    en_apparent_power: 'Привидна снага',
+    en_current: 'Струја',
+    en_voltage: 'Напон',
+    en_current_b: 'Струја фазе 2',
+    en_current_c: 'Струја фазе 3',
+    en_voltage_b: 'Напон фазе 2',
+    en_voltage_c: 'Напон фазе 3',
+    en_injection: 'Стање предаје у мрежу',
+    en_tariff: 'Тарифни период',
+    en_tier1: 'Тарифа 1', en_tier2: 'Тарифа 2', en_tier3: 'Тарифа 3', en_tier4: 'Тарифа 4', en_tier5: 'Тарифа 5', en_tier6: 'Тарифа 6',
+  },
+  'sr-Latn': {
+    title: 'Linky',
+    meter: 'ZLinky brojilo',
+    load_low: 'Malo opterećenje',
+    load_mid: 'Umereno opterećenje',
+    load_high: 'Veliko opterećenje',
+    offline: 'Van mreže',
+    of_subscribed: 'od {p} kVA ugovorene snage',
+    today: 'Danas',
+    yesterday: 'Juče',
+    month: 'Ovaj mesec',
+    last_24h: 'Poslednja 24 h',
+    peak: 'maks. {v}',
+    index: 'Stanje brojila',
+    tier: 'Tarifa {n}',
+    injection: 'Predaja u mrežu',
+    phases: 'Faze',
+    no_device: 'Nije pronađen nijedan ZLinky',
+    ed_device_id: 'ZLinky',
+    ed_device_id_helper: 'Uređaj LiXee ZLinky_TIC (ZHA ili Zigbee2MQTT)',
+    ed_name: 'Naziv',
+    ed_name_helper: 'Ostavite prazno za „Linky“',
+    ed_icon: 'Ikonica',
+    ed_subscribed_power: 'Ugovorena snaga (kVA)',
+    ed_subscribed_power_helper: 'Koristi se za merač opterećenja; podrazumevano 6 kVA',
+    ed_price: 'Cena po kWh',
+    ed_price_helper: 'Opciono: prikazuje trošak pored potrošnje',
+    ed_tiers: 'Nazivi tarifa',
+    ed_tiers_helper: 'Redom po tarifama od 1 do 6 (npr. Niža tarifa, Viša tarifa)',
+    ed_show_graph: 'Kriva za 24 h',
+    ed_show_stats: 'Potrošnja',
+    ed_show_index: 'Stanje brojila',
+    ed_show_phases: 'Detalji faza',
+    ed_show_logo: 'Ikonica brojila',
+    ed_zoom: 'Dugme za detalje',
+    ed_zoom_helper: 'Dugme u gornjem desnom uglu koje prebacuje mini karticu na pun prikaz i nazad',
+    zoom_in: 'Prikaži celu karticu',
+    zoom_out: 'Nazad na kompaktni prikaz',
+    ed_language: 'Jezik',
+    ed_language_helper: 'Ostavite prazno da biste pratili jezik Home Assistant-a',
+    ed_entities: 'Entiteti (napredno)',
+    ed_entities_helper: 'Automatski se otkrivaju sa uređaja; popunite samo da biste nametnuli entitet',
+    en_energy: 'Ukupno stanje',
+    en_power: 'Aktivna snaga',
+    en_apparent_power: 'Prividna snaga',
+    en_current: 'Struja',
+    en_voltage: 'Napon',
+    en_current_b: 'Struja faze 2',
+    en_current_c: 'Struja faze 3',
+    en_voltage_b: 'Napon faze 2',
+    en_voltage_c: 'Napon faze 3',
+    en_injection: 'Stanje predaje u mrežu',
+    en_tariff: 'Tarifni period',
+    en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
+  },
 };
+
+// Card language: the full code when the dictionary has it (`sr-Latn`), else its base (`fr-FR` -> `fr`), else English.
+function zlLang(lang) {
+  var l = String(lang || 'en');
+  if (ZlI18n[l]) return l;
+  l = l.split('-')[0];
+  return ZlI18n[l] ? l : 'en';
+}
 
 function zlT(lang, key) {
   var strings = ZlI18n[lang] || ZlI18n.en;
@@ -492,9 +610,7 @@ class ZlinkyCard extends HTMLElement {
   getGridOptions() { return { columns: 12, min_columns: 6 }; }
 
   _lang() {
-    var l = (this._config?.language) || (this._hass?.language) || document.documentElement.lang || 'en';
-    l = l.split('-')[0];
-    return ZlI18n[l] ? l : 'en';
+    return zlLang((this._config?.language) || (this._hass?.language) || document.documentElement.lang || 'en');
   }
 
   _t(k) { return zlT(this._lang(), k); }
@@ -967,8 +1083,7 @@ class ZlinkyCardEditor extends HTMLElement {
   }
 
   _lang() {
-    var lang = ((this._config?.language) || (this._hass?.language) || 'en').split('-')[0];
-    return ZlI18n[lang] ? lang : 'en';
+    return zlLang((this._config?.language) || (this._hass?.language) || 'en');
   }
 
   _schema() {
@@ -996,7 +1111,7 @@ class ZlinkyCardEditor extends HTMLElement {
       },
       {
         name: 'language',
-        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }] } },
+        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }] } },
       },
       {
         type: 'expandable', name: 'entities', title: t('ed_entities'), flatten: false,
