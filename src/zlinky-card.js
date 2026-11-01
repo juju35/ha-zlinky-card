@@ -356,7 +356,7 @@ var ZlI18n = {
     ed_name_helper: 'Lascia vuoto per «Linky»',
     ed_icon: 'Icona',
     ed_subscribed_power: 'Potenza impegnata (kVA)',
-    ed_subscribed_power_helper: 'Usata per l\'indicatore di carico; 6 kVA di default',
+    ed_subscribed_power_helper: 'Usata per l\'indicatore di carico; 6 kVA predefiniti',
     ed_price: 'Prezzo per kWh',
     ed_price_helper: 'Facoltativo: mostra il costo accanto ai consumi',
     ed_tiers: 'Nomi delle fasce',
@@ -500,9 +500,9 @@ var ZlI18n = {
   pl: {
     title: 'Linky',
     meter: 'Licznik ZLinky',
-    load_low: 'Niskie obciążenie',
-    load_mid: 'Umiarkowane obciążenie',
-    load_high: 'Wysokie obciążenie',
+    load_low: 'Małe obciążenie',
+    load_mid: 'Średnie obciążenie',
+    load_high: 'Duże obciążenie',
     offline: 'Brak połączenia',
     of_subscribed: 'z {p} kVA mocy umownej',
     today: 'Dzisiaj',
@@ -518,7 +518,7 @@ var ZlI18n = {
     ed_device_id: 'ZLinky',
     ed_device_id_helper: 'Urządzenie LiXee ZLinky_TIC (ZHA lub Zigbee2MQTT)',
     ed_name: 'Nazwa',
-    ed_name_helper: 'Pozostaw puste dla „Linky”',
+    ed_name_helper: 'Pozostaw puste, aby użyć „Linky”',
     ed_icon: 'Ikona',
     ed_subscribed_power: 'Moc umowna (kVA)',
     ed_subscribed_power_helper: 'Używana przez wskaźnik obciążenia; domyślnie 6 kVA',
@@ -560,6 +560,15 @@ function zlLang(lang) {
   if (ZlI18n[l]) return l;
   l = l.split('-')[0];
   return ZlI18n[l] ? l : 'en';
+}
+
+// Locale for Intl: Home Assistant's full locale (`pt-PT`, `de-CH`) when its base is the card language,
+// else the card language itself. A bare `pt` means European Portuguese here (the dictionary's variant).
+function zlFmtLang(lang, haLang) {
+  var ha = String(haLang || '');
+  // (Not when HA's code is another card language of its own, e.g. `sr-Latn` with the card forced to `sr`.)
+  var l = !lang.includes('-') && !ZlI18n[ha] && ha.split('-')[0] === lang ? ha : lang;
+  return l === 'pt' ? 'pt-PT' : l;
 }
 
 function zlT(lang, key) {
@@ -835,6 +844,8 @@ class ZlinkyCard extends HTMLElement {
 
   _t(k) { return zlT(this._lang(), k); }
 
+  _fmtLang() { return zlFmtLang(this._lang(), this._hass?.locale?.language || this._hass?.language); }
+
   _deviceId() {
     var hass = this._hass, c = this._config;
     if (c.device_id) return c.device_id;
@@ -888,7 +899,7 @@ class ZlinkyCard extends HTMLElement {
       var s = r.ent[k] && hass.states[r.ent[k]];
       return s ? s.state : null;
     }));
-    var sig = JSON.stringify([this._lang(), r.deviceId, this._zoomed, this._statsKey, this._statsVer, states]);
+    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, this._zoomed, this._statsKey, this._statsVer, states]);
     if (sig === this._sig) return;
     this._sig = sig;
     this._r = r;
@@ -952,7 +963,7 @@ class ZlinkyCard extends HTMLElement {
   _zoomButton() { return ''; }
 
   _model(r) {
-    var c = this._config, ent = r.ent, lang = this._lang();
+    var c = this._config, ent = r.ent, lang = this._fmtLang();
     var name = c.name || this._t('title');
     var online = this._avail(ent.energy) || this._avail(ent.apparent_power) || this._avail(ent.power);
     var watts = this._avail(ent.power) ? zlBase(this._st(ent.power)) : null;
@@ -991,7 +1002,7 @@ class ZlinkyCard extends HTMLElement {
   _cost(kwh) {
     var price = Number(this._config.price);
     if (!(price > 0) || kwh == null) return '';
-    return zlMoney(this._lang(), kwh * price, this._hass.config?.currency);
+    return zlMoney(this._fmtLang(), kwh * price, this._hass.config?.currency);
   }
 
   _render(r) {
@@ -1080,7 +1091,7 @@ class ZlinkyCard extends HTMLElement {
     this._setHtml(this._styles(m.color) + '<ha-card>' +
       '<div class="header">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(m.sub)}</div></div>` +
-        `<span class="st"><span class="dot"></span>${zlEsc(m.statusText)}</span>` + this._zoomButton() +
+        `<span class="st"><span class="dot"></span><span class="stt">${zlEsc(m.statusText)}</span></span>` + this._zoomButton() +
       '</div>' + hero + stats + graph + index + phases +
     '</ha-card>');
   }
@@ -1124,7 +1135,7 @@ class ZlinkyCard extends HTMLElement {
     return this._styles(m.color) + '<ha-card class="mini">' +
       '<div class="header">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div></div>` +
-        `<span class="st"><span class="dot"></span>${zlEsc(m.statusText)}</span>` + this._zoomButton() +
+        `<span class="st"><span class="dot"></span><span class="stt">${zlEsc(m.statusText)}</span></span>` + this._zoomButton() +
       '</div>' +
       '<div class="content">' + this._picture(m) +
         '<div class="info">' +
@@ -1160,13 +1171,15 @@ class ZlinkyCard extends HTMLElement {
       '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
       'ha-card.mini .hbadge { width: 32px; height: 32px; }' +
       'ha-card.mini .hbadge ha-icon { --mdc-icon-size: 20px; }' +
-      '.titles { flex: 1; min-width: 0; }' +
+      // The name keeps at least ~5 characters ("Linky"): past that a long status pill ellipsizes instead.
+      '.titles { flex: 1; min-width: 2.4em; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
-      '.st { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
+      '.st { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 1; min-width: 0; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
         ' white-space: nowrap; background: color-mix(in srgb, var(--zl-color) 15%, transparent);' +
         ' color: color-mix(in srgb, var(--zl-color) 50%, var(--primary-text-color, #212121)); }' +
-      '.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--zl-color); }' +
+      '.stt { overflow: hidden; text-overflow: ellipsis; }' +
+      '.dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--zl-color); }' +
       '.zoom { flex-shrink: 0; width: 24px; height: 24px; margin: -4px -4px -4px 0; border-radius: 50%;' +
         ' display: grid; place-items: center; color: var(--secondary-text-color); }' +
       '.zoom ha-icon { --mdc-icon-size: 16px; }' +
@@ -1331,7 +1344,7 @@ class ZlinkyCardEditor extends HTMLElement {
       },
       {
         name: 'language',
-        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português' }, { value: 'pl', label: 'Polski' }] } },
+        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português (Portugal)' }, { value: 'pl', label: 'Polski' }] } },
       },
       {
         type: 'expandable', name: 'entities', title: t('ed_entities'), flatten: false,

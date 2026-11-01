@@ -158,7 +158,7 @@ The cards auto-detect the language from your Home Assistant settings. Currently 
 | Português (Portugal) | `pt` |
 | Polski | `pl` |
 
-Other regional variants fall back to their base language (`pt-BR` uses European Portuguese, `nl-BE` Dutch), and unsupported languages to English.
+Other regional variants fall back to their base language (`pt-BR` uses the European Portuguese texts, `nl-BE` Dutch), and unsupported languages to English.
 
 ## Development
 

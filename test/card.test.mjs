@@ -337,7 +337,7 @@ test("editor: Italian, Dutch, Portuguese and Polish language options", () => {
   ed.setConfig({ type: "custom:zlinky-card" });
   ed.hass = zhaHass();
   const opts = ed._form.schema.find((s) => s.name === "language").selector.select.options;
-  for (const [value, label] of [["it", "Italiano"], ["nl", "Nederlands"], ["pt", "Português"], ["pl", "Polski"]]) {
+  for (const [value, label] of [["it", "Italiano"], ["nl", "Nederlands"], ["pt", "Português (Portugal)"], ["pl", "Polski"]]) {
     assert.ok(opts.some((o) => o.value === value && o.label === label), value);
   }
   // Every option has a dictionary, and every dictionary an option.
@@ -349,7 +349,22 @@ test("renders in Italian, Dutch, Portuguese and Polish", () => {
   assert.match(html("it"), /Ultime 24 h|Carico basso/);
   assert.match(html("nl"), /Laatste 24 u|Lage belasting/);
   assert.match(html("pt"), /Últimas 24 h|Carga baixa/);
-  assert.match(html("pl"), /Ostatnie 24 h|Niskie obciążenie/);
+  assert.match(html("pl"), /Ostatnie 24 h|Małe obciążenie/);
+});
+
+test("Intl formatting follows Home Assistant's full locale when it matches the card language", () => {
+  const fmt = (hass, config = {}) => make(ZlinkyCard, { ...zhaHass(), ...hass }, config)._fmtLang();
+  // A bare `pt` is European Portuguese: 2,38 € and 18 343, not the Brazilian € 2,38 and 18.343.
+  assert.equal(fmt({ language: "pt" }), "pt-PT");
+  assert.equal(zlMoney(fmt({ language: "pt" }), 2.38, "EUR").replace(/\s/g, " "), "2,38 €");
+  assert.equal(zlNum(fmt({ language: "pt" }), 18343, 0).replace(/\s/g, " "), "18 343");
+  // HA's full locale is used when its base is the card language.
+  assert.equal(fmt({ language: "pt-BR" }), "pt-BR");
+  assert.equal(fmt({ language: "de", locale: { language: "de-CH" } }), "de-CH");
+  // The card's language option still wins: a non-matching HA locale is ignored.
+  assert.equal(fmt({ language: "pt-BR" }, { language: "pl" }), "pl");
+  assert.equal(fmt({ language: "sr" }, { language: "sr-Latn" }), "sr-Latn");
+  assert.equal(fmt({ language: "sr-Latn" }, { language: "sr" }), "sr");
 });
 
 test("renders in German and Spanish", () => {
