@@ -3,6 +3,7 @@
 [![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 [![HACS Validation](https://github.com/juju35/ha-zlinky-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/juju35/ha-zlinky-card/actions/workflows/hacs.yml)
 [![Validate](https://github.com/juju35/ha-zlinky-card/actions/workflows/validate.yml/badge.svg)](https://github.com/juju35/ha-zlinky-card/actions/workflows/validate.yml)
+[![Lint](https://github.com/juju35/ha-zlinky-card/actions/workflows/lint.yml/badge.svg)](https://github.com/juju35/ha-zlinky-card/actions/workflows/lint.yml)
 [![Release](https://img.shields.io/github/v/release/juju35/ha-zlinky-card)](https://github.com/juju35/ha-zlinky-card/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -147,6 +148,14 @@ entities:
 
 Tiers are listed only when more than one carries an index. The phase section appears only when phases 2 or 3 report a voltage. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
 
+## Development
+
+```bash
+npm run build        # builds dist/zlinky-card.js
+npm test             # unit tests
+npm run screenshots  # regenerates the README screenshots and the live GIFs (Playwright + ffmpeg)
+```
+
 ## Translations
 
 The cards auto-detect the language from your Home Assistant settings. Currently supported:
@@ -165,14 +174,6 @@ The cards auto-detect the language from your Home Assistant settings. Currently 
 | Polski | `pl` |
 
 Other regional variants fall back to their base language (`pt-BR` uses the European Portuguese texts, `nl-BE` Dutch), and unsupported languages to English.
-
-## Development
-
-```bash
-npm run build        # builds dist/zlinky-card.js
-npm test             # unit tests
-npm run screenshots  # regenerates the README screenshots and the live GIFs (Playwright + ffmpeg)
-```
 
 ## License
 
