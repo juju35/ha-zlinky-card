@@ -2,7 +2,7 @@
 // Usage: npm run build && npm run screenshots
 import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { copyFileSync, existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -11,6 +11,23 @@ const root = fileURLToPath(new URL("..", import.meta.url));
 // Fixed clock and time zone: the 24 h curve in the captures does not depend on when they are taken.
 const NOW = Date.parse("2026-10-24T18:44:00Z");
 const cardJs = readFileSync(`${root}dist/zlinky-card.js`, "utf8");
+
+// The decoded pixels (and, for a GIF, every frame and its timing) of an image: a re-render that only re-encodes the
+// same picture (another zlib or ffmpeg build, other metadata) is not a change, so the file is left alone.
+const pixels = (file) =>
+  execFileSync("ffmpeg", ["-v", "error", "-i", file, "-pix_fmt", "rgba", "-f", "framemd5", "-"]).toString()
+    .split("\n").filter((l) => !l.startsWith("#version")).join("\n");
+
+// Moves a fresh render to screenshots/<name> only when its pixels differ from the committed file.
+function keep(fresh, name) {
+  const out = `${root}screenshots/${name}`;
+  if (existsSync(out) && pixels(out) === pixels(fresh)) console.log(`screenshots/${name} (unchanged)`);
+  else {
+    copyFileSync(fresh, out);
+    console.log(`screenshots/${name}`);
+  }
+  rmSync(fresh);
+}
 
 const THEMES = {
   light: {
@@ -96,20 +113,22 @@ async function openCard(browser, s, { icons = {}, hass = {}, extra = "" }) {
 // extra: more stand-in elements, as script source.
 export async function render(shots, { icons = {}, hass = {}, extra = "" } = {}) {
   const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
+  const dir = mkdtempSync(join(tmpdir(), "zl-shots-"));
   for (const s of shots) {
     const page = await openCard(browser, s, { icons, hass, extra });
     await page.waitForTimeout(400);
     // The card plus the 16px page padding around it, on the theme background.
     const box = await page.locator("#root").boundingBox();
     await page.screenshot({
-      path: `${root}screenshots/${s.file}.png`,
+      path: join(dir, `${s.file}.png`),
       clip: { x: 0, y: 0, width: s.width + 32, height: Math.ceil(box.height) + 32 },
       animations: "disabled",
     });
-    console.log(`screenshots/${s.file}.png`);
+    keep(join(dir, `${s.file}.png`), `${s.file}.png`);
     await page.close();
   }
   await browser.close();
+  rmSync(dir, { recursive: true });
 }
 
 // Records one shot as a looping GIF (screenshots/<file>.gif) — needs ffmpeg on PATH. Every animation is paused and
@@ -139,14 +158,14 @@ export async function animate(shot, { icons = {}, hass = {}, extra = "", fps = 2
     await page.screenshot({ path: join(dir, `f${String(i).padStart(3, "0")}.png`), clip });
   }
   await browser.close();
-  const out = `${root}screenshots/${shot.file}.gif`;
+  const out = join(dir, `${shot.file}.gif`);
   execFileSync("ffmpeg", [
     "-y", "-loglevel", "error", "-framerate", String(fps), "-i", join(dir, "f%03d.png"),
     "-vf", `scale=${clip.width}:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=bayer:bayer_scale=4`,
     "-loop", "0", out,
   ]);
+  keep(out, `${shot.file}.gif`);
   rmSync(dir, { recursive: true });
-  console.log(`screenshots/${shot.file}.gif`);
 }
 
 const icons = {
@@ -202,6 +221,9 @@ await render(
     { file: "card-dark", type: "zlinky-card", theme: "dark", width: 460, config: { price: 0.2016, tiers: ["Off-peak", "Peak"] } },
     { file: "mini", type: "zlinky-mini-card", theme: "light", width: 380, config: { price: 0.2016 } },
     { file: "mini-dark", type: "zlinky-mini-card", theme: "dark", width: 380, config: { price: 0.2016 } },
+    // The mini card's real width on a phone: 6 columns of a ~380 px section.
+    { file: "mini-narrow", type: "zlinky-mini-card", theme: "light", width: 180, config: { price: 0.2016 } },
+    { file: "mini-narrow-dark", type: "zlinky-mini-card", theme: "dark", width: 180, config: { price: 0.2016 } },
   ],
   { icons, hass, extra: ws }
 );

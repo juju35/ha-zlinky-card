@@ -80,7 +80,7 @@ HACS registers the dashboard resource for you.
 
 ### Visual editor
 
-Add the card from the dashboard (**Add card** → **ZLinky Card**). The first ZLinky found is picked automatically; change it with the **ZLinky** field, then set the subscribed power, the price and the sections to show. The **Entities (advanced)** panel lets you force any entity if auto-detection picks the wrong one. Options left at their default are not written to the YAML.
+Add the card from the dashboard (**Add card** → **ZLinky Card**). The first ZLinky found is picked automatically; change it with the **ZLinky** field, then set the subscribed power, the price and the sections to show. The **Entities (advanced)** panel lets you force any entity if auto-detection picks the wrong one: when none of the meter's sensors is recognised, the card says so ("No ZLinky sensor found") instead of showing the meter offline. Options left at their default are not written to the YAML.
 
 ### Minimal
 
@@ -96,6 +96,12 @@ subscribed_power: 9
 ```
 
 The mini card shows the meter, the live power, the load gauge and today's consumption (hidden with `show_stats: false`). The detail button (top right) unfolds the full card; a click anywhere else on the page folds it back. It takes the same options as the full card, plus `zoom`.
+
+In the Sections view, the mini card fits 6 columns (half a section, down to about 156 px on a phone): on a narrow card the meter gets smaller, the reading scales down, today's line wraps and the status pill keeps its colored dot only (the status stays in its tooltip). The full card needs 9 columns at least.
+
+| Mini card, 180 px | Dark theme |
+|---|---|
+| ![ZLinky mini card at 180 px](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-narrow.png) | ![ZLinky mini card at 180 px, dark theme](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-narrow-dark.png) |
 
 ### Full options
 

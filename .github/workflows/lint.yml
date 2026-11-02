@@ -29,7 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # Same Biome version as the pre-commit hook (one version, set in .pre-commit-config.yaml and bumped there by
-      # Dependabot); the hook's rev, its additional_dependencies and biome.json's $schema must all agree.
+      # Dependabot): the hook's rev and its additional_dependencies must agree. Dependabot does not touch biome.json, so
+      # a stale $schema only warns (Biome itself just warns about it) instead of failing every Biome bump.
       - name: Read Biome version from .pre-commit-config.yaml
         id: biome-version
         run: |
@@ -38,9 +39,12 @@ jobs:
           schema=$(sed -n 's/.*schemas\/\([0-9.]*\)\/schema.json.*/\1/p' biome.json)
           echo "additional_dependencies=$version rev=$rev biome.json=$schema"
           test -n "$version"
-          if [ "$rev" != "$version" ] || [ "$schema" != "$version" ]; then
-            echo "::error::Biome versions differ: pre-commit rev $rev, additional_dependencies $version, biome.json \$schema $schema"
+          if [ "$rev" != "$version" ]; then
+            echo "::error::Biome versions differ: pre-commit rev $rev, additional_dependencies $version"
             exit 1
+          fi
+          if [ "$schema" != "$version" ]; then
+            echo "::warning file=biome.json::biome.json \$schema is $schema, Biome is $version: update the \$schema URL"
           fi
           echo "version=$version" >> "$GITHUB_OUTPUT"
       - uses: biomejs/setup-biome@4c91541eaada48f67d7dbd7833600ce162b68f51 # v2
