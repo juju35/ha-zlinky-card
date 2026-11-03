@@ -44,6 +44,15 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - Light and dark theme compatible
 - Single file, no dependencies, HACS-ready
 
+## Supported integrations
+
+| Integration | What the cards read |
+|---|---|
+| [ZHA](https://www.home-assistant.io/integrations/zha/) (built in) | The ZLinky_TIC entities, English or French entity ids |
+| [Zigbee2MQTT](https://www.zigbee2mqtt.io/devices/ZLinky_TIC.html) | The ZLinky_TIC entities, by their TIC labels |
+
+Both expose the same data to the cards: live power, current and voltage, load against the subscribed power, consumption and cost from the long-term statistics, meter index and tiers, injection, three-phase details.
+
 ## Prerequisites
 
 - Home Assistant 2024.8 or later
