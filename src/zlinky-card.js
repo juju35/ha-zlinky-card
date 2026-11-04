@@ -1436,9 +1436,15 @@ function zlNum(lang, v, digits) {
   }
 }
 
+// narrowSymbol: Romanian, Hungarian and Ukrainian would otherwise print "2,38 EUR", too wide for the cost tile.
 function zlMoney(lang, v, currency) {
   try {
-    return new Intl.NumberFormat(lang, { style: 'currency', currency: currency || 'EUR', maximumFractionDigits: 2 }).format(v);
+    return new Intl.NumberFormat(lang, {
+      style: 'currency',
+      currency: currency || 'EUR',
+      currencyDisplay: 'narrowSymbol',
+      maximumFractionDigits: 2,
+    }).format(v);
   } catch (_e) {
     return `${v.toFixed(2)} ${currency || 'EUR'}`;
   }

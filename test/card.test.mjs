@@ -357,6 +357,10 @@ test("Intl formatting follows Home Assistant's full locale when it matches the c
   // A bare `pt` is European Portuguese: 2,38 € and 18 343, not the Brazilian € 2,38 and 18.343.
   assert.equal(fmt({ language: "pt" }), "pt-PT");
   assert.equal(zlMoney(fmt({ language: "pt" }), 2.38, "EUR").replace(/\s/g, " "), "2,38 €");
+  // Romanian, Hungarian and Ukrainian get the € sign too, not Intl's default "EUR" code.
+  for (const language of ["ro", "hu", "uk"]) {
+    assert.equal(zlMoney(fmt({ language }), 2.38, "EUR").replace(/\s/g, " "), "2,38 €");
+  }
   assert.equal(zlNum(fmt({ language: "pt" }), 18343, 0).replace(/\s/g, " "), "18 343");
   // HA's full locale is used when its base is the card language.
   assert.equal(fmt({ language: "pt-BR" }), "pt-BR");
