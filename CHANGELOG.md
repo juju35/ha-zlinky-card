@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.8 - 2026-11-04
+
+### Documentation
+- README: images and links use absolute URLs, so the screenshots, icons, badges and links display in HACS (relative paths broke there).
+- README: screenshots get a display size, so cards no longer show oversized in HACS and on GitHub.
+
 ## 1.4.7 - 2026-11-04
 ### Features
 - Added Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek translations of both cards and the visual editor; the editor's language option now offers Română (`ro`), Dansk (`da`), Svenska (`sv`), Български (`bg`), Русский (`ru`), Українська (`uk`), Magyar (`hu`), Slovenčina (`sk`), Čeština (`cs`), Slovenščina (`sl`), Latviešu (`lv`) and Ελληνικά (`el`). Regional variants such as `ro-RO`, `sv-SE` or `el-GR` pick them automatically.
