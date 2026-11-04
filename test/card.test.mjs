@@ -415,13 +415,13 @@ test("editor: Romanian to Greek language options", () => {
 test("renders in Romanian to Greek", () => {
   const html = (language) => make(ZlinkyCard, zhaHass(), { language }).shadowRoot.innerHTML;
   assert.match(html("ro"), /Ultimele 24 h|Sarcină redusă/, "ro");
-  assert.match(html("da"), /Seneste 24 t|Lav belastning/, "da");
-  assert.match(html("sv"), /Senaste 24 h|Låg belastning/, "sv");
-  assert.match(html("bg"), /Последните 24 h|Ниско натоварване/, "bg");
+  assert.match(html("da"), /Seneste 24 t|Lav last/, "da");
+  assert.match(html("sv"), /Senaste 24 h|Låg last/, "sv");
+  assert.match(html("bg"), /Последните 24 h|Нисък товар/, "bg");
   assert.match(html("ru"), /Последние 24 h|Низкая нагрузка/, "ru");
   assert.match(html("uk"), /Останні 24 h|Низьке навантаження/, "uk");
-  assert.match(html("hu"), /Elmúlt 24 h|Alacsony terhelés/, "hu");
-  assert.match(html("sk"), /Posledných 24 h|Nízke zaťaženie/, "sk");
+  assert.match(html("hu"), /Elmúlt 24 h|Kis terhelés/, "hu");
+  assert.match(html("sk"), /Posledných 24 h|Nízka záťaž/, "sk");
   assert.match(html("cs"), /Posledních 24 h|Nízké zatížení/, "cs");
   assert.match(html("sl"), /Zadnjih 24 h|Nizka obremenitev/, "sl");
   assert.match(html("lv"), /Pēdējās 24 h|Zema slodze/, "lv");
