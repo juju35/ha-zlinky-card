@@ -2,7 +2,7 @@
 
 ## 1.4.7 - 2026-11-04
 ### Features
-- Added Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Irish, Slovak, Czech, Slovenian, Maltese, Latvian and Greek translations of both cards and the visual editor; the editor's language option now offers Română (`ro`), Dansk (`da`), Svenska (`sv`), Български (`bg`), Русский (`ru`), Українська (`uk`), Magyar (`hu`), Gaeilge (`ga`), Slovenčina (`sk`), Čeština (`cs`), Slovenščina (`sl`), Malti (`mt`), Latviešu (`lv`) and Ελληνικά (`el`). Regional variants such as `ro-RO`, `sv-SE` or `el-GR` pick them automatically.
+- Added Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek translations of both cards and the visual editor; the editor's language option now offers Română (`ro`), Dansk (`da`), Svenska (`sv`), Български (`bg`), Русский (`ru`), Українська (`uk`), Magyar (`hu`), Slovenčina (`sk`), Čeština (`cs`), Slovenščina (`sl`), Latviešu (`lv`) and Ελληνικά (`el`). Regional variants such as `ro-RO`, `sv-SE` or `el-GR` pick them automatically.
 
 ## 1.4.6 - 2026-11-01
 ### Fixes

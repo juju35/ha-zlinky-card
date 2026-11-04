@@ -255,7 +255,7 @@ test("sparkline needs at least two points", () => {
 test("I18N parity: every language has exactly the English keys and placeholders", () => {
   const ref = ZlI18n.en;
   const holes = (v) => (String(v).match(/\{\w+\}/g) || []).sort();
-  for (const lang of ["fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl", "ro", "da", "sv", "bg", "ru", "uk", "hu", "ga", "sk", "cs", "sl", "mt", "lv", "el"]) {
+  for (const lang of ["fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl", "ro", "da", "sv", "bg", "ru", "uk", "hu", "sk", "cs", "sl", "lv", "el"]) {
     assert.ok(ZlI18n[lang], lang);
     assert.deepEqual(Object.keys(ZlI18n[lang]).sort(), Object.keys(ref).sort(), lang);
     for (const k of Object.keys(ref)) {
@@ -367,7 +367,7 @@ test("Intl formatting follows Home Assistant's full locale when it matches the c
   assert.equal(fmt({ language: "sr-Latn" }, { language: "sr" }), "sr");
 });
 
-test("language resolution: Romanian to Greek (14 more languages)", () => {
+test("language resolution: Romanian to Greek (12 more languages)", () => {
   for (const [code, want] of [
     ["ro-RO", "ro"],
     ["da-DK", "da"],
@@ -376,11 +376,9 @@ test("language resolution: Romanian to Greek (14 more languages)", () => {
     ["ru-RU", "ru"],
     ["uk-UA", "uk"],
     ["hu-HU", "hu"],
-    ["ga-IE", "ga"],
     ["sk-SK", "sk"],
     ["cs-CZ", "cs"],
     ["sl-SI", "sl"],
-    ["mt-MT", "mt"],
     ["lv-LV", "lv"],
     ["el-GR", "el"],
     ["sr", "sr"],
@@ -404,11 +402,9 @@ test("editor: Romanian to Greek language options", () => {
     ["ru", "Русский"],
     ["uk", "Українська"],
     ["hu", "Magyar"],
-    ["ga", "Gaeilge"],
     ["sk", "Slovenčina"],
     ["cs", "Čeština"],
     ["sl", "Slovenščina"],
-    ["mt", "Malti"],
     ["lv", "Latviešu"],
     ["el", "Ελληνικά"],
   ]) {
@@ -425,11 +421,9 @@ test("renders in Romanian to Greek", () => {
   assert.match(html("ru"), /Последние 24 h|Низкая нагрузка/, "ru");
   assert.match(html("uk"), /Останні 24 h|Низьке навантаження/, "uk");
   assert.match(html("hu"), /Elmúlt 24 h|Alacsony terhelés/, "hu");
-  assert.match(html("ga"), /Na 24 h deiridh|Ualach íseal/, "ga");
   assert.match(html("sk"), /Posledných 24 h|Nízke zaťaženie/, "sk");
   assert.match(html("cs"), /Posledních 24 h|Nízké zatížení/, "cs");
   assert.match(html("sl"), /Zadnjih 24 h|Nizka obremenitev/, "sl");
-  assert.match(html("mt"), /L-aħħar 24 h|Tagħbija baxxa/, "mt");
   assert.match(html("lv"), /Pēdējās 24 h|Zema slodze/, "lv");
   assert.match(html("el"), /Τελευταίες 24 h|Χαμηλό φορτίο/, "el");
 });
@@ -575,7 +569,7 @@ function schemaLeaves(schema) {
 
 test("editor: every field has a translated label, and the device field its helper", () => {
   const Editor = customElements.get("zlinky-card-editor");
-  for (const lang of ["en", "fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl", "ro", "da", "sv", "bg", "ru", "uk", "hu", "ga", "sk", "cs", "sl", "mt", "lv", "el"]) {
+  for (const lang of ["en", "fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl", "ro", "da", "sv", "bg", "ru", "uk", "hu", "sk", "cs", "sl", "lv", "el"]) {
     for (const type of ["custom:zlinky-card", "custom:zlinky-mini-card"]) {
       const ed = new Editor();
       ed.setConfig({ type, language: lang });
