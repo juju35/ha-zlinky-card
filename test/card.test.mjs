@@ -255,7 +255,7 @@ test("sparkline needs at least two points", () => {
 test("I18N parity: every language has exactly the English keys and placeholders", () => {
   const ref = ZlI18n.en;
   const holes = (v) => (String(v).match(/\{\w+\}/g) || []).sort();
-  for (const lang of ["fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl"]) {
+  for (const lang of ["fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl", "ro", "da", "sv", "bg", "ru", "uk", "hu", "sk", "cs", "sl", "lv", "el"]) {
     assert.ok(ZlI18n[lang], lang);
     assert.deepEqual(Object.keys(ZlI18n[lang]).sort(), Object.keys(ref).sort(), lang);
     for (const k of Object.keys(ref)) {
@@ -357,6 +357,10 @@ test("Intl formatting follows Home Assistant's full locale when it matches the c
   // A bare `pt` is European Portuguese: 2,38 € and 18 343, not the Brazilian € 2,38 and 18.343.
   assert.equal(fmt({ language: "pt" }), "pt-PT");
   assert.equal(zlMoney(fmt({ language: "pt" }), 2.38, "EUR").replace(/\s/g, " "), "2,38 €");
+  // Romanian, Hungarian and Ukrainian get the € sign too, not Intl's default "EUR" code.
+  for (const language of ["ro", "hu", "uk"]) {
+    assert.equal(zlMoney(fmt({ language }), 2.38, "EUR").replace(/\s/g, " "), "2,38 €");
+  }
   assert.equal(zlNum(fmt({ language: "pt" }), 18343, 0).replace(/\s/g, " "), "18 343");
   // HA's full locale is used when its base is the card language.
   assert.equal(fmt({ language: "pt-BR" }), "pt-BR");
@@ -365,6 +369,67 @@ test("Intl formatting follows Home Assistant's full locale when it matches the c
   assert.equal(fmt({ language: "pt-BR" }, { language: "pl" }), "pl");
   assert.equal(fmt({ language: "sr" }, { language: "sr-Latn" }), "sr-Latn");
   assert.equal(fmt({ language: "sr-Latn" }, { language: "sr" }), "sr");
+});
+
+test("language resolution: Romanian to Greek (12 more languages)", () => {
+  for (const [code, want] of [
+    ["ro-RO", "ro"],
+    ["da-DK", "da"],
+    ["sv-SE", "sv"],
+    ["bg-BG", "bg"],
+    ["ru-RU", "ru"],
+    ["uk-UA", "uk"],
+    ["hu-HU", "hu"],
+    ["sk-SK", "sk"],
+    ["cs-CZ", "cs"],
+    ["sl-SI", "sl"],
+    ["lv-LV", "lv"],
+    ["el-GR", "el"],
+    ["sr", "sr"],
+    ["sr-Latn", "sr-Latn"],
+  ]) {
+    assert.equal(zlLang(code), want, code);
+  }
+});
+
+test("editor: Romanian to Greek language options", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  ed.setConfig({ type: "custom:zlinky-card" });
+  ed.hass = zhaHass();
+  const opts = ed._form.schema.find((s) => s.name === "language").selector.select.options;
+  for (const [value, label] of [
+    ["ro", "Română"],
+    ["da", "Dansk"],
+    ["sv", "Svenska"],
+    ["bg", "Български"],
+    ["ru", "Русский"],
+    ["uk", "Українська"],
+    ["hu", "Magyar"],
+    ["sk", "Slovenčina"],
+    ["cs", "Čeština"],
+    ["sl", "Slovenščina"],
+    ["lv", "Latviešu"],
+    ["el", "Ελληνικά"],
+  ]) {
+    assert.ok(opts.some((o) => o.value === value && o.label === label), value);
+  }
+});
+
+test("renders in Romanian to Greek", () => {
+  const html = (language) => make(ZlinkyCard, zhaHass(), { language }).shadowRoot.innerHTML;
+  assert.match(html("ro"), /Ultimele 24 h|Sarcină redusă/, "ro");
+  assert.match(html("da"), /Seneste 24 t|Lav last/, "da");
+  assert.match(html("sv"), /Senaste 24 h|Låg last/, "sv");
+  assert.match(html("bg"), /Последните 24 h|Нисък товар/, "bg");
+  assert.match(html("ru"), /Последние 24 h|Низкая нагрузка/, "ru");
+  assert.match(html("uk"), /Останні 24 h|Низьке навантаження/, "uk");
+  assert.match(html("hu"), /Elmúlt 24 h|Kis terhelés/, "hu");
+  assert.match(html("sk"), /Posledných 24 h|Nízka záťaž/, "sk");
+  assert.match(html("cs"), /Posledních 24 h|Nízké zatížení/, "cs");
+  assert.match(html("sl"), /Zadnjih 24 h|Nizka obremenitev/, "sl");
+  assert.match(html("lv"), /Pēdējās 24 h|Zema slodze/, "lv");
+  assert.match(html("el"), /Τελευταίες 24 h|Χαμηλό φορτίο/, "el");
 });
 
 test("renders in German and Spanish", () => {
@@ -508,7 +573,7 @@ function schemaLeaves(schema) {
 
 test("editor: every field has a translated label, and the device field its helper", () => {
   const Editor = customElements.get("zlinky-card-editor");
-  for (const lang of ["en", "fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl"]) {
+  for (const lang of ["en", "fr", "de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl", "ro", "da", "sv", "bg", "ru", "uk", "hu", "sk", "cs", "sl", "lv", "el"]) {
     for (const type of ["custom:zlinky-card", "custom:zlinky-mini-card"]) {
       const ed = new Editor();
       ed.setConfig({ type, language: lang });
