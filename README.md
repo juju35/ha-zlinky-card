@@ -18,16 +18,16 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 
 | | Light | Dark |
 |---|---|---|
-| Normal load — green gauge, slow LED blink | ![ZLinky card, live meter animation at normal load](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live.gif) | ![ZLinky card, live meter animation at normal load, dark theme](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-dark.gif) |
-| High load — red gauge, fast LED blink near the subscribed power | ![ZLinky card, live meter animation at high load](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-high.gif) | ![ZLinky card, live meter animation at high load, dark theme](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-high-dark.gif) |
+| Normal load — green gauge, slow LED blink | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live.gif" alt="ZLinky card, live meter animation at normal load" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-dark.gif" alt="ZLinky card, live meter animation at normal load, dark theme" width="400"> |
+| High load — red gauge, fast LED blink near the subscribed power | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-high.gif" alt="ZLinky card, live meter animation at high load" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/live-high-dark.gif" alt="ZLinky card, live meter animation at high load, dark theme" width="400"> |
 
 | Card | Dark theme |
 |---|---|
-| ![ZLinky card](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card.png) | ![ZLinky card, dark theme](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-dark.png) |
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card.png" alt="ZLinky card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-dark.png" alt="ZLinky card, dark theme" width="400"> |
 
 | Mini card | Mini card, dark theme |
 |---|---|
-| ![ZLinky mini card](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini.png) | ![ZLinky mini card, dark theme](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-dark.png) |
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini.png" alt="ZLinky mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-dark.png" alt="ZLinky mini card, dark theme" width="400"> |
 
 ## Features
 
@@ -112,7 +112,7 @@ In the Sections view, the mini card fits 6 columns (half a section, down to abou
 
 | Mini card, 180 px | Dark theme |
 |---|---|
-| ![ZLinky mini card at 180 px](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-narrow.png) | ![ZLinky mini card at 180 px, dark theme](https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-narrow-dark.png) |
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-narrow.png" alt="ZLinky mini card at 180 px" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-narrow-dark.png" alt="ZLinky mini card at 180 px, dark theme" width="400"> |
 
 ### Full options
 
