@@ -25,6 +25,10 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card.png" alt="ZLinky card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-dark.png" alt="ZLinky card, dark theme" width="400"> |
 
+| Tempo contract | Tempo contract, dark theme |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-tempo.png" alt="ZLinky card with the Tempo colors of today and tomorrow" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-tempo-dark.png" alt="ZLinky card with the Tempo colors, dark theme" width="400"> |
+
 | Mini card | Mini card, dark theme |
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini.png" alt="ZLinky mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-dark.png" alt="ZLinky mini card, dark theme" width="400"> |
@@ -37,6 +41,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - Load gauge against your subscribed power (kVA), colored green / orange / red
 - **Today**, **yesterday** and **this month**'s consumption from Home Assistant's long-term statistics, with the cost when a price per kWh is set
 - 24 h power curve with its peak
+- Tempo contract: today's color (from the tariff period) and tomorrow's once announced (from `DEMAIN`, or any sensor naming a color)
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
 - Three-phase details (current and voltage per phase) on three-phase meters
 - An animated Linky meter: its screen shows the live power and its LED blinks faster as the load rises
@@ -152,11 +157,12 @@ entities:
 | `show_index` | ❌ | `true` | Meter index, tiers and injection |
 | `show_phases` | ❌ | `true` | Per-phase details (three-phase meters only) |
 | `show_logo` | ❌ | `true` | Meter icon in the header |
+| `show_tempo` | ❌ | `true` | Tempo colors of today and tomorrow (only on a Tempo contract) |
 | `zoom` | ❌ | `true` | Mini card only: detail button that unfolds the full card |
 | `language` | ❌ | HA language | `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` |
-| `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `injection`, `tariff`, `tier1`…`tier6` |
+| `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `injection`, `tariff`, `tempo` (today's Tempo color, e.g. from an RTE Tempo integration), `tomorrow` (tomorrow's Tempo color), `tier1`…`tier6` |
 
-Tiers are listed only when more than one carries an index. The phase section appears only when phases 2 or 3 report a voltage. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
+The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. Tiers are listed only when more than one carries an index. The phase section appears only when phases 2 or 3 report a voltage. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
 
 ## Development
 

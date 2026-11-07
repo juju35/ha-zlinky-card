@@ -900,3 +900,31 @@ test("at 245 px the header's gaps tighten so a short status label (\"Moderate lo
     if (Number(m[1]) < 300) assert.doesNotMatch(m[2], /\.header \{[^}]*gap/);
   }
 });
+
+test("Tempo: today's color from the tariff period, tomorrow's from DEMAIN", () => {
+  const p = "sensor.lixee_zlinky_tic_";
+  const card = make(ZlinkyCard, zhaHass({ extra: { [`${p}ptec`]: st("HPJB"), [`${p}demain`]: st("ROUG") } }));
+  const ent = card._resolve().ent;
+  assert.equal(ent.tariff, `${p}ptec`);
+  assert.equal(ent.tomorrow, `${p}demain`);
+  const html = card.shadowRoot.innerHTML;
+  assert.match(html, /class="tempo"/);
+  assert.match(html, /Aujourd/);
+  assert.match(html, /Bleu/);
+  assert.match(html, /Demain/);
+  assert.match(html, /Rouge/);
+});
+
+test("Tempo: tomorrow not announced yet, no section outside a Tempo contract, show_tempo: false", () => {
+  const p = "sensor.lixee_zlinky_tic_";
+  let card = make(ZlinkyCard, zhaHass({ extra: { [`${p}ptec`]: st("HC JW"), [`${p}demain`]: st("----") } }));
+  assert.match(card.shadowRoot.innerHTML, /Blanc/);
+  assert.match(card.shadowRoot.innerHTML, /Pas encore connue/);
+  card = make(ZlinkyCard, zhaHass({ extra: { [`${p}ptec`]: st("HC..") } }));
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /class="tempo"/);
+  card = make(ZlinkyCard, zhaHass({ extra: { [`${p}ptec`]: st("HPJR") } }), { show_tempo: false });
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /class="tempo"/);
+  // Today's color from another sensor (an RTE Tempo integration), named in English.
+  card = make(ZlinkyCard, { ...zhaHass({ extra: { "sensor.rte_tempo_today": st("White") } }), language: "en" }, { entities: { tempo: "sensor.rte_tempo_today" } });
+  assert.match(card.shadowRoot.innerHTML, /White/);
+});

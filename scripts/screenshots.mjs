@@ -228,6 +228,21 @@ await render(
   { icons, hass, extra: ws }
 );
 
+// Tempo contract: today's color from the tariff period (PTEC), tomorrow's from DEMAIN.
+const tempo = { [`${p}ptec`]: "HPJB", [`${p}demain`]: "BLAN" };
+const tempoHass = {
+  ...hass,
+  states: { ...states, ...Object.fromEntries(Object.entries(tempo).map(([id, v]) => [id, { entity_id: id, state: v, attributes: { friendly_name: id } }])) },
+  entities: { ...entities, ...Object.fromEntries(Object.keys(tempo).map((id) => [id, { entity_id: id, device_id: "zl" }])) },
+};
+await render(
+  ["light", "dark"].map((theme) => ({
+    file: theme === "dark" ? "card-tempo-dark" : "card-tempo", type: "zlinky-card", theme, width: 460,
+    config: { price: 0.2016, tiers: ["Off-peak", "Peak"], show_graph: false, show_index: false },
+  })),
+  { icons, hass: tempoHass, extra: ws }
+);
+
 // Every animation is recorded in both themes with the same setup: <file>.gif light, <file>-dark.gif dark.
 const animateBoth = async (shot, opts) => {
   await animate(shot, opts);
