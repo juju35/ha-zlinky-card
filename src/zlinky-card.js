@@ -57,6 +57,14 @@ var ZlI18n = {
     en_voltage_c: 'Tension phase 3',
     en_injection: 'Index injection',
     en_tariff: 'Période tarifaire',
+    tomorrow: 'Demain',
+    tempo_blue: 'Bleu',
+    tempo_white: 'Blanc',
+    tempo_red: 'Rouge',
+    tempo_unknown: 'Pas encore connue',
+    ed_show_tempo: 'Couleur Tempo',
+    en_tempo: 'Couleur Tempo du jour',
+    en_tomorrow: 'Couleur Tempo de demain',
     en_tier1: 'Index 1', en_tier2: 'Index 2', en_tier3: 'Index 3', en_tier4: 'Index 4', en_tier5: 'Index 5', en_tier6: 'Index 6',
   },
   en: {
@@ -114,6 +122,14 @@ var ZlI18n = {
     en_voltage_c: 'Phase 3 voltage',
     en_injection: 'Injection index',
     en_tariff: 'Tariff period',
+    tomorrow: 'Tomorrow',
+    tempo_blue: 'Blue',
+    tempo_white: 'White',
+    tempo_red: 'Red',
+    tempo_unknown: 'Not known yet',
+    ed_show_tempo: 'Tempo color',
+    en_tempo: 'Tempo color today',
+    en_tomorrow: 'Tempo color tomorrow',
     en_tier1: 'Index 1', en_tier2: 'Index 2', en_tier3: 'Index 3', en_tier4: 'Index 4', en_tier5: 'Index 5', en_tier6: 'Index 6',
   },
   de: {
@@ -171,6 +187,14 @@ var ZlI18n = {
     en_voltage_c: 'Spannung Phase 3',
     en_injection: 'Zählerstand Einspeisung',
     en_tariff: 'Tarifperiode',
+    tomorrow: 'Morgen',
+    tempo_blue: 'Blau',
+    tempo_white: 'Weiß',
+    tempo_red: 'Rot',
+    tempo_unknown: 'Noch nicht bekannt',
+    ed_show_tempo: 'Tempo-Farbe',
+    en_tempo: 'Tempo-Farbe heute',
+    en_tomorrow: 'Tempo-Farbe morgen',
     en_tier1: 'Zählwerk 1', en_tier2: 'Zählwerk 2', en_tier3: 'Zählwerk 3', en_tier4: 'Zählwerk 4', en_tier5: 'Zählwerk 5', en_tier6: 'Zählwerk 6',
   },
   es: {
@@ -228,6 +252,14 @@ var ZlI18n = {
     en_voltage_c: 'Tensión fase 3',
     en_injection: 'Índice de inyección',
     en_tariff: 'Periodo tarifario',
+    tomorrow: 'Mañana',
+    tempo_blue: 'Azul',
+    tempo_white: 'Blanco',
+    tempo_red: 'Rojo',
+    tempo_unknown: 'Aún no se conoce',
+    ed_show_tempo: 'Color Tempo',
+    en_tempo: 'Color Tempo de hoy',
+    en_tomorrow: 'Color Tempo de mañana',
     en_tier1: 'Índice 1', en_tier2: 'Índice 2', en_tier3: 'Índice 3', en_tier4: 'Índice 4', en_tier5: 'Índice 5', en_tier6: 'Índice 6',
   },
   sr: {
@@ -285,6 +317,14 @@ var ZlI18n = {
     en_voltage_c: 'Напон фазе 3',
     en_injection: 'Стање предаје у мрежу',
     en_tariff: 'Тарифни период',
+    tomorrow: 'Сутра',
+    tempo_blue: 'Плава',
+    tempo_white: 'Бела',
+    tempo_red: 'Црвена',
+    tempo_unknown: 'Још није позната',
+    ed_show_tempo: 'Темпо боја',
+    en_tempo: 'Темпо боја данас',
+    en_tomorrow: 'Темпо боја сутра',
     en_tier1: 'Тарифа 1', en_tier2: 'Тарифа 2', en_tier3: 'Тарифа 3', en_tier4: 'Тарифа 4', en_tier5: 'Тарифа 5', en_tier6: 'Тарифа 6',
   },
   'sr-Latn': {
@@ -342,6 +382,14 @@ var ZlI18n = {
     en_voltage_c: 'Napon faze 3',
     en_injection: 'Stanje predaje u mrežu',
     en_tariff: 'Tarifni period',
+    tomorrow: 'Sutra',
+    tempo_blue: 'Plava',
+    tempo_white: 'Bela',
+    tempo_red: 'Crvena',
+    tempo_unknown: 'Još nije poznata',
+    ed_show_tempo: 'Tempo boja',
+    en_tempo: 'Tempo boja danas',
+    en_tomorrow: 'Tempo boja sutra',
     en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
   },
   it: {
@@ -399,6 +447,14 @@ var ZlI18n = {
     en_voltage_c: 'Tensione fase 3',
     en_injection: 'Lettura immissione',
     en_tariff: 'Fascia oraria',
+    tomorrow: 'Domani',
+    tempo_blue: 'Blu',
+    tempo_white: 'Bianco',
+    tempo_red: 'Rosso',
+    tempo_unknown: 'Non ancora noto',
+    ed_show_tempo: 'Colore Tempo',
+    en_tempo: 'Colore Tempo di oggi',
+    en_tomorrow: 'Colore Tempo di domani',
     en_tier1: 'Fascia 1', en_tier2: 'Fascia 2', en_tier3: 'Fascia 3', en_tier4: 'Fascia 4', en_tier5: 'Fascia 5', en_tier6: 'Fascia 6',
   },
   nl: {
@@ -456,6 +512,14 @@ var ZlI18n = {
     en_voltage_c: 'Spanning fase 3',
     en_injection: 'Meterstand teruglevering',
     en_tariff: 'Tariefperiode',
+    tomorrow: 'Morgen',
+    tempo_blue: 'Blauw',
+    tempo_white: 'Wit',
+    tempo_red: 'Rood',
+    tempo_unknown: 'Nog niet bekend',
+    ed_show_tempo: 'Tempo-kleur',
+    en_tempo: 'Tempo-kleur vandaag',
+    en_tomorrow: 'Tempo-kleur morgen',
     en_tier1: 'Telwerk 1', en_tier2: 'Telwerk 2', en_tier3: 'Telwerk 3', en_tier4: 'Telwerk 4', en_tier5: 'Telwerk 5', en_tier6: 'Telwerk 6',
   },
   pt: {
@@ -513,6 +577,14 @@ var ZlI18n = {
     en_voltage_c: 'Tensão fase 3',
     en_injection: 'Leitura de injeção',
     en_tariff: 'Período tarifário',
+    tomorrow: 'Amanhã',
+    tempo_blue: 'Azul',
+    tempo_white: 'Branco',
+    tempo_red: 'Vermelho',
+    tempo_unknown: 'Ainda não se sabe',
+    ed_show_tempo: 'Cor Tempo',
+    en_tempo: 'Cor Tempo de hoje',
+    en_tomorrow: 'Cor Tempo de amanhã',
     en_tier1: 'Leitura 1', en_tier2: 'Leitura 2', en_tier3: 'Leitura 3', en_tier4: 'Leitura 4', en_tier5: 'Leitura 5', en_tier6: 'Leitura 6',
   },
   pl: {
@@ -570,6 +642,14 @@ var ZlI18n = {
     en_voltage_c: 'Napięcie fazy 3',
     en_injection: 'Stan energii oddanej',
     en_tariff: 'Strefa taryfowa',
+    tomorrow: 'Jutro',
+    tempo_blue: 'Niebieski',
+    tempo_white: 'Biały',
+    tempo_red: 'Czerwony',
+    tempo_unknown: 'Jeszcze nieznany',
+    ed_show_tempo: 'Kolor Tempo',
+    en_tempo: 'Kolor Tempo dziś',
+    en_tomorrow: 'Kolor Tempo jutro',
     en_tier1: 'Strefa 1', en_tier2: 'Strefa 2', en_tier3: 'Strefa 3', en_tier4: 'Strefa 4', en_tier5: 'Strefa 5', en_tier6: 'Strefa 6',
   },
   ro: {
@@ -627,6 +707,14 @@ var ZlI18n = {
     en_voltage_c: 'Tensiune faza 3',
     en_injection: 'Index injecție',
     en_tariff: 'Perioadă tarifară',
+    tomorrow: 'Mâine',
+    tempo_blue: 'Albastru',
+    tempo_white: 'Alb',
+    tempo_red: 'Roșu',
+    tempo_unknown: 'Încă necunoscută',
+    ed_show_tempo: 'Culoare Tempo',
+    en_tempo: 'Culoare Tempo azi',
+    en_tomorrow: 'Culoare Tempo mâine',
     en_tier1: 'Index 1', en_tier2: 'Index 2', en_tier3: 'Index 3', en_tier4: 'Index 4', en_tier5: 'Index 5', en_tier6: 'Index 6',
   },
   da: {
@@ -684,6 +772,14 @@ var ZlI18n = {
     en_voltage_c: 'Spænding fase 3',
     en_injection: 'Målerstand for levering',
     en_tariff: 'Tarifperiode',
+    tomorrow: 'I morgen',
+    tempo_blue: 'Blå',
+    tempo_white: 'Hvid',
+    tempo_red: 'Rød',
+    tempo_unknown: 'Endnu ikke kendt',
+    ed_show_tempo: 'Tempo-farve',
+    en_tempo: 'Tempo-farve i dag',
+    en_tomorrow: 'Tempo-farve i morgen',
     en_tier1: 'Tælleværk 1', en_tier2: 'Tælleværk 2', en_tier3: 'Tælleværk 3', en_tier4: 'Tælleværk 4', en_tier5: 'Tælleværk 5', en_tier6: 'Tælleværk 6',
   },
   sv: {
@@ -741,6 +837,14 @@ var ZlI18n = {
     en_voltage_c: 'Spänning fas 3',
     en_injection: 'Mätarställning inmatning',
     en_tariff: 'Tariffperiod',
+    tomorrow: 'I morgon',
+    tempo_blue: 'Blå',
+    tempo_white: 'Vit',
+    tempo_red: 'Röd',
+    tempo_unknown: 'Inte känd än',
+    ed_show_tempo: 'Tempo-färg',
+    en_tempo: 'Tempo-färg i dag',
+    en_tomorrow: 'Tempo-färg i morgon',
     en_tier1: 'Register 1', en_tier2: 'Register 2', en_tier3: 'Register 3', en_tier4: 'Register 4', en_tier5: 'Register 5', en_tier6: 'Register 6',
   },
   bg: {
@@ -798,6 +902,14 @@ var ZlI18n = {
     en_voltage_c: 'Напрежение фаза 3',
     en_injection: 'Показание за отдадена енергия',
     en_tariff: 'Тарифен период',
+    tomorrow: 'Утре',
+    tempo_blue: 'Син',
+    tempo_white: 'Бял',
+    tempo_red: 'Червен',
+    tempo_unknown: 'Все още не е известен',
+    ed_show_tempo: 'Цвят Tempo',
+    en_tempo: 'Цвят Tempo днес',
+    en_tomorrow: 'Цвят Tempo утре',
     en_tier1: 'Тарифа 1', en_tier2: 'Тарифа 2', en_tier3: 'Тарифа 3', en_tier4: 'Тарифа 4', en_tier5: 'Тарифа 5', en_tier6: 'Тарифа 6',
   },
   ru: {
@@ -855,6 +967,14 @@ var ZlI18n = {
     en_voltage_c: 'Напряжение фазы 3',
     en_injection: 'Показания отдачи',
     en_tariff: 'Тарифная зона',
+    tomorrow: 'Завтра',
+    tempo_blue: 'Синий',
+    tempo_white: 'Белый',
+    tempo_red: 'Красный',
+    tempo_unknown: 'Пока неизвестен',
+    ed_show_tempo: 'Цвет Tempo',
+    en_tempo: 'Цвет Tempo сегодня',
+    en_tomorrow: 'Цвет Tempo завтра',
     en_tier1: 'Тариф 1', en_tier2: 'Тариф 2', en_tier3: 'Тариф 3', en_tier4: 'Тариф 4', en_tier5: 'Тариф 5', en_tier6: 'Тариф 6',
   },
   uk: {
@@ -912,6 +1032,14 @@ var ZlI18n = {
     en_voltage_c: 'Напруга фази 3',
     en_injection: 'Показники віддачі',
     en_tariff: 'Тарифна зона',
+    tomorrow: 'Завтра',
+    tempo_blue: 'Синій',
+    tempo_white: 'Білий',
+    tempo_red: 'Червоний',
+    tempo_unknown: 'Ще невідомий',
+    ed_show_tempo: 'Колір Tempo',
+    en_tempo: 'Колір Tempo сьогодні',
+    en_tomorrow: 'Колір Tempo завтра',
     en_tier1: 'Тариф 1', en_tier2: 'Тариф 2', en_tier3: 'Тариф 3', en_tier4: 'Тариф 4', en_tier5: 'Тариф 5', en_tier6: 'Тариф 6',
   },
   hu: {
@@ -969,6 +1097,14 @@ var ZlI18n = {
     en_voltage_c: '3. fázis feszültsége',
     en_injection: 'Betáplálási mérőállás',
     en_tariff: 'Tarifaidőszak',
+    tomorrow: 'Holnap',
+    tempo_blue: 'Kék',
+    tempo_white: 'Fehér',
+    tempo_red: 'Piros',
+    tempo_unknown: 'Még nem ismert',
+    ed_show_tempo: 'Tempo szín',
+    en_tempo: 'Mai Tempo szín',
+    en_tomorrow: 'Holnapi Tempo szín',
     en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
   },
   sk: {
@@ -1026,6 +1162,14 @@ var ZlI18n = {
     en_voltage_c: 'Napätie fázy 3',
     en_injection: 'Stav dodávky',
     en_tariff: 'Tarifné obdobie',
+    tomorrow: 'Zajtra',
+    tempo_blue: 'Modrá',
+    tempo_white: 'Biela',
+    tempo_red: 'Červená',
+    tempo_unknown: 'Zatiaľ neznáma',
+    ed_show_tempo: 'Farba Tempo',
+    en_tempo: 'Farba Tempo dnes',
+    en_tomorrow: 'Farba Tempo zajtra',
     en_tier1: 'Pásmo 1', en_tier2: 'Pásmo 2', en_tier3: 'Pásmo 3', en_tier4: 'Pásmo 4', en_tier5: 'Pásmo 5', en_tier6: 'Pásmo 6',
   },
   cs: {
@@ -1083,6 +1227,14 @@ var ZlI18n = {
     en_voltage_c: 'Napětí fáze 3',
     en_injection: 'Stav dodávky',
     en_tariff: 'Tarifní období',
+    tomorrow: 'Zítra',
+    tempo_blue: 'Modrá',
+    tempo_white: 'Bílá',
+    tempo_red: 'Červená',
+    tempo_unknown: 'Zatím neznámá',
+    ed_show_tempo: 'Barva Tempo',
+    en_tempo: 'Barva Tempo dnes',
+    en_tomorrow: 'Barva Tempo zítra',
     en_tier1: 'Pásmo 1', en_tier2: 'Pásmo 2', en_tier3: 'Pásmo 3', en_tier4: 'Pásmo 4', en_tier5: 'Pásmo 5', en_tier6: 'Pásmo 6',
   },
   sl: {
@@ -1140,6 +1292,14 @@ var ZlI18n = {
     en_voltage_c: 'Napetost faze 3',
     en_injection: 'Stanje oddaje',
     en_tariff: 'Tarifno obdobje',
+    tomorrow: 'Jutri',
+    tempo_blue: 'Modra',
+    tempo_white: 'Bela',
+    tempo_red: 'Rdeča',
+    tempo_unknown: 'Še ni znana',
+    ed_show_tempo: 'Barva Tempo',
+    en_tempo: 'Barva Tempo danes',
+    en_tomorrow: 'Barva Tempo jutri',
     en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
   },
   lv: {
@@ -1197,6 +1357,14 @@ var ZlI18n = {
     en_voltage_c: '3. fāzes spriegums',
     en_injection: 'Nodošanas rādījums',
     en_tariff: 'Tarifa periods',
+    tomorrow: 'Rīt',
+    tempo_blue: 'Zila',
+    tempo_white: 'Balta',
+    tempo_red: 'Sarkana',
+    tempo_unknown: 'Vēl nav zināma',
+    ed_show_tempo: 'Tempo krāsa',
+    en_tempo: 'Tempo krāsa šodien',
+    en_tomorrow: 'Tempo krāsa rīt',
     en_tier1: 'Zona 1', en_tier2: 'Zona 2', en_tier3: 'Zona 3', en_tier4: 'Zona 4', en_tier5: 'Zona 5', en_tier6: 'Zona 6',
   },
   el: {
@@ -1254,6 +1422,14 @@ var ZlI18n = {
     en_voltage_c: 'Τάση φάσης 3',
     en_injection: 'Ένδειξη απόδοσης',
     en_tariff: 'Χρονική ζώνη χρέωσης',
+    tomorrow: 'Αύριο',
+    tempo_blue: 'Μπλε',
+    tempo_white: 'Λευκή',
+    tempo_red: 'Κόκκινη',
+    tempo_unknown: 'Δεν είναι ακόμη γνωστή',
+    ed_show_tempo: 'Χρώμα Tempo',
+    en_tempo: 'Χρώμα Tempo σήμερα',
+    en_tomorrow: 'Χρώμα Tempo αύριο',
     en_tier1: 'Ζώνη 1', en_tier2: 'Ζώνη 2', en_tier3: 'Ζώνη 3', en_tier4: 'Ζώνη 4', en_tier5: 'Ζώνη 5', en_tier6: 'Ζώνη 6',
   },
 };
@@ -1314,6 +1490,10 @@ var ZL_ROLES = {
   voltage_b: { keys: ['rms_voltage_ph_b'], id: /(tension_phase_b|rms_voltage_ph_b|_urms2)$/ },
   voltage_c: { keys: ['rms_voltage_ph_c'], id: /(tension_phase_c|rms_voltage_ph_c|_urms3)$/ },
   tariff: { keys: ['current_tarif', 'active_register_tier_delivered'], id: /(_ptec|_ltarf|_current_tarif|_periode_tarifaire|_tarif_en_cours|_ngtf)$/ },
+  // Tempo: tomorrow's color (DEMAIN of the historic TIC). Today's color comes from the tariff period, or from
+  // `entities.tempo` (any sensor whose state names a color, e.g. an RTE Tempo integration).
+  tomorrow: { keys: ['tomorrow_color', 'demain'], id: /(_demain|_tomorrow_colou?r|_couleur_demain|_couleur_lendemain)$/ },
+  tempo: { keys: [] },
 };
 for (var zlN = 1; zlN <= 6; zlN++) {
   ZL_ROLES[`tier${zlN}`] = { keys: [`tier${zlN}_summation_delivered`],
@@ -1331,7 +1511,19 @@ function zlIsPhase(id) {
   return ZL_PHASE.test(id) || ZL_PHASE.test(zlBaseId(id));
 }
 var ZL_OVERRIDABLE = ['energy', 'power', 'apparent_power', 'current', 'voltage', 'current_b', 'current_c', 'voltage_b', 'voltage_c',
-  'injection', 'tariff'].concat(ZL_TIERS);
+  'injection', 'tariff', 'tempo', 'tomorrow'].concat(ZL_TIERS);
+
+// Tempo day color named by a tariff period or a color text: "HPJB", "HC JR", "HP BLEU", "BLAN", "Rouge", "white"…
+// null for anything else (Base, off-peak / peak, "----" before tomorrow's color is announced).
+var ZL_TEMPO_COLORS = { blue: '#1e88e5', white: '#b0bec5', red: '#e53935' };
+function zlTempo(text) {
+  var t = String(text || '').toUpperCase();
+  if (/BLEU|BLUE/.test(t)) return 'blue';
+  if (/BLANC|BLAN\b|WHITE/.test(t)) return 'white';
+  if (/ROUGE|ROUG\b|\bRED\b/.test(t)) return 'red';
+  var m = /\bH[CP]\s*J([BWR])\b/.exec(t);
+  return m ? { B: 'blue', W: 'white', R: 'red' }[m[1]] : null;
+}
 
 // Registry entries grouped by device, built once per `hass.entities` object (it only changes with the registry).
 var zlRegistryIndex = new WeakMap();
@@ -1521,7 +1713,7 @@ class ZlinkyCard extends HTMLElement {
   setConfig(config) {
     if (!config) throw new Error('Invalid configuration');
     this._config = Object.assign({
-      show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true,
+      show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true,
     }, config);
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
@@ -1584,7 +1776,7 @@ class ZlinkyCard extends HTMLElement {
     var ent = {};
     // Phase entities first, so the single-phase matchers skip what they already took.
     var order = ['current_b', 'current_c', 'voltage_b', 'voltage_c', 'injection', 'apparent_power'].concat(ZL_TIERS,
-      ['energy', 'power', 'current', 'voltage', 'tariff']);
+      ['energy', 'power', 'current', 'voltage', 'tariff', 'tomorrow', 'tempo']);
     order.forEach((role) => {
       if (over[role]) { ent[role] = over[role]; return; }
       var taken = Object.values(ent);
@@ -1816,8 +2008,22 @@ class ZlinkyCard extends HTMLElement {
       '<div class="header sub2">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(m.sub)}</div></div>` +
         this._pill(m) + this._zoomButton() +
-      '</div>' + hero + stats + graph + index + phases +
+      '</div>' + hero + this._tempo(ent) + stats + graph + index + phases +
     '</ha-card>');
+  }
+
+  // Tempo contract: today's color and tomorrow's (or "not known yet" until it is announced, around 11 am).
+  // Nothing when the tariff period names no Tempo color.
+  _tempo(ent) {
+    if (!this._config.show_tempo) return '';
+    var src = ent.tempo || ent.tariff;
+    var today = this._avail(src) ? zlTempo(this._st(src).state) : null;
+    if (!today) return '';
+    var day = (label, color, id) => `<button class="tday" data-more="${zlEsc(id)}" style="--tc:${color ? ZL_TEMPO_COLORS[color] : 'var(--secondary-text-color)'}">` +
+      `<span class="tdot${color ? '' : ' none'}"></span><span class="tdl">${zlEsc(label)}</span>` +
+      `<span class="tdv">${zlEsc(this._t(color ? `tempo_${color}` : 'tempo_unknown'))}</span></button>`;
+    var tomorrow = ent.tomorrow && this._avail(ent.tomorrow) ? day(this._t('tomorrow'), zlTempo(this._st(ent.tomorrow).state), ent.tomorrow) : '';
+    return `<div class="tempo">${day(this._t('today'), today, src)}${tomorrow}</div>`;
   }
 
   // The device is there but none of the sensors that tell its state (index, apparent or active power) was
@@ -1972,6 +2178,14 @@ class ZlinkyCard extends HTMLElement {
       '.line ha-icon { --mdc-icon-size: 14px; flex-shrink: 0; }' +
       '.line > span { min-width: 0; }' +
       '.seg { display: inline-block; max-width: 100%; vertical-align: top; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+      '.tempo { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 6px; }' +
+      '.tday { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 6px; min-width: 0; padding: 6px 10px; border-radius: 12px;' +
+        ' border: 1px solid color-mix(in srgb, var(--tc) 45%, transparent); background: color-mix(in srgb, var(--tc) 8%, transparent); font-size: 12px; }' +
+      '.tday:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; }' +
+      '.tdot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; background: var(--tc); box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary-text-color) 18%, transparent); }' +
+      '.tdot.none { background: none; border: 1px dashed var(--secondary-text-color); box-shadow: none; box-sizing: border-box; }' +
+      '.tdl { color: var(--secondary-text-color); white-space: nowrap; }' +
+      '.tdv { margin-left: auto; font-weight: 500; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }' +
       '.tile { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 12px; min-width: 0;' +
         ' background: var(--secondary-background-color, rgba(128,128,128,0.1)); }' +
@@ -2066,7 +2280,7 @@ class ZlinkyMiniCard extends ZlinkyCard {
 }
 
 // ── zlinky-card-editor (visual editor, built on HA's ha-form) ────────────────
-var ZL_EDITOR_DEFAULTS = { show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, zoom: true };
+var ZL_EDITOR_DEFAULTS = { show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, zoom: true };
 
 class ZlinkyCardEditor extends HTMLElement {
   setConfig(config) {
@@ -2109,6 +2323,7 @@ class ZlinkyCardEditor extends HTMLElement {
           { name: 'show_index', selector: { boolean: {} } },
           { name: 'show_phases', selector: { boolean: {} } },
           { name: 'show_logo', selector: { boolean: {} } },
+          { name: 'show_tempo', selector: { boolean: {} } },
         ].concat(mini ? [{ name: 'zoom', selector: { boolean: {} } }] : []),
       },
       {

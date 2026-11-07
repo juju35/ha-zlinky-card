@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.0 - 2026-11-07
+
+### Features
+- Tempo contract: today's color (read from the tariff period, `HPJB`, `HP BLEU`…) and tomorrow's (`DEMAIN`, *Not known yet* until it is announced) under the live power. `entities.tempo` / `entities.tomorrow` take any sensor naming a color (an RTE Tempo integration), `show_tempo: false` hides them (also in the visual editor).
+
 ## 1.4.8 - 2026-11-04
 
 ### Documentation
