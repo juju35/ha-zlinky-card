@@ -928,3 +928,135 @@ test("Tempo: tomorrow not announced yet, no section outside a Tempo contract, sh
   card = make(ZlinkyCard, { ...zhaHass({ extra: { "sensor.rte_tempo_today": st("White") } }), language: "en" }, { entities: { tempo: "sensor.rte_tempo_today" } });
   assert.match(card.shadowRoot.innerHTML, /White/);
 });
+
+// ── Price per tier ──────────────────────────────────────────────────────────
+const TP = "sensor.lixee_zlinky_tic_";
+const kwhState = (v) => st(String(v), { device_class: "energy", unit_of_measurement: "kWh" });
+// Recorder replies per statistic id: { id: [today, yesterday, month] }.
+function statsWS(table, calls = []) {
+  return (msg) => {
+    calls.push(msg);
+    if (msg.type !== "recorder/statistic_during_period") return Promise.resolve({});
+    const row = table[msg.statistic_id];
+    const i = msg.calendar.period === "month" ? 2 : msg.calendar.offset === 0 ? 0 : 1;
+    return Promise.resolve({ change: row ? row[i] : null });
+  };
+}
+const tick = () => new Promise((r) => setTimeout(r, 10));
+const tileCosts = (html) => [...html.matchAll(/class="tc">([^<]*)</g)].map((m) => m[1]);
+
+test("price per tier: a flat price is unchanged and fetches no tier statistics", async () => {
+  const calls = [];
+  const extra = { [`${TP}consommation_partie_2`]: kwhState(1000) };
+  const card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS({ [`${TP}consommation`]: [4.2, 9.8, 210] }, calls) }), { price: 0.2 });
+  await tick();
+  assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 3);
+  assert.deepEqual(tileCosts(card.shadowRoot.innerHTML).map((x) => x.replace(/\s/g, " ")), ["0,84 €", "1,96 €", "42,00 €"]);
+});
+
+test("price per tier: off-peak / peak cost sums each tier's kWh × its price", async () => {
+  const calls = [];
+  const extra = { [`${TP}consommation_partie_1`]: kwhState(1000), [`${TP}consommation_partie_2`]: kwhState(2000) };
+  const table = { [`${TP}consommation`]: [5, 10, 100], [`${TP}consommation_partie_1`]: [2, 4, 40], [`${TP}consommation_partie_2`]: [3, 6, 60] };
+  const card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS(table, calls) }), { price: [0.1696, 0.2146] });
+  await tick();
+  assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 9);
+  // 2 × 0.1696 + 3 × 0.2146 = 0.983; 4 × … = 1.966; 40 × … = 19.66 (a flat 0.1696 would give 0.85 / 1.70 / 16.96).
+  assert.deepEqual(tileCosts(card.shadowRoot.innerHTML).map((x) => x.replace(/\s/g, " ")), ["0,98 €", "1,97 €", "19,66 €"]);
+  // The mini card's today line uses the same cost.
+  const mini = make(ZlinkyMiniCard, zhaHass({ extra, callWS: statsWS(table) }), { price: [0.1696, 0.2146] });
+  await tick();
+  assert.match(mini.shadowRoot.innerHTML, /0,98/);
+});
+
+test("price per tier: Tempo, 6 tiers in the TIC order", async () => {
+  const extra = {}, table = { [`${TP}consommation`]: [21, 21, 21] };
+  for (let n = 1; n <= 6; n++) {
+    extra[`${TP}consommation_partie_${n}`] = kwhState(100 * n);
+    table[`${TP}consommation_partie_${n}`] = [n, n, n];
+  }
+  const price = [0.1296, 0.1609, 0.1486, 0.1894, 0.1568, 0.7562];
+  const card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS(table) }), { price });
+  await tick();
+  // 1×HCJB + 2×HPJB + 3×HCJW + 4×HPJW + 5×HCJR + 6×HPJR = 6.976.
+  assert.equal(tileCosts(card.shadowRoot.innerHTML)[0].replace(/\s/g, " "), "6,98 €");
+});
+
+test("price per tier: a sensor as the price, alone or in the list", async () => {
+  const extra = { "sensor.edf_price": st("0.25"), "sensor.edf_peak": st("0.5") };
+  let card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS({ [`${TP}consommation`]: [4, 4, 4] }) }), { price: "sensor.edf_price" });
+  await tick();
+  assert.equal(tileCosts(card.shadowRoot.innerHTML)[0].replace(/\s/g, " "), "1,00 €");
+  // The price sensor changing re-renders the cost.
+  card.hass = zhaHass({ extra: { ...extra, "sensor.edf_price": st("0.5") }, callWS: statsWS({ [`${TP}consommation`]: [4, 4, 4] }) });
+  assert.equal(tileCosts(card.shadowRoot.innerHTML)[0].replace(/\s/g, " "), "2,00 €");
+  const tiers = { ...extra, [`${TP}consommation_partie_1`]: kwhState(1000), [`${TP}consommation_partie_2`]: kwhState(2000) };
+  const table = { [`${TP}consommation`]: [5, 5, 5], [`${TP}consommation_partie_1`]: [2, 2, 2], [`${TP}consommation_partie_2`]: [3, 3, 3] };
+  card = make(ZlinkyCard, zhaHass({ extra: tiers, callWS: statsWS(table) }), { price: [0.1, "sensor.edf_peak"] });
+  await tick();
+  assert.equal(tileCosts(card.shadowRoot.innerHTML)[0].replace(/\s/g, " "), "1,70 €");
+});
+
+test("price per tier: missing or unknown prices fall back without NaN", async () => {
+  const extra = {}, table = { [`${TP}consommation`]: [6, 6, 6] };
+  for (let n = 1; n <= 3; n++) {
+    extra[`${TP}consommation_partie_${n}`] = kwhState(100 * n);
+    table[`${TP}consommation_partie_${n}`] = [n, n, n];
+  }
+  // Three tiers, two prices: the third uses the last one. 1×0.1 + 2×0.2 + 3×0.2 = 1.1.
+  let card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS(table) }), { price: [0.1, 0.2] });
+  await tick();
+  assert.equal(tileCosts(card.shadowRoot.innerHTML)[0].replace(/\s/g, " "), "1,10 €");
+  // An unavailable sensor: the first known price; junk: the closest one before it. (1 + 2 + 3) × 0.3 = 1.8.
+  card = make(ZlinkyCard, zhaHass({ extra: { ...extra, "sensor.gone": st("unavailable") }, callWS: statsWS(table) }), { price: ["sensor.gone", 0.3, "junk"] });
+  await tick();
+  assert.equal(tileCosts(card.shadowRoot.innerHTML)[0].replace(/\s/g, " "), "1,80 €");
+  // A tier's statistics missing: every kWh at the current tier's price, never NaN.
+  card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS({ ...table, [`${TP}consommation_partie_3`]: [null, null, null] }) }), { price: [0.1, 0.2, 0.3] });
+  await tick();
+  const costs = tileCosts(card.shadowRoot.innerHTML);
+  assert.equal(costs[0].replace(/\s/g, " "), "0,60 €");
+  assert.ok(costs.every((x) => !/NaN/.test(x)), costs.join(" | "));
+  // No usable price at all: no cost.
+  card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS(table) }), { price: ["sensor.gone", ""] });
+  await tick();
+  assert.deepEqual(tileCosts(card.shadowRoot.innerHTML), []);
+});
+
+test("price per tier: with the total index only, the current tier's price from the tariff period", async () => {
+  // Only tier 1 in use (the other indexes at 0): no split, the tariff period picks the price.
+  const extra = { [`${TP}ptec`]: st("HPJW") };
+  const card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS({ [`${TP}consommation`]: [10, 10, 10] }) }), { price: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6] });
+  await tick();
+  assert.equal(tileCosts(card.shadowRoot.innerHTML)[0].replace(/\s/g, " "), "4,00 €");
+  const tierOf = (t, names) => {
+    const c = make(ZlinkyCard, zhaHass({ extra: { [`${TP}ptec`]: st(t) } }), { tiers: names });
+    return c._tierNow() + 1;
+  };
+  assert.deepEqual(["HCJB", "HPJB", "HC JW", "HP BLANC", "HCJR", "HPJR"].map((t) => tierOf(t)), [1, 2, 3, 4, 5, 6]);
+  assert.deepEqual(["HC..", "HP..", "HEURE CREUSE", "HEURE PLEINE", "HN..", "PM..", "TH..", "2"].map((t) => tierOf(t)), [1, 2, 1, 2, 1, 2, 1, 2]);
+  assert.equal(tierOf("Nuit", ["Jour", "Nuit"]), 2);
+});
+
+test("editor: one price per tier replaces the single price field, and back", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  const sent = [];
+  ed.dispatchEvent = () => sent.push(ed._config);
+  ed.setConfig({ type: "custom:zlinky-card", price: 0.2 });
+  ed.hass = zhaHass();
+  const names = () => schemaLeaves(ed._form.schema).map((s) => s.name);
+  assert.ok(names().includes("price") && names().includes("prices"));
+  const change = (v) => ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data, ...v } } });
+  change({ prices: ["0,1696", " 0.2146 ", "", "sensor.edf_price"] });
+  assert.deepEqual([...sent.at(-1).price], [0.1696, 0.2146, "sensor.edf_price"]);
+  assert.equal(sent.at(-1).prices, undefined);
+  assert.ok(!names().includes("price"));
+  assert.deepEqual([...ed._form.data.prices], ["0.1696", "0.2146", "sensor.edf_price"]);
+  change({ prices: [] });
+  assert.equal(sent.at(-1).price, undefined);
+  assert.ok(names().includes("price"));
+  // Editing the number field keeps a number.
+  change({ price: 0.25 });
+  assert.equal(sent.at(-1).price, 0.25);
+});
