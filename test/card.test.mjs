@@ -1060,3 +1060,76 @@ test("editor: one price per tier replaces the single price field, and back", () 
   change({ price: 0.25 });
   assert.equal(sent.at(-1).price, 0.25);
 });
+
+test("mini card: the header badge keeps its 40 px, like the full card", () => {
+  const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+  const css = card.shadowRoot.innerHTML;
+  assert.match(css, /\.hbadge \{ width: 40px; height: 40px;/);
+  assert.doesNotMatch(css, /ha-card\.mini \.hbadge/);
+});
+
+test("sparkline: real time axis over the last 24 h, the line breaks across a gap", () => {
+  const now = Date.parse("2026-11-07T12:00:00Z"), m5 = 5 * 60000;
+  const path = (svg) => svg.match(/<path d="([^"]*)" fill="none"/)[1];
+  // Two points in the last 10 minutes sit at the right end, not spread over the whole width.
+  const recent = path(zlSpark([{ t: now - 2 * m5, v: 100 }, { t: now - m5, v: 200 }], now));
+  const xs = [...recent.matchAll(/[ML]([\d.]+) /g)].map((m) => Number(m[1]));
+  assert.ok(xs.every((x) => x > 290), recent);
+  // 12 h ago → middle of the box.
+  assert.match(path(zlSpark([{ t: now - 12 * 3600000, v: 1 }, { t: now - 12 * 3600000 + m5, v: 1 }], now)), /^M150\.0 /);
+  // A 3-hour hole (meter off): two subpaths, the second starting with M; no segment joins across it.
+  const pts = [0, 1, 2].map((i) => ({ t: now - 6 * 3600000 + i * m5, v: 300 }))
+    .concat([0, 1, 2].map((i) => ({ t: now - 3 * 3600000 + i * m5, v: 300 })));
+  const line = path(zlSpark(pts, now));
+  assert.equal((line.match(/M/g) || []).length, 2, line);
+  // Points exactly two periods apart (one missing sample) stay joined.
+  const one = path(zlSpark([{ t: now - 3 * m5, v: 1 }, { t: now - m5, v: 1 }], now));
+  assert.equal((one.match(/M/g) || []).length, 1, one);
+});
+
+test("price per tier: without the tiers' statistics, yesterday and this month get no cost (today keeps the current tier's)", async () => {
+  // Off-peak / peak prices, only the total index has statistics: the current tier says nothing of yesterday.
+  const extra = { [`${TP}ptec`]: st("HP..") };
+  let card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS({ [`${TP}consommation`]: [10, 20, 300] }) }), { price: [0.1, 0.2] });
+  await tick();
+  assert.deepEqual(tileCosts(card.shadowRoot.innerHTML).map((x) => x.replace(/\s/g, " ")), ["2,00 €"]);
+  // Same price for every tier: no estimate involved, every period keeps its cost.
+  card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS({ [`${TP}consommation`]: [10, 20, 300] }) }), { price: [0.1, 0.1] });
+  await tick();
+  assert.deepEqual(tileCosts(card.shadowRoot.innerHTML).map((x) => x.replace(/\s/g, " ")), ["1,00 €", "2,00 €", "30,00 €"]);
+});
+
+test("subscribed_power: a sensor in kVA or in A (ISOUSC), 6 kVA while it has no state", () => {
+  const va = { [`${TP}puissance_apparente`]: st("4500", { device_class: "apparent_power", unit_of_measurement: "VA" }) };
+  const card = (extra, sp) => make(ZlinkyCard, zhaHass({ extra: { ...va, ...extra } }), { subscribed_power: sp, language: "en" });
+  assert.match(card({ "sensor.pref": st("9", { unit_of_measurement: "kVA" }) }, "sensor.pref").shadowRoot.innerHTML, /50 % of 9 kVA subscribed/);
+  assert.match(card({ "sensor.isousc": st("45", { unit_of_measurement: "A" }) }, "sensor.isousc").shadowRoot.innerHTML, /50 % of 9 kVA subscribed/);
+  assert.match(card({ "sensor.pref": st("unavailable") }, "sensor.pref").shadowRoot.innerHTML, /75 % of 6 kVA subscribed/);
+  assert.match(card({}, 9).shadowRoot.innerHTML, /50 % of 9 kVA subscribed/);
+  // The sensor changing re-renders the gauge.
+  const c = card({ "sensor.pref": st("9", { unit_of_measurement: "kVA" }) }, "sensor.pref");
+  c.hass = zhaHass({ extra: { ...va, "sensor.pref": st("6", { unit_of_measurement: "kVA" }) } });
+  assert.match(c.shadowRoot.innerHTML, /75 % of 6 kVA subscribed/);
+});
+
+test("editor: a subscribed power sensor replaces the number field, and back", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  const sent = [];
+  ed.dispatchEvent = () => sent.push(ed._config);
+  ed.setConfig({ type: "custom:zlinky-card", subscribed_power: 9 });
+  ed.hass = zhaHass();
+  const names = () => schemaLeaves(ed._form.schema).map((s) => s.name);
+  assert.ok(names().includes("subscribed_power") && names().includes("subscribed_power_entity"));
+  const change = (v) => ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data, ...v } } });
+  change({ subscribed_power_entity: "sensor.pref" });
+  assert.equal(sent.at(-1).subscribed_power, "sensor.pref");
+  assert.equal(sent.at(-1).subscribed_power_entity, undefined);
+  assert.ok(!names().includes("subscribed_power"));
+  assert.equal(ed._form.data.subscribed_power_entity, "sensor.pref");
+  change({ subscribed_power_entity: "" });
+  assert.equal(sent.at(-1).subscribed_power, undefined);
+  assert.ok(names().includes("subscribed_power"));
+  change({ subscribed_power: 12 });
+  assert.equal(sent.at(-1).subscribed_power, 12);
+});
