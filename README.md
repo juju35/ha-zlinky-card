@@ -1,6 +1,6 @@
 # ha-zlinky-card
 
-[![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![Marketplace](https://img.shields.io/badge/Marketplace-Custom-41BDF5.svg)](https://www.home-assistant.io/integrations/marketplace/)
 [![HACS Validation](https://github.com/juju35/ha-zlinky-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/juju35/ha-zlinky-card/actions/workflows/hacs.yml)
 [![Validate](https://github.com/juju35/ha-zlinky-card/actions/workflows/validate.yml/badge.svg)](https://github.com/juju35/ha-zlinky-card/actions/workflows/validate.yml)
 [![Lint](https://github.com/juju35/ha-zlinky-card/actions/workflows/lint.yml/badge.svg)](https://github.com/juju35/ha-zlinky-card/actions/workflows/lint.yml)
@@ -12,7 +12,7 @@ Custom Lovelace card for the [LiXee ZLinky_TIC](https://lixee.fr/) Zigbee module
 
 Pick the ZLinky, the card finds all its entities by itself.
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=juju35&repository=ha-zlinky-card&category=plugin)
+[![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-zlinky-card&category=plugin)
 
 While the meter is online, the card animates: the LED blinks and glows, faster as power rises. It settles to a still card when offline (and honours `prefers-reduced-motion`).
 
@@ -44,7 +44,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - Visual editor in the dashboard UI (no YAML needed)
 - English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese, Polish, Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek, follows the Home Assistant language
 - Light and dark theme compatible
-- Single file, no dependencies, HACS-ready
+- Single file, no dependencies, ready for the Marketplace
 
 ## Supported integrations
 
@@ -63,20 +63,20 @@ Both expose the same data to the cards: live power, current and voltage, load ag
 
 ## Installation
 
-### Via HACS (recommended)
+### Via the Marketplace (recommended)
 
 Click the button below to add the repository directly:
 
-[![Add to HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=juju35&repository=ha-zlinky-card&category=plugin)
+[![Add to the Marketplace](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-zlinky-card&category=plugin)
 
 Or manually:
 
-1. Open HACS → **Dashboard** → **⋮** → **Custom repositories**
+1. Open **Settings → Marketplace → Add from link** (top right; this needs a GitHub account connected)
 2. Add `https://github.com/juju35/ha-zlinky-card` — Category: **Dashboard** (Lovelace)
-3. Search for **ZLinky Card** and install it
+3. Open **ZLinky Card** and click **Install**
 4. Clear your browser cache and refresh
 
-HACS registers the dashboard resource for you.
+The Marketplace registers the dashboard resource for you.
 
 ### Manual
 
