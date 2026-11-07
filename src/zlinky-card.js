@@ -33,6 +33,8 @@ var ZlI18n = {
     ed_price_helper: 'Optionnel : affiche le coût à côté des consommations',
     ed_tiers: 'Noms des index',
     ed_tiers_helper: 'Dans l\'ordre des index 1 à 6 (ex. Heures creuses, Heures pleines)',
+    ed_prices: 'Prix par index',
+    ed_prices_helper: 'Un prix par index, dans le même ordre : nombre ou capteur donnant le prix du kWh. Remplace le prix du kWh',
     ed_show_graph: 'Courbe 24 h',
     ed_show_stats: 'Consommations',
     ed_show_index: 'Index du compteur',
@@ -98,6 +100,8 @@ var ZlI18n = {
     ed_price_helper: 'Optional: shows the cost next to the consumption',
     ed_tiers: 'Tier names',
     ed_tiers_helper: 'In index order, 1 to 6 (e.g. Off-peak, Peak)',
+    ed_prices: 'Price per tier',
+    ed_prices_helper: 'One price per tier, in the same order: a number or a sensor giving the price per kWh. Replaces the price per kWh',
     ed_show_graph: '24 h graph',
     ed_show_stats: 'Consumption',
     ed_show_index: 'Meter index',
@@ -163,6 +167,8 @@ var ZlI18n = {
     ed_price_helper: 'Optional: zeigt die Kosten neben dem Verbrauch an',
     ed_tiers: 'Namen der Zählwerke',
     ed_tiers_helper: 'In der Reihenfolge der Zählwerke 1 bis 6 (z. B. HC Nebenzeit, HP Hauptzeit)',
+    ed_prices: 'Preis pro Zählwerk',
+    ed_prices_helper: 'Ein Preis pro Zählwerk, in derselben Reihenfolge: Zahl oder Sensor mit dem Preis pro kWh. Ersetzt den Preis pro kWh',
     ed_show_graph: '24-h-Verlauf',
     ed_show_stats: 'Verbrauch',
     ed_show_index: 'Zählerstände',
@@ -228,6 +234,8 @@ var ZlI18n = {
     ed_price_helper: 'Opcional: muestra el coste junto a los consumos',
     ed_tiers: 'Nombres de los índices',
     ed_tiers_helper: 'En el orden de los índices 1 a 6 (p. ej. HC horas valle, HP horas punta)',
+    ed_prices: 'Precio por índice',
+    ed_prices_helper: 'Un precio por índice, en el mismo orden: número o sensor con el precio del kWh. Sustituye al precio por kWh',
     ed_show_graph: 'Curva de 24 h',
     ed_show_stats: 'Consumos',
     ed_show_index: 'Índices del contador',
@@ -293,6 +301,8 @@ var ZlI18n = {
     ed_price_helper: 'Опционо: приказује трошак поред потрошње',
     ed_tiers: 'Називи тарифа',
     ed_tiers_helper: 'Редом по тарифама од 1 до 6 (нпр. Нижа тарифа, Виша тарифа)',
+    ed_prices: 'Цена по тарифи',
+    ed_prices_helper: 'Једна цена по тарифи, истим редом: број или сензор са ценом по kWh. Замењује цену по kWh',
     ed_show_graph: 'Крива за 24 h',
     ed_show_stats: 'Потрошња',
     ed_show_index: 'Стање бројила',
@@ -358,6 +368,8 @@ var ZlI18n = {
     ed_price_helper: 'Opciono: prikazuje trošak pored potrošnje',
     ed_tiers: 'Nazivi tarifa',
     ed_tiers_helper: 'Redom po tarifama od 1 do 6 (npr. Niža tarifa, Viša tarifa)',
+    ed_prices: 'Cena po tarifi',
+    ed_prices_helper: 'Jedna cena po tarifi, istim redom: broj ili senzor sa cenom po kWh. Zamenjuje cenu po kWh',
     ed_show_graph: 'Kriva za 24 h',
     ed_show_stats: 'Potrošnja',
     ed_show_index: 'Stanje brojila',
@@ -423,6 +435,8 @@ var ZlI18n = {
     ed_price_helper: 'Facoltativo: mostra il costo accanto ai consumi',
     ed_tiers: 'Nomi delle fasce',
     ed_tiers_helper: 'Nell\'ordine delle fasce da 1 a 6 (es. Fuori punta, Punta)',
+    ed_prices: 'Prezzo per fascia',
+    ed_prices_helper: 'Un prezzo per fascia, nello stesso ordine: numero o sensore con il prezzo del kWh. Sostituisce il prezzo per kWh',
     ed_show_graph: 'Curva 24 h',
     ed_show_stats: 'Consumi',
     ed_show_index: 'Letture del contatore',
@@ -488,6 +502,8 @@ var ZlI18n = {
     ed_price_helper: 'Optioneel: toont de kosten naast het verbruik',
     ed_tiers: 'Namen van de telwerken',
     ed_tiers_helper: 'In de volgorde van telwerk 1 tot 6 (bijv. Daluren, Piekuren)',
+    ed_prices: 'Prijs per telwerk',
+    ed_prices_helper: 'Eén prijs per telwerk, in dezelfde volgorde: een getal of een sensor met de prijs per kWh. Vervangt de prijs per kWh',
     ed_show_graph: '24-uursgrafiek',
     ed_show_stats: 'Verbruik',
     ed_show_index: 'Meterstanden',
@@ -553,6 +569,8 @@ var ZlI18n = {
     ed_price_helper: 'Opcional: mostra o custo junto aos consumos',
     ed_tiers: 'Nomes das leituras',
     ed_tiers_helper: 'Pela ordem das leituras 1 a 6 (p. ex. Vazio, Fora de vazio)',
+    ed_prices: 'Preço por leitura',
+    ed_prices_helper: 'Um preço por leitura, pela mesma ordem: número ou sensor com o preço do kWh. Substitui o preço por kWh',
     ed_show_graph: 'Curva de 24 h',
     ed_show_stats: 'Consumos',
     ed_show_index: 'Leituras do contador',
@@ -618,6 +636,8 @@ var ZlI18n = {
     ed_price_helper: 'Opcjonalnie: pokazuje koszt obok zużycia',
     ed_tiers: 'Nazwy stref',
     ed_tiers_helper: 'W kolejności stref od 1 do 6 (np. Strefa nocna, Strefa dzienna)',
+    ed_prices: 'Cena za strefę',
+    ed_prices_helper: 'Jedna cena na strefę, w tej samej kolejności: liczba lub czujnik z ceną za kWh. Zastępuje cenę za kWh',
     ed_show_graph: 'Wykres 24 h',
     ed_show_stats: 'Zużycie',
     ed_show_index: 'Stany licznika',
@@ -683,6 +703,8 @@ var ZlI18n = {
     ed_price_helper: 'Opțional: afișează costul lângă consum',
     ed_tiers: 'Numele indexurilor',
     ed_tiers_helper: 'În ordinea indexurilor, de la 1 la 6 (ex. Noapte, Zi)',
+    ed_prices: 'Preț per index',
+    ed_prices_helper: 'Un preț per index, în aceeași ordine: număr sau senzor cu prețul pe kWh. Înlocuiește prețul per kWh',
     ed_show_graph: 'Grafic 24 h',
     ed_show_stats: 'Consum',
     ed_show_index: 'Indexurile contorului',
@@ -748,6 +770,8 @@ var ZlI18n = {
     ed_price_helper: 'Valgfrit: viser prisen ved siden af forbruget',
     ed_tiers: 'Navne på tælleværker',
     ed_tiers_helper: 'I tælleværkernes rækkefølge, 1 til 6 (f.eks. Lavlast, Spidslast)',
+    ed_prices: 'Pris pr. tælleværk',
+    ed_prices_helper: 'Én pris pr. tælleværk, i samme rækkefølge: et tal eller en sensor med prisen pr. kWh. Erstatter prisen pr. kWh',
     ed_show_graph: '24 t-graf',
     ed_show_stats: 'Forbrug',
     ed_show_index: 'Målerstande',
@@ -813,6 +837,8 @@ var ZlI18n = {
     ed_price_helper: 'Valfritt: visar kostnaden bredvid förbrukningen',
     ed_tiers: 'Registernamn',
     ed_tiers_helper: 'I registerordning, 1 till 6 (t.ex. Lågpris, Högpris)',
+    ed_prices: 'Pris per register',
+    ed_prices_helper: 'Ett pris per register, i samma ordning: ett tal eller en sensor med priset per kWh. Ersätter priset per kWh',
     ed_show_graph: '24 h-diagram',
     ed_show_stats: 'Förbrukning',
     ed_show_index: 'Mätarställningar',
@@ -878,6 +904,8 @@ var ZlI18n = {
     ed_price_helper: 'По избор: показва цената до потреблението',
     ed_tiers: 'Имена на тарифите',
     ed_tiers_helper: 'По реда на тарифите, от 1 до 6 (напр. Нощна, Дневна)',
+    ed_prices: 'Цена за тарифа',
+    ed_prices_helper: 'Една цена за тарифа, в същия ред: число или сензор с цената за kWh. Заменя цената за kWh',
     ed_show_graph: 'Графика за 24 h',
     ed_show_stats: 'Потребление',
     ed_show_index: 'Показания на електромера',
@@ -943,6 +971,8 @@ var ZlI18n = {
     ed_price_helper: 'Необязательно: показывает стоимость рядом с потреблением',
     ed_tiers: 'Названия тарифов',
     ed_tiers_helper: 'В порядке тарифов, от 1 до 6 (например, Ночь, День)',
+    ed_prices: 'Цена по тарифам',
+    ed_prices_helper: 'Одна цена на тариф, в том же порядке: число или датчик с ценой за kWh. Заменяет цену за kWh',
     ed_show_graph: 'График за 24 h',
     ed_show_stats: 'Потребление',
     ed_show_index: 'Показания счетчика',
@@ -1008,6 +1038,8 @@ var ZlI18n = {
     ed_price_helper: 'Необов’язково: показує вартість поруч зі споживанням',
     ed_tiers: 'Назви тарифів',
     ed_tiers_helper: 'У порядку тарифів, від 1 до 6 (наприклад, Ніч, День)',
+    ed_prices: 'Ціна за тарифами',
+    ed_prices_helper: 'Одна ціна на тариф, у тому самому порядку: число або датчик із ціною за kWh. Замінює ціну за kWh',
     ed_show_graph: 'Графік за 24 h',
     ed_show_stats: 'Споживання',
     ed_show_index: 'Показники лічильника',
@@ -1073,6 +1105,8 @@ var ZlI18n = {
     ed_price_helper: 'Opcionális: a költséget a fogyasztás mellett jeleníti meg',
     ed_tiers: 'Tarifák nevei',
     ed_tiers_helper: 'A tarifák sorrendjében, 1-től 6-ig (pl. Völgyidő, Csúcsidő)',
+    ed_prices: 'Ár tarifánként',
+    ed_prices_helper: 'Tarifánként egy ár, ugyanabban a sorrendben: szám vagy a kWh-árat adó érzékelő. A kWh-ár helyébe lép',
     ed_show_graph: '24 h grafikon',
     ed_show_stats: 'Fogyasztás',
     ed_show_index: 'Mérőállások',
@@ -1138,6 +1172,8 @@ var ZlI18n = {
     ed_price_helper: 'Voliteľné: zobrazí náklady vedľa spotreby',
     ed_tiers: 'Názvy pásiem',
     ed_tiers_helper: 'V poradí pásiem od 1 do 6 (napr. Nízka tarifa, Vysoká tarifa)',
+    ed_prices: 'Cena podľa pásma',
+    ed_prices_helper: 'Jedna cena na pásmo, v rovnakom poradí: číslo alebo senzor s cenou za kWh. Nahrádza cenu za kWh',
     ed_show_graph: 'Graf za 24 h',
     ed_show_stats: 'Spotreba',
     ed_show_index: 'Stavy elektromera',
@@ -1203,6 +1239,8 @@ var ZlI18n = {
     ed_price_helper: 'Volitelné: zobrazí náklady vedle spotřeby',
     ed_tiers: 'Názvy pásem',
     ed_tiers_helper: 'V pořadí pásem od 1 do 6 (např. Nízký tarif, Vysoký tarif)',
+    ed_prices: 'Cena podle pásma',
+    ed_prices_helper: 'Jedna cena na pásmo, ve stejném pořadí: číslo nebo senzor s cenou za kWh. Nahrazuje cenu za kWh',
     ed_show_graph: 'Graf za 24 h',
     ed_show_stats: 'Spotřeba',
     ed_show_index: 'Stavy elektroměru',
@@ -1268,6 +1306,8 @@ var ZlI18n = {
     ed_price_helper: 'Neobvezno: prikaže strošek poleg porabe',
     ed_tiers: 'Imena tarif',
     ed_tiers_helper: 'V vrstnem redu tarif od 1 do 6 (npr. Nizka tarifa, Visoka tarifa)',
+    ed_prices: 'Cena po tarifi',
+    ed_prices_helper: 'Ena cena na tarifo, v enakem vrstnem redu: število ali senzor s ceno za kWh. Nadomesti ceno za kWh',
     ed_show_graph: 'Graf 24 h',
     ed_show_stats: 'Poraba',
     ed_show_index: 'Stanja števca',
@@ -1333,6 +1373,8 @@ var ZlI18n = {
     ed_price_helper: 'Neobligāti: rāda izmaksas blakus patēriņam',
     ed_tiers: 'Zonu nosaukumi',
     ed_tiers_helper: 'Zonu secībā no 1 līdz 6 (piem., Nakts, Diena)',
+    ed_prices: 'Cena pa zonām',
+    ed_prices_helper: 'Viena cena katrai zonai, tādā pašā secībā: skaitlis vai sensors ar cenu par kWh. Aizstāj cenu par kWh',
     ed_show_graph: '24 h grafiks',
     ed_show_stats: 'Patēriņš',
     ed_show_index: 'Skaitītāja rādījumi',
@@ -1398,6 +1440,8 @@ var ZlI18n = {
     ed_price_helper: 'Προαιρετικό: εμφανίζει το κόστος δίπλα στην κατανάλωση',
     ed_tiers: 'Ονόματα ζωνών',
     ed_tiers_helper: 'Με τη σειρά των ζωνών, 1 έως 6 (π.χ. Νυχτερινό, Ημερήσιο)',
+    ed_prices: 'Τιμή ανά ζώνη',
+    ed_prices_helper: 'Μία τιμή ανά ζώνη, με την ίδια σειρά: αριθμός ή αισθητήρας με την τιμή ανά kWh. Αντικαθιστά την τιμή ανά kWh',
     ed_show_graph: 'Γράφημα 24 h',
     ed_show_stats: 'Κατανάλωση',
     ed_show_index: 'Ενδείξεις μετρητή',
@@ -1523,6 +1567,32 @@ function zlTempo(text) {
   if (/ROUGE|ROUG\b|\bRED\b/.test(t)) return 'red';
   var m = /\bH[CP]\s*J([BWR])\b/.exec(t);
   return m ? { B: 'blue', W: 'white', R: 'red' }[m[1]] : null;
+}
+
+// Tier (1 to 6, the index order of the TIC) named by a tariff period, or null. A configured tier name wins;
+// then a tier number (ZHA), Tempo (HCJB, HPJB, HCJW, HPJW, HCJR, HPJR, "HP BLEU"…), off-peak / peak (HC, HP),
+// EJP (HN normal, PM peak).
+function zlTierOf(text, names) {
+  var u = String(text || '').trim().toUpperCase();
+  if (!u) return null;
+  var byName = (Array.isArray(names) ? names : []).findIndex((n) => n && String(n).trim().toUpperCase() === u);
+  if (byName >= 0) return byName + 1;
+  if (/^[1-6]$/.test(u)) return Number(u);
+  var hc = /^HC|\bHC\b|CREUSE|OFF.?PEAK/.test(u);
+  var hp = !hc && /^HP|\bHP\b|PLEINE|PEAK/.test(u);
+  var color = zlTempo(u);
+  if (color) return hc || hp ? { blue: 1, white: 3, red: 5 }[color] + (hp ? 1 : 0) : null;
+  if (hc || /^HN|NORMAL/.test(u)) return 1;
+  if (hp || /^PM|POINTE/.test(u)) return 2;
+  return null;
+}
+
+// The price of the tier at `i` (0-based) in a list of prices (null where unknown): beyond the end of the list
+// the last one, an unknown price the closest one before it, else the first known one.
+function zlPriceAt(prices, i) {
+  for (var j = Math.min(i, prices.length - 1); j >= 0; j--) if (prices[j] != null) return prices[j];
+  var first = prices.find((p) => p != null);
+  return first == null ? null : first;
 }
 
 // Registry entries grouped by device, built once per `hass.entities` object (it only changes with the registry).
@@ -1810,7 +1880,7 @@ class ZlinkyCard extends HTMLElement {
       var s = r.ent[k] && hass.states[r.ent[k]];
       return s ? s.state : null;
     }));
-    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, states]);
+    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, states, this._prices()]);
     if (sig === this._sig) return;
     this._sig = sig;
     this._r = r;
@@ -1825,7 +1895,10 @@ class ZlinkyCard extends HTMLElement {
     // The 24 h curve (288 points) is only fetched when it will be drawn: `show_graph` on the full
     // card, or the mini once unfolded. The flag is part of the key, so unfolding refetches at once.
     var wantCurve = !!(curveId && c.show_graph && !this._compact());
-    var key = `${r.ent.energy}|${curveId}|${wantCurve ? 1 : 0}`;
+    // With one price per tier, each tier's index in use is fetched too: the cost sums each tier's kWh × its price.
+    var tierIds = this._prices().length > 1 && r.ent.energy
+      ? ZL_TIERS.filter((t) => this._avail(r.ent[t]) && (zlKwh(this._st(r.ent[t])) || 0) > 0) : [];
+    var key = `${r.ent.energy}|${curveId}|${wantCurve ? 1 : 0}|${tierIds.join(',')}`;
     var fresh = this._statsKey === key && Date.now() - (this._statsAt || 0) < ZL_STATS_REFRESH;
     // Nothing to fetch when neither the tiles (or the mini's "today" line) nor the curve are shown.
     if (fresh || !(c.show_stats || wantCurve)) return;
@@ -1833,8 +1906,8 @@ class ZlinkyCard extends HTMLElement {
     this._statsKey = key;
     this._statsAt = Date.now();
     var failed = false;
-    var change = (period, offset) => (r.ent.energy
-      ? hass.callWS({ type: 'recorder/statistic_during_period', statistic_id: r.ent.energy,
+    var change = (period, offset, id = r.ent.energy) => (id
+      ? hass.callWS({ type: 'recorder/statistic_during_period', statistic_id: id,
         calendar: { period: period, offset: offset }, types: ['change'], units: { energy: 'kWh' } })
         .then((x) => (x?.change != null ? Number(x.change) : null)).catch(() => { failed = true; return null; })
       : Promise.resolve(null));
@@ -1849,14 +1922,26 @@ class ZlinkyCard extends HTMLElement {
           })).filter((p) => Number.isFinite(p.t) && Number.isFinite(p.v));
         }).catch(() => { failed = true; return []; })
       : Promise.resolve([]);
-    Promise.all([change('day', 0), change('day', -1), change('month', 0), curve]).then((res) => {
+    var periods = [['today', 'day', 0], ['yesterday', 'day', -1], ['month', 'month', 0]];
+    // Per period, each tier's kWh ({ tier1: 1.2, tier2: 3.4 }), or null when one of them is missing.
+    var split = (p) => Promise.all(tierIds.map((t) => change(p[1], p[2], r.ent[t]))).then((v) => {
+      if (!tierIds.length || v.some((x) => x == null)) return null;
+      var o = {};
+      tierIds.forEach((t, i) => { o[t] = v[i]; });
+      return o;
+    });
+    Promise.all(periods.map((p) => change(p[1], p[2])).concat([curve], periods.map(split))).then((res) => {
       // A reply for a previous config (setConfig while in flight) is dropped: the next update refetches.
       if (this._statsKey !== key) return;
-      var next = { key: key, today: res[0], yesterday: res[1], month: res[2], curve: res[3] };
+      var next = { key: key, today: res[0], yesterday: res[1], month: res[2], curve: res[3],
+        tiers: { today: res[4], yesterday: res[5], month: res[6] } };
       var prev = this._stats;
       // On a partial failure, keep the previous values of the same query rather than falling back to "—".
       if (failed && prev && prev.key === key) {
-        ['today', 'yesterday', 'month'].forEach((k) => { if (next[k] == null) next[k] = prev[k]; });
+        ['today', 'yesterday', 'month'].forEach((k) => {
+          if (next[k] == null) next[k] = prev[k];
+          if (next.tiers[k] == null) next.tiers[k] = prev.tiers[k];
+        });
         if (!next.curve.length) next.curve = prev.curve;
       }
       this._stats = next;
@@ -1910,10 +1995,35 @@ class ZlinkyCard extends HTMLElement {
     return `<div class="load"><div class="bar"><div class="fill" style="width:${m.pct.toFixed(1)}%"></div></div><div class="load-l">${zlEsc(label)}</div></div>`;
   }
 
-  _cost(kwh) {
-    var price = Number(this._config.price);
-    if (!(price > 0) || kwh == null) return '';
-    return zlMoney(this._fmtLang(), kwh * price, this._hass.config?.currency);
+  // `price` as a list of €/kWh, one per tier in index order (null where unknown): a number, a list, or entity
+  // ids (a sensor giving the price per kWh) alone or in the list. [] without a price.
+  _prices() {
+    var p = this._config.price;
+    var list = Array.isArray(p) ? p : p == null || p === '' ? [] : [p];
+    return list.map((x) => {
+      if (typeof x === 'string' && /^[a-z_]+\.\w+$/.test(x.trim())) x = this._numv(x.trim());
+      var n = x == null || x === '' ? NaN : Number(x);
+      return Number.isFinite(n) && n >= 0 ? n : null;
+    });
+  }
+
+  // The current tier (0-based) from the tariff period, 0 when it names none.
+  _tierNow() {
+    var ent = this._resolve().ent;
+    var n = this._avail(ent.tariff) ? zlTierOf(this._st(ent.tariff).state, this._config.tiers) : null;
+    return n == null ? 0 : n - 1;
+  }
+
+  // The cost of `kwh` consumed over `period` (today, yesterday, month): each tier's kWh × its price when the
+  // tiers' statistics are there, else every kWh at the current tier's price (or the only one).
+  _cost(kwh, period = 'today') {
+    var prices = this._prices();
+    if (kwh == null || !prices.some((x) => x > 0)) return '';
+    var split = prices.length > 1 ? this._stats?.tiers?.[period] : null;
+    var v = split
+      ? Object.keys(split).reduce((sum, t) => sum + split[t] * zlPriceAt(prices, Number(t.slice(4)) - 1), 0)
+      : kwh * zlPriceAt(prices, this._tierNow());
+    return zlMoney(this._fmtLang(), v, this._hass.config?.currency);
   }
 
   _render(r) {
@@ -1962,7 +2072,7 @@ class ZlinkyCard extends HTMLElement {
     if (c.show_stats && ent.energy && this._stats) {
       var tiles = [['today', this._stats.today], ['yesterday', this._stats.yesterday], ['month', this._stats.month]]
         .map(([k, v]) => {
-          var cost = this._cost(v);
+          var cost = this._cost(v, k);
           return `<div class="tile"><span class="tl">${this._t(k)}</span>` +
             `<span class="tv">${v == null ? '—' : `${zlNum(lang, v, v < 100 ? 1 : 0)}<small> kWh</small>`}</span>` +
             (cost ? `<span class="tc">${zlEsc(cost)}</span>` : '') + '</div>';
@@ -2280,6 +2390,11 @@ class ZlinkyMiniCard extends ZlinkyCard {
 }
 
 // ── zlinky-card-editor (visual editor, built on HA's ha-form) ────────────────
+// A price the number field cannot show: a list (one per tier) or an entity id.
+function zlPriceList(price) {
+  return Array.isArray(price) || typeof price === 'string';
+}
+
 var ZL_EDITOR_DEFAULTS = { show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, zoom: true };
 
 class ZlinkyCardEditor extends HTMLElement {
@@ -2312,10 +2427,11 @@ class ZlinkyCardEditor extends HTMLElement {
           { name: 'name', selector: { text: {} } },
           { name: 'icon', selector: { icon: {} } },
           { name: 'subscribed_power', selector: { number: { min: 3, max: 36, step: 1, mode: 'box', unit_of_measurement: 'kVA' } } },
-          { name: 'price', selector: { number: { min: 0, max: 2, step: 0.0001, mode: 'box' } } },
-        ],
+        ].concat(zlPriceList(this._config.price) ? [] : [{ name: 'price', selector: { number: { min: 0, max: 2, step: 0.0001, mode: 'box' } } }]),
       },
       { name: 'tiers', selector: { text: { multiple: true } } },
+      // One price per tier: `price` as a list. Editor-only field, written back to `price`.
+      { name: 'prices', selector: { text: { multiple: true } } },
       {
         type: 'grid', name: '', schema: [
           { name: 'show_stats', selector: { boolean: {} } },
@@ -2353,7 +2469,9 @@ class ZlinkyCardEditor extends HTMLElement {
       var txt = zlT(lang, key);
       return txt === key ? undefined : txt;
     };
-    this._form.data = Object.assign({}, ZL_EDITOR_DEFAULTS, this._config);
+    var price = this._config.price;
+    this._form.data = Object.assign({}, ZL_EDITOR_DEFAULTS, this._config,
+      { prices: zlPriceList(price) ? [].concat(price).map(String) : [] });
   }
 
   _valueChanged(ev) {
@@ -2364,6 +2482,12 @@ class ZlinkyCardEditor extends HTMLElement {
       if (value[key] === '' || value[key] === null || value[key] === undefined) delete value[key];
     });
     if (Array.isArray(value.tiers) && !value.tiers.filter((t) => t).length) delete value.tiers;
+    // The per-tier prices replace the single price; numbers stay numbers ("0,2146" too), entity ids strings.
+    var prices = (value.prices || []).map((x) => String(x).trim()).filter((x) => x)
+      .map((x) => (Number.isFinite(Number(x.replace(',', '.'))) ? Number(x.replace(',', '.')) : x));
+    delete value.prices;
+    if (prices.length) value.price = prices;
+    else if (zlPriceList(value.price)) delete value.price;
     Object.keys(ZL_EDITOR_DEFAULTS).forEach((key) => {
       if (value[key] === ZL_EDITOR_DEFAULTS[key]) delete value[key];
     });
@@ -2374,9 +2498,10 @@ class ZlinkyCardEditor extends HTMLElement {
     }
     if (this._config.type) value = Object.assign({ type: this._config.type }, value);
     var lang = this._lang();
+    var wasList = zlPriceList(this._config.price);
     this._config = value;
-    // A new language option relabels the form.
-    if (lang !== this._lang()) this._render();
+    // A new language option relabels the form; per-tier prices hide the single price field (and back).
+    if (lang !== this._lang() || wasList !== zlPriceList(value.price)) this._render();
     this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: value }, bubbles: true, composed: true }));
   }
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.0 - 2026-11-07
+
+### What's new
+- Price per tier: `price` takes one price per tier (off-peak / peak, the 6 Tempo tiers, EJP) or a sensor giving the price per kWh, alone or in the list. The costs of today, yesterday and this month (full and mini card) add up each tier's kWh × its price; with only the total index, they use the current tier's price. The visual editor gets a **Price per tier** field.
+
 ## 1.5.0 - 2026-11-07
 
 ### Features

@@ -150,7 +150,7 @@ entities:
 | `name` | ❌ | `Linky` | Card title |
 | `icon` | ❌ | Illustration | Replaces the meter illustration with an icon |
 | `subscribed_power` | ❌ | `6` | Subscribed power in kVA, for the load gauge |
-| `price` | ❌ | — | Price per kWh, shows the cost of each consumption (currency from Home Assistant) |
+| `price` | ❌ | — | Price per kWh, shows the cost of each consumption (currency from Home Assistant): a number, a sensor giving the current price per kWh, or [one price per tier](#price-per-tier) |
 | `tiers` | ❌ | `Index 1`… | Names of the tiers, in order (`[Off-peak, Peak]`, Tempo colors…) |
 | `show_stats` | ❌ | `true` | Today / yesterday / this month |
 | `show_graph` | ❌ | `true` | 24 h power curve |
@@ -161,6 +161,28 @@ entities:
 | `zoom` | ❌ | `true` | Mini card only: detail button that unfolds the full card |
 | `language` | ❌ | HA language | `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` |
 | `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `injection`, `tariff`, `tempo` (today's Tempo color, e.g. from an RTE Tempo integration), `tomorrow` (tomorrow's Tempo color), `tier1`…`tier6` |
+
+### Price per tier
+
+On an off-peak / peak, Tempo or EJP contract, give `price` one price per tier, in the order of the meter's indexes (the same order as `tiers` and `tier1`…`tier6`). Each consumption tile then adds up each tier's kWh × its price, from the long-term statistics of each tier's index. An entry can also be a sensor giving the price per kWh (e.g. from your energy provider's integration). In the visual editor, the **Price per tier** field takes one value per line and replaces the single **Price per kWh** field.
+
+```yaml
+# Off-peak / peak (HC, HP)
+price: [0.1696, 0.2146]
+tiers: [Off-peak, Peak]
+```
+
+```yaml
+# Tempo, in the TIC order: HCJB, HPJB, HCJW, HPJW, HCJR, HPJR
+price: [0.1296, 0.1609, 0.1486, 0.1894, 0.1568, 0.7562]
+```
+
+```yaml
+# EJP (normal, peak), the peak price from a sensor
+price: [0.1528, sensor.ejp_peak_price]
+```
+
+A tier without a price (a shorter list) takes the last price of the list; a sensor that is unavailable takes the closest price before it (or the first one). When only the total index has statistics (a single tier in use, or a tier's statistics missing), every kWh of the period is priced at the current tier's price, read from the tariff period (`HC..`, `HPJB`, `HP BLEU`, `PM..`, a tier number, or one of your `tiers` names), or at the first price: yesterday's and this month's costs are then an estimate.
 
 The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. Tiers are listed only when more than one carries an index. The phase section appears only when phases 2 or 3 report a voltage. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
 
