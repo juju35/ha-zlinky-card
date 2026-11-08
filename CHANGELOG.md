@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.7.0 - 2026-11-07
+
+### What's new
+- `subscribed_power` also takes a sensor giving the subscribed power (in kVA, or in A like the historic TIC's `ISOUSC`), with a **Subscribed power sensor** entity picker in the visual editor.
+
+### Fixes
+- The 24 h curve now uses a real time axis over the last 24 hours and breaks the line where the recorder has no data for more than 10 minutes, instead of spreading the points evenly and joining them across gaps.
+- With one price per tier but no statistics for the tiers, yesterday's and this month's tiles no longer show a cost priced at the current tier's price.
+- The mini card's header icon keeps its 40 px badge, like the other mini cards.
+
 ## 1.6.0 - 2026-11-07
 
 ### What's new

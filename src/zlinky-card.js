@@ -29,6 +29,8 @@ var ZlI18n = {
     ed_icon_helper: 'Remplace l\'illustration du compteur',
     ed_subscribed_power: 'Puissance souscrite (kVA)',
     ed_subscribed_power_helper: 'Sert à la jauge de charge ; 6 kVA par défaut',
+    ed_subscribed_power_entity: 'Capteur de puissance souscrite',
+    ed_subscribed_power_entity_helper: 'Optionnel : capteur donnant la puissance souscrite (kVA, ou A comme ISOUSC). Remplace la valeur saisie',
     ed_price: 'Prix du kWh',
     ed_price_helper: 'Optionnel : affiche le coût à côté des consommations',
     ed_tiers: 'Noms des index',
@@ -96,6 +98,8 @@ var ZlI18n = {
     ed_icon_helper: 'Replaces the meter illustration',
     ed_subscribed_power: 'Subscribed power (kVA)',
     ed_subscribed_power_helper: 'Used for the load gauge; 6 kVA by default',
+    ed_subscribed_power_entity: 'Subscribed power sensor',
+    ed_subscribed_power_entity_helper: 'Optional: a sensor giving the subscribed power (kVA, or A like ISOUSC). Replaces the number above',
     ed_price: 'Price per kWh',
     ed_price_helper: 'Optional: shows the cost next to the consumption',
     ed_tiers: 'Tier names',
@@ -163,6 +167,8 @@ var ZlI18n = {
     ed_icon_helper: 'Ersetzt die Zählerabbildung',
     ed_subscribed_power: 'Vertragliche Anschlussleistung (kVA)',
     ed_subscribed_power_helper: 'Für die Lastanzeige; standardmäßig 6 kVA',
+    ed_subscribed_power_entity: 'Sensor der Anschlussleistung',
+    ed_subscribed_power_entity_helper: 'Optional: Sensor mit der vertraglichen Anschlussleistung (kVA oder A wie ISOUSC). Ersetzt den eingegebenen Wert',
     ed_price: 'Preis pro kWh',
     ed_price_helper: 'Optional: zeigt die Kosten neben dem Verbrauch an',
     ed_tiers: 'Namen der Zählwerke',
@@ -230,6 +236,8 @@ var ZlI18n = {
     ed_icon_helper: 'Sustituye la ilustración del contador',
     ed_subscribed_power: 'Potencia contratada (kVA)',
     ed_subscribed_power_helper: 'Se usa para el indicador de carga; 6 kVA por defecto',
+    ed_subscribed_power_entity: 'Sensor de potencia contratada',
+    ed_subscribed_power_entity_helper: 'Opcional: sensor con la potencia contratada (kVA, o A como ISOUSC). Sustituye al valor introducido',
     ed_price: 'Precio por kWh',
     ed_price_helper: 'Opcional: muestra el coste junto a los consumos',
     ed_tiers: 'Nombres de los índices',
@@ -297,6 +305,8 @@ var ZlI18n = {
     ed_icon_helper: 'Замењује илустрацију бројила',
     ed_subscribed_power: 'Уговорена снага (kVA)',
     ed_subscribed_power_helper: 'Користи се за мерач оптерећења; подразумевано 6 kVA',
+    ed_subscribed_power_entity: 'Сензор уговорене снаге',
+    ed_subscribed_power_entity_helper: 'Опционо: сензор са уговореном снагом (kVA или ампери). Замењује унету вредност',
     ed_price: 'Цена по kWh',
     ed_price_helper: 'Опционо: приказује трошак поред потрошње',
     ed_tiers: 'Називи тарифа',
@@ -364,6 +374,8 @@ var ZlI18n = {
     ed_icon_helper: 'Zamenjuje ilustraciju brojila',
     ed_subscribed_power: 'Ugovorena snaga (kVA)',
     ed_subscribed_power_helper: 'Koristi se za merač opterećenja; podrazumevano 6 kVA',
+    ed_subscribed_power_entity: 'Senzor ugovorene snage',
+    ed_subscribed_power_entity_helper: 'Opciono: senzor sa ugovorenom snagom (kVA, ili A kao ISOUSC). Zamenjuje unetu vrednost',
     ed_price: 'Cena po kWh',
     ed_price_helper: 'Opciono: prikazuje trošak pored potrošnje',
     ed_tiers: 'Nazivi tarifa',
@@ -431,6 +443,8 @@ var ZlI18n = {
     ed_icon_helper: 'Sostituisce l\'illustrazione del contatore',
     ed_subscribed_power: 'Potenza impegnata (kVA)',
     ed_subscribed_power_helper: 'Usata per l\'indicatore di carico; 6 kVA predefiniti',
+    ed_subscribed_power_entity: 'Sensore della potenza impegnata',
+    ed_subscribed_power_entity_helper: 'Facoltativo: sensore con la potenza impegnata (kVA, o A come ISOUSC). Sostituisce il valore inserito',
     ed_price: 'Prezzo per kWh',
     ed_price_helper: 'Facoltativo: mostra il costo accanto ai consumi',
     ed_tiers: 'Nomi delle fasce',
@@ -498,6 +512,8 @@ var ZlI18n = {
     ed_icon_helper: 'Vervangt de afbeelding van de meter',
     ed_subscribed_power: 'Aansluitvermogen (kVA)',
     ed_subscribed_power_helper: 'Gebruikt voor de belastingsmeter; standaard 6 kVA',
+    ed_subscribed_power_entity: 'Sensor voor aansluitvermogen',
+    ed_subscribed_power_entity_helper: 'Optioneel: een sensor met het aansluitvermogen (kVA, of A zoals ISOUSC). Vervangt de ingevoerde waarde',
     ed_price: 'Prijs per kWh',
     ed_price_helper: 'Optioneel: toont de kosten naast het verbruik',
     ed_tiers: 'Namen van de telwerken',
@@ -565,6 +581,8 @@ var ZlI18n = {
     ed_icon_helper: 'Substitui a ilustração do contador',
     ed_subscribed_power: 'Potência contratada (kVA)',
     ed_subscribed_power_helper: 'Usada no indicador de carga; 6 kVA por omissão',
+    ed_subscribed_power_entity: 'Sensor da potência contratada',
+    ed_subscribed_power_entity_helper: 'Opcional: sensor com a potência contratada (kVA, ou A como ISOUSC). Substitui o valor introduzido',
     ed_price: 'Preço por kWh',
     ed_price_helper: 'Opcional: mostra o custo junto aos consumos',
     ed_tiers: 'Nomes das leituras',
@@ -632,6 +650,8 @@ var ZlI18n = {
     ed_icon_helper: 'Zastępuje ilustrację licznika',
     ed_subscribed_power: 'Moc umowna (kVA)',
     ed_subscribed_power_helper: 'Używana przez wskaźnik obciążenia; domyślnie 6 kVA',
+    ed_subscribed_power_entity: 'Czujnik mocy umownej',
+    ed_subscribed_power_entity_helper: 'Opcjonalnie: czujnik podający moc umowną (kVA lub A jak ISOUSC). Zastępuje wpisaną wartość',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Opcjonalnie: pokazuje koszt obok zużycia',
     ed_tiers: 'Nazwy stref',
@@ -699,6 +719,8 @@ var ZlI18n = {
     ed_icon_helper: 'Înlocuiește ilustrația contorului',
     ed_subscribed_power: 'Putere contractată (kVA)',
     ed_subscribed_power_helper: 'Folosită pentru indicatorul de sarcină; implicit 6 kVA',
+    ed_subscribed_power_entity: 'Senzor de putere contractată',
+    ed_subscribed_power_entity_helper: 'Opțional: senzor care dă puterea contractată (kVA sau A, ca ISOUSC). Înlocuiește valoarea introdusă',
     ed_price: 'Preț per kWh',
     ed_price_helper: 'Opțional: afișează costul lângă consum',
     ed_tiers: 'Numele indexurilor',
@@ -766,6 +788,8 @@ var ZlI18n = {
     ed_icon_helper: 'Erstatter illustrationen af måleren',
     ed_subscribed_power: 'Aftalt effekt (kVA)',
     ed_subscribed_power_helper: 'Bruges til belastningsmåleren; 6 kVA som standard',
+    ed_subscribed_power_entity: 'Sensor for aftalt effekt',
+    ed_subscribed_power_entity_helper: 'Valgfrit: en sensor med den aftalte effekt (kVA eller A som ISOUSC). Erstatter den indtastede værdi',
     ed_price: 'Pris pr. kWh',
     ed_price_helper: 'Valgfrit: viser prisen ved siden af forbruget',
     ed_tiers: 'Navne på tælleværker',
@@ -833,6 +857,8 @@ var ZlI18n = {
     ed_icon_helper: 'Ersätter mätarillustrationen',
     ed_subscribed_power: 'Abonnerad effekt (kVA)',
     ed_subscribed_power_helper: 'Används för belastningsmätaren; 6 kVA som standard',
+    ed_subscribed_power_entity: 'Sensor för abonnerad effekt',
+    ed_subscribed_power_entity_helper: 'Valfritt: en sensor med den abonnerade effekten (kVA eller A som ISOUSC). Ersätter det angivna värdet',
     ed_price: 'Pris per kWh',
     ed_price_helper: 'Valfritt: visar kostnaden bredvid förbrukningen',
     ed_tiers: 'Registernamn',
@@ -900,6 +926,8 @@ var ZlI18n = {
     ed_icon_helper: 'Заменя илюстрацията на електромера',
     ed_subscribed_power: 'Договорена мощност (kVA)',
     ed_subscribed_power_helper: 'Използва се за индикатора на натоварването; по подразбиране 6 kVA',
+    ed_subscribed_power_entity: 'Сензор за договорена мощност',
+    ed_subscribed_power_entity_helper: 'По избор: сензор с договорената мощност (kVA или A като ISOUSC). Заменя въведената стойност',
     ed_price: 'Цена за kWh',
     ed_price_helper: 'По избор: показва цената до потреблението',
     ed_tiers: 'Имена на тарифите',
@@ -967,6 +995,8 @@ var ZlI18n = {
     ed_icon_helper: 'Заменяет изображение счетчика',
     ed_subscribed_power: 'Мощность по договору (kVA)',
     ed_subscribed_power_helper: 'Используется для индикатора нагрузки; по умолчанию 6 kVA',
+    ed_subscribed_power_entity: 'Датчик мощности по договору',
+    ed_subscribed_power_entity_helper: 'Необязательно: датчик с мощностью по договору (kVA или A, как ISOUSC). Заменяет введённое значение',
     ed_price: 'Цена за kWh',
     ed_price_helper: 'Необязательно: показывает стоимость рядом с потреблением',
     ed_tiers: 'Названия тарифов',
@@ -1034,6 +1064,8 @@ var ZlI18n = {
     ed_icon_helper: 'Замінює зображення лічильника',
     ed_subscribed_power: 'Потужність за договором (kVA)',
     ed_subscribed_power_helper: 'Використовується для індикатора навантаження; типово 6 kVA',
+    ed_subscribed_power_entity: 'Датчик потужності за договором',
+    ed_subscribed_power_entity_helper: 'Необов’язково: датчик із потужністю за договором (kVA або A, як ISOUSC). Замінює введене значення',
     ed_price: 'Ціна за kWh',
     ed_price_helper: 'Необов’язково: показує вартість поруч зі споживанням',
     ed_tiers: 'Назви тарифів',
@@ -1101,6 +1133,8 @@ var ZlI18n = {
     ed_icon_helper: 'A mérő illusztrációját helyettesíti',
     ed_subscribed_power: 'Lekötött teljesítmény (kVA)',
     ed_subscribed_power_helper: 'A terhelésjelzőhöz használatos; alapértelmezés: 6 kVA',
+    ed_subscribed_power_entity: 'Lekötött teljesítmény érzékelője',
+    ed_subscribed_power_entity_helper: 'Opcionális: a lekötött teljesítményt adó érzékelő (kVA, vagy A, mint az ISOUSC). A beírt érték helyébe lép',
     ed_price: 'kWh-ár',
     ed_price_helper: 'Opcionális: a költséget a fogyasztás mellett jeleníti meg',
     ed_tiers: 'Tarifák nevei',
@@ -1168,6 +1202,8 @@ var ZlI18n = {
     ed_icon_helper: 'Nahrádza ilustráciu elektromera',
     ed_subscribed_power: 'Zmluvný výkon (kVA)',
     ed_subscribed_power_helper: 'Používa sa pre ukazovateľ zaťaženia; predvolene 6 kVA',
+    ed_subscribed_power_entity: 'Senzor zmluvného výkonu',
+    ed_subscribed_power_entity_helper: 'Voliteľné: senzor so zmluvným výkonom (kVA alebo A ako ISOUSC). Nahrádza zadanú hodnotu',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Voliteľné: zobrazí náklady vedľa spotreby',
     ed_tiers: 'Názvy pásiem',
@@ -1235,6 +1271,8 @@ var ZlI18n = {
     ed_icon_helper: 'Nahrazuje ilustraci elektroměru',
     ed_subscribed_power: 'Rezervovaný příkon (kVA)',
     ed_subscribed_power_helper: 'Používá se pro ukazatel zatížení; výchozí 6 kVA',
+    ed_subscribed_power_entity: 'Senzor rezervovaného příkonu',
+    ed_subscribed_power_entity_helper: 'Volitelné: senzor s rezervovaným příkonem (kVA nebo A jako ISOUSC). Nahrazuje zadanou hodnotu',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Volitelné: zobrazí náklady vedle spotřeby',
     ed_tiers: 'Názvy pásem',
@@ -1302,6 +1340,8 @@ var ZlI18n = {
     ed_icon_helper: 'Nadomesti ilustracijo števca',
     ed_subscribed_power: 'Dogovorjena moč (kVA)',
     ed_subscribed_power_helper: 'Uporablja se za kazalnik obremenitve; privzeto 6 kVA',
+    ed_subscribed_power_entity: 'Senzor dogovorjene moči',
+    ed_subscribed_power_entity_helper: 'Neobvezno: senzor z dogovorjeno močjo (kVA ali A kot ISOUSC). Nadomesti vneseno vrednost',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Neobvezno: prikaže strošek poleg porabe',
     ed_tiers: 'Imena tarif',
@@ -1369,6 +1409,8 @@ var ZlI18n = {
     ed_icon_helper: 'Aizstāj skaitītāja ilustrāciju',
     ed_subscribed_power: 'Pieslēguma jauda (kVA)',
     ed_subscribed_power_helper: 'Izmanto slodzes rādītājam; pēc noklusējuma 6 kVA',
+    ed_subscribed_power_entity: 'Pieslēguma jaudas sensors',
+    ed_subscribed_power_entity_helper: 'Neobligāti: sensors ar pieslēguma jaudu (kVA vai A kā ISOUSC). Aizstāj ievadīto vērtību',
     ed_price: 'Cena par kWh',
     ed_price_helper: 'Neobligāti: rāda izmaksas blakus patēriņam',
     ed_tiers: 'Zonu nosaukumi',
@@ -1436,6 +1478,8 @@ var ZlI18n = {
     ed_icon_helper: 'Αντικαθιστά την εικόνα του μετρητή',
     ed_subscribed_power: 'Συμφωνημένη ισχύς (kVA)',
     ed_subscribed_power_helper: 'Χρησιμοποιείται για τον δείκτη φορτίου, προεπιλογή 6 kVA',
+    ed_subscribed_power_entity: 'Αισθητήρας συμφωνημένης ισχύος',
+    ed_subscribed_power_entity_helper: 'Προαιρετικό: αισθητήρας με τη συμφωνημένη ισχύ (kVA ή A όπως το ISOUSC). Αντικαθιστά την τιμή που δόθηκε',
     ed_price: 'Τιμή ανά kWh',
     ed_price_helper: 'Προαιρετικό: εμφανίζει το κόστος δίπλα στην κατανάλωση',
     ed_tiers: 'Ονόματα ζωνών',
@@ -1750,18 +1794,33 @@ function zlLoadLevel(pct) {
   return 'low';
 }
 
-// Area chart of a series [{t, v}], drawn in a 300×64 box.
-function zlSpark(points) {
+// Area chart of a series [{t, v}] (5-minute means), drawn in a 300×64 box on a real time axis: x runs over the
+// last 24 h up to `now`, and the line breaks where the recorder has no point for more than two periods (the meter
+// or Home Assistant was off), instead of joining the points on both sides of the gap.
+var ZL_SPARK_SPAN = 24 * 3600000;
+var ZL_SPARK_GAP = 2 * 5 * 60000;
+function zlSpark(points, now = Date.now()) {
   if (!points || points.length < 2) return '';
-  var W = 300, H = 64, t0 = points[0].t, t1 = points[points.length - 1].t;
+  var W = 300, H = 64, t0 = now - ZL_SPARK_SPAN;
   var max = Math.max(...points.map((p) => p.v), 1);
-  var x = (t) => (t1 === t0 ? 0 : ((t - t0) / (t1 - t0)) * W);
-  var y = (v) => H - 3 - (v / max) * (H - 8);
-  var line = points.map((p, i) => `${i ? 'L' : 'M'}${x(p.t).toFixed(1)} ${y(p.v).toFixed(1)}`).join('');
+  var x = (t) => Math.max(0, Math.min(W, ((t - t0) / ZL_SPARK_SPAN) * W)).toFixed(1);
+  var y = (v) => (H - 3 - (v / max) * (H - 8)).toFixed(1);
+  var segs = [];
+  points.forEach((p, i) => {
+    if (!i || p.t - points[i - 1].t > ZL_SPARK_GAP) segs.push([]);
+    segs[segs.length - 1].push(p);
+  });
+  var line = '', area = '';
+  segs.forEach((seg) => {
+    var d = seg.map((p, i) => `${i ? 'L' : 'M'}${x(p.t)} ${y(p.v)}`).join('');
+    line += d;
+    // A lone point has no width: its area would be a vertical line, only the line's cap shows it.
+    if (seg.length > 1) area += `${d}L${x(seg[seg.length - 1].t)} ${H}L${x(seg[0].t)} ${H}Z`;
+  });
   return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">` +
     '<defs><linearGradient id="zl-sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="spark-c" stop-opacity=".35"/><stop offset="1" class="spark-c" stop-opacity="0"/></linearGradient></defs>' +
-    `<path d="${line}L${W} ${H}L0 ${H}Z" fill="url(#zl-sg)"/>` +
-    `<path d="${line}" fill="none" class="spark-l" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>`;
+    (area ? `<path d="${area}" fill="url(#zl-sg)"/>` : '') +
+    `<path d="${line}" fill="none" class="spark-l" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
 }
 
 var ZL_STATS_REFRESH = 5 * 60000;
@@ -1880,7 +1939,7 @@ class ZlinkyCard extends HTMLElement {
       var s = r.ent[k] && hass.states[r.ent[k]];
       return s ? s.state : null;
     }));
-    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, states, this._prices()]);
+    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, states, this._prices(), this._subscribed()]);
     if (sig === this._sig) return;
     this._sig = sig;
     this._r = r;
@@ -1966,7 +2025,7 @@ class ZlinkyCard extends HTMLElement {
     var va = this._avail(ent.apparent_power) ? zlBase(this._st(ent.apparent_power)) : null;
     var main = va != null ? va : watts;
     var mainUnit = va != null ? 'VA' : 'W';
-    var subscribed = Number(c.subscribed_power) > 0 ? Number(c.subscribed_power) : 6;
+    var subscribed = this._subscribed();
     var pct = main != null ? Math.max(0, Math.min(100, (main / (subscribed * 1000)) * 100)) : null;
     var level = online ? zlLoadLevel(pct) : 'off';
     var tariff = this._avail(ent.tariff) ? this._st(ent.tariff).state : '';
@@ -2007,6 +2066,20 @@ class ZlinkyCard extends HTMLElement {
     });
   }
 
+  // The subscribed power in kVA: a number, or a sensor giving it (in kVA, or in A like the historic TIC's ISOUSC,
+  // 1 A = 0.2 kVA). 6 kVA by default, or while the sensor has no usable state.
+  _subscribed() {
+    var p = this._config.subscribed_power, v = p;
+    if (typeof p === 'string' && /^[a-z_]+\.\w+$/.test(p.trim())) {
+      var s = this._st(p.trim());
+      v = this._numv(p.trim());
+      var u = String(s?.attributes?.unit_of_measurement || 'kVA');
+      if (v != null) v = u === 'A' ? v * 0.2 : /^(VA|W)$/.test(u) ? v / 1000 : v;
+    }
+    var n = Number(v);
+    return v != null && v !== '' && Number.isFinite(n) && n > 0 ? n : 6;
+  }
+
   // The current tier (0-based) from the tariff period, 0 when it names none.
   _tierNow() {
     var ent = this._resolve().ent;
@@ -2015,11 +2088,15 @@ class ZlinkyCard extends HTMLElement {
   }
 
   // The cost of `kwh` consumed over `period` (today, yesterday, month): each tier's kWh × its price when the
-  // tiers' statistics are there, else every kWh at the current tier's price (or the only one).
+  // tiers' statistics are there, else every kWh at the current tier's price (or the only one). Without the
+  // tiers' statistics a past period (yesterday, month) has no cost when the tiers' prices differ: the current
+  // tier's price says nothing of the tiers that period was spent in (a red Tempo day priced at a blue one).
   _cost(kwh, period = 'today') {
     var prices = this._prices();
     if (kwh == null || !prices.some((x) => x > 0)) return '';
     var split = prices.length > 1 ? this._stats?.tiers?.[period] : null;
+    var known = prices.filter((x) => x != null);
+    if (!split && period !== 'today' && known.some((x) => x !== known[0])) return '';
     var v = split
       ? Object.keys(split).reduce((sum, t) => sum + split[t] * zlPriceAt(prices, Number(t.slice(4)) - 1), 0)
       : kwh * zlPriceAt(prices, this._tierNow());
@@ -2237,8 +2314,6 @@ class ZlinkyCard extends HTMLElement {
       '.hbadge { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none;' +
         ' background: color-mix(in srgb, var(--zl-color) 16%, transparent); color: var(--zl-color); }' +
       '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
-      'ha-card.mini .hbadge { width: 32px; height: 32px; }' +
-      'ha-card.mini .hbadge ha-icon { --mdc-icon-size: 20px; }' +
       // The name and the pill share the line from a zero basis: the pill keeps its whole label and the name gives way
       // first, down to about 4 characters and its ellipsis; only past that does the pill shrink.
       '.titles { flex: 1 1 0; min-width: 5ch; font-size: 16px; }' +
@@ -2426,9 +2501,12 @@ class ZlinkyCardEditor extends HTMLElement {
         type: 'grid', name: '', schema: [
           { name: 'name', selector: { text: {} } },
           { name: 'icon', selector: { icon: {} } },
-          { name: 'subscribed_power', selector: { number: { min: 3, max: 36, step: 1, mode: 'box', unit_of_measurement: 'kVA' } } },
-        ].concat(zlPriceList(this._config.price) ? [] : [{ name: 'price', selector: { number: { min: 0, max: 2, step: 0.0001, mode: 'box' } } }]),
+        ].concat(typeof this._config.subscribed_power === 'string' ? []
+          : [{ name: 'subscribed_power', selector: { number: { min: 3, max: 36, step: 1, mode: 'box', unit_of_measurement: 'kVA' } } }])
+          .concat(zlPriceList(this._config.price) ? [] : [{ name: 'price', selector: { number: { min: 0, max: 2, step: 0.0001, mode: 'box' } } }]),
       },
+      // A sensor as the subscribed power. Editor-only field, written back to `subscribed_power`.
+      { name: 'subscribed_power_entity', selector: { entity: { domain: ['sensor', 'input_number', 'number'] } } },
       { name: 'tiers', selector: { text: { multiple: true } } },
       // One price per tier: `price` as a list. Editor-only field, written back to `price`.
       { name: 'prices', selector: { text: { multiple: true } } },
@@ -2470,8 +2548,9 @@ class ZlinkyCardEditor extends HTMLElement {
       return txt === key ? undefined : txt;
     };
     var price = this._config.price;
+    var sp = this._config.subscribed_power;
     this._form.data = Object.assign({}, ZL_EDITOR_DEFAULTS, this._config,
-      { prices: zlPriceList(price) ? [].concat(price).map(String) : [] });
+      { prices: zlPriceList(price) ? [].concat(price).map(String) : [], subscribed_power_entity: typeof sp === 'string' ? sp : '' });
   }
 
   _valueChanged(ev) {
@@ -2488,6 +2567,11 @@ class ZlinkyCardEditor extends HTMLElement {
     delete value.prices;
     if (prices.length) value.price = prices;
     else if (zlPriceList(value.price)) delete value.price;
+    // The subscribed power sensor replaces the number (and back).
+    var spEntity = value.subscribed_power_entity;
+    delete value.subscribed_power_entity;
+    if (spEntity) value.subscribed_power = spEntity;
+    else if (typeof value.subscribed_power === 'string') delete value.subscribed_power;
     Object.keys(ZL_EDITOR_DEFAULTS).forEach((key) => {
       if (value[key] === ZL_EDITOR_DEFAULTS[key]) delete value[key];
     });
@@ -2499,9 +2583,11 @@ class ZlinkyCardEditor extends HTMLElement {
     if (this._config.type) value = Object.assign({ type: this._config.type }, value);
     var lang = this._lang();
     var wasList = zlPriceList(this._config.price);
+    var wasSensor = typeof this._config.subscribed_power === 'string';
     this._config = value;
-    // A new language option relabels the form; per-tier prices hide the single price field (and back).
-    if (lang !== this._lang() || wasList !== zlPriceList(value.price)) this._render();
+    // A new language option relabels the form; per-tier prices hide the single price field, a subscribed power
+    // sensor the number field (and back).
+    if (lang !== this._lang() || wasList !== zlPriceList(value.price) || wasSensor !== (typeof value.subscribed_power === 'string')) this._render();
     this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: value }, bubbles: true, composed: true }));
   }
 }

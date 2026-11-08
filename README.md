@@ -38,9 +38,9 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - Two cards: `zlinky-card` and its mini version `zlinky-mini-card` (compact, a detail button unfolds the full card)
 - Automatic discovery of the ZLinky and its entities (ZHA with English or French entity IDs, Zigbee2MQTT TIC labels), each entity can be overridden
 - Live apparent power (or active power), with active power, current and voltage
-- Load gauge against your subscribed power (kVA), colored green / orange / red
+- Load gauge against your subscribed power (kVA, a number or a sensor), colored green / orange / red
 - **Today**, **yesterday** and **this month**'s consumption from Home Assistant's long-term statistics, with the cost when a price per kWh is set
-- 24 h power curve with its peak
+- 24 h power curve with its peak, on a real time axis (a gap in the recorder's data shows as a break in the line)
 - Tempo contract: today's color (from the tariff period) and tomorrow's once announced (from `DEMAIN`, or any sensor naming a color)
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
 - Three-phase details (current and voltage per phase) on three-phase meters
@@ -149,7 +149,7 @@ entities:
 | `entity` | ❌ | — | Any entity of the ZLinky, used to find the device |
 | `name` | ❌ | `Linky` | Card title |
 | `icon` | ❌ | Illustration | Replaces the meter illustration with an icon |
-| `subscribed_power` | ❌ | `6` | Subscribed power in kVA, for the load gauge |
+| `subscribed_power` | ❌ | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA). In the visual editor, the **Subscribed power sensor** field replaces the number |
 | `price` | ❌ | — | Price per kWh, shows the cost of each consumption (currency from Home Assistant): a number, a sensor giving the current price per kWh, or [one price per tier](#price-per-tier) |
 | `tiers` | ❌ | `Index 1`… | Names of the tiers, in order (`[Off-peak, Peak]`, Tempo colors…) |
 | `show_stats` | ❌ | `true` | Today / yesterday / this month |
@@ -182,7 +182,7 @@ price: [0.1296, 0.1609, 0.1486, 0.1894, 0.1568, 0.7562]
 price: [0.1528, sensor.ejp_peak_price]
 ```
 
-A tier without a price (a shorter list) takes the last price of the list; a sensor that is unavailable takes the closest price before it (or the first one). When only the total index has statistics (a single tier in use, or a tier's statistics missing), every kWh of the period is priced at the current tier's price, read from the tariff period (`HC..`, `HPJB`, `HP BLEU`, `PM..`, a tier number, or one of your `tiers` names), or at the first price: yesterday's and this month's costs are then an estimate.
+A tier without a price (a shorter list) takes the last price of the list; a sensor that is unavailable takes the closest price before it (or the first one). When only the total index has statistics (a single tier in use, or a tier's statistics missing), every kWh of the period is priced at the current tier's price, read from the tariff period (`HC..`, `HPJB`, `HP BLEU`, `PM..`, a tier number, or one of your `tiers` names), or at the first price. Yesterday's and this month's tiles then show no cost when the tiers' prices differ (the current tier's price says nothing of the tiers that period was spent in); today's cost stays an estimate at the current tier's price.
 
 The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. Tiers are listed only when more than one carries an index. The phase section appears only when phases 2 or 3 report a voltage. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
 
