@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.8.0 - 2026-11-08
+
+### What's new
+- The mini card shows today's and tomorrow's Tempo colors as two dots (with `show_tempo`), each opening its sensor.
+- `load_warning` and `load_critical` set the load gauge's moderate and high thresholds (50 % and 80 % of the subscribed power by default), also in the visual editor.
+
+### Fixes
+- The 24 h curve's "max" is now the highest reading of the day, read from the recorder's 5-minute maximums, instead of the highest 5-minute mean.
+
 ## 1.7.0 - 2026-11-07
 
 ### What's new

@@ -32,15 +32,16 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 | Mini card | Mini card, dark theme |
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini.png" alt="ZLinky mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-dark.png" alt="ZLinky mini card, dark theme" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-tempo.png" alt="ZLinky mini card with the Tempo dots of today and tomorrow" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-tempo-dark.png" alt="ZLinky mini card with the Tempo dots, dark theme" width="400"> |
 
 ## Features
 
 - Two cards: `zlinky-card` and its mini version `zlinky-mini-card` (compact, a detail button unfolds the full card)
 - Automatic discovery of the ZLinky and its entities (ZHA with English or French entity IDs, Zigbee2MQTT TIC labels), each entity can be overridden
 - Live apparent power (or active power), with active power, current and voltage
-- Load gauge against your subscribed power (kVA, a number or a sensor), colored green / orange / red
+- Load gauge against your subscribed power (kVA, a number or a sensor), colored green / orange / red (thresholds adjustable)
 - **Today**, **yesterday** and **this month**'s consumption from Home Assistant's long-term statistics, with the cost when a price per kWh is set
-- 24 h power curve with its peak, on a real time axis (a gap in the recorder's data shows as a break in the line)
+- 24 h power curve with its peak (the highest reading, not the highest 5-minute mean), on a real time axis (a gap in the recorder's data shows as a break in the line)
 - Tempo contract: today's color (from the tariff period) and tomorrow's once announced (from `DEMAIN`, or any sensor naming a color)
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
 - Three-phase details (current and voltage per phase) on three-phase meters
@@ -111,7 +112,7 @@ type: custom:zlinky-mini-card
 subscribed_power: 9
 ```
 
-The mini card shows the meter, the live power, the load gauge and today's consumption (hidden with `show_stats: false`). The detail button (top right) unfolds the full card; a click anywhere else on the page folds it back. It takes the same options as the full card, plus `zoom`.
+The mini card shows the meter, the live power, the load gauge, today's consumption (hidden with `show_stats: false`) and, on a Tempo contract, today's and tomorrow's colors as two dots (hidden with `show_tempo: false`). The detail button (top right) unfolds the full card; a click anywhere else on the page folds it back. It takes the same options as the full card, plus `zoom`.
 
 In the Sections view, the mini card fits 6 columns (half a section, down to about 156 px on a phone): on a narrow card the meter gets smaller, the reading scales down, today's line wraps and the status pill keeps its colored dot only (the status stays in its tooltip). The full card needs 9 columns at least.
 
@@ -126,6 +127,8 @@ type: custom:zlinky-card
 device_id: a9b4cb527f0afb6cf4988dd5a3eee88b
 name: Linky
 subscribed_power: 9
+load_warning: 50
+load_critical: 80
 price: 0.2016
 tiers:
   - Off-peak
@@ -150,6 +153,8 @@ entities:
 | `name` | ❌ | `Linky` | Card title |
 | `icon` | ❌ | Illustration | Replaces the meter illustration with an icon |
 | `subscribed_power` | ❌ | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA). In the visual editor, the **Subscribed power sensor** field replaces the number |
+| `load_warning` | ❌ | `50` | Share of the subscribed power (%) from which the load is moderate (orange) |
+| `load_critical` | ❌ | `80` | Share of the subscribed power (%) from which the load is high (red) |
 | `price` | ❌ | — | Price per kWh, shows the cost of each consumption (currency from Home Assistant): a number, a sensor giving the current price per kWh, or [one price per tier](#price-per-tier) |
 | `tiers` | ❌ | `Index 1`… | Names of the tiers, in order (`[Off-peak, Peak]`, Tempo colors…) |
 | `show_stats` | ❌ | `true` | Today / yesterday / this month |
@@ -157,7 +162,7 @@ entities:
 | `show_index` | ❌ | `true` | Meter index, tiers and injection |
 | `show_phases` | ❌ | `true` | Per-phase details (three-phase meters only) |
 | `show_logo` | ❌ | `true` | Meter icon in the header |
-| `show_tempo` | ❌ | `true` | Tempo colors of today and tomorrow (only on a Tempo contract) |
+| `show_tempo` | ❌ | `true` | Tempo colors of today and tomorrow (only on a Tempo contract; two dots on the mini card) |
 | `zoom` | ❌ | `true` | Mini card only: detail button that unfolds the full card |
 | `language` | ❌ | HA language | `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` |
 | `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `injection`, `tariff`, `tempo` (today's Tempo color, e.g. from an RTE Tempo integration), `tomorrow` (tomorrow's Tempo color), `tier1`…`tier6` |

@@ -210,7 +210,7 @@ const ws = `window.__ws = async (msg) => {
     const t = now - i * 300000, h = new Date(t).getUTCHours() + new Date(t).getUTCMinutes() / 60;
     const bump = (c, w, a) => a * Math.exp(-((h - c) ** 2) / (2 * w * w));
     const v = 260 + bump(7.5, 0.8, 1400) + bump(12.5, 0.6, 900) + bump(19.5, 1.1, 2100) + 60 * Math.sin(i * 0.9) ** 2;
-    out.push({ start: t, mean: v });
+    out.push({ start: t, mean: v, max: v * 1.12 });
   }
   return { [msg.statistic_ids[0]]: out };
 };`;
@@ -239,7 +239,9 @@ await render(
   ["light", "dark"].map((theme) => ({
     file: theme === "dark" ? "card-tempo-dark" : "card-tempo", type: "zlinky-card", theme, width: 460,
     config: { price: 0.2016, tiers: ["Off-peak", "Peak"], show_graph: false, show_index: false },
-  })),
+  })).concat(["light", "dark"].map((theme) => ({
+    file: theme === "dark" ? "mini-tempo-dark" : "mini-tempo", type: "zlinky-mini-card", theme, width: 380, config: { price: 0.2016 },
+  }))),
   { icons, hass: tempoHass, extra: ws }
 );
 
