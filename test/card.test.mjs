@@ -1133,3 +1133,65 @@ test("editor: a subscribed power sensor replaces the number field, and back", ()
   change({ subscribed_power: 12 });
   assert.equal(sent.at(-1).subscribed_power, 12);
 });
+
+test("24 h curve: the peak comes from the 5-minute max, not from the highest mean", async () => {
+  const calls = [];
+  const callWS = (msg) => {
+    calls.push(msg);
+    if (msg.type === "recorder/statistic_during_period") return Promise.resolve({ change: 1 });
+    const now = Date.now();
+    return Promise.resolve({ [msg.statistic_ids[0]]: [{ start: now - 600000, mean: 300, max: 2400 }, { start: now - 300000, mean: 1500, max: 1800 }] });
+  };
+  const card = make(ZlinkyCard, zhaHass({ callWS }));
+  await tick();
+  assert.deepEqual([...calls.find((c) => c.type === "recorder/statistics_during_period").types], ["mean", "max"]);
+  assert.match(card.shadowRoot.innerHTML, /max 2[\s ]?400 VA/);
+});
+
+test("load_warning / load_critical move the load levels (50 / 80 % by default)", () => {
+  const level = (pct, config) => {
+    const hass = zhaHass();
+    hass.states["sensor.lixee_zlinky_tic_puissance_apparente"] = st(String(pct * 60), { device_class: "apparent_power", unit_of_measurement: "VA" });
+    return make(ZlinkyCard, hass, { subscribed_power: 6, language: "en", ...config }).shadowRoot.innerHTML.match(/class="stt">([^<]*)</)[1];
+  };
+  assert.equal(level(45), "Low load");
+  assert.equal(level(55), "Moderate load");
+  assert.equal(level(85), "High load");
+  assert.equal(level(45, { load_warning: 40 }), "Moderate load");
+  assert.equal(level(75, { load_critical: 70 }), "High load");
+  assert.equal(level(85, { load_warning: 60, load_critical: 90 }), "Moderate load");
+  // Not a number: the default.
+  assert.equal(level(55, { load_warning: "x" }), "Moderate load");
+});
+
+test("editor: load thresholds at their default stay out of the YAML", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  ed.setConfig({ type: "custom:zlinky-card" });
+  ed.hass = zhaHass();
+  const names = schemaLeaves(ed._form.schema).map((s) => s.name);
+  assert.ok(names.includes("load_warning") && names.includes("load_critical"));
+  assert.equal(ed._form.data.load_warning, 50);
+  assert.equal(ed._form.data.load_critical, 80);
+  let out;
+  ed.dispatchEvent = () => { out = ed._config; };
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data, load_critical: 90 } } });
+  assert.equal(out.load_critical, 90);
+  assert.ok(!("load_warning" in out));
+});
+
+test("mini card: Tempo dots for today and tomorrow, hidden with show_tempo: false", () => {
+  const p = "sensor.lixee_zlinky_tic_";
+  const hass = zhaHass({ extra: { [`${p}ptec`]: st("HPJB"), [`${p}demain`]: st("ROUG") } });
+  let html = make(ZlinkyMiniCard, hass).shadowRoot.innerHTML;
+  assert.match(html, /class="line tminis"/);
+  assert.equal((html.match(/class="tmini"/g) || []).length, 2);
+  assert.match(html, /aria-label="Aujourd[^"]*· Bleu"/);
+  assert.match(html, /aria-label="Demain · Rouge"/);
+  assert.match(html, new RegExp(`data-more="${p}demain"`));
+  assert.doesNotMatch(html, /class="tempo"/);
+  html = make(ZlinkyMiniCard, hass, { show_tempo: false }).shadowRoot.innerHTML;
+  assert.doesNotMatch(html, /class="line tminis"/);
+  // Outside a Tempo contract: no dots.
+  assert.doesNotMatch(make(ZlinkyMiniCard, zhaHass()).shadowRoot.innerHTML, /class="line tminis"/);
+});

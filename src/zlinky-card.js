@@ -67,6 +67,10 @@ var ZlI18n = {
     tempo_red: 'Rouge',
     tempo_unknown: 'Pas encore connue',
     ed_show_tempo: 'Couleur Tempo',
+    ed_load_warning: 'Seuil de charge modérée',
+    ed_load_warning_helper: 'Charge modérée à partir de ce pourcentage de la puissance souscrite ; 50 % par défaut',
+    ed_load_critical: 'Seuil de charge élevée',
+    ed_load_critical_helper: 'Charge élevée à partir de ce pourcentage de la puissance souscrite ; 80 % par défaut',
     en_tempo: 'Couleur Tempo du jour',
     en_tomorrow: 'Couleur Tempo de demain',
     en_tier1: 'Index 1', en_tier2: 'Index 2', en_tier3: 'Index 3', en_tier4: 'Index 4', en_tier5: 'Index 5', en_tier6: 'Index 6',
@@ -136,6 +140,10 @@ var ZlI18n = {
     tempo_red: 'Red',
     tempo_unknown: 'Not known yet',
     ed_show_tempo: 'Tempo color',
+    ed_load_warning: 'Moderate load threshold',
+    ed_load_warning_helper: 'Moderate load from this share of the subscribed power; 50 % by default',
+    ed_load_critical: 'High load threshold',
+    ed_load_critical_helper: 'High load from this share of the subscribed power; 80 % by default',
     en_tempo: 'Tempo color today',
     en_tomorrow: 'Tempo color tomorrow',
     en_tier1: 'Index 1', en_tier2: 'Index 2', en_tier3: 'Index 3', en_tier4: 'Index 4', en_tier5: 'Index 5', en_tier6: 'Index 6',
@@ -205,6 +213,10 @@ var ZlI18n = {
     tempo_red: 'Rot',
     tempo_unknown: 'Noch nicht bekannt',
     ed_show_tempo: 'Tempo-Farbe',
+    ed_load_warning: 'Schwelle mittlere Last',
+    ed_load_warning_helper: 'Mittlere Last ab diesem Anteil der Anschlussleistung; standardmäßig 50 %',
+    ed_load_critical: 'Schwelle hohe Last',
+    ed_load_critical_helper: 'Hohe Last ab diesem Anteil der Anschlussleistung; standardmäßig 80 %',
     en_tempo: 'Tempo-Farbe heute',
     en_tomorrow: 'Tempo-Farbe morgen',
     en_tier1: 'Zählwerk 1', en_tier2: 'Zählwerk 2', en_tier3: 'Zählwerk 3', en_tier4: 'Zählwerk 4', en_tier5: 'Zählwerk 5', en_tier6: 'Zählwerk 6',
@@ -274,6 +286,10 @@ var ZlI18n = {
     tempo_red: 'Rojo',
     tempo_unknown: 'Aún no se conoce',
     ed_show_tempo: 'Color Tempo',
+    ed_load_warning: 'Umbral de carga moderada',
+    ed_load_warning_helper: 'Carga moderada a partir de este porcentaje de la potencia contratada; 50 % por defecto',
+    ed_load_critical: 'Umbral de carga alta',
+    ed_load_critical_helper: 'Carga alta a partir de este porcentaje de la potencia contratada; 80 % por defecto',
     en_tempo: 'Color Tempo de hoy',
     en_tomorrow: 'Color Tempo de mañana',
     en_tier1: 'Índice 1', en_tier2: 'Índice 2', en_tier3: 'Índice 3', en_tier4: 'Índice 4', en_tier5: 'Índice 5', en_tier6: 'Índice 6',
@@ -343,6 +359,10 @@ var ZlI18n = {
     tempo_red: 'Црвена',
     tempo_unknown: 'Још није позната',
     ed_show_tempo: 'Темпо боја',
+    ed_load_warning: 'Праг умереног оптерећења',
+    ed_load_warning_helper: 'Умерено оптерећење од овог удела уговорене снаге; подразумевано 50 %',
+    ed_load_critical: 'Праг високог оптерећења',
+    ed_load_critical_helper: 'Високо оптерећење од овог удела уговорене снаге; подразумевано 80 %',
     en_tempo: 'Темпо боја данас',
     en_tomorrow: 'Темпо боја сутра',
     en_tier1: 'Тарифа 1', en_tier2: 'Тарифа 2', en_tier3: 'Тарифа 3', en_tier4: 'Тарифа 4', en_tier5: 'Тарифа 5', en_tier6: 'Тарифа 6',
@@ -412,6 +432,10 @@ var ZlI18n = {
     tempo_red: 'Crvena',
     tempo_unknown: 'Još nije poznata',
     ed_show_tempo: 'Tempo boja',
+    ed_load_warning: 'Prag umerenog opterećenja',
+    ed_load_warning_helper: 'Umereno opterećenje od ovog udela ugovorene snage; podrazumevano 50 %',
+    ed_load_critical: 'Prag visokog opterećenja',
+    ed_load_critical_helper: 'Visoko opterećenje od ovog udela ugovorene snage; podrazumevano 80 %',
     en_tempo: 'Tempo boja danas',
     en_tomorrow: 'Tempo boja sutra',
     en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
@@ -481,6 +505,10 @@ var ZlI18n = {
     tempo_red: 'Rosso',
     tempo_unknown: 'Non ancora noto',
     ed_show_tempo: 'Colore Tempo',
+    ed_load_warning: 'Soglia di carico moderato',
+    ed_load_warning_helper: 'Carico moderato da questa percentuale della potenza contrattuale; 50 % per impostazione predefinita',
+    ed_load_critical: 'Soglia di carico elevato',
+    ed_load_critical_helper: 'Carico elevato da questa percentuale della potenza contrattuale; 80 % per impostazione predefinita',
     en_tempo: 'Colore Tempo di oggi',
     en_tomorrow: 'Colore Tempo di domani',
     en_tier1: 'Fascia 1', en_tier2: 'Fascia 2', en_tier3: 'Fascia 3', en_tier4: 'Fascia 4', en_tier5: 'Fascia 5', en_tier6: 'Fascia 6',
@@ -550,6 +578,10 @@ var ZlI18n = {
     tempo_red: 'Rood',
     tempo_unknown: 'Nog niet bekend',
     ed_show_tempo: 'Tempo-kleur',
+    ed_load_warning: 'Drempel matige belasting',
+    ed_load_warning_helper: 'Matige belasting vanaf dit aandeel van het gecontracteerde vermogen; standaard 50 %',
+    ed_load_critical: 'Drempel hoge belasting',
+    ed_load_critical_helper: 'Hoge belasting vanaf dit aandeel van het gecontracteerde vermogen; standaard 80 %',
     en_tempo: 'Tempo-kleur vandaag',
     en_tomorrow: 'Tempo-kleur morgen',
     en_tier1: 'Telwerk 1', en_tier2: 'Telwerk 2', en_tier3: 'Telwerk 3', en_tier4: 'Telwerk 4', en_tier5: 'Telwerk 5', en_tier6: 'Telwerk 6',
@@ -619,6 +651,10 @@ var ZlI18n = {
     tempo_red: 'Vermelho',
     tempo_unknown: 'Ainda não se sabe',
     ed_show_tempo: 'Cor Tempo',
+    ed_load_warning: 'Limiar de carga moderada',
+    ed_load_warning_helper: 'Carga moderada a partir desta percentagem da potência contratada; 50 % por omissão',
+    ed_load_critical: 'Limiar de carga elevada',
+    ed_load_critical_helper: 'Carga elevada a partir desta percentagem da potência contratada; 80 % por omissão',
     en_tempo: 'Cor Tempo de hoje',
     en_tomorrow: 'Cor Tempo de amanhã',
     en_tier1: 'Leitura 1', en_tier2: 'Leitura 2', en_tier3: 'Leitura 3', en_tier4: 'Leitura 4', en_tier5: 'Leitura 5', en_tier6: 'Leitura 6',
@@ -688,6 +724,10 @@ var ZlI18n = {
     tempo_red: 'Czerwony',
     tempo_unknown: 'Jeszcze nieznany',
     ed_show_tempo: 'Kolor Tempo',
+    ed_load_warning: 'Próg umiarkowanego obciążenia',
+    ed_load_warning_helper: 'Umiarkowane obciążenie od tego udziału mocy umownej; domyślnie 50 %',
+    ed_load_critical: 'Próg wysokiego obciążenia',
+    ed_load_critical_helper: 'Wysokie obciążenie od tego udziału mocy umownej; domyślnie 80 %',
     en_tempo: 'Kolor Tempo dziś',
     en_tomorrow: 'Kolor Tempo jutro',
     en_tier1: 'Strefa 1', en_tier2: 'Strefa 2', en_tier3: 'Strefa 3', en_tier4: 'Strefa 4', en_tier5: 'Strefa 5', en_tier6: 'Strefa 6',
@@ -757,6 +797,10 @@ var ZlI18n = {
     tempo_red: 'Roșu',
     tempo_unknown: 'Încă necunoscută',
     ed_show_tempo: 'Culoare Tempo',
+    ed_load_warning: 'Prag de sarcină moderată',
+    ed_load_warning_helper: 'Sarcină moderată de la acest procent din puterea contractată; implicit 50 %',
+    ed_load_critical: 'Prag de sarcină ridicată',
+    ed_load_critical_helper: 'Sarcină ridicată de la acest procent din puterea contractată; implicit 80 %',
     en_tempo: 'Culoare Tempo azi',
     en_tomorrow: 'Culoare Tempo mâine',
     en_tier1: 'Index 1', en_tier2: 'Index 2', en_tier3: 'Index 3', en_tier4: 'Index 4', en_tier5: 'Index 5', en_tier6: 'Index 6',
@@ -826,6 +870,10 @@ var ZlI18n = {
     tempo_red: 'Rød',
     tempo_unknown: 'Endnu ikke kendt',
     ed_show_tempo: 'Tempo-farve',
+    ed_load_warning: 'Tærskel for moderat belastning',
+    ed_load_warning_helper: 'Moderat belastning fra denne andel af den abonnerede effekt; 50 % som standard',
+    ed_load_critical: 'Tærskel for høj belastning',
+    ed_load_critical_helper: 'Høj belastning fra denne andel af den abonnerede effekt; 80 % som standard',
     en_tempo: 'Tempo-farve i dag',
     en_tomorrow: 'Tempo-farve i morgen',
     en_tier1: 'Tælleværk 1', en_tier2: 'Tælleværk 2', en_tier3: 'Tælleværk 3', en_tier4: 'Tælleværk 4', en_tier5: 'Tælleværk 5', en_tier6: 'Tælleværk 6',
@@ -895,6 +943,10 @@ var ZlI18n = {
     tempo_red: 'Röd',
     tempo_unknown: 'Inte känd än',
     ed_show_tempo: 'Tempo-färg',
+    ed_load_warning: 'Tröskel för måttlig last',
+    ed_load_warning_helper: 'Måttlig last från denna andel av den abonnerade effekten; 50 % som standard',
+    ed_load_critical: 'Tröskel för hög last',
+    ed_load_critical_helper: 'Hög last från denna andel av den abonnerade effekten; 80 % som standard',
     en_tempo: 'Tempo-färg i dag',
     en_tomorrow: 'Tempo-färg i morgon',
     en_tier1: 'Register 1', en_tier2: 'Register 2', en_tier3: 'Register 3', en_tier4: 'Register 4', en_tier5: 'Register 5', en_tier6: 'Register 6',
@@ -964,6 +1016,10 @@ var ZlI18n = {
     tempo_red: 'Червен',
     tempo_unknown: 'Все още не е известен',
     ed_show_tempo: 'Цвят Tempo',
+    ed_load_warning: 'Праг за умерено натоварване',
+    ed_load_warning_helper: 'Умерено натоварване от този дял от договорената мощност; по подразбиране 50 %',
+    ed_load_critical: 'Праг за високо натоварване',
+    ed_load_critical_helper: 'Високо натоварване от този дял от договорената мощност; по подразбиране 80 %',
     en_tempo: 'Цвят Tempo днес',
     en_tomorrow: 'Цвят Tempo утре',
     en_tier1: 'Тарифа 1', en_tier2: 'Тарифа 2', en_tier3: 'Тарифа 3', en_tier4: 'Тарифа 4', en_tier5: 'Тарифа 5', en_tier6: 'Тарифа 6',
@@ -1033,6 +1089,10 @@ var ZlI18n = {
     tempo_red: 'Красный',
     tempo_unknown: 'Пока неизвестен',
     ed_show_tempo: 'Цвет Tempo',
+    ed_load_warning: 'Порог умеренной нагрузки',
+    ed_load_warning_helper: 'Умеренная нагрузка с этой доли договорной мощности; по умолчанию 50 %',
+    ed_load_critical: 'Порог высокой нагрузки',
+    ed_load_critical_helper: 'Высокая нагрузка с этой доли договорной мощности; по умолчанию 80 %',
     en_tempo: 'Цвет Tempo сегодня',
     en_tomorrow: 'Цвет Tempo завтра',
     en_tier1: 'Тариф 1', en_tier2: 'Тариф 2', en_tier3: 'Тариф 3', en_tier4: 'Тариф 4', en_tier5: 'Тариф 5', en_tier6: 'Тариф 6',
@@ -1102,6 +1162,10 @@ var ZlI18n = {
     tempo_red: 'Червоний',
     tempo_unknown: 'Ще невідомий',
     ed_show_tempo: 'Колір Tempo',
+    ed_load_warning: 'Поріг помірного навантаження',
+    ed_load_warning_helper: 'Помірне навантаження з цієї частки договірної потужності; типово 50 %',
+    ed_load_critical: 'Поріг високого навантаження',
+    ed_load_critical_helper: 'Високе навантаження з цієї частки договірної потужності; типово 80 %',
     en_tempo: 'Колір Tempo сьогодні',
     en_tomorrow: 'Колір Tempo завтра',
     en_tier1: 'Тариф 1', en_tier2: 'Тариф 2', en_tier3: 'Тариф 3', en_tier4: 'Тариф 4', en_tier5: 'Тариф 5', en_tier6: 'Тариф 6',
@@ -1171,6 +1235,10 @@ var ZlI18n = {
     tempo_red: 'Piros',
     tempo_unknown: 'Még nem ismert',
     ed_show_tempo: 'Tempo szín',
+    ed_load_warning: 'Közepes terhelés küszöbe',
+    ed_load_warning_helper: 'Közepes terhelés a szerződéses teljesítmény ezen arányától; alapértelmezés 50 %',
+    ed_load_critical: 'Magas terhelés küszöbe',
+    ed_load_critical_helper: 'Magas terhelés a szerződéses teljesítmény ezen arányától; alapértelmezés 80 %',
     en_tempo: 'Mai Tempo szín',
     en_tomorrow: 'Holnapi Tempo szín',
     en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
@@ -1240,6 +1308,10 @@ var ZlI18n = {
     tempo_red: 'Červená',
     tempo_unknown: 'Zatiaľ neznáma',
     ed_show_tempo: 'Farba Tempo',
+    ed_load_warning: 'Prah stredného zaťaženia',
+    ed_load_warning_helper: 'Stredné zaťaženie od tohto podielu zmluvného výkonu; predvolene 50 %',
+    ed_load_critical: 'Prah vysokého zaťaženia',
+    ed_load_critical_helper: 'Vysoké zaťaženie od tohto podielu zmluvného výkonu; predvolene 80 %',
     en_tempo: 'Farba Tempo dnes',
     en_tomorrow: 'Farba Tempo zajtra',
     en_tier1: 'Pásmo 1', en_tier2: 'Pásmo 2', en_tier3: 'Pásmo 3', en_tier4: 'Pásmo 4', en_tier5: 'Pásmo 5', en_tier6: 'Pásmo 6',
@@ -1309,6 +1381,10 @@ var ZlI18n = {
     tempo_red: 'Červená',
     tempo_unknown: 'Zatím neznámá',
     ed_show_tempo: 'Barva Tempo',
+    ed_load_warning: 'Práh středního zatížení',
+    ed_load_warning_helper: 'Střední zatížení od tohoto podílu sjednaného příkonu; výchozí 50 %',
+    ed_load_critical: 'Práh vysokého zatížení',
+    ed_load_critical_helper: 'Vysoké zatížení od tohoto podílu sjednaného příkonu; výchozí 80 %',
     en_tempo: 'Barva Tempo dnes',
     en_tomorrow: 'Barva Tempo zítra',
     en_tier1: 'Pásmo 1', en_tier2: 'Pásmo 2', en_tier3: 'Pásmo 3', en_tier4: 'Pásmo 4', en_tier5: 'Pásmo 5', en_tier6: 'Pásmo 6',
@@ -1378,6 +1454,10 @@ var ZlI18n = {
     tempo_red: 'Rdeča',
     tempo_unknown: 'Še ni znana',
     ed_show_tempo: 'Barva Tempo',
+    ed_load_warning: 'Prag zmerne obremenitve',
+    ed_load_warning_helper: 'Zmerna obremenitev od tega deleža priključne moči; privzeto 50 %',
+    ed_load_critical: 'Prag visoke obremenitve',
+    ed_load_critical_helper: 'Visoka obremenitev od tega deleža priključne moči; privzeto 80 %',
     en_tempo: 'Barva Tempo danes',
     en_tomorrow: 'Barva Tempo jutri',
     en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
@@ -1447,6 +1527,10 @@ var ZlI18n = {
     tempo_red: 'Sarkana',
     tempo_unknown: 'Vēl nav zināma',
     ed_show_tempo: 'Tempo krāsa',
+    ed_load_warning: 'Mērenas slodzes slieksnis',
+    ed_load_warning_helper: 'Mērena slodze no šīs līgumjaudas daļas; pēc noklusējuma 50 %',
+    ed_load_critical: 'Augstas slodzes slieksnis',
+    ed_load_critical_helper: 'Augsta slodze no šīs līgumjaudas daļas; pēc noklusējuma 80 %',
     en_tempo: 'Tempo krāsa šodien',
     en_tomorrow: 'Tempo krāsa rīt',
     en_tier1: 'Zona 1', en_tier2: 'Zona 2', en_tier3: 'Zona 3', en_tier4: 'Zona 4', en_tier5: 'Zona 5', en_tier6: 'Zona 6',
@@ -1516,6 +1600,10 @@ var ZlI18n = {
     tempo_red: 'Κόκκινη',
     tempo_unknown: 'Δεν είναι ακόμη γνωστή',
     ed_show_tempo: 'Χρώμα Tempo',
+    ed_load_warning: 'Όριο μέτριου φορτίου',
+    ed_load_warning_helper: 'Μέτριο φορτίο από αυτό το ποσοστό της συμφωνημένης ισχύος· προεπιλογή 50 %',
+    ed_load_critical: 'Όριο υψηλού φορτίου',
+    ed_load_critical_helper: 'Υψηλό φορτίο από αυτό το ποσοστό της συμφωνημένης ισχύος· προεπιλογή 80 %',
     en_tempo: 'Χρώμα Tempo σήμερα',
     en_tomorrow: 'Χρώμα Tempo αύριο',
     en_tier1: 'Ζώνη 1', en_tier2: 'Ζώνη 2', en_tier3: 'Ζώνη 3', en_tier4: 'Ζώνη 4', en_tier5: 'Ζώνη 5', en_tier6: 'Ζώνη 6',
@@ -1787,11 +1875,20 @@ var ZL_LOAD_COLORS = {
   off: 'var(--disabled-text-color, #9e9e9e)',
 };
 
-function zlLoadLevel(pct) {
+// Load level from the share of the subscribed power in use: `load_warning` / `load_critical` (%, 50 / 80 by default).
+var ZL_LOAD_WARNING = 50;
+var ZL_LOAD_CRITICAL = 80;
+function zlLoadLevel(pct, warning = ZL_LOAD_WARNING, critical = ZL_LOAD_CRITICAL) {
   if (pct == null) return 'low';
-  if (pct >= 80) return 'high';
-  if (pct >= 50) return 'mid';
+  if (pct >= critical) return 'high';
+  if (pct >= warning) return 'mid';
   return 'low';
+}
+
+// A threshold option as a number, or its default when it is missing or not a number.
+function zlPct(v, def) {
+  var n = v == null || v === '' ? NaN : Number(v);
+  return Number.isFinite(n) ? n : def;
 }
 
 // Area chart of a series [{t, v}] (5-minute means), drawn in a 300×64 box on a real time axis: x runs over the
@@ -1971,13 +2068,15 @@ class ZlinkyCard extends HTMLElement {
         .then((x) => (x?.change != null ? Number(x.change) : null)).catch(() => { failed = true; return null; })
       : Promise.resolve(null));
     var curve = wantCurve
-      ? hass.callWS({ type: 'recorder/statistics_during_period', statistic_ids: [curveId], period: '5minute', types: ['mean'],
+      ? hass.callWS({ type: 'recorder/statistics_during_period', statistic_ids: [curveId], period: '5minute', types: ['mean', 'max'],
         start_time: new Date(Date.now() - 24 * 3600000).toISOString() })
         .then((x) => {
           var unitK = /^k/.test(String(this._st(curveId)?.attributes.unit_of_measurement || ''));
+          // `v` (the 5-minute mean) draws the curve, `max` (the highest reading in those 5 minutes) gives its peak.
           return (x?.[curveId] || []).map((p) => ({
             t: typeof p.start === 'number' ? p.start : Date.parse(p.start),
             v: Number(p.mean) * (unitK ? 1000 : 1),
+            max: p.max == null ? null : Number(p.max) * (unitK ? 1000 : 1),
           })).filter((p) => Number.isFinite(p.t) && Number.isFinite(p.v));
         }).catch(() => { failed = true; return []; })
       : Promise.resolve([]);
@@ -2027,7 +2126,7 @@ class ZlinkyCard extends HTMLElement {
     var mainUnit = va != null ? 'VA' : 'W';
     var subscribed = this._subscribed();
     var pct = main != null ? Math.max(0, Math.min(100, (main / (subscribed * 1000)) * 100)) : null;
-    var level = online ? zlLoadLevel(pct) : 'off';
+    var level = online ? zlLoadLevel(pct, zlPct(c.load_warning, ZL_LOAD_WARNING), zlPct(c.load_critical, ZL_LOAD_CRITICAL)) : 'off';
     var tariff = this._avail(ent.tariff) ? this._st(ent.tariff).state : '';
     var sub = tariff ? `${this._t('meter')} · ${tariff}` : this._t('meter');
     return {
@@ -2138,7 +2237,8 @@ class ZlinkyCard extends HTMLElement {
     var graph = '';
     var curve = this._stats?.curve;
     if (c.show_graph && curve && curve.length > 1) {
-      var peak = Math.max(...curve.map((p) => p.v));
+      // The real peak: the highest reading of the 24 h, not the highest 5-minute mean (which smooths a short peak away).
+      var peak = Math.max(...curve.map((p) => (Number.isFinite(p.max) ? p.max : p.v)));
       graph = '<div class="section">' +
         `<div class="section-title"><ha-icon icon="mdi:chart-areaspline"></ha-icon><span>${zlUnitCase(this._t('last_24h'))}</span><span class="aside">${zlEsc(this._t('peak').replace('{v}', zlPower(lang, peak, m.mainUnit)))}</span></div>` +
         `<div class="graph">${zlSpark(curve)}</div></div>`;
@@ -2201,16 +2301,35 @@ class ZlinkyCard extends HTMLElement {
 
   // Tempo contract: today's color and tomorrow's (or "not known yet" until it is announced, around 11 am).
   // Nothing when the tariff period names no Tempo color.
-  _tempo(ent) {
-    if (!this._config.show_tempo) return '';
+  // The days shown: [{ label, color, name, tc, id }], today's then tomorrow's when its sensor is there; [] when hidden.
+  _tempoDays(ent) {
+    if (!this._config.show_tempo) return [];
     var src = ent.tempo || ent.tariff;
     var today = this._avail(src) ? zlTempo(this._st(src).state) : null;
-    if (!today) return '';
-    var day = (label, color, id) => `<button class="tday" data-more="${zlEsc(id)}" style="--tc:${color ? ZL_TEMPO_COLORS[color] : 'var(--secondary-text-color)'}">` +
-      `<span class="tdot${color ? '' : ' none'}"></span><span class="tdl">${zlEsc(label)}</span>` +
-      `<span class="tdv">${zlEsc(this._t(color ? `tempo_${color}` : 'tempo_unknown'))}</span></button>`;
-    var tomorrow = ent.tomorrow && this._avail(ent.tomorrow) ? day(this._t('tomorrow'), zlTempo(this._st(ent.tomorrow).state), ent.tomorrow) : '';
-    return `<div class="tempo">${day(this._t('today'), today, src)}${tomorrow}</div>`;
+    if (!today) return [];
+    var day = (label, color, id) => ({ label, color, id, name: this._t(color ? `tempo_${color}` : 'tempo_unknown'),
+      tc: color ? ZL_TEMPO_COLORS[color] : 'var(--secondary-text-color)' });
+    var days = [day(this._t('today'), today, src)];
+    if (ent.tomorrow && this._avail(ent.tomorrow)) days.push(day(this._t('tomorrow'), zlTempo(this._st(ent.tomorrow).state), ent.tomorrow));
+    return days;
+  }
+
+  _tempo(ent) {
+    var days = this._tempoDays(ent).map((d) => `<button class="tday" data-more="${zlEsc(d.id)}" style="--tc:${d.tc}">` +
+      `<span class="tdot${d.color ? '' : ' none'}"></span><span class="tdl">${zlEsc(d.label)}</span>` +
+      `<span class="tdv">${zlEsc(d.name)}</span></button>`);
+    return days.length ? `<div class="tempo">${days.join('')}</div>` : '';
+  }
+
+  // Mini card: today's and tomorrow's Tempo colors as two dots, each with its day; the color's name is in the
+  // tooltip and the accessible name, a click opens the sensor.
+  _tempoMini(ent) {
+    var days = this._tempoDays(ent).map((d) => {
+      var tip = zlEsc(`${d.label} · ${d.name}`);
+      return `<button class="tmini" data-more="${zlEsc(d.id)}" style="--tc:${d.tc}" title="${tip}" aria-label="${tip}">` +
+        `<span class="tdot${d.color ? '' : ' none'}"></span><span class="tdl">${zlEsc(d.label)}</span></button>`;
+    });
+    return days.length ? `<div class="line tminis">${days.join('')}</div>` : '';
   }
 
   // The device is there but none of the sensors that tell its state (index, apparent or active power) was
@@ -2277,7 +2396,7 @@ class ZlinkyCard extends HTMLElement {
       '<div class="content">' + this._picture(m) +
         '<div class="info">' +
           this._big(m.ent.apparent_power || m.ent.power, m.mainText) +
-          this._loadBar(m) + lines.join('') +
+          this._loadBar(m) + lines.join('') + this._tempoMini(m.ent) +
         '</div></div>' +
     '</ha-card>';
   }
@@ -2370,6 +2489,9 @@ class ZlinkyCard extends HTMLElement {
       '.tdot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; background: var(--tc); box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary-text-color) 18%, transparent); }' +
       '.tdot.none { background: none; border: 1px dashed var(--secondary-text-color); box-shadow: none; box-sizing: border-box; }' +
       '.tdl { color: var(--secondary-text-color); white-space: nowrap; }' +
+      '.tminis { flex-wrap: wrap; gap: 4px 10px; }' +
+      '.tmini { display: inline-flex; align-items: center; gap: 5px; min-width: 0; }' +
+      '.tmini .tdot { width: 8px; height: 8px; }' +
       '.tdv { margin-left: auto; font-weight: 500; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }' +
       '.tile { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 12px; min-width: 0;' +
@@ -2470,7 +2592,8 @@ function zlPriceList(price) {
   return Array.isArray(price) || typeof price === 'string';
 }
 
-var ZL_EDITOR_DEFAULTS = { show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, zoom: true };
+var ZL_EDITOR_DEFAULTS = { show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, zoom: true,
+  load_warning: ZL_LOAD_WARNING, load_critical: ZL_LOAD_CRITICAL };
 
 class ZlinkyCardEditor extends HTMLElement {
   setConfig(config) {
@@ -2507,6 +2630,10 @@ class ZlinkyCardEditor extends HTMLElement {
       },
       // A sensor as the subscribed power. Editor-only field, written back to `subscribed_power`.
       { name: 'subscribed_power_entity', selector: { entity: { domain: ['sensor', 'input_number', 'number'] } } },
+      {
+        type: 'grid', name: '', schema: ['load_warning', 'load_critical']
+          .map((name) => ({ name, selector: { number: { min: 0, max: 100, step: 1, mode: 'box', unit_of_measurement: '%' } } })),
+      },
       { name: 'tiers', selector: { text: { multiple: true } } },
       // One price per tier: `price` as a list. Editor-only field, written back to `price`.
       { name: 'prices', selector: { text: { multiple: true } } },
