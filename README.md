@@ -86,8 +86,8 @@ The Marketplace registers the dashboard resource for you.
 
 ### Manual
 
-1. Download `zlinky-card.js` from the [latest release](https://github.com/juju35/ha-zlinky-card/releases/latest)
-2. Copy it to `/config/www/zlinky-card.js`
+1. Download `zlinky-card.js` and the `zlinky-card.i18n.*.js` translation files from the [latest release](https://github.com/juju35/ha-zlinky-card/releases/latest)
+2. Copy them all to `/config/www/` (without the translation files, the cards show in English)
 3. Go to **Settings → Dashboards → Resources** → Add resource:
    - URL: `/local/zlinky-card.js`
    - Type: **JavaScript Module**
