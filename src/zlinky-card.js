@@ -2043,6 +2043,32 @@ class ZlinkyCard extends HTMLElement {
     this._render(r);
   }
 
+  // The 24 h curve from the recorder's state history, averaged in 5-minute steps (mean and highest reading), for a
+  // power sensor that has no long-term statistics. [] when the history has fewer than two readings.
+  _historyCurve(id) {
+    var end = Date.now(), start = end - 24 * 3600000;
+    return this._hass.callWS({ type: 'history/history_during_period', start_time: new Date(start).toISOString(),
+      end_time: new Date(end).toISOString(), entity_ids: [id], minimal_response: true, no_attributes: true,
+      significant_changes_only: false })
+      .then((x) => {
+        var unitK = /^k/.test(String(this._st(id)?.attributes.unit_of_measurement || ''));
+        var steps = new Map();
+        (x?.[id] || []).forEach((h) => {
+          var v = Number(h.s ?? h.state) * (unitK ? 1000 : 1);
+          var t = h.lu != null ? h.lu * 1000 : Date.parse(h.last_updated || h.last_changed);
+          if (!Number.isFinite(v) || !Number.isFinite(t)) return;
+          var k = Math.floor(Math.max(t, start) / 300000) * 300000;
+          var b = steps.get(k) || { sum: 0, n: 0, max: -Infinity };
+          b.sum += v;
+          b.n += 1;
+          b.max = Math.max(b.max, v);
+          steps.set(k, b);
+        });
+        return [...steps.entries()].sort((a, b) => a[0] - b[0]).map(([t, b]) => ({ t, v: b.sum / b.n, max: b.max }));
+      })
+      .then((pts) => (pts.length > 1 ? pts : []));
+  }
+
   // Today / yesterday / this month from the recorder's long-term statistics, plus the 24 h power curve.
   _fetchStats(r) {
     var c = this._config, hass = this._hass;
@@ -2078,7 +2104,11 @@ class ZlinkyCard extends HTMLElement {
             v: Number(p.mean) * (unitK ? 1000 : 1),
             max: p.max == null ? null : Number(p.max) * (unitK ? 1000 : 1),
           })).filter((p) => Number.isFinite(p.t) && Number.isFinite(p.v));
-        }).catch(() => { failed = true; return []; })
+        })
+        // No long-term statistics (a sensor without state_class, such as the PAPP of some Zigbee2MQTT setups):
+        // the curve comes from the recorder's state history instead, in the same 5-minute steps.
+        .then((pts) => (pts.length > 1 ? pts : this._historyCurve(curveId)))
+        .catch(() => { failed = true; return []; })
       : Promise.resolve([]);
     var periods = [['today', 'day', 0], ['yesterday', 'day', -1], ['month', 'month', 0]];
     // Per period, each tier's kWh ({ tier1: 1.2, tier2: 3.4 }), or null when one of them is missing.
@@ -2277,10 +2307,13 @@ class ZlinkyCard extends HTMLElement {
         (rows.length ? `<div class="rows">${rows.join('')}</div>` : '') + '</div>';
     }
 
-    // Three-phase details, only when the other phases carry a voltage.
+    // Three-phase details: when the other phases carry a voltage (standard TIC, ZHA), or, for the historic TIC which
+    // gives no voltage per phase (Zigbee2MQTT IINST1/2/3), when phase 2 or 3 currents are there without any phase
+    // voltage sensor. A single-phase meter whose ZHA phase B / C sensors read 0 V shows none.
     var phases = '';
     var vb = this._numv(ent.voltage_b), vc = this._numv(ent.voltage_c);
-    if (c.show_phases && (vb > 0 || vc > 0)) {
+    var currentsOnly = !ent.voltage_b && !ent.voltage_c && (this._numv(ent.current_b) != null || this._numv(ent.current_c) != null);
+    if (c.show_phases && (vb > 0 || vc > 0 || currentsOnly)) {
       var maxA = Math.max(1, (m.subscribed * 1000) / 3 / 230);
       var lines = [['1', ent.current, ent.voltage], ['2', ent.current_b, ent.voltage_b], ['3', ent.current_c, ent.voltage_c]].map(([n, ci, vi]) => {
         var a = this._numv(ci), v = this._numv(vi);

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.8.1 - 2026-11-09
+
+### Fixes
+- **Historic TIC, three-phase** ([#5](https://github.com/juju35/ha-zlinky-card/issues/5)): the phase section now shows the three phases' currents when the meter gives no voltage per phase (Zigbee2MQTT `IINST1` / `IINST2` / `IINST3`), instead of staying hidden; a single-phase meter whose phase B / C sensors read 0 V still shows none.
+- **24 h curve without statistics**: when the power sensor has no long-term statistics (no `state_class`, as the `PAPP` of some Zigbee2MQTT setups), the curve and its peak are built from the recorder's state history, in the same 5-minute steps, instead of not showing.
+
+### Maintenance
+- Tests: historic three-phase meter (Zigbee2MQTT), the history fallback of the curve and its peak, no history query when the statistics give a curve.
+
 ## 1.8.0 - 2026-11-08
 
 ### What's new
