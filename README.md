@@ -208,6 +208,10 @@ sub_base: 15.65
 sub_hchp: 16.08
 ```
 
+| Contract comparison | Contract comparison, dark theme |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-compare.png" alt="ZLinky card comparing the Base and Off-peak / Peak contracts" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-compare-dark.png" alt="ZLinky card comparing the contracts, dark theme" width="400"> |
+
 The section shows each contract's cost, the share of your consumption in off-peak hours and which one saves how much, over the days the statistics cover (fewer than 365 the first year). Hours are read in Home Assistant's time zone; an hour counts as off-peak when its middle is (hourly statistics can't split 22:30). Tempo isn't compared: its cost depends on each past day's color, which the meter doesn't keep — on a Tempo contract, the consumption tiles already price each color with [one price per tier](#price-per-tier).
 
 ## Development

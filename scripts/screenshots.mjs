@@ -205,6 +205,18 @@ const ws = `window.__ws = async (msg) => {
   if (msg.type === "recorder/statistic_during_period") {
     return { change: msg.calendar.period === "month" ? 286.4 : (msg.calendar.offset === 0 ? 11.8 : 14.3) };
   }
+  // Contract comparison: a year of hourly kWh, the water heater at night (off-peak) and the usual day peaks.
+  if (msg.period === "hour" && (msg.types || []).includes("change")) {
+    const start = Math.ceil(Date.parse(msg.start_time) / 3600000) * 3600000, rows = [];
+    for (let t = start; t < Date.now(); t += 3600000) {
+      const h = new Date(t).getHours(), m = new Date(t).getMonth();
+      const winter = m < 3 || m > 9 ? 1.6 : 1;
+      const heater = h >= 23 || h < 5 ? 0.55 : 0;
+      const day = (h >= 7 && h < 9 ? 0.9 : 0) + (h >= 12 && h < 14 ? 0.5 : 0) + (h >= 18 && h < 22 ? 1.1 : 0);
+      rows.push({ start: t, change: 0.22 * winter + heater + day * winter });
+    }
+    return { [msg.statistic_ids[0]]: rows };
+  }
   const now = Date.now(), out = [];
   for (let i = 288; i > 0; i--) {
     const t = now - i * 300000, h = new Date(t).getUTCHours() + new Date(t).getUTCMinutes() / 60;
@@ -243,6 +255,14 @@ await render(
     file: theme === "dark" ? "mini-tempo-dark" : "mini-tempo", type: "zlinky-mini-card", theme, width: 380, config: { price: 0.2016 },
   }))),
   { icons, hass: tempoHass, extra: ws }
+);
+
+// Contract comparison: Base or Off-peak / Peak priced on the last 12 months (statistics from the recorder mock).
+const compare = { price: 0.2016, tiers: ["Off-peak", "Peak"], show_graph: false, show_index: false,
+  compare_base: 0.1952, compare_hc: 0.1635, compare_hp: 0.2081, hc_hours: "22:30-06:30", sub_base: 15.65, sub_hchp: 16.08 };
+await render(
+  ["light", "dark"].map((theme) => ({ file: theme === "dark" ? "card-compare-dark" : "card-compare", type: "zlinky-card", theme, width: 460, config: compare })),
+  { icons, hass, extra: ws }
 );
 
 // Every animation is recorded in both themes with the same setup: <file>.gif light, <file>-dark.gif dark.
