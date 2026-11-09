@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.10.2 - 2026-11-09
+
+### Improvements
+- Contract comparison: when Base and Off-peak / Peak are less than 2 % apart, the verdict reads *About the same: €4.56 apart* instead of naming a winner over a few euros a year.
+
 ## 1.10.1 - 2026-11-09
 
 ### Maintenance

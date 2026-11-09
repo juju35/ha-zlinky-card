@@ -50,6 +50,7 @@ var ZlI18n = {
     cmp_hchp: 'Heures creuses / pleines',
     cmp_share: '{p} % en heures creuses',
     cmp_saves: '{c} : {v} d\'économie',
+    cmp_same: 'Équivalents : {v} d\'écart',
     cmp_days: '{d} jours',
     ed_show_graph: 'Courbe 24 h',
     ed_show_stats: 'Consommations',
@@ -137,6 +138,7 @@ var ZlI18n = {
     cmp_hchp: 'Off-peak / Peak',
     cmp_share: '{p} % off-peak',
     cmp_saves: '{c} saves {v}',
+    cmp_same: 'About the same: {v} apart',
     cmp_days: '{d} days',
     ed_show_graph: '24 h graph',
     ed_show_stats: 'Consumption',
@@ -224,6 +226,7 @@ var ZlI18n = {
     cmp_hchp: 'Neben- / Hauptzeit',
     cmp_share: '{p} % in Nebenzeit',
     cmp_saves: '{c} spart {v}',
+    cmp_same: 'Etwa gleich: {v} Unterschied',
     cmp_days: '{d} Tage',
     ed_show_graph: '24-h-Verlauf',
     ed_show_stats: 'Verbrauch',
@@ -311,6 +314,7 @@ var ZlI18n = {
     cmp_hchp: 'Valle / punta',
     cmp_share: '{p} % en horas valle',
     cmp_saves: '{c} ahorra {v}',
+    cmp_same: 'Prácticamente igual: {v} de diferencia',
     cmp_days: '{d} días',
     ed_show_graph: 'Curva de 24 h',
     ed_show_stats: 'Consumos',
@@ -398,6 +402,7 @@ var ZlI18n = {
     cmp_hchp: 'Нижа / виша тарифа',
     cmp_share: '{p} % у нижој тарифи',
     cmp_saves: '{c} штеди {v}',
+    cmp_same: 'Готово исто: разлика {v}',
     cmp_days: '{d} дана',
     ed_show_graph: 'Крива за 24 h',
     ed_show_stats: 'Потрошња',
@@ -485,6 +490,7 @@ var ZlI18n = {
     cmp_hchp: 'Niža / viša tarifa',
     cmp_share: '{p} % u nižoj tarifi',
     cmp_saves: '{c} štedi {v}',
+    cmp_same: 'Gotovo isto: razlika {v}',
     cmp_days: '{d} dana',
     ed_show_graph: 'Kriva za 24 h',
     ed_show_stats: 'Potrošnja',
@@ -572,6 +578,7 @@ var ZlI18n = {
     cmp_hchp: 'Fuori picco / picco',
     cmp_share: '{p} % fuori picco',
     cmp_saves: '{c} fa risparmiare {v}',
+    cmp_same: 'Praticamente uguali: {v} di differenza',
     cmp_days: '{d} giorni',
     ed_show_graph: 'Curva 24 h',
     ed_show_stats: 'Consumi',
@@ -659,6 +666,7 @@ var ZlI18n = {
     cmp_hchp: 'Dal / piek',
     cmp_share: '{p} % in daluren',
     cmp_saves: '{c} bespaart {v}',
+    cmp_same: 'Ongeveer gelijk: {v} verschil',
     cmp_days: '{d} dagen',
     ed_show_graph: '24-uursgrafiek',
     ed_show_stats: 'Verbruik',
@@ -746,6 +754,7 @@ var ZlI18n = {
     cmp_hchp: 'Vazio / fora de vazio',
     cmp_share: '{p} % em vazio',
     cmp_saves: '{c} poupa {v}',
+    cmp_same: 'Praticamente igual: {v} de diferença',
     cmp_days: '{d} dias',
     ed_show_graph: 'Curva de 24 h',
     ed_show_stats: 'Consumos',
@@ -833,6 +842,7 @@ var ZlI18n = {
     cmp_hchp: 'Noc / dzień',
     cmp_share: '{p} % w strefie nocnej',
     cmp_saves: '{c}: oszczędność {v}',
+    cmp_same: 'Prawie to samo: różnica {v}',
     cmp_days: '{d} dni',
     ed_show_graph: 'Wykres 24 h',
     ed_show_stats: 'Zużycie',
@@ -920,6 +930,7 @@ var ZlI18n = {
     cmp_hchp: 'Noapte / zi',
     cmp_share: '{p} % noaptea',
     cmp_saves: '{c} economisește {v}',
+    cmp_same: 'Aproape la fel: diferență de {v}',
     cmp_days: '{d} zile',
     ed_show_graph: 'Grafic 24 h',
     ed_show_stats: 'Consum',
@@ -1007,6 +1018,7 @@ var ZlI18n = {
     cmp_hchp: 'Lav- / spidslast',
     cmp_share: '{p} % i lavlast',
     cmp_saves: '{c} sparer {v}',
+    cmp_same: 'Næsten det samme: {v} til forskel',
     cmp_days: '{d} dage',
     ed_show_graph: '24 t-graf',
     ed_show_stats: 'Forbrug',
@@ -1094,6 +1106,7 @@ var ZlI18n = {
     cmp_hchp: 'Låg- / högtid',
     cmp_share: '{p} % lågtid',
     cmp_saves: '{c} sparar {v}',
+    cmp_same: 'Ungefär samma: {v} i skillnad',
     cmp_days: '{d} dagar',
     ed_show_graph: '24 h-diagram',
     ed_show_stats: 'Förbrukning',
@@ -1181,6 +1194,7 @@ var ZlI18n = {
     cmp_hchp: 'Нощна / дневна',
     cmp_share: '{p} % нощна тарифа',
     cmp_saves: '{c} спестява {v}',
+    cmp_same: 'Почти еднакво: разлика {v}',
     cmp_days: '{d} дни',
     ed_show_graph: 'Графика за 24 h',
     ed_show_stats: 'Потребление',
@@ -1268,6 +1282,7 @@ var ZlI18n = {
     cmp_hchp: 'Ночь / день',
     cmp_share: '{p} % ночью',
     cmp_saves: '{c} экономит {v}',
+    cmp_same: 'Почти одинаково: разница {v}',
     cmp_days: '{d} дн.',
     ed_show_graph: 'График за 24 h',
     ed_show_stats: 'Потребление',
@@ -1355,6 +1370,7 @@ var ZlI18n = {
     cmp_hchp: 'Ніч / день',
     cmp_share: '{p} % вночі',
     cmp_saves: '{c} заощаджує {v}',
+    cmp_same: 'Майже однаково: різниця {v}',
     cmp_days: '{d} дн.',
     ed_show_graph: 'Графік за 24 h',
     ed_show_stats: 'Споживання',
@@ -1442,6 +1458,7 @@ var ZlI18n = {
     cmp_hchp: 'Völgy / csúcs',
     cmp_share: '{p} % völgyidőszakban',
     cmp_saves: '{c}: {v} megtakarítás',
+    cmp_same: 'Nagyjából ugyanannyi: {v} eltérés',
     cmp_days: '{d} nap',
     ed_show_graph: '24 h grafikon',
     ed_show_stats: 'Fogyasztás',
@@ -1529,6 +1546,7 @@ var ZlI18n = {
     cmp_hchp: 'Nízka / vysoká',
     cmp_share: '{p} % v nízkej tarife',
     cmp_saves: '{c} ušetrí {v}',
+    cmp_same: 'Takmer rovnaké: rozdiel {v}',
     cmp_days: '{d} dní',
     ed_show_graph: 'Graf za 24 h',
     ed_show_stats: 'Spotreba',
@@ -1616,6 +1634,7 @@ var ZlI18n = {
     cmp_hchp: 'Nízký / vysoký',
     cmp_share: '{p} % v nízkém tarifu',
     cmp_saves: '{c} ušetří {v}',
+    cmp_same: 'Téměř stejné: rozdíl {v}',
     cmp_days: '{d} dní',
     ed_show_graph: 'Graf za 24 h',
     ed_show_stats: 'Spotřeba',
@@ -1703,6 +1722,7 @@ var ZlI18n = {
     cmp_hchp: 'Nižja / višja',
     cmp_share: '{p} % v nižji tarifi',
     cmp_saves: '{c} prihrani {v}',
+    cmp_same: 'Skoraj enako: razlika {v}',
     cmp_days: '{d} dni',
     ed_show_graph: 'Graf 24 h',
     ed_show_stats: 'Poraba',
@@ -1790,6 +1810,7 @@ var ZlI18n = {
     cmp_hchp: 'Nakts / diena',
     cmp_share: '{p} % naktī',
     cmp_saves: '{c} ietaupa {v}',
+    cmp_same: 'Gandrīz vienādi: {v} starpība',
     cmp_days: '{d} dienas',
     ed_show_graph: '24 h grafiks',
     ed_show_stats: 'Patēriņš',
@@ -1877,6 +1898,7 @@ var ZlI18n = {
     cmp_hchp: 'Νύχτα / ημέρα',
     cmp_share: '{p} % νυχτερινό',
     cmp_saves: '{c}: εξοικονόμηση {v}',
+    cmp_same: 'Περίπου το ίδιο: διαφορά {v}',
     cmp_days: '{d} ημέρες',
     ed_show_graph: 'Γράφημα 24 h',
     ed_show_stats: 'Κατανάλωση',
@@ -2235,6 +2257,7 @@ var ZL_STATS_RETRY = 30000;
 
 // Contract comparison: the last 12 months of hourly consumption, priced as Base and as Off-peak / Peak.
 var ZL_COMPARE_DAYS = 365;
+var ZL_COMPARE_SAME = 0.02;
 var ZL_COMPARE_REFRESH = 6 * 3600000;
 
 // Off-peak ranges from "22:30-06:30, 12:00-14:00" as [start, end) in minutes of the day (end may be past midnight).
@@ -2470,7 +2493,10 @@ class ZlinkyCard extends HTMLElement {
     var share = Math.round((res.hc / res.total) * 100);
     var cheaper = res.hchp < res.base ? 'cmp_hchp' : 'cmp_base';
     var saving = Math.abs(res.base - res.hchp);
-    var verdict = this._t('cmp_saves').replace('{c}', this._t(cheaper)).replace('{v}', money(saving));
+    // Under 2 % apart (a few euros a year), neither contract really saves: said so rather than naming a winner.
+    var verdict = saving < ZL_COMPARE_SAME * Math.min(res.base, res.hchp)
+      ? this._t('cmp_same').replace('{v}', money(saving))
+      : this._t('cmp_saves').replace('{c}', this._t(cheaper)).replace('{v}', money(saving));
     return '<div class="section">' +
       `<div class="section-title"><ha-icon icon="mdi:scale-balance"></ha-icon><span>${zlEsc(this._t('cmp_title'))}</span><span class="aside">${zlEsc(this._t('cmp_days').replace('{d}', zlNum(lang, res.days, 0)))}</span></div>` +
       `<div class="row"><span>${zlEsc(this._t('cmp_base'))}</span><span class="rv">${zlEsc(money(res.base))}</span></div>` +

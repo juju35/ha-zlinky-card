@@ -1319,6 +1319,11 @@ test("full card: the comparison section, from one hourly statistics query", asyn
   assert.match(html, /33 % off-peak/);
   assert.match(html, /Base saves €0\.80/);
   assert.match(html, /2 days/);
+  // Under 2 % apart, no winner: 48 kWh × 0.215 = €10.32 against €10.40.
+  const close = make(ZlinkyCard, hass, { ...PRICES, compare_base: 0.215, language: "en" });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.match(close.shadowRoot.innerHTML, /About the same: €0\.08 apart/);
+  assert.doesNotMatch(close.shadowRoot.innerHTML, /saves/);
   // Without the off-peak hours: no section, no query.
   calls.length = 0;
   make(ZlinkyCard, hass, { compare_base: 0.2, compare_hc: 0.15, compare_hp: 0.25 });
