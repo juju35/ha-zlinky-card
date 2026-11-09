@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
 
-const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, zlMorph, ZlI18n, zlLang, zlNum, zlMoney, customElements } = loadCard("zlinky-card.js", [
+const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, zlMorph, ZlI18n, zlLang, zlNum, zlMoney, zlCompare, zlHcRanges, customElements } = loadCard("zlinky-card.js", [
   "ZlinkyCard",
   "ZlinkyMiniCard",
   "zlFindDevice",
@@ -12,6 +12,8 @@ const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, zlMorph, ZlI18n, zlLa
   "zlLang",
   "zlNum",
   "zlMoney",
+  "zlCompare",
+  "zlHcRanges",
 ]);
 
 const st = (state, attributes = {}) => ({ state, attributes });
@@ -1271,4 +1273,55 @@ test("the state history is not queried when the statistics give a curve", async 
   make(ZlinkyCard, z2mHistoricHass({ callWS }));
   await new Promise((r) => setTimeout(r, 10));
   assert.equal(calls.filter((c) => c.type === "history/history_during_period").length, 0);
+});
+
+// Two days of 1 kWh every hour, from midnight in Paris (UTC+1 in winter).
+const TWO_DAYS = Array.from({ length: 48 }, (_, i) => ({ start: Date.parse("2026-01-12T00:00:00+01:00") + i * 3600000, kwh: 1 }));
+const PRICES = { compare_base: 0.2, compare_hc: 0.15, compare_hp: 0.25, hc_hours: "22:00-06:00" };
+
+test("off-peak hours are read from the text, a range over midnight wraps", () => {
+  assert.equal(JSON.stringify(zlHcRanges("22:30-06:30, 12h00-14h00; nonsense")), "[[1350,390],[720,840]]");
+  assert.equal(zlHcRanges("").length, 0);
+});
+
+test("the comparison prices each hour as Base and as Off-peak / Peak, in the meter's time zone", () => {
+  const res = zlCompare(TWO_DAYS, PRICES, "Europe/Paris");
+  assert.equal(res.days, 2);
+  assert.equal(res.total, 48);
+  assert.equal(res.hc, 16);
+  assert.equal(res.base.toFixed(2), "9.60");
+  assert.equal(res.hchp.toFixed(2), "10.40");
+  // Subscriptions, monthly, over the 2 days covered.
+  const sub = zlCompare(TWO_DAYS, { ...PRICES, sub_base: 30.44, sub_hchp: 45.66 }, "Europe/Paris");
+  assert.equal(sub.base.toFixed(2), "11.60");
+  assert.equal(sub.hchp.toFixed(2), "13.40");
+  // An hour counts as off-peak when its middle is: 22:30-06:30 takes 22:00-23:00 and 06:00-07:00 out.
+  assert.equal(zlCompare(TWO_DAYS, { ...PRICES, hc_hours: "22:30-06:30" }, "Europe/Paris").hc, 16);
+  assert.equal(zlCompare(TWO_DAYS, { ...PRICES, hc_hours: "23:00-06:00" }, "Europe/Paris").hc, 14);
+});
+
+test("full card: the comparison section, from one hourly statistics query", async () => {
+  const calls = [];
+  const callWS = (msg) => {
+    calls.push(msg);
+    if (msg.type === "recorder/statistics_during_period" && msg.period === "hour")
+      return Promise.resolve({ [msg.statistic_ids[0]]: TWO_DAYS.map((h) => ({ start: h.start, change: h.kwh })) });
+    return Promise.resolve({ change: 1 });
+  };
+  const hass = { ...zhaHass({ callWS }), config: { time_zone: "Europe/Paris", currency: "EUR" } };
+  const card = make(ZlinkyCard, hass, { ...PRICES, language: "en" });
+  await new Promise((r) => setTimeout(r, 10));
+  const html = card.shadowRoot.innerHTML;
+  const hourly = calls.filter((c) => c.period === "hour");
+  assert.equal(hourly.length, 1);
+  assert.equal(hourly[0].statistic_ids[0], "sensor.lixee_zlinky_tic_consommation");
+  assert.match(html, /Base or Off-peak\?/);
+  assert.match(html, /33 % off-peak/);
+  assert.match(html, /Base saves €0\.80/);
+  assert.match(html, /2 days/);
+  // Without the off-peak hours: no section, no query.
+  calls.length = 0;
+  make(ZlinkyCard, hass, { compare_base: 0.2, compare_hc: 0.15, compare_hp: 0.25 });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.period === "hour").length, 0);
 });

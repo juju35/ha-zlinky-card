@@ -37,6 +37,20 @@ var ZlI18n = {
     ed_tiers_helper: 'Dans l\'ordre des index 1 à 6 (ex. Heures creuses, Heures pleines)',
     ed_prices: 'Prix par index',
     ed_prices_helper: 'Un prix par index, dans le même ordre : nombre ou capteur donnant le prix du kWh. Remplace le prix du kWh',
+    ed_compare: 'Comparer Base et Heures creuses',
+    ed_compare_base: 'Prix Base par kWh',
+    ed_compare_hc: 'Prix Heures creuses par kWh',
+    ed_compare_hp: 'Prix Heures pleines par kWh',
+    ed_hc_hours: 'Heures creuses',
+    ed_hc_hours_helper: 'Par ex. 22:30-06:30, ou 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Abonnement Base par mois',
+    ed_sub_hchp: 'Abonnement HC/HP par mois',
+    cmp_title: 'Base ou Heures creuses ?',
+    cmp_base: 'Base',
+    cmp_hchp: 'Heures creuses / pleines',
+    cmp_share: '{p} % en heures creuses',
+    cmp_saves: '{c} : {v} d\'économie',
+    cmp_days: '{d} jours',
     ed_show_graph: 'Courbe 24 h',
     ed_show_stats: 'Consommations',
     ed_show_index: 'Index du compteur',
@@ -110,6 +124,20 @@ var ZlI18n = {
     ed_tiers_helper: 'In index order, 1 to 6 (e.g. Off-peak, Peak)',
     ed_prices: 'Price per tier',
     ed_prices_helper: 'One price per tier, in the same order: a number or a sensor giving the price per kWh. Replaces the price per kWh',
+    ed_compare: 'Compare Base and Off-peak',
+    ed_compare_base: 'Base price per kWh',
+    ed_compare_hc: 'Off-peak price per kWh',
+    ed_compare_hp: 'Peak price per kWh',
+    ed_hc_hours: 'Off-peak hours',
+    ed_hc_hours_helper: 'E.g. 22:30-06:30, or 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Base subscription per month',
+    ed_sub_hchp: 'Off-peak / Peak subscription per month',
+    cmp_title: 'Base or Off-peak?',
+    cmp_base: 'Base',
+    cmp_hchp: 'Off-peak / Peak',
+    cmp_share: '{p} % off-peak',
+    cmp_saves: '{c} saves {v}',
+    cmp_days: '{d} days',
     ed_show_graph: '24 h graph',
     ed_show_stats: 'Consumption',
     ed_show_index: 'Meter index',
@@ -183,6 +211,20 @@ var ZlI18n = {
     ed_tiers_helper: 'In der Reihenfolge der Zählwerke 1 bis 6 (z. B. HC Nebenzeit, HP Hauptzeit)',
     ed_prices: 'Preis pro Zählwerk',
     ed_prices_helper: 'Ein Preis pro Zählwerk, in derselben Reihenfolge: Zahl oder Sensor mit dem Preis pro kWh. Ersetzt den Preis pro kWh',
+    ed_compare: 'Grundtarif und Nebenzeit vergleichen',
+    ed_compare_base: 'Grundtarif pro kWh',
+    ed_compare_hc: 'Nebenzeit-Preis pro kWh',
+    ed_compare_hp: 'Hauptzeit-Preis pro kWh',
+    ed_hc_hours: 'Nebenzeiten',
+    ed_hc_hours_helper: 'Z. B. 22:30-06:30 oder 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Grundgebühr Grundtarif pro Monat',
+    ed_sub_hchp: 'Grundgebühr HT/NT pro Monat',
+    cmp_title: 'Grundtarif oder Nebenzeit?',
+    cmp_base: 'Grundtarif',
+    cmp_hchp: 'Neben- / Hauptzeit',
+    cmp_share: '{p} % in Nebenzeit',
+    cmp_saves: '{c} spart {v}',
+    cmp_days: '{d} Tage',
     ed_show_graph: '24-h-Verlauf',
     ed_show_stats: 'Verbrauch',
     ed_show_index: 'Zählerstände',
@@ -256,6 +298,20 @@ var ZlI18n = {
     ed_tiers_helper: 'En el orden de los índices 1 a 6 (p. ej. HC horas valle, HP horas punta)',
     ed_prices: 'Precio por índice',
     ed_prices_helper: 'Un precio por índice, en el mismo orden: número o sensor con el precio del kWh. Sustituye al precio por kWh',
+    ed_compare: 'Comparar Base y Horas valle',
+    ed_compare_base: 'Precio Base por kWh',
+    ed_compare_hc: 'Precio horas valle por kWh',
+    ed_compare_hp: 'Precio horas punta por kWh',
+    ed_hc_hours: 'Horas valle',
+    ed_hc_hours_helper: 'P. ej. 22:30-06:30, o 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Abono Base al mes',
+    ed_sub_hchp: 'Abono valle / punta al mes',
+    cmp_title: '¿Base u horas valle?',
+    cmp_base: 'Base',
+    cmp_hchp: 'Valle / punta',
+    cmp_share: '{p} % en horas valle',
+    cmp_saves: '{c} ahorra {v}',
+    cmp_days: '{d} días',
     ed_show_graph: 'Curva de 24 h',
     ed_show_stats: 'Consumos',
     ed_show_index: 'Índices del contador',
@@ -329,6 +385,20 @@ var ZlI18n = {
     ed_tiers_helper: 'Редом по тарифама од 1 до 6 (нпр. Нижа тарифа, Виша тарифа)',
     ed_prices: 'Цена по тарифи',
     ed_prices_helper: 'Једна цена по тарифи, истим редом: број или сензор са ценом по kWh. Замењује цену по kWh',
+    ed_compare: 'Упореди Базну и Нижу тарифу',
+    ed_compare_base: 'Базна цена по kWh',
+    ed_compare_hc: 'Цена ниже тарифе по kWh',
+    ed_compare_hp: 'Цена више тарифе по kWh',
+    ed_hc_hours: 'Сати ниже тарифе',
+    ed_hc_hours_helper: 'Нпр. 22:30-06:30 или 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Базна претплата месечно',
+    ed_sub_hchp: 'Претплата ниже/више тарифе месечно',
+    cmp_title: 'Базна или нижа тарифа?',
+    cmp_base: 'Базна',
+    cmp_hchp: 'Нижа / виша тарифа',
+    cmp_share: '{p} % у нижој тарифи',
+    cmp_saves: '{c} штеди {v}',
+    cmp_days: '{d} дана',
     ed_show_graph: 'Крива за 24 h',
     ed_show_stats: 'Потрошња',
     ed_show_index: 'Стање бројила',
@@ -402,6 +472,20 @@ var ZlI18n = {
     ed_tiers_helper: 'Redom po tarifama od 1 do 6 (npr. Niža tarifa, Viša tarifa)',
     ed_prices: 'Cena po tarifi',
     ed_prices_helper: 'Jedna cena po tarifi, istim redom: broj ili senzor sa cenom po kWh. Zamenjuje cenu po kWh',
+    ed_compare: 'Uporedi Baznu i Nižu tarifu',
+    ed_compare_base: 'Bazna cena po kWh',
+    ed_compare_hc: 'Cena niže tarife po kWh',
+    ed_compare_hp: 'Cena više tarife po kWh',
+    ed_hc_hours: 'Sati niže tarife',
+    ed_hc_hours_helper: 'Npr. 22:30-06:30 ili 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Bazna pretplata mesečno',
+    ed_sub_hchp: 'Pretplata niže/više tarife mesečno',
+    cmp_title: 'Bazna ili niža tarifa?',
+    cmp_base: 'Bazna',
+    cmp_hchp: 'Niža / viša tarifa',
+    cmp_share: '{p} % u nižoj tarifi',
+    cmp_saves: '{c} štedi {v}',
+    cmp_days: '{d} dana',
     ed_show_graph: 'Kriva za 24 h',
     ed_show_stats: 'Potrošnja',
     ed_show_index: 'Stanje brojila',
@@ -475,6 +559,20 @@ var ZlI18n = {
     ed_tiers_helper: 'Nell\'ordine delle fasce da 1 a 6 (es. Fuori punta, Punta)',
     ed_prices: 'Prezzo per fascia',
     ed_prices_helper: 'Un prezzo per fascia, nello stesso ordine: numero o sensore con il prezzo del kWh. Sostituisce il prezzo per kWh',
+    ed_compare: 'Confronta Monoraria e Fasce',
+    ed_compare_base: 'Prezzo monorario per kWh',
+    ed_compare_hc: 'Prezzo fuori picco per kWh',
+    ed_compare_hp: 'Prezzo di picco per kWh',
+    ed_hc_hours: 'Ore fuori picco',
+    ed_hc_hours_helper: 'Es. 22:30-06:30, o 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Abbonamento monorario al mese',
+    ed_sub_hchp: 'Abbonamento fasce al mese',
+    cmp_title: 'Monoraria o fasce?',
+    cmp_base: 'Monoraria',
+    cmp_hchp: 'Fuori picco / picco',
+    cmp_share: '{p} % fuori picco',
+    cmp_saves: '{c} fa risparmiare {v}',
+    cmp_days: '{d} giorni',
     ed_show_graph: 'Curva 24 h',
     ed_show_stats: 'Consumi',
     ed_show_index: 'Letture del contatore',
@@ -548,6 +646,20 @@ var ZlI18n = {
     ed_tiers_helper: 'In de volgorde van telwerk 1 tot 6 (bijv. Daluren, Piekuren)',
     ed_prices: 'Prijs per telwerk',
     ed_prices_helper: 'Eén prijs per telwerk, in dezelfde volgorde: een getal of een sensor met de prijs per kWh. Vervangt de prijs per kWh',
+    ed_compare: 'Enkel- en dubbeltarief vergelijken',
+    ed_compare_base: 'Enkeltarief per kWh',
+    ed_compare_hc: 'Daltarief per kWh',
+    ed_compare_hp: 'Piektarief per kWh',
+    ed_hc_hours: 'Daluren',
+    ed_hc_hours_helper: 'Bijv. 22:30-06:30, of 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Vastrecht enkeltarief per maand',
+    ed_sub_hchp: 'Vastrecht dubbeltarief per maand',
+    cmp_title: 'Enkel- of dubbeltarief?',
+    cmp_base: 'Enkeltarief',
+    cmp_hchp: 'Dal / piek',
+    cmp_share: '{p} % in daluren',
+    cmp_saves: '{c} bespaart {v}',
+    cmp_days: '{d} dagen',
     ed_show_graph: '24-uursgrafiek',
     ed_show_stats: 'Verbruik',
     ed_show_index: 'Meterstanden',
@@ -621,6 +733,20 @@ var ZlI18n = {
     ed_tiers_helper: 'Pela ordem das leituras 1 a 6 (p. ex. Vazio, Fora de vazio)',
     ed_prices: 'Preço por leitura',
     ed_prices_helper: 'Um preço por leitura, pela mesma ordem: número ou sensor com o preço do kWh. Substitui o preço por kWh',
+    ed_compare: 'Comparar Simples e Bi-horária',
+    ed_compare_base: 'Preço simples por kWh',
+    ed_compare_hc: 'Preço vazio por kWh',
+    ed_compare_hp: 'Preço fora de vazio por kWh',
+    ed_hc_hours: 'Horas de vazio',
+    ed_hc_hours_helper: 'Ex. 22:30-06:30, ou 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Assinatura simples por mês',
+    ed_sub_hchp: 'Assinatura bi-horária por mês',
+    cmp_title: 'Simples ou bi-horária?',
+    cmp_base: 'Simples',
+    cmp_hchp: 'Vazio / fora de vazio',
+    cmp_share: '{p} % em vazio',
+    cmp_saves: '{c} poupa {v}',
+    cmp_days: '{d} dias',
     ed_show_graph: 'Curva de 24 h',
     ed_show_stats: 'Consumos',
     ed_show_index: 'Leituras do contador',
@@ -694,6 +820,20 @@ var ZlI18n = {
     ed_tiers_helper: 'W kolejności stref od 1 do 6 (np. Strefa nocna, Strefa dzienna)',
     ed_prices: 'Cena za strefę',
     ed_prices_helper: 'Jedna cena na strefę, w tej samej kolejności: liczba lub czujnik z ceną za kWh. Zastępuje cenę za kWh',
+    ed_compare: 'Porównaj taryfę jedno- i dwustrefową',
+    ed_compare_base: 'Cena taryfy jednostrefowej za kWh',
+    ed_compare_hc: 'Cena strefy nocnej za kWh',
+    ed_compare_hp: 'Cena strefy dziennej za kWh',
+    ed_hc_hours: 'Godziny strefy nocnej',
+    ed_hc_hours_helper: 'Np. 22:30-06:30 lub 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Opłata stała jednostrefowa miesięcznie',
+    ed_sub_hchp: 'Opłata stała dwustrefowa miesięcznie',
+    cmp_title: 'Jedno- czy dwustrefowa?',
+    cmp_base: 'Jednostrefowa',
+    cmp_hchp: 'Noc / dzień',
+    cmp_share: '{p} % w strefie nocnej',
+    cmp_saves: '{c}: oszczędność {v}',
+    cmp_days: '{d} dni',
     ed_show_graph: 'Wykres 24 h',
     ed_show_stats: 'Zużycie',
     ed_show_index: 'Stany licznika',
@@ -767,6 +907,20 @@ var ZlI18n = {
     ed_tiers_helper: 'În ordinea indexurilor, de la 1 la 6 (ex. Noapte, Zi)',
     ed_prices: 'Preț per index',
     ed_prices_helper: 'Un preț per index, în aceeași ordine: număr sau senzor cu prețul pe kWh. Înlocuiește prețul per kWh',
+    ed_compare: 'Compară Monoorar și Bioorar',
+    ed_compare_base: 'Preț monoorar pe kWh',
+    ed_compare_hc: 'Preț de noapte pe kWh',
+    ed_compare_hp: 'Preț de zi pe kWh',
+    ed_hc_hours: 'Ore de noapte',
+    ed_hc_hours_helper: 'De ex. 22:30-06:30 sau 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Abonament monoorar pe lună',
+    ed_sub_hchp: 'Abonament bioorar pe lună',
+    cmp_title: 'Monoorar sau bioorar?',
+    cmp_base: 'Monoorar',
+    cmp_hchp: 'Noapte / zi',
+    cmp_share: '{p} % noaptea',
+    cmp_saves: '{c} economisește {v}',
+    cmp_days: '{d} zile',
     ed_show_graph: 'Grafic 24 h',
     ed_show_stats: 'Consum',
     ed_show_index: 'Indexurile contorului',
@@ -840,6 +994,20 @@ var ZlI18n = {
     ed_tiers_helper: 'I tælleværkernes rækkefølge, 1 til 6 (f.eks. Lavlast, Spidslast)',
     ed_prices: 'Pris pr. tælleværk',
     ed_prices_helper: 'Én pris pr. tælleværk, i samme rækkefølge: et tal eller en sensor med prisen pr. kWh. Erstatter prisen pr. kWh',
+    ed_compare: 'Sammenlign Fast pris og Lavlast',
+    ed_compare_base: 'Fast pris pr. kWh',
+    ed_compare_hc: 'Lavlastpris pr. kWh',
+    ed_compare_hp: 'Spidslastpris pr. kWh',
+    ed_hc_hours: 'Lavlasttimer',
+    ed_hc_hours_helper: 'F.eks. 22:30-06:30 eller 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Abonnement fast pris pr. måned',
+    ed_sub_hchp: 'Abonnement lav/spids pr. måned',
+    cmp_title: 'Fast pris eller lavlast?',
+    cmp_base: 'Fast pris',
+    cmp_hchp: 'Lav- / spidslast',
+    cmp_share: '{p} % i lavlast',
+    cmp_saves: '{c} sparer {v}',
+    cmp_days: '{d} dage',
     ed_show_graph: '24 t-graf',
     ed_show_stats: 'Forbrug',
     ed_show_index: 'Målerstande',
@@ -913,6 +1081,20 @@ var ZlI18n = {
     ed_tiers_helper: 'I registerordning, 1 till 6 (t.ex. Lågpris, Högpris)',
     ed_prices: 'Pris per register',
     ed_prices_helper: 'Ett pris per register, i samma ordning: ett tal eller en sensor med priset per kWh. Ersätter priset per kWh',
+    ed_compare: 'Jämför Enkeltariff och Lågtid',
+    ed_compare_base: 'Enkeltariff per kWh',
+    ed_compare_hc: 'Lågtidspris per kWh',
+    ed_compare_hp: 'Högtidspris per kWh',
+    ed_hc_hours: 'Lågtidstimmar',
+    ed_hc_hours_helper: 'T.ex. 22:30-06:30 eller 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Abonnemang enkeltariff per månad',
+    ed_sub_hchp: 'Abonnemang låg/hög per månad',
+    cmp_title: 'Enkeltariff eller lågtid?',
+    cmp_base: 'Enkeltariff',
+    cmp_hchp: 'Låg- / högtid',
+    cmp_share: '{p} % lågtid',
+    cmp_saves: '{c} sparar {v}',
+    cmp_days: '{d} dagar',
     ed_show_graph: '24 h-diagram',
     ed_show_stats: 'Förbrukning',
     ed_show_index: 'Mätarställningar',
@@ -986,6 +1168,20 @@ var ZlI18n = {
     ed_tiers_helper: 'По реда на тарифите, от 1 до 6 (напр. Нощна, Дневна)',
     ed_prices: 'Цена за тарифа',
     ed_prices_helper: 'Една цена за тарифа, в същия ред: число или сензор с цената за kWh. Заменя цената за kWh',
+    ed_compare: 'Сравняване на Еднотарифен и Нощна тарифа',
+    ed_compare_base: 'Еднотарифна цена за kWh',
+    ed_compare_hc: 'Нощна цена за kWh',
+    ed_compare_hp: 'Дневна цена за kWh',
+    ed_hc_hours: 'Часове на нощна тарифа',
+    ed_hc_hours_helper: 'Напр. 22:30-06:30 или 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Абонамент еднотарифен на месец',
+    ed_sub_hchp: 'Абонамент дневна/нощна на месец',
+    cmp_title: 'Еднотарифен или нощна тарифа?',
+    cmp_base: 'Еднотарифен',
+    cmp_hchp: 'Нощна / дневна',
+    cmp_share: '{p} % нощна тарифа',
+    cmp_saves: '{c} спестява {v}',
+    cmp_days: '{d} дни',
     ed_show_graph: 'Графика за 24 h',
     ed_show_stats: 'Потребление',
     ed_show_index: 'Показания на електромера',
@@ -1059,6 +1255,20 @@ var ZlI18n = {
     ed_tiers_helper: 'В порядке тарифов, от 1 до 6 (например, Ночь, День)',
     ed_prices: 'Цена по тарифам',
     ed_prices_helper: 'Одна цена на тариф, в том же порядке: число или датчик с ценой за kWh. Заменяет цену за kWh',
+    ed_compare: 'Сравнить однотарифный и ночной',
+    ed_compare_base: 'Однотарифная цена за kWh',
+    ed_compare_hc: 'Ночная цена за kWh',
+    ed_compare_hp: 'Дневная цена за kWh',
+    ed_hc_hours: 'Часы ночного тарифа',
+    ed_hc_hours_helper: 'Напр. 22:30-06:30 или 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Абонплата однотарифная в месяц',
+    ed_sub_hchp: 'Абонплата день/ночь в месяц',
+    cmp_title: 'Однотарифный или ночной?',
+    cmp_base: 'Однотарифный',
+    cmp_hchp: 'Ночь / день',
+    cmp_share: '{p} % ночью',
+    cmp_saves: '{c} экономит {v}',
+    cmp_days: '{d} дн.',
     ed_show_graph: 'График за 24 h',
     ed_show_stats: 'Потребление',
     ed_show_index: 'Показания счетчика',
@@ -1132,6 +1342,20 @@ var ZlI18n = {
     ed_tiers_helper: 'У порядку тарифів, від 1 до 6 (наприклад, Ніч, День)',
     ed_prices: 'Ціна за тарифами',
     ed_prices_helper: 'Одна ціна на тариф, у тому самому порядку: число або датчик із ціною за kWh. Замінює ціну за kWh',
+    ed_compare: 'Порівняти однотарифний і нічний',
+    ed_compare_base: 'Однотарифна ціна за kWh',
+    ed_compare_hc: 'Нічна ціна за kWh',
+    ed_compare_hp: 'Денна ціна за kWh',
+    ed_hc_hours: 'Години нічного тарифу',
+    ed_hc_hours_helper: 'Напр. 22:30-06:30 або 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Абонплата однотарифна на місяць',
+    ed_sub_hchp: 'Абонплата день/ніч на місяць',
+    cmp_title: 'Однотарифний чи нічний?',
+    cmp_base: 'Однотарифний',
+    cmp_hchp: 'Ніч / день',
+    cmp_share: '{p} % вночі',
+    cmp_saves: '{c} заощаджує {v}',
+    cmp_days: '{d} дн.',
     ed_show_graph: 'Графік за 24 h',
     ed_show_stats: 'Споживання',
     ed_show_index: 'Показники лічильника',
@@ -1205,6 +1429,20 @@ var ZlI18n = {
     ed_tiers_helper: 'A tarifák sorrendjében, 1-től 6-ig (pl. Völgyidő, Csúcsidő)',
     ed_prices: 'Ár tarifánként',
     ed_prices_helper: 'Tarifánként egy ár, ugyanabban a sorrendben: szám vagy a kWh-árat adó érzékelő. A kWh-ár helyébe lép',
+    ed_compare: 'Egyzónás és vezérelt tarifa összevetése',
+    ed_compare_base: 'Egyzónás ár kWh-nként',
+    ed_compare_hc: 'Völgyidőszaki ár kWh-nként',
+    ed_compare_hp: 'Csúcsidőszaki ár kWh-nként',
+    ed_hc_hours: 'Völgyidőszak',
+    ed_hc_hours_helper: 'Pl. 22:30-06:30 vagy 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Egyzónás alapdíj havonta',
+    ed_sub_hchp: 'Kétzónás alapdíj havonta',
+    cmp_title: 'Egyzónás vagy völgyidőszak?',
+    cmp_base: 'Egyzónás',
+    cmp_hchp: 'Völgy / csúcs',
+    cmp_share: '{p} % völgyidőszakban',
+    cmp_saves: '{c}: {v} megtakarítás',
+    cmp_days: '{d} nap',
     ed_show_graph: '24 h grafikon',
     ed_show_stats: 'Fogyasztás',
     ed_show_index: 'Mérőállások',
@@ -1278,6 +1516,20 @@ var ZlI18n = {
     ed_tiers_helper: 'V poradí pásiem od 1 do 6 (napr. Nízka tarifa, Vysoká tarifa)',
     ed_prices: 'Cena podľa pásma',
     ed_prices_helper: 'Jedna cena na pásmo, v rovnakom poradí: číslo alebo senzor s cenou za kWh. Nahrádza cenu za kWh',
+    ed_compare: 'Porovnať jednotarif a nízku tarifu',
+    ed_compare_base: 'Cena jednotarifu za kWh',
+    ed_compare_hc: 'Cena nízkej tarify za kWh',
+    ed_compare_hp: 'Cena vysokej tarify za kWh',
+    ed_hc_hours: 'Hodiny nízkej tarify',
+    ed_hc_hours_helper: 'Napr. 22:30-06:30 alebo 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Poplatok jednotarif mesačne',
+    ed_sub_hchp: 'Poplatok dvojtarif mesačne',
+    cmp_title: 'Jednotarif alebo nízka tarifa?',
+    cmp_base: 'Jednotarif',
+    cmp_hchp: 'Nízka / vysoká',
+    cmp_share: '{p} % v nízkej tarife',
+    cmp_saves: '{c} ušetrí {v}',
+    cmp_days: '{d} dní',
     ed_show_graph: 'Graf za 24 h',
     ed_show_stats: 'Spotreba',
     ed_show_index: 'Stavy elektromera',
@@ -1351,6 +1603,20 @@ var ZlI18n = {
     ed_tiers_helper: 'V pořadí pásem od 1 do 6 (např. Nízký tarif, Vysoký tarif)',
     ed_prices: 'Cena podle pásma',
     ed_prices_helper: 'Jedna cena na pásmo, ve stejném pořadí: číslo nebo senzor s cenou za kWh. Nahrazuje cenu za kWh',
+    ed_compare: 'Porovnat jednotarif a nízký tarif',
+    ed_compare_base: 'Cena jednotarifu za kWh',
+    ed_compare_hc: 'Cena nízkého tarifu za kWh',
+    ed_compare_hp: 'Cena vysokého tarifu za kWh',
+    ed_hc_hours: 'Hodiny nízkého tarifu',
+    ed_hc_hours_helper: 'Např. 22:30-06:30 nebo 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Poplatek jednotarif měsíčně',
+    ed_sub_hchp: 'Poplatek dvoutarif měsíčně',
+    cmp_title: 'Jednotarif, nebo nízký tarif?',
+    cmp_base: 'Jednotarif',
+    cmp_hchp: 'Nízký / vysoký',
+    cmp_share: '{p} % v nízkém tarifu',
+    cmp_saves: '{c} ušetří {v}',
+    cmp_days: '{d} dní',
     ed_show_graph: 'Graf za 24 h',
     ed_show_stats: 'Spotřeba',
     ed_show_index: 'Stavy elektroměru',
@@ -1424,6 +1690,20 @@ var ZlI18n = {
     ed_tiers_helper: 'V vrstnem redu tarif od 1 do 6 (npr. Nizka tarifa, Visoka tarifa)',
     ed_prices: 'Cena po tarifi',
     ed_prices_helper: 'Ena cena na tarifo, v enakem vrstnem redu: število ali senzor s ceno za kWh. Nadomesti ceno za kWh',
+    ed_compare: 'Primerjaj enotno in nižjo tarifo',
+    ed_compare_base: 'Enotna cena za kWh',
+    ed_compare_hc: 'Cena nižje tarife za kWh',
+    ed_compare_hp: 'Cena višje tarife za kWh',
+    ed_hc_hours: 'Ure nižje tarife',
+    ed_hc_hours_helper: 'Npr. 22:30-06:30 ali 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Naročnina enotna na mesec',
+    ed_sub_hchp: 'Naročnina dvotarifna na mesec',
+    cmp_title: 'Enotna ali nižja tarifa?',
+    cmp_base: 'Enotna',
+    cmp_hchp: 'Nižja / višja',
+    cmp_share: '{p} % v nižji tarifi',
+    cmp_saves: '{c} prihrani {v}',
+    cmp_days: '{d} dni',
     ed_show_graph: 'Graf 24 h',
     ed_show_stats: 'Poraba',
     ed_show_index: 'Stanja števca',
@@ -1497,6 +1777,20 @@ var ZlI18n = {
     ed_tiers_helper: 'Zonu secībā no 1 līdz 6 (piem., Nakts, Diena)',
     ed_prices: 'Cena pa zonām',
     ed_prices_helper: 'Viena cena katrai zonai, tādā pašā secībā: skaitlis vai sensors ar cenu par kWh. Aizstāj cenu par kWh',
+    ed_compare: 'Salīdzināt vienas zonas un nakts tarifu',
+    ed_compare_base: 'Vienas zonas cena par kWh',
+    ed_compare_hc: 'Nakts cena par kWh',
+    ed_compare_hp: 'Dienas cena par kWh',
+    ed_hc_hours: 'Nakts tarifa stundas',
+    ed_hc_hours_helper: 'Piem. 22:30-06:30 vai 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Vienas zonas abonēšana mēnesī',
+    ed_sub_hchp: 'Divu zonu abonēšana mēnesī',
+    cmp_title: 'Viena zona vai nakts tarifs?',
+    cmp_base: 'Viena zona',
+    cmp_hchp: 'Nakts / diena',
+    cmp_share: '{p} % naktī',
+    cmp_saves: '{c} ietaupa {v}',
+    cmp_days: '{d} dienas',
     ed_show_graph: '24 h grafiks',
     ed_show_stats: 'Patēriņš',
     ed_show_index: 'Skaitītāja rādījumi',
@@ -1570,6 +1864,20 @@ var ZlI18n = {
     ed_tiers_helper: 'Με τη σειρά των ζωνών, 1 έως 6 (π.χ. Νυχτερινό, Ημερήσιο)',
     ed_prices: 'Τιμή ανά ζώνη',
     ed_prices_helper: 'Μία τιμή ανά ζώνη, με την ίδια σειρά: αριθμός ή αισθητήρας με την τιμή ανά kWh. Αντικαθιστά την τιμή ανά kWh',
+    ed_compare: 'Σύγκριση Ενιαίου και Νυχτερινού',
+    ed_compare_base: 'Ενιαία τιμή ανά kWh',
+    ed_compare_hc: 'Νυχτερινή τιμή ανά kWh',
+    ed_compare_hp: 'Ημερήσια τιμή ανά kWh',
+    ed_hc_hours: 'Ώρες νυχτερινού',
+    ed_hc_hours_helper: 'Π.χ. 22:30-06:30 ή 01:00-07:00, 12:30-14:30',
+    ed_sub_base: 'Πάγιο ενιαίου ανά μήνα',
+    ed_sub_hchp: 'Πάγιο ημέρας/νύχτας ανά μήνα',
+    cmp_title: 'Ενιαίο ή νυχτερινό;',
+    cmp_base: 'Ενιαίο',
+    cmp_hchp: 'Νύχτα / ημέρα',
+    cmp_share: '{p} % νυχτερινό',
+    cmp_saves: '{c}: εξοικονόμηση {v}',
+    cmp_days: '{d} ημέρες',
     ed_show_graph: 'Γράφημα 24 h',
     ed_show_stats: 'Κατανάλωση',
     ed_show_index: 'Ενδείξεις μετρητή',
@@ -1925,6 +2233,55 @@ var ZL_STATS_REFRESH = 5 * 60000;
 // instead of sitting on the failure for the whole refresh window.
 var ZL_STATS_RETRY = 30000;
 
+// Contract comparison: the last 12 months of hourly consumption, priced as Base and as Off-peak / Peak.
+var ZL_COMPARE_DAYS = 365;
+var ZL_COMPARE_REFRESH = 6 * 3600000;
+
+// Off-peak ranges from "22:30-06:30, 12:00-14:00" as [start, end) in minutes of the day (end may be past midnight).
+function zlHcRanges(text) {
+  return String(text || '').split(/[,;]/).map((part) => {
+    var m = part.trim().match(/^(\d{1,2})[:h](\d{2})?\s*-\s*(\d{1,2})[:h](\d{2})?$/i);
+    if (!m) return null;
+    var a = Number(m[1]) * 60 + Number(m[2] || 0), b = Number(m[3]) * 60 + Number(m[4] || 0);
+    return a < 1440 && b <= 1440 && a !== b ? [a, b] : null;
+  }).filter(Boolean);
+}
+
+// Whether a minute of the day is in one of the ranges (a range over midnight, 22:30-06:30, wraps).
+function zlInRanges(min, ranges) {
+  return ranges.some(([a, b]) => (a < b ? min >= a && min < b : min >= a || min < b));
+}
+
+// Minute of the day (0-1439) in the time zone `tz` (the meter's: Home Assistant's), for a timestamp in ms.
+function zlMinuteOfDay(fmt, ms) {
+  var parts = fmt.formatToParts(new Date(ms));
+  var h = Number(parts.find((p) => p.type === 'hour')?.value || 0) % 24;
+  return h * 60 + Number(parts.find((p) => p.type === 'minute')?.value || 0);
+}
+
+// Hourly kWh ({ start, kwh }) priced both ways. An hour counts as off-peak when its middle is (hourly statistics
+// can't split 22:30). Subscriptions are monthly, counted over the days the statistics cover.
+function zlCompare(hours, c, tz) {
+  var ranges = zlHcRanges(c.hc_hours);
+  if (!hours.length || !ranges.length) return null;
+  var fmt;
+  try {
+    fmt = new Intl.DateTimeFormat('en-GB', { timeZone: tz || undefined, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  } catch (_e) {
+    fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  }
+  var total = 0, hc = 0;
+  hours.forEach((h) => {
+    total += h.kwh;
+    if (zlInRanges(zlMinuteOfDay(fmt, h.start + 1800000), ranges)) hc += h.kwh;
+  });
+  var days = Math.max(1, Math.round((hours[hours.length - 1].start + 3600000 - hours[0].start) / 86400000));
+  var months = days / 30.44;
+  var base = total * Number(c.compare_base) + months * (Number(c.sub_base) || 0);
+  var hchp = hc * Number(c.compare_hc) + (total - hc) * Number(c.compare_hp) + months * (Number(c.sub_hchp) || 0);
+  return { total: total, hc: hc, days: days, base: base, hchp: hchp };
+}
+
 // ── Base card ────────────────────────────────────────────────────────────────
 class ZlinkyCard extends HTMLElement {
   static getConfigElement() {
@@ -1947,6 +2304,8 @@ class ZlinkyCard extends HTMLElement {
     }
     this._stats = null;
     this._statsKey = null;
+    this._cmp = null;
+    this._cmpKey = null;
     this._sig = null;
     this._update();
   }
@@ -2032,11 +2391,12 @@ class ZlinkyCard extends HTMLElement {
     var r = this._resolve();
     var hass = this._hass;
     this._fetchStats(r);
+    this._fetchCompare(r);
     var states = JSON.stringify(Object.keys(r.ent).map((k) => {
       var s = r.ent[k] && hass.states[r.ent[k]];
       return s ? s.state : null;
     }));
-    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, states, this._prices(), this._subscribed()]);
+    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, this._cmpVer, states, this._prices(), this._subscribed()]);
     if (sig === this._sig) return;
     this._sig = sig;
     this._r = r;
@@ -2067,6 +2427,56 @@ class ZlinkyCard extends HTMLElement {
         return [...steps.entries()].sort((a, b) => a[0] - b[0]).map(([t, b]) => ({ t, v: b.sum / b.n, max: b.max }));
       })
       .then((pts) => (pts.length > 1 ? pts : []));
+  }
+
+  // Whether the contract comparison is set up: both contracts' prices and the off-peak hours.
+  _compareOn() {
+    var c = this._config;
+    return !this._compact() && Number(c.compare_base) > 0 && Number(c.compare_hc) > 0 && Number(c.compare_hp) > 0 && zlHcRanges(c.hc_hours).length > 0;
+  }
+
+  // The last 12 months of hourly kWh of the total index (one statistics query, every 6 hours), for the comparison.
+  _fetchCompare(r) {
+    var hass = this._hass;
+    if (!hass.callWS || !r.ent.energy || !this._compareOn() || this._cmpBusy) return;
+    var key = r.ent.energy;
+    if (this._cmpKey === key && Date.now() - (this._cmpAt || 0) < ZL_COMPARE_REFRESH) return;
+    this._cmpBusy = true;
+    this._cmpKey = key;
+    this._cmpAt = Date.now();
+    hass.callWS({ type: 'recorder/statistics_during_period', statistic_ids: [key], period: 'hour', types: ['change'],
+      start_time: new Date(Date.now() - ZL_COMPARE_DAYS * 86400000).toISOString(), units: { energy: 'kWh' } })
+      .then((x) => {
+        if (this._cmpKey !== key) return;
+        this._cmp = (x?.[key] || []).map((p) => ({ start: typeof p.start === 'number' ? p.start : Date.parse(p.start), kwh: Number(p.change) }))
+          .filter((p) => Number.isFinite(p.start) && Number.isFinite(p.kwh) && p.kwh >= 0);
+        this._cmpVer = (this._cmpVer || 0) + 1;
+      })
+      .catch(() => { this._cmpAt = Date.now() - ZL_COMPARE_REFRESH + ZL_STATS_RETRY; })
+      .finally(() => {
+        this._cmpBusy = false;
+        this._update();
+      });
+  }
+
+  // Base or Off-peak / Peak, priced on the last 12 months.
+  _compareHtml(lang) {
+    if (!this._compareOn() || !this._cmp?.length) return '';
+    var c = this._config;
+    var res = zlCompare(this._cmp, c, this._hass.config?.time_zone);
+    if (!res || res.total <= 0) return '';
+    var cur = this._hass.config?.currency;
+    var money = (v) => zlMoney(this._fmtLang(), v, cur);
+    var share = Math.round((res.hc / res.total) * 100);
+    var cheaper = res.hchp < res.base ? 'cmp_hchp' : 'cmp_base';
+    var saving = Math.abs(res.base - res.hchp);
+    var verdict = this._t('cmp_saves').replace('{c}', this._t(cheaper)).replace('{v}', money(saving));
+    return '<div class="section">' +
+      `<div class="section-title"><ha-icon icon="mdi:scale-balance"></ha-icon><span>${zlEsc(this._t('cmp_title'))}</span><span class="aside">${zlEsc(this._t('cmp_days').replace('{d}', zlNum(lang, res.days, 0)))}</span></div>` +
+      `<div class="row"><span>${zlEsc(this._t('cmp_base'))}</span><span class="rv">${zlEsc(money(res.base))}</span></div>` +
+      `<div class="row"><span>${zlEsc(this._t('cmp_hchp'))} · ${zlEsc(this._t('cmp_share').replace('{p}', share))}</span><span class="rv">${zlEsc(money(res.hchp))}</span></div>` +
+      `<div class="row cmp-verdict"><span>${zlEsc(verdict)}</span></div>` +
+      '</div>';
   }
 
   // Today / yesterday / this month from the recorder's long-term statistics, plus the 24 h power curve.
@@ -2328,7 +2738,7 @@ class ZlinkyCard extends HTMLElement {
       '<div class="header sub2">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(m.sub)}</div></div>` +
         this._pill(m) + this._zoomButton() +
-      '</div>' + hero + this._tempo(ent) + stats + graph + index + phases +
+      '</div>' + hero + this._tempo(ent) + stats + graph + this._compareHtml(lang) + index + phases +
     '</ha-card>');
   }
 
@@ -2548,6 +2958,7 @@ class ZlinkyCard extends HTMLElement {
       '.iv { font-variant-numeric: tabular-nums; font-size: 15px; font-weight: 500; color: var(--primary-text-color); }' +
       '.rows { display: flex; flex-direction: column; }' +
       '.row { display: flex; justify-content: space-between; gap: 8px; padding: 4px 10px; font-size: 12px; color: var(--secondary-text-color); }' +
+      '.cmp-verdict { color: var(--primary-text-color); font-weight: 500; }' +
       '.rv { font-variant-numeric: tabular-nums; color: var(--primary-text-color); }' +
       '.phase { display: grid; grid-template-columns: 22px 1fr 52px 40px; align-items: center; gap: 8px; font-size: 12px; }' +
       '.pn { font-weight: 500; color: var(--secondary-text-color); }' +
@@ -2683,6 +3094,21 @@ class ZlinkyCardEditor extends HTMLElement {
       {
         name: 'language',
         selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português (Portugal)' }, { value: 'pl', label: 'Polski' }, { value: 'ro', label: 'Română' }, { value: 'da', label: 'Dansk' }, { value: 'sv', label: 'Svenska' }, { value: 'bg', label: 'Български' }, { value: 'ru', label: 'Русский' }, { value: 'uk', label: 'Українська' }, { value: 'hu', label: 'Magyar' }, { value: 'sk', label: 'Slovenčina' }, { value: 'cs', label: 'Čeština' }, { value: 'sl', label: 'Slovenščina' }, { value: 'lv', label: 'Latviešu' }, { value: 'el', label: 'Ελληνικά' }] } },
+      },
+      // Contract comparison (full card): the prices of both contracts and the off-peak hours.
+      {
+        type: 'expandable', name: 'compare', title: t('ed_compare'), flatten: true,
+        schema: [
+          {
+            type: 'grid', name: '', schema: ['compare_base', 'compare_hc', 'compare_hp']
+              .map((name) => ({ name, selector: { number: { min: 0, max: 2, step: 0.0001, mode: 'box' } } })),
+          },
+          { name: 'hc_hours', selector: { text: {} } },
+          {
+            type: 'grid', name: '', schema: ['sub_base', 'sub_hchp']
+              .map((name) => ({ name, selector: { number: { min: 0, max: 200, step: 0.01, mode: 'box' } } })),
+          },
+        ],
       },
       {
         type: 'expandable', name: 'entities', title: t('ed_entities'), flatten: false,

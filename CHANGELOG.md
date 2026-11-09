@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.10.0 - 2026-11-09
+
+### Features
+- **Contract comparison**: with both contracts' prices and your off-peak hours (`compare_base`, `compare_hc`, `compare_hp`, `hc_hours`, and optionally the monthly `sub_base` / `sub_hchp`), the full card prices your last 12 months of hourly consumption as Base and as Off-peak / Peak, and says which one saves how much, with the share of your consumption in off-peak hours. One hourly statistics query every 6 hours; hours read in Home Assistant's time zone.
+
 ## 1.9.1 - 2026-11-09
 
 ### Fixes
