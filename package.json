@@ -1,6 +1,6 @@
 {
   "name": "ha-zlinky-card",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "description": "Lovelace card for the LiXee ZLinky_TIC (Linky smart meter) in Home Assistant.",
   "private": true,
   "type": "module",
@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "acorn": "^8.19.0",
     "playwright": "^1.56.1"
   }
 }
