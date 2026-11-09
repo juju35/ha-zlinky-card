@@ -208,7 +208,7 @@ sub_base: 15.65
 sub_hchp: 16.08
 ```
 
-| Light | Dark |
+| Contract comparison | Contract comparison, dark theme |
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-compare.png" alt="ZLinky card comparing the Base and Off-peak / Peak contracts" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-compare-dark.png" alt="ZLinky card comparing the contracts, dark theme" width="400"> |
 
