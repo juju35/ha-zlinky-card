@@ -43,6 +43,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - **Today**, **yesterday** and **this month**'s consumption from Home Assistant's long-term statistics, with the cost when a price per kWh is set
 - 24 h power curve with its peak (the highest reading, not the highest 5-minute mean), on a real time axis (a gap in the recorder's data shows as a break in the line)
 - Tempo contract: today's color (from the tariff period) and tomorrow's once announced (from `DEMAIN`, or any sensor naming a color)
+- Contract comparison: your last 12 months of hourly consumption priced as Base and as Off-peak / Peak, with your prices and off-peak hours — which contract would have cost less, and by how much
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
 - Three-phase details (current and voltage per phase) on three-phase meters, currents only with the historic TIC (`IINST1`–`IINST3`)
 - An animated Linky meter: its screen shows the live power and its LED blinks faster as the load rises
@@ -163,6 +164,9 @@ entities:
 | `show_phases` | ❌ | `true` | Per-phase details (three-phase meters only) |
 | `show_logo` | ❌ | `true` | Meter icon in the header |
 | `show_tempo` | ❌ | `true` | Tempo colors of today and tomorrow (only on a Tempo contract; two dots on the mini card) |
+| `compare_base` / `compare_hc` / `compare_hp` | ❌ | — | Full card: the Base price and the Off-peak and Peak prices per kWh, for the [contract comparison](#contract-comparison) (all three and `hc_hours` turn it on) |
+| `hc_hours` | ❌ | — | Off-peak hours for the comparison, such as `22:30-06:30` or `01:00-07:00, 12:30-14:30` |
+| `sub_base` / `sub_hchp` | ❌ | — | Monthly subscription of each contract, added to the comparison |
 | `zoom` | ❌ | `true` | Mini card only: detail button that unfolds the full card |
 | `language` | ❌ | HA language | `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` |
 | `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `injection`, `tariff`, `tempo` (today's Tempo color, e.g. from an RTE Tempo integration), `tomorrow` (tomorrow's Tempo color), `tier1`…`tier6` |
@@ -190,6 +194,21 @@ price: [0.1528, sensor.ejp_peak_price]
 A tier without a price (a shorter list) takes the last price of the list; a sensor that is unavailable takes the closest price before it (or the first one). When only the total index has statistics (a single tier in use, or a tier's statistics missing), every kWh of the period is priced at the current tier's price, read from the tariff period (`HC..`, `HPJB`, `HP BLEU`, `PM..`, a tier number, or one of your `tiers` names), or at the first price. Yesterday's and this month's tiles then show no cost when the tiers' prices differ (the current tier's price says nothing of the tiers that period was spent in); today's cost stays an estimate at the current tier's price.
 
 The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. Tiers are listed only when more than one carries an index. The phase section appears when phases 2 or 3 report a voltage, or, with the historic TIC (no voltage per phase), when the phase 2 and 3 currents are there. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
+
+### Contract comparison
+
+Base or Off-peak / Peak? Give both contracts' prices and your off-peak hours (in the visual editor: **Compare Base and Off-peak**), and the full card prices your last 12 months of consumption both ways, from the hourly long-term statistics of the total index (one query every 6 hours):
+
+```yaml
+compare_base: 0.1952
+compare_hc: 0.1635
+compare_hp: 0.2081
+hc_hours: 22:30-06:30
+sub_base: 15.65
+sub_hchp: 16.08
+```
+
+The section shows each contract's cost, the share of your consumption in off-peak hours and which one saves how much, over the days the statistics cover (fewer than 365 the first year). Hours are read in Home Assistant's time zone; an hour counts as off-peak when its middle is (hourly statistics can't split 22:30). Tempo isn't compared: its cost depends on each past day's color, which the meter doesn't keep — on a Tempo contract, the consumption tiles already price each color with [one price per tier](#price-per-tier).
 
 ## Development
 
