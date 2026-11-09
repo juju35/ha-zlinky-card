@@ -44,7 +44,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - 24 h power curve with its peak (the highest reading, not the highest 5-minute mean), on a real time axis (a gap in the recorder's data shows as a break in the line)
 - Tempo contract: today's color (from the tariff period) and tomorrow's once announced (from `DEMAIN`, or any sensor naming a color)
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
-- Three-phase details (current and voltage per phase) on three-phase meters
+- Three-phase details (current and voltage per phase) on three-phase meters, currents only with the historic TIC (`IINST1`–`IINST3`)
 - An animated Linky meter: its screen shows the live power and its LED blinks faster as the load rises
 - Tap any value to open its history
 - Visual editor in the dashboard UI (no YAML needed)
@@ -65,7 +65,7 @@ Both expose the same data to the cards: live power, current and voltage, load ag
 
 - Home Assistant 2024.8 or later
 - A ZLinky_TIC paired with ZHA or Zigbee2MQTT
-- The consumption tiles and the curve use the recorder's statistics: the energy and power sensors need a `state_class` (the ZLinky's have one)
+- The consumption tiles use the recorder's statistics: the energy sensors need a `state_class` (the ZLinky's have one). The curve uses the power sensor's statistics too, or, when it has none, its state history from the recorder
 
 ## Installation
 
@@ -189,7 +189,7 @@ price: [0.1528, sensor.ejp_peak_price]
 
 A tier without a price (a shorter list) takes the last price of the list; a sensor that is unavailable takes the closest price before it (or the first one). When only the total index has statistics (a single tier in use, or a tier's statistics missing), every kWh of the period is priced at the current tier's price, read from the tariff period (`HC..`, `HPJB`, `HP BLEU`, `PM..`, a tier number, or one of your `tiers` names), or at the first price. Yesterday's and this month's tiles then show no cost when the tiers' prices differ (the current tier's price says nothing of the tiers that period was spent in); today's cost stays an estimate at the current tier's price.
 
-The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. Tiers are listed only when more than one carries an index. The phase section appears only when phases 2 or 3 report a voltage. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
+The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. Tiers are listed only when more than one carries an index. The phase section appears when phases 2 or 3 report a voltage, or, with the historic TIC (no voltage per phase), when the phase 2 and 3 currents are there. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
 
 ## Development
 

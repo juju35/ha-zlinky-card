@@ -1195,3 +1195,80 @@ test("mini card: Tempo dots for today and tomorrow, hidden with show_tempo: fals
   // Outside a Tempo contract: no dots.
   assert.doesNotMatch(make(ZlinkyMiniCard, zhaHass()).shadowRoot.innerHTML, /class="line tminis"/);
 });
+
+// Zigbee2MQTT, historic TIC, three-phase (issue #5): IINST1/2/3 and PAPP, no voltage per phase.
+function z2mHistoricHass({ phases = true, callWS } = {}) {
+  const z = "sensor.zlinky_";
+  const states = {
+    [`${z}base`]: st("48210", { device_class: "energy", unit_of_measurement: "kWh" }),
+    [`${z}papp`]: st("2350", { device_class: "apparent_power", unit_of_measurement: "VA" }),
+    [`${z}iinst1`]: st("4", { device_class: "current", unit_of_measurement: "A" }),
+    [`${z}ptec`]: st("TH.."),
+  };
+  if (phases) {
+    states[`${z}iinst2`] = st("3", { device_class: "current", unit_of_measurement: "A" });
+    states[`${z}iinst3`] = st("0", { device_class: "current", unit_of_measurement: "A" });
+  }
+  const entities = {};
+  for (const id of Object.keys(states)) entities[id] = { entity_id: id, device_id: "m1" };
+  return { language: "en", states, entities, devices: { m1: { name: "Linky", model: "ZLinky_TIC" } }, callWS: callWS || (() => Promise.resolve({})) };
+}
+
+test("historic three-phase (Zigbee2MQTT IINST1/2/3, no phase voltage) shows the three phases", () => {
+  const card = make(ZlinkyCard, z2mHistoricHass(), { subscribed_power: 15 });
+  const { ent } = card._resolve();
+  assert.equal(ent.current, "sensor.zlinky_iinst1");
+  assert.equal(ent.current_b, "sensor.zlinky_iinst2");
+  assert.equal(ent.current_c, "sensor.zlinky_iinst3");
+  const html = card.shadowRoot.innerHTML;
+  assert.match(html, /Phases/);
+  assert.match(html, /L1<[\s\S]*?>4(\.0)? A<[\s\S]*?L2<[\s\S]*?>3(\.0)? A<[\s\S]*?L3<[\s\S]*?>0(\.0)? A</);
+  // No voltage per phase in the historic TIC: no "V" column
+  assert.doesNotMatch(html, /\d V</);
+  // Single-phase historic meter (IINST only): no phase section
+  assert.doesNotMatch(make(ZlinkyCard, z2mHistoricHass({ phases: false })).shadowRoot.innerHTML, /Phases/);
+  // show_phases: false hides it
+  assert.doesNotMatch(make(ZlinkyCard, z2mHistoricHass(), { show_phases: false }).shadowRoot.innerHTML, /Phases/);
+});
+
+test("24 h curve from the state history when the power sensor has no statistics", async () => {
+  const calls = [];
+  const now = Date.now();
+  const callWS = (msg) => {
+    calls.push(msg);
+    if (msg.type === "recorder/statistics_during_period") return Promise.resolve({});
+    if (msg.type === "history/history_during_period")
+      return Promise.resolve({
+        "sensor.zlinky_papp": [
+          { s: "800", lu: (now - 3600000) / 1000 },
+          { s: "1200", lu: (now - 3590000) / 1000 },
+          { s: "2350", lu: (now - 600000) / 1000 },
+          { s: "unavailable", lu: (now - 300000) / 1000 },
+        ],
+      });
+    return Promise.resolve({ change: 1 });
+  };
+  const card = make(ZlinkyCard, z2mHistoricHass({ callWS }));
+  await new Promise((r) => setTimeout(r, 10));
+  const hist = calls.find((c) => c.type === "history/history_during_period");
+  assert.deepEqual([...hist.entity_ids], ["sensor.zlinky_papp"]);
+  assert.equal(hist.minimal_response, true);
+  const html = card.shadowRoot.innerHTML;
+  assert.match(html, /class="spark"/);
+  // The peak is the highest reading of a 5-minute step, the unavailable reading is skipped
+  assert.match(html, /max 2[\s,.]?350 VA/);
+});
+
+test("the state history is not queried when the statistics give a curve", async () => {
+  const calls = [];
+  const callWS = (msg) => {
+    calls.push(msg);
+    const now = Date.now();
+    if (msg.type === "recorder/statistics_during_period")
+      return Promise.resolve({ [msg.statistic_ids[0]]: [{ start: now - 600000, mean: 300 }, { start: now - 300000, mean: 1500 }] });
+    return Promise.resolve({ change: 1 });
+  };
+  make(ZlinkyCard, z2mHistoricHass({ callWS }));
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.filter((c) => c.type === "history/history_during_period").length, 0);
+});
