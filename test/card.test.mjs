@@ -1233,6 +1233,19 @@ test("historic three-phase (Zigbee2MQTT IINST1/2/3, no phase voltage) shows the 
   assert.doesNotMatch(make(ZlinkyCard, z2mHistoricHass(), { show_phases: false }).shadowRoot.innerHTML, /Phases/);
 });
 
+test("historic three-phase: ISOUSC in A is per phase, 1 A = 0.6 kVA (issue #45)", () => {
+  const hass = z2mHistoricHass();
+  hass.states["sensor.zlinky_isousc"] = st("25", { unit_of_measurement: "A" });
+  hass.entities["sensor.zlinky_isousc"] = { entity_id: "sensor.zlinky_isousc", device_id: "m1" };
+  const card = make(ZlinkyCard, hass, { subscribed_power: "sensor.zlinky_isousc" });
+  assert.equal(card._subscribed(), 15);
+  assert.match(card.shadowRoot.innerHTML, /of 15 kVA subscribed/);
+  // Single-phase historic meter: 1 A = 0.2 kVA
+  const mono = z2mHistoricHass({ phases: false });
+  mono.states["sensor.zlinky_isousc"] = st("30", { unit_of_measurement: "A" });
+  assert.equal(make(ZlinkyCard, mono, { subscribed_power: "sensor.zlinky_isousc" })._subscribed(), 6);
+});
+
 test("24 h curve from the state history when the power sensor has no statistics", async () => {
   const calls = [];
   const now = Date.now();
