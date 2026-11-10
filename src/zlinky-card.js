@@ -74,6 +74,9 @@ var ZlI18n = {
     en_current_c: 'Courant phase 3',
     en_voltage_b: 'Tension phase 2',
     en_voltage_c: 'Tension phase 3',
+    en_apparent_power_a: 'Puissance apparente phase 1',
+    en_apparent_power_b: 'Puissance apparente phase 2',
+    en_apparent_power_c: 'Puissance apparente phase 3',
     en_injection: 'Index injection',
     en_tariff: 'Période tarifaire',
     tomorrow: 'Demain',
@@ -162,6 +165,9 @@ var ZlI18n = {
     en_current_c: 'Phase 3 current',
     en_voltage_b: 'Phase 2 voltage',
     en_voltage_c: 'Phase 3 voltage',
+    en_apparent_power_a: 'Phase 1 apparent power',
+    en_apparent_power_b: 'Phase 2 apparent power',
+    en_apparent_power_c: 'Phase 3 apparent power',
     en_injection: 'Injection index',
     en_tariff: 'Tariff period',
     tomorrow: 'Tomorrow',
@@ -250,6 +256,9 @@ var ZlI18n = {
     en_current_c: 'Strom Phase 3',
     en_voltage_b: 'Spannung Phase 2',
     en_voltage_c: 'Spannung Phase 3',
+    en_apparent_power_a: 'Scheinleistung Phase 1',
+    en_apparent_power_b: 'Scheinleistung Phase 2',
+    en_apparent_power_c: 'Scheinleistung Phase 3',
     en_injection: 'Zählerstand Einspeisung',
     en_tariff: 'Tarifperiode',
     tomorrow: 'Morgen',
@@ -338,6 +347,9 @@ var ZlI18n = {
     en_current_c: 'Corriente fase 3',
     en_voltage_b: 'Tensión fase 2',
     en_voltage_c: 'Tensión fase 3',
+    en_apparent_power_a: 'Potencia aparente fase 1',
+    en_apparent_power_b: 'Potencia aparente fase 2',
+    en_apparent_power_c: 'Potencia aparente fase 3',
     en_injection: 'Índice de inyección',
     en_tariff: 'Periodo tarifario',
     tomorrow: 'Mañana',
@@ -426,6 +438,9 @@ var ZlI18n = {
     en_current_c: 'Струја фазе 3',
     en_voltage_b: 'Напон фазе 2',
     en_voltage_c: 'Напон фазе 3',
+    en_apparent_power_a: 'Привидна снага фазе 1',
+    en_apparent_power_b: 'Привидна снага фазе 2',
+    en_apparent_power_c: 'Привидна снага фазе 3',
     en_injection: 'Стање предаје у мрежу',
     en_tariff: 'Тарифни период',
     tomorrow: 'Сутра',
@@ -514,6 +529,9 @@ var ZlI18n = {
     en_current_c: 'Struja faze 3',
     en_voltage_b: 'Napon faze 2',
     en_voltage_c: 'Napon faze 3',
+    en_apparent_power_a: 'Prividna snaga faze 1',
+    en_apparent_power_b: 'Prividna snaga faze 2',
+    en_apparent_power_c: 'Prividna snaga faze 3',
     en_injection: 'Stanje predaje u mrežu',
     en_tariff: 'Tarifni period',
     tomorrow: 'Sutra',
@@ -602,6 +620,9 @@ var ZlI18n = {
     en_current_c: 'Corrente fase 3',
     en_voltage_b: 'Tensione fase 2',
     en_voltage_c: 'Tensione fase 3',
+    en_apparent_power_a: 'Potenza apparente fase 1',
+    en_apparent_power_b: 'Potenza apparente fase 2',
+    en_apparent_power_c: 'Potenza apparente fase 3',
     en_injection: 'Lettura immissione',
     en_tariff: 'Fascia oraria',
     tomorrow: 'Domani',
@@ -690,6 +711,9 @@ var ZlI18n = {
     en_current_c: 'Stroom fase 3',
     en_voltage_b: 'Spanning fase 2',
     en_voltage_c: 'Spanning fase 3',
+    en_apparent_power_a: 'Schijnbaar vermogen fase 1',
+    en_apparent_power_b: 'Schijnbaar vermogen fase 2',
+    en_apparent_power_c: 'Schijnbaar vermogen fase 3',
     en_injection: 'Meterstand teruglevering',
     en_tariff: 'Tariefperiode',
     tomorrow: 'Morgen',
@@ -778,6 +802,9 @@ var ZlI18n = {
     en_current_c: 'Corrente fase 3',
     en_voltage_b: 'Tensão fase 2',
     en_voltage_c: 'Tensão fase 3',
+    en_apparent_power_a: 'Potência aparente fase 1',
+    en_apparent_power_b: 'Potência aparente fase 2',
+    en_apparent_power_c: 'Potência aparente fase 3',
     en_injection: 'Leitura de injeção',
     en_tariff: 'Período tarifário',
     tomorrow: 'Amanhã',
@@ -866,6 +893,9 @@ var ZlI18n = {
     en_current_c: 'Prąd fazy 3',
     en_voltage_b: 'Napięcie fazy 2',
     en_voltage_c: 'Napięcie fazy 3',
+    en_apparent_power_a: 'Moc pozorna fazy 1',
+    en_apparent_power_b: 'Moc pozorna fazy 2',
+    en_apparent_power_c: 'Moc pozorna fazy 3',
     en_injection: 'Stan energii oddanej',
     en_tariff: 'Strefa taryfowa',
     tomorrow: 'Jutro',
@@ -954,6 +984,9 @@ var ZlI18n = {
     en_current_c: 'Curent faza 3',
     en_voltage_b: 'Tensiune faza 2',
     en_voltage_c: 'Tensiune faza 3',
+    en_apparent_power_a: 'Putere aparentă faza 1',
+    en_apparent_power_b: 'Putere aparentă faza 2',
+    en_apparent_power_c: 'Putere aparentă faza 3',
     en_injection: 'Index injecție',
     en_tariff: 'Perioadă tarifară',
     tomorrow: 'Mâine',
@@ -1042,6 +1075,9 @@ var ZlI18n = {
     en_current_c: 'Strøm fase 3',
     en_voltage_b: 'Spænding fase 2',
     en_voltage_c: 'Spænding fase 3',
+    en_apparent_power_a: 'Tilsyneladende effekt fase 1',
+    en_apparent_power_b: 'Tilsyneladende effekt fase 2',
+    en_apparent_power_c: 'Tilsyneladende effekt fase 3',
     en_injection: 'Målerstand for levering',
     en_tariff: 'Tarifperiode',
     tomorrow: 'I morgen',
@@ -1130,6 +1166,9 @@ var ZlI18n = {
     en_current_c: 'Ström fas 3',
     en_voltage_b: 'Spänning fas 2',
     en_voltage_c: 'Spänning fas 3',
+    en_apparent_power_a: 'Skenbar effekt fas 1',
+    en_apparent_power_b: 'Skenbar effekt fas 2',
+    en_apparent_power_c: 'Skenbar effekt fas 3',
     en_injection: 'Mätarställning inmatning',
     en_tariff: 'Tariffperiod',
     tomorrow: 'I morgon',
@@ -1218,6 +1257,9 @@ var ZlI18n = {
     en_current_c: 'Ток фаза 3',
     en_voltage_b: 'Напрежение фаза 2',
     en_voltage_c: 'Напрежение фаза 3',
+    en_apparent_power_a: 'Пълна мощност фаза 1',
+    en_apparent_power_b: 'Пълна мощност фаза 2',
+    en_apparent_power_c: 'Пълна мощност фаза 3',
     en_injection: 'Показание за отдадена енергия',
     en_tariff: 'Тарифен период',
     tomorrow: 'Утре',
@@ -1306,6 +1348,9 @@ var ZlI18n = {
     en_current_c: 'Ток фазы 3',
     en_voltage_b: 'Напряжение фазы 2',
     en_voltage_c: 'Напряжение фазы 3',
+    en_apparent_power_a: 'Полная мощность фазы 1',
+    en_apparent_power_b: 'Полная мощность фазы 2',
+    en_apparent_power_c: 'Полная мощность фазы 3',
     en_injection: 'Показания отдачи',
     en_tariff: 'Тарифная зона',
     tomorrow: 'Завтра',
@@ -1394,6 +1439,9 @@ var ZlI18n = {
     en_current_c: 'Струм фази 3',
     en_voltage_b: 'Напруга фази 2',
     en_voltage_c: 'Напруга фази 3',
+    en_apparent_power_a: 'Повна потужність фази 1',
+    en_apparent_power_b: 'Повна потужність фази 2',
+    en_apparent_power_c: 'Повна потужність фази 3',
     en_injection: 'Показники віддачі',
     en_tariff: 'Тарифна зона',
     tomorrow: 'Завтра',
@@ -1482,6 +1530,9 @@ var ZlI18n = {
     en_current_c: '3. fázis áramerőssége',
     en_voltage_b: '2. fázis feszültsége',
     en_voltage_c: '3. fázis feszültsége',
+    en_apparent_power_a: '1. fázis látszólagos teljesítménye',
+    en_apparent_power_b: '2. fázis látszólagos teljesítménye',
+    en_apparent_power_c: '3. fázis látszólagos teljesítménye',
     en_injection: 'Betáplálási mérőállás',
     en_tariff: 'Tarifaidőszak',
     tomorrow: 'Holnap',
@@ -1570,6 +1621,9 @@ var ZlI18n = {
     en_current_c: 'Prúd fázy 3',
     en_voltage_b: 'Napätie fázy 2',
     en_voltage_c: 'Napätie fázy 3',
+    en_apparent_power_a: 'Zdanlivý výkon fázy 1',
+    en_apparent_power_b: 'Zdanlivý výkon fázy 2',
+    en_apparent_power_c: 'Zdanlivý výkon fázy 3',
     en_injection: 'Stav dodávky',
     en_tariff: 'Tarifné obdobie',
     tomorrow: 'Zajtra',
@@ -1658,6 +1712,9 @@ var ZlI18n = {
     en_current_c: 'Proud fáze 3',
     en_voltage_b: 'Napětí fáze 2',
     en_voltage_c: 'Napětí fáze 3',
+    en_apparent_power_a: 'Zdánlivý výkon fáze 1',
+    en_apparent_power_b: 'Zdánlivý výkon fáze 2',
+    en_apparent_power_c: 'Zdánlivý výkon fáze 3',
     en_injection: 'Stav dodávky',
     en_tariff: 'Tarifní období',
     tomorrow: 'Zítra',
@@ -1746,6 +1803,9 @@ var ZlI18n = {
     en_current_c: 'Tok faze 3',
     en_voltage_b: 'Napetost faze 2',
     en_voltage_c: 'Napetost faze 3',
+    en_apparent_power_a: 'Navidezna moč faze 1',
+    en_apparent_power_b: 'Navidezna moč faze 2',
+    en_apparent_power_c: 'Navidezna moč faze 3',
     en_injection: 'Stanje oddaje',
     en_tariff: 'Tarifno obdobje',
     tomorrow: 'Jutri',
@@ -1834,6 +1894,9 @@ var ZlI18n = {
     en_current_c: '3. fāzes strāva',
     en_voltage_b: '2. fāzes spriegums',
     en_voltage_c: '3. fāzes spriegums',
+    en_apparent_power_a: '1. fāzes šķietamā jauda',
+    en_apparent_power_b: '2. fāzes šķietamā jauda',
+    en_apparent_power_c: '3. fāzes šķietamā jauda',
     en_injection: 'Nodošanas rādījums',
     en_tariff: 'Tarifa periods',
     tomorrow: 'Rīt',
@@ -1922,6 +1985,9 @@ var ZlI18n = {
     en_current_c: 'Ρεύμα φάσης 3',
     en_voltage_b: 'Τάση φάσης 2',
     en_voltage_c: 'Τάση φάσης 3',
+    en_apparent_power_a: 'Φαινόμενη ισχύς φάσης 1',
+    en_apparent_power_b: 'Φαινόμενη ισχύς φάσης 2',
+    en_apparent_power_c: 'Φαινόμενη ισχύς φάσης 3',
     en_injection: 'Ένδειξη απόδοσης',
     en_tariff: 'Χρονική ζώνη χρέωσης',
     tomorrow: 'Αύριο',
@@ -1995,6 +2061,11 @@ var ZL_ROLES = {
   current_c: { keys: ['rms_current_ph_c'], id: /(courant_phase_c|rms_current_ph_c|_irms3|_iinst3)$/ },
   voltage_b: { keys: ['rms_voltage_ph_b'], id: /(tension_phase_b|rms_voltage_ph_b|_urms2)$/ },
   voltage_c: { keys: ['rms_voltage_ph_c'], id: /(tension_phase_c|rms_voltage_ph_c|_urms3)$/ },
+  // Apparent power per phase (SINSTS1/2/3 of the standard TIC, 1 VA resolution). ZHA only gives phases B and C
+  // (phase A shares `apparent_power` with the single-phase total), so ZHA phase rows stay in amperes.
+  apparent_power_a: { keys: [], id: /_sinsts1$/ },
+  apparent_power_b: { keys: ['apparent_power_ph_b'], id: /(puissance_apparente_phase_b|apparent_power_ph_b|_sinsts2)$/ },
+  apparent_power_c: { keys: ['apparent_power_ph_c'], id: /(puissance_apparente_phase_c|apparent_power_ph_c|_sinsts3)$/ },
   tariff: { keys: ['current_tarif', 'active_register_tier_delivered'], id: /(_ptec|_ltarf|_current_tarif|_periode_tarifaire|_tarif_en_cours|_ngtf)$/ },
   // Tempo: tomorrow's color (DEMAIN of the historic TIC). Today's color comes from the tariff period, or from
   // `entities.tempo` (any sensor whose state names a color, e.g. an RTE Tempo integration).
@@ -2017,6 +2088,7 @@ function zlIsPhase(id) {
   return ZL_PHASE.test(id) || ZL_PHASE.test(zlBaseId(id));
 }
 var ZL_OVERRIDABLE = ['energy', 'power', 'apparent_power', 'current', 'voltage', 'current_b', 'current_c', 'voltage_b', 'voltage_c',
+  'apparent_power_a', 'apparent_power_b', 'apparent_power_c',
   'injection', 'tariff', 'tempo', 'tomorrow'].concat(ZL_TIERS);
 
 // Tempo day color named by a tariff period or a color text: "HPJB", "HC JR", "HP BLEU", "BLAN", "Rouge", "white"…
@@ -2178,6 +2250,11 @@ function zlMoney(lang, v, currency) {
 function zlPower(lang, v, unit) {
   if (Math.abs(v) >= 10000) return `${zlNum(lang, v / 1000, 1)} k${unit}`;
   return `${zlNum(lang, v, 0)} ${unit}`;
+}
+
+// A current: whole amperes as the meter gives them (IRMS, IINST), one decimal only when the source has some.
+function zlAmps(lang, a) {
+  return zlNum(lang, a, Number.isInteger(a) ? 0 : 1);
 }
 
 // A power reading in its base unit (W or VA), whatever unit the sensor reports.
@@ -2383,7 +2460,8 @@ class ZlinkyCard extends HTMLElement {
     var over = c.entities || {};
     var ent = {};
     // Phase entities first, so the single-phase matchers skip what they already took.
-    var order = ['current_b', 'current_c', 'voltage_b', 'voltage_c', 'injection', 'apparent_power'].concat(ZL_TIERS,
+    var order = ['current_b', 'current_c', 'voltage_b', 'voltage_c', 'apparent_power_a', 'apparent_power_b', 'apparent_power_c',
+      'injection', 'apparent_power'].concat(ZL_TIERS,
       ['energy', 'power', 'current', 'voltage', 'tariff', 'tomorrow', 'tempo']);
     order.forEach((role) => {
       if (over[role]) { ent[role] = over[role]; return; }
@@ -2686,12 +2764,21 @@ class ZlinkyCard extends HTMLElement {
     }
     var lang = m.lang;
 
-    // Hero: meter, live power, active power / current / voltage, load gauge.
+    // Three-phase details: when the other phases carry a voltage (standard TIC, ZHA), or, for the historic TIC which
+    // gives no voltage per phase (Zigbee2MQTT IINST1/2/3), when phase 2 or 3 currents are there without any phase
+    // voltage sensor. A single-phase meter whose ZHA phase B / C sensors read 0 V shows none.
+    var vb = this._numv(ent.voltage_b), vc = this._numv(ent.voltage_c);
+    var currentsOnly = !ent.voltage_b && !ent.voltage_c && (this._numv(ent.current_b) != null || this._numv(ent.current_c) != null);
+    var threePhase = vb > 0 || vc > 0 || currentsOnly;
+
+    // Hero: meter, live power, active power / current / voltage, load gauge. On a three-phase meter the current and
+    // voltage sensors are phase 1's (IRMS1, URMS1): labelled L1 so they do not read as totals.
     var chips = [];
     if (m.va != null && m.watts != null) chips.push(this._chip('mdi:flash-outline', zlPower(lang, m.watts, 'W'), ent.power));
     var amps = this._numv(ent.current), volts = this._numv(ent.voltage);
-    if (amps != null) chips.push(this._chip('mdi:current-ac', `${zlNum(lang, amps, 1)} A`, ent.current));
-    if (volts != null && volts > 0) chips.push(this._chip('mdi:sine-wave', `${zlNum(lang, volts, 0)} V`, ent.voltage));
+    var l1 = threePhase ? 'L1 ' : '';
+    if (amps != null) chips.push(this._chip('mdi:current-ac', `${l1}${zlAmps(lang, amps)} A`, ent.current));
+    if (volts != null && volts > 0) chips.push(this._chip('mdi:sine-wave', `${l1}${zlNum(lang, volts, 0)} V`, ent.voltage));
     if (!m.online) chips.push(`<span class="chip"><ha-icon icon="mdi:lan-disconnect"></ha-icon>${this._t('offline')}</span>`);
     var hero = '<div class="hero">' + this._picture(m) +
       '<div class="info">' +
@@ -2743,19 +2830,26 @@ class ZlinkyCard extends HTMLElement {
         (rows.length ? `<div class="rows">${rows.join('')}</div>` : '') + '</div>';
     }
 
-    // Three-phase details: when the other phases carry a voltage (standard TIC, ZHA), or, for the historic TIC which
-    // gives no voltage per phase (Zigbee2MQTT IINST1/2/3), when phase 2 or 3 currents are there without any phase
-    // voltage sensor. A single-phase meter whose ZHA phase B / C sensors read 0 V shows none.
+    // Each phase against its share of the subscribed power. With the apparent power of all three phases (SINSTS1/2/3,
+    // the meter's own measure, 1 VA resolution) the rows show VA; otherwise the current (whole amperes from the meter)
+    // against the share converted at 230 V. Never a mix of both.
     var phases = '';
-    var vb = this._numv(ent.voltage_b), vc = this._numv(ent.voltage_c);
-    var currentsOnly = !ent.voltage_b && !ent.voltage_c && (this._numv(ent.current_b) != null || this._numv(ent.current_c) != null);
-    if (c.show_phases && (vb > 0 || vc > 0 || currentsOnly)) {
-      var maxA = Math.max(1, (m.subscribed * 1000) / 3 / 230);
-      var lines = [['1', ent.current, ent.voltage], ['2', ent.current_b, ent.voltage_b], ['3', ent.current_c, ent.voltage_c]].map(([n, ci, vi]) => {
-        var a = this._numv(ci), v = this._numv(vi);
-        var w = a == null ? 0 : Math.min(100, (a / maxA) * 100);
-        return `<div class="phase"><span class="pn">L${n}</span><div class="bar"><div class="fill" style="width:${w.toFixed(1)}%"></div></div>` +
-          `<span class="pv">${a == null ? '—' : `${zlNum(lang, a, 1)} A`}</span><span class="pv dim">${v == null ? '' : `${zlNum(lang, v, 0)} V`}</span></div>`;
+    if (c.show_phases && threePhase) {
+      var vaIds = [ent.apparent_power_a, ent.apparent_power_b, ent.apparent_power_c];
+      var vaOk = vaIds.every((id) => this._avail(id) && zlBase(this._st(id)) != null);
+      var share = (m.subscribed * 1000) / 3;
+      var rows3 = [['1', ent.current, ent.voltage], ['2', ent.current_b, ent.voltage_b], ['3', ent.current_c, ent.voltage_c]];
+      var lines = rows3.map(([n, ci, vi], i) => {
+        var v = this._numv(vi), x, max, text;
+        if (vaOk) {
+          x = zlBase(this._st(vaIds[i])); max = Math.max(1, share); text = zlPower(lang, x, 'VA');
+        } else {
+          x = this._numv(ci); max = Math.max(1, share / 230); text = x == null ? '—' : `${zlAmps(lang, x)} A`;
+        }
+        var w = x == null ? 0 : Math.min(100, (x / max) * 100);
+        return `<div class="phase"><span class="pn">L${n}</span>` +
+          `<div class="bar"><div class="fill" style="width:${w.toFixed(1)}%"></div></div>` +
+          `<span class="pv">${text}</span><span class="pv dim">${v == null ? '' : `${zlNum(lang, v, 0)} V`}</span></div>`;
       });
       phases = `<div class="section"><div class="section-title"><ha-icon icon="mdi:transmission-tower"></ha-icon><span>${this._t('phases')}</span></div>${lines.join('')}</div>`;
     }
@@ -2986,7 +3080,7 @@ class ZlinkyCard extends HTMLElement {
       '.row { display: flex; justify-content: space-between; gap: 8px; padding: 4px 10px; font-size: 12px; color: var(--secondary-text-color); }' +
       '.cmp-verdict { color: var(--primary-text-color); font-weight: 500; }' +
       '.rv { font-variant-numeric: tabular-nums; color: var(--primary-text-color); }' +
-      '.phase { display: grid; grid-template-columns: 22px 1fr 52px 40px; align-items: center; gap: 8px; font-size: 12px; }' +
+      '.phase { display: grid; grid-template-columns: 22px 1fr 60px 40px; align-items: center; gap: 8px; font-size: 12px; }' +
       '.pn { font-weight: 500; color: var(--secondary-text-color); }' +
       '.pv { text-align: right; color: var(--primary-text-color); white-space: nowrap; } .pv.dim { color: var(--secondary-text-color); }' +
       // Narrow card (6 columns of the Sections view, ~156 to 250 px): the tiles put their unit under the value and

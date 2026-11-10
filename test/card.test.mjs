@@ -1330,3 +1330,63 @@ test("full card: the comparison section, from one hourly statistics query", asyn
   await new Promise((r) => setTimeout(r, 10));
   assert.equal(calls.filter((c) => c.period === "hour").length, 0);
 });
+
+// ESPHome teleinfo, standard TIC, three-phase (issue #43): SINSTS and SINSTS1/2/3, IRMS1/2/3, URMS1/2/3.
+function esphomeTriHass({ perPhaseVa = true } = {}) {
+  const z = "sensor.linky_";
+  const states = {
+    [`${z}east`]: st("48210", { device_class: "energy", unit_of_measurement: "kWh" }),
+    [`${z}sinsts`]: st("3450", { device_class: "apparent_power", unit_of_measurement: "VA" }),
+    [`${z}irms1`]: st("8", { device_class: "current", unit_of_measurement: "A" }),
+    [`${z}irms2`]: st("4", { device_class: "current", unit_of_measurement: "A" }),
+    [`${z}irms3`]: st("3", { device_class: "current", unit_of_measurement: "A" }),
+    [`${z}urms1`]: st("236", { device_class: "voltage", unit_of_measurement: "V" }),
+    [`${z}urms2`]: st("238", { device_class: "voltage", unit_of_measurement: "V" }),
+    [`${z}urms3`]: st("234", { device_class: "voltage", unit_of_measurement: "V" }),
+  };
+  if (perPhaseVa) {
+    states[`${z}sinsts1`] = st("1890", { device_class: "apparent_power", unit_of_measurement: "VA" });
+    states[`${z}sinsts2`] = st("880", { device_class: "apparent_power", unit_of_measurement: "VA" });
+    states[`${z}sinsts3`] = st("680", { device_class: "apparent_power", unit_of_measurement: "VA" });
+  }
+  const entities = {};
+  for (const id of Object.keys(states)) entities[id] = { entity_id: id, device_id: "m1" };
+  return { language: "en", states, entities, devices: { m1: { name: "Linky", model: "ZLinky_TIC" } }, callWS: () => Promise.resolve({}) };
+}
+
+test("three-phase standard TIC: phase rows in VA from SINSTS1/2/3, gauge against a third of the subscribed power", () => {
+  const card = make(ZlinkyCard, esphomeTriHass(), { subscribed_power: 9 });
+  const { ent } = card._resolve();
+  // The per-phase VA are not taken for the total, which stays SINSTS.
+  assert.equal(ent.apparent_power, "sensor.linky_sinsts");
+  assert.equal(ent.apparent_power_a, "sensor.linky_sinsts1");
+  assert.equal(ent.apparent_power_b, "sensor.linky_sinsts2");
+  assert.equal(ent.apparent_power_c, "sensor.linky_sinsts3");
+  const html = card.shadowRoot.innerHTML;
+  assert.match(html, /L1<[\s\S]*?width:63\.0%[\s\S]*?>1,?890 VA<[\s\S]*?236 V</);
+  assert.match(html, /L2<[\s\S]*?>880 VA<[\s\S]*?L3<[\s\S]*?>680 VA</);
+  assert.doesNotMatch(html, /class="pv">\d+ A</);
+  // Hero: IRMS1 / URMS1 labelled as phase 1, in whole amperes.
+  assert.match(html, /L1 8 A/);
+  assert.match(html, /L1 236 V/);
+});
+
+test("three-phase without every phase's VA falls back to whole amperes", () => {
+  const html = make(ZlinkyCard, esphomeTriHass({ perPhaseVa: false }), { subscribed_power: 9 }).shadowRoot.innerHTML;
+  assert.match(html, /L1<[\s\S]*?>8 A<[\s\S]*?L2<[\s\S]*?>4 A<[\s\S]*?L3<[\s\S]*?>3 A</);
+  assert.doesNotMatch(html, /\d VA<\/span><span class="pv dim">/);
+  // A single phase missing its VA: no mix of units.
+  const hass = esphomeTriHass();
+  hass.states["sensor.linky_sinsts3"] = st("unavailable");
+  assert.doesNotMatch(make(ZlinkyCard, hass, { subscribed_power: 9 }).shadowRoot.innerHTML, /\d VA<\/span><span class="pv dim">/);
+});
+
+test("single-phase hero current chip: no phase label, a decimal only when the source has one", () => {
+  const hass = zhaHass();
+  let html = make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML;
+  assert.doesNotMatch(html, /L1 /);
+  assert.match(html, /mdi:current-ac"><\/ha-icon>2 A</);
+  hass.states["sensor.lixee_zlinky_tic_courant"] = st("2.4", { device_class: "current", unit_of_measurement: "A" });
+  html = make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML;
+  assert.match(html, /mdi:current-ac"><\/ha-icon>2\.4 A</);
+});

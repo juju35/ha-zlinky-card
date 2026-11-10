@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.11.0 - 2026-11-10
+
+### Features
+- **Three-phase, apparent power per phase** ([#43](https://github.com/juju35/ha-zlinky-card/issues/43), suggested by @FredM67): with the standard TIC's SINSTS1/2/3, the phase rows show each phase's apparent power in VA and the gauge measures it against a third of the subscribed power, as the meter does, instead of the current converted at a fixed 230 V. New overridable entities `apparent_power_a`, `apparent_power_b`, `apparent_power_c`, detected from `_sinsts1|2|3` (and ZHA's phase B / C apparent power). Without the three of them (historic TIC, ZHA) the rows stay in amperes.
+
+### Improvements
+- Currents read in whole amperes, as the meter reports them (IRMS, IINST); one decimal only when the source has one.
+- Three-phase: the hero's current and voltage chips are labelled *L1*, since they are phase 1's (IRMS1, URMS1), not totals.
+
 ## 1.10.2 - 2026-11-09
 
 ### Improvements

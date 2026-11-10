@@ -45,7 +45,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - Tempo contract: today's color (from the tariff period) and tomorrow's once announced (from `DEMAIN`, or any sensor naming a color)
 - Contract comparison: your last 12 months of hourly consumption priced as Base and as Off-peak / Peak, with your prices and off-peak hours — which contract would have cost less, and by how much
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
-- Three-phase details (current and voltage per phase) on three-phase meters, currents only with the historic TIC (`IINST1`–`IINST3`)
+- Three-phase details on three-phase meters: apparent power (VA) and voltage per phase with the standard TIC (`SINSTS1`–`SINSTS3`), else current per phase, currents only with the historic TIC (`IINST1`–`IINST3`)
 - An animated Linky meter: its screen shows the live power and its LED blinks faster as the load rises
 - Tap any value to open its history
 - Visual editor in the dashboard UI (no YAML needed)
@@ -169,7 +169,7 @@ entities:
 | `sub_base` / `sub_hchp` | ❌ | — | Monthly subscription of each contract, added to the comparison |
 | `zoom` | ❌ | `true` | Mini card only: detail button that unfolds the full card |
 | `language` | ❌ | HA language | `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` |
-| `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `injection`, `tariff`, `tempo` (today's Tempo color, e.g. from an RTE Tempo integration), `tomorrow` (tomorrow's Tempo color), `tier1`…`tier6` |
+| `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `apparent_power_a`, `apparent_power_b`, `apparent_power_c` (apparent power per phase, SINSTS1…3), `injection`, `tariff`, `tempo` (today's Tempo color, e.g. from an RTE Tempo integration), `tomorrow` (tomorrow's Tempo color), `tier1`…`tier6` |
 
 ### Price per tier
 
