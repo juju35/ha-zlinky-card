@@ -153,7 +153,7 @@ entities:
 | `entity` | ❌ | — | Any entity of the ZLinky, used to find the device |
 | `name` | ❌ | `Linky` | Card title |
 | `icon` | ❌ | Illustration | Replaces the meter illustration with an icon |
-| `subscribed_power` | ❌ | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA). In the visual editor, the **Subscribed power sensor** field replaces the number |
+| `subscribed_power` | ❌ | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA, per phase on a three-phase meter so 1 A = 0.6 kVA there). In the visual editor, the **Subscribed power sensor** field replaces the number |
 | `load_warning` | ❌ | `50` | Share of the subscribed power (%) from which the load is moderate (orange) |
 | `load_critical` | ❌ | `80` | Share of the subscribed power (%) from which the load is high (red) |
 | `price` | ❌ | — | Price per kWh, shows the cost of each consumption (currency from Home Assistant): a number, a sensor giving the current price per kWh, or [one price per tier](#price-per-tier) |

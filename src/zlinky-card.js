@@ -30,7 +30,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Puissance souscrite (kVA)',
     ed_subscribed_power_helper: 'Sert à la jauge de charge ; 6 kVA par défaut',
     ed_subscribed_power_entity: 'Capteur de puissance souscrite',
-    ed_subscribed_power_entity_helper: 'Optionnel : capteur donnant la puissance souscrite (kVA, ou A comme ISOUSC). Remplace la valeur saisie',
+    ed_subscribed_power_entity_helper: 'Optionnel : capteur donnant la puissance souscrite (kVA, ou A comme ISOUSC, par phase en triphasé). Remplace la valeur saisie',
     ed_price: 'Prix du kWh',
     ed_price_helper: 'Optionnel : affiche le coût à côté des consommations',
     ed_tiers: 'Noms des index',
@@ -121,7 +121,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Subscribed power (kVA)',
     ed_subscribed_power_helper: 'Used for the load gauge; 6 kVA by default',
     ed_subscribed_power_entity: 'Subscribed power sensor',
-    ed_subscribed_power_entity_helper: 'Optional: a sensor giving the subscribed power (kVA, or A like ISOUSC). Replaces the number above',
+    ed_subscribed_power_entity_helper: 'Optional: a sensor giving the subscribed power (kVA, or A like ISOUSC, per phase on three-phase). Replaces the number above',
     ed_price: 'Price per kWh',
     ed_price_helper: 'Optional: shows the cost next to the consumption',
     ed_tiers: 'Tier names',
@@ -212,7 +212,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Vertragliche Anschlussleistung (kVA)',
     ed_subscribed_power_helper: 'Für die Lastanzeige; standardmäßig 6 kVA',
     ed_subscribed_power_entity: 'Sensor der Anschlussleistung',
-    ed_subscribed_power_entity_helper: 'Optional: Sensor mit der vertraglichen Anschlussleistung (kVA oder A wie ISOUSC). Ersetzt den eingegebenen Wert',
+    ed_subscribed_power_entity_helper: 'Optional: Sensor mit der vertraglichen Anschlussleistung (kVA oder A wie ISOUSC, bei Drehstrom je Phase). Ersetzt den eingegebenen Wert',
     ed_price: 'Preis pro kWh',
     ed_price_helper: 'Optional: zeigt die Kosten neben dem Verbrauch an',
     ed_tiers: 'Namen der Zählwerke',
@@ -303,7 +303,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Potencia contratada (kVA)',
     ed_subscribed_power_helper: 'Se usa para el indicador de carga; 6 kVA por defecto',
     ed_subscribed_power_entity: 'Sensor de potencia contratada',
-    ed_subscribed_power_entity_helper: 'Opcional: sensor con la potencia contratada (kVA, o A como ISOUSC). Sustituye al valor introducido',
+    ed_subscribed_power_entity_helper: 'Opcional: sensor con la potencia contratada (kVA, o A como ISOUSC, por fase en trifásico). Sustituye al valor introducido',
     ed_price: 'Precio por kWh',
     ed_price_helper: 'Opcional: muestra el coste junto a los consumos',
     ed_tiers: 'Nombres de los índices',
@@ -394,7 +394,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Уговорена снага (kVA)',
     ed_subscribed_power_helper: 'Користи се за мерач оптерећења; подразумевано 6 kVA',
     ed_subscribed_power_entity: 'Сензор уговорене снаге',
-    ed_subscribed_power_entity_helper: 'Опционо: сензор са уговореном снагом (kVA или ампери). Замењује унету вредност',
+    ed_subscribed_power_entity_helper: 'Опционо: сензор са уговореном снагом (kVA или ампери, по фази код трофазног). Замењује унету вредност',
     ed_price: 'Цена по kWh',
     ed_price_helper: 'Опционо: приказује трошак поред потрошње',
     ed_tiers: 'Називи тарифа',
@@ -485,7 +485,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Ugovorena snaga (kVA)',
     ed_subscribed_power_helper: 'Koristi se za merač opterećenja; podrazumevano 6 kVA',
     ed_subscribed_power_entity: 'Senzor ugovorene snage',
-    ed_subscribed_power_entity_helper: 'Opciono: senzor sa ugovorenom snagom (kVA, ili A kao ISOUSC). Zamenjuje unetu vrednost',
+    ed_subscribed_power_entity_helper: 'Opciono: senzor sa ugovorenom snagom (kVA, ili A kao ISOUSC, po fazi kod trofaznog). Zamenjuje unetu vrednost',
     ed_price: 'Cena po kWh',
     ed_price_helper: 'Opciono: prikazuje trošak pored potrošnje',
     ed_tiers: 'Nazivi tarifa',
@@ -576,7 +576,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Potenza impegnata (kVA)',
     ed_subscribed_power_helper: 'Usata per l\'indicatore di carico; 6 kVA predefiniti',
     ed_subscribed_power_entity: 'Sensore della potenza impegnata',
-    ed_subscribed_power_entity_helper: 'Facoltativo: sensore con la potenza impegnata (kVA, o A come ISOUSC). Sostituisce il valore inserito',
+    ed_subscribed_power_entity_helper: 'Facoltativo: sensore con la potenza impegnata (kVA, o A come ISOUSC, per fase in trifase). Sostituisce il valore inserito',
     ed_price: 'Prezzo per kWh',
     ed_price_helper: 'Facoltativo: mostra il costo accanto ai consumi',
     ed_tiers: 'Nomi delle fasce',
@@ -667,7 +667,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Aansluitvermogen (kVA)',
     ed_subscribed_power_helper: 'Gebruikt voor de belastingsmeter; standaard 6 kVA',
     ed_subscribed_power_entity: 'Sensor voor aansluitvermogen',
-    ed_subscribed_power_entity_helper: 'Optioneel: een sensor met het aansluitvermogen (kVA, of A zoals ISOUSC). Vervangt de ingevoerde waarde',
+    ed_subscribed_power_entity_helper: 'Optioneel: een sensor met het aansluitvermogen (kVA, of A zoals ISOUSC, per fase bij driefasig). Vervangt de ingevoerde waarde',
     ed_price: 'Prijs per kWh',
     ed_price_helper: 'Optioneel: toont de kosten naast het verbruik',
     ed_tiers: 'Namen van de telwerken',
@@ -758,7 +758,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Potência contratada (kVA)',
     ed_subscribed_power_helper: 'Usada no indicador de carga; 6 kVA por omissão',
     ed_subscribed_power_entity: 'Sensor da potência contratada',
-    ed_subscribed_power_entity_helper: 'Opcional: sensor com a potência contratada (kVA, ou A como ISOUSC). Substitui o valor introduzido',
+    ed_subscribed_power_entity_helper: 'Opcional: sensor com a potência contratada (kVA, ou A como ISOUSC, por fase em trifásico). Substitui o valor introduzido',
     ed_price: 'Preço por kWh',
     ed_price_helper: 'Opcional: mostra o custo junto aos consumos',
     ed_tiers: 'Nomes das leituras',
@@ -849,7 +849,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Moc umowna (kVA)',
     ed_subscribed_power_helper: 'Używana przez wskaźnik obciążenia; domyślnie 6 kVA',
     ed_subscribed_power_entity: 'Czujnik mocy umownej',
-    ed_subscribed_power_entity_helper: 'Opcjonalnie: czujnik podający moc umowną (kVA lub A jak ISOUSC). Zastępuje wpisaną wartość',
+    ed_subscribed_power_entity_helper: 'Opcjonalnie: czujnik podający moc umowną (kVA lub A jak ISOUSC, na fazę przy trójfazowym). Zastępuje wpisaną wartość',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Opcjonalnie: pokazuje koszt obok zużycia',
     ed_tiers: 'Nazwy stref',
@@ -940,7 +940,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Putere contractată (kVA)',
     ed_subscribed_power_helper: 'Folosită pentru indicatorul de sarcină; implicit 6 kVA',
     ed_subscribed_power_entity: 'Senzor de putere contractată',
-    ed_subscribed_power_entity_helper: 'Opțional: senzor care dă puterea contractată (kVA sau A, ca ISOUSC). Înlocuiește valoarea introdusă',
+    ed_subscribed_power_entity_helper: 'Opțional: senzor care dă puterea contractată (kVA sau A, ca ISOUSC, pe fază la trifazat). Înlocuiește valoarea introdusă',
     ed_price: 'Preț per kWh',
     ed_price_helper: 'Opțional: afișează costul lângă consum',
     ed_tiers: 'Numele indexurilor',
@@ -1031,7 +1031,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Aftalt effekt (kVA)',
     ed_subscribed_power_helper: 'Bruges til belastningsmåleren; 6 kVA som standard',
     ed_subscribed_power_entity: 'Sensor for aftalt effekt',
-    ed_subscribed_power_entity_helper: 'Valgfrit: en sensor med den aftalte effekt (kVA eller A som ISOUSC). Erstatter den indtastede værdi',
+    ed_subscribed_power_entity_helper: 'Valgfrit: en sensor med den aftalte effekt (kVA eller A som ISOUSC, pr. fase ved trefaset). Erstatter den indtastede værdi',
     ed_price: 'Pris pr. kWh',
     ed_price_helper: 'Valgfrit: viser prisen ved siden af forbruget',
     ed_tiers: 'Navne på tælleværker',
@@ -1122,7 +1122,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Abonnerad effekt (kVA)',
     ed_subscribed_power_helper: 'Används för belastningsmätaren; 6 kVA som standard',
     ed_subscribed_power_entity: 'Sensor för abonnerad effekt',
-    ed_subscribed_power_entity_helper: 'Valfritt: en sensor med den abonnerade effekten (kVA eller A som ISOUSC). Ersätter det angivna värdet',
+    ed_subscribed_power_entity_helper: 'Valfritt: en sensor med den abonnerade effekten (kVA eller A som ISOUSC, per fas vid trefas). Ersätter det angivna värdet',
     ed_price: 'Pris per kWh',
     ed_price_helper: 'Valfritt: visar kostnaden bredvid förbrukningen',
     ed_tiers: 'Registernamn',
@@ -1213,7 +1213,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Договорена мощност (kVA)',
     ed_subscribed_power_helper: 'Използва се за индикатора на натоварването; по подразбиране 6 kVA',
     ed_subscribed_power_entity: 'Сензор за договорена мощност',
-    ed_subscribed_power_entity_helper: 'По избор: сензор с договорената мощност (kVA или A като ISOUSC). Заменя въведената стойност',
+    ed_subscribed_power_entity_helper: 'По избор: сензор с договорената мощност (kVA или A като ISOUSC, на фаза при трифазно). Заменя въведената стойност',
     ed_price: 'Цена за kWh',
     ed_price_helper: 'По избор: показва цената до потреблението',
     ed_tiers: 'Имена на тарифите',
@@ -1304,7 +1304,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Мощность по договору (kVA)',
     ed_subscribed_power_helper: 'Используется для индикатора нагрузки; по умолчанию 6 kVA',
     ed_subscribed_power_entity: 'Датчик мощности по договору',
-    ed_subscribed_power_entity_helper: 'Необязательно: датчик с мощностью по договору (kVA или A, как ISOUSC). Заменяет введённое значение',
+    ed_subscribed_power_entity_helper: 'Необязательно: датчик с мощностью по договору (kVA или A, как ISOUSC, на фазу при трёхфазном). Заменяет введённое значение',
     ed_price: 'Цена за kWh',
     ed_price_helper: 'Необязательно: показывает стоимость рядом с потреблением',
     ed_tiers: 'Названия тарифов',
@@ -1395,7 +1395,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Потужність за договором (kVA)',
     ed_subscribed_power_helper: 'Використовується для індикатора навантаження; типово 6 kVA',
     ed_subscribed_power_entity: 'Датчик потужності за договором',
-    ed_subscribed_power_entity_helper: 'Необов’язково: датчик із потужністю за договором (kVA або A, як ISOUSC). Замінює введене значення',
+    ed_subscribed_power_entity_helper: 'Необов’язково: датчик із потужністю за договором (kVA або A, як ISOUSC, на фазу при трифазному). Замінює введене значення',
     ed_price: 'Ціна за kWh',
     ed_price_helper: 'Необов’язково: показує вартість поруч зі споживанням',
     ed_tiers: 'Назви тарифів',
@@ -1486,7 +1486,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Lekötött teljesítmény (kVA)',
     ed_subscribed_power_helper: 'A terhelésjelzőhöz használatos; alapértelmezés: 6 kVA',
     ed_subscribed_power_entity: 'Lekötött teljesítmény érzékelője',
-    ed_subscribed_power_entity_helper: 'Opcionális: a lekötött teljesítményt adó érzékelő (kVA, vagy A, mint az ISOUSC). A beírt érték helyébe lép',
+    ed_subscribed_power_entity_helper: 'Opcionális: a lekötött teljesítményt adó érzékelő (kVA, vagy A, mint az ISOUSC, háromfázisnál fázisonként). A beírt érték helyébe lép',
     ed_price: 'kWh-ár',
     ed_price_helper: 'Opcionális: a költséget a fogyasztás mellett jeleníti meg',
     ed_tiers: 'Tarifák nevei',
@@ -1577,7 +1577,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Zmluvný výkon (kVA)',
     ed_subscribed_power_helper: 'Používa sa pre ukazovateľ zaťaženia; predvolene 6 kVA',
     ed_subscribed_power_entity: 'Senzor zmluvného výkonu',
-    ed_subscribed_power_entity_helper: 'Voliteľné: senzor so zmluvným výkonom (kVA alebo A ako ISOUSC). Nahrádza zadanú hodnotu',
+    ed_subscribed_power_entity_helper: 'Voliteľné: senzor so zmluvným výkonom (kVA alebo A ako ISOUSC, pri trojfázovom na fázu). Nahrádza zadanú hodnotu',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Voliteľné: zobrazí náklady vedľa spotreby',
     ed_tiers: 'Názvy pásiem',
@@ -1668,7 +1668,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Rezervovaný příkon (kVA)',
     ed_subscribed_power_helper: 'Používá se pro ukazatel zatížení; výchozí 6 kVA',
     ed_subscribed_power_entity: 'Senzor rezervovaného příkonu',
-    ed_subscribed_power_entity_helper: 'Volitelné: senzor s rezervovaným příkonem (kVA nebo A jako ISOUSC). Nahrazuje zadanou hodnotu',
+    ed_subscribed_power_entity_helper: 'Volitelné: senzor s rezervovaným příkonem (kVA nebo A jako ISOUSC, u třífázového na fázi). Nahrazuje zadanou hodnotu',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Volitelné: zobrazí náklady vedle spotřeby',
     ed_tiers: 'Názvy pásem',
@@ -1759,7 +1759,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Dogovorjena moč (kVA)',
     ed_subscribed_power_helper: 'Uporablja se za kazalnik obremenitve; privzeto 6 kVA',
     ed_subscribed_power_entity: 'Senzor dogovorjene moči',
-    ed_subscribed_power_entity_helper: 'Neobvezno: senzor z dogovorjeno močjo (kVA ali A kot ISOUSC). Nadomesti vneseno vrednost',
+    ed_subscribed_power_entity_helper: 'Neobvezno: senzor z dogovorjeno močjo (kVA ali A kot ISOUSC, pri trifaznem na fazo). Nadomesti vneseno vrednost',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Neobvezno: prikaže strošek poleg porabe',
     ed_tiers: 'Imena tarif',
@@ -1850,7 +1850,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Pieslēguma jauda (kVA)',
     ed_subscribed_power_helper: 'Izmanto slodzes rādītājam; pēc noklusējuma 6 kVA',
     ed_subscribed_power_entity: 'Pieslēguma jaudas sensors',
-    ed_subscribed_power_entity_helper: 'Neobligāti: sensors ar pieslēguma jaudu (kVA vai A kā ISOUSC). Aizstāj ievadīto vērtību',
+    ed_subscribed_power_entity_helper: 'Neobligāti: sensors ar pieslēguma jaudu (kVA vai A kā ISOUSC, trīsfāžu gadījumā uz fāzi). Aizstāj ievadīto vērtību',
     ed_price: 'Cena par kWh',
     ed_price_helper: 'Neobligāti: rāda izmaksas blakus patēriņam',
     ed_tiers: 'Zonu nosaukumi',
@@ -1941,7 +1941,7 @@ var ZlI18n = {
     ed_subscribed_power: 'Συμφωνημένη ισχύς (kVA)',
     ed_subscribed_power_helper: 'Χρησιμοποιείται για τον δείκτη φορτίου, προεπιλογή 6 kVA',
     ed_subscribed_power_entity: 'Αισθητήρας συμφωνημένης ισχύος',
-    ed_subscribed_power_entity_helper: 'Προαιρετικό: αισθητήρας με τη συμφωνημένη ισχύ (kVA ή A όπως το ISOUSC). Αντικαθιστά την τιμή που δόθηκε',
+    ed_subscribed_power_entity_helper: 'Προαιρετικό: αισθητήρας με τη συμφωνημένη ισχύ (kVA ή A όπως το ISOUSC, ανά φάση στο τριφασικό). Αντικαθιστά την τιμή που δόθηκε',
     ed_price: 'Τιμή ανά kWh',
     ed_price_helper: 'Προαιρετικό: εμφανίζει το κόστος δίπλα στην κατανάλωση',
     ed_tiers: 'Ονόματα ζωνών',
@@ -2709,15 +2709,25 @@ class ZlinkyCard extends HTMLElement {
     });
   }
 
-  // The subscribed power in kVA: a number, or a sensor giving it (in kVA, or in A like the historic TIC's ISOUSC,
-  // 1 A = 0.2 kVA). 6 kVA by default, or while the sensor has no usable state.
+  // Three-phase meter: when the other phases carry a voltage (standard TIC, ZHA), or, for the historic TIC which
+  // gives no voltage per phase (Zigbee2MQTT IINST1/2/3), when phase 2 or 3 currents are there without any phase
+  // voltage sensor. A single-phase meter whose ZHA phase B / C sensors read 0 V is not.
+  _threePhase(ent) {
+    var vb = this._numv(ent.voltage_b), vc = this._numv(ent.voltage_c);
+    var currentsOnly = !ent.voltage_b && !ent.voltage_c && (this._numv(ent.current_b) != null || this._numv(ent.current_c) != null);
+    return vb > 0 || vc > 0 || currentsOnly;
+  }
+
+  // The subscribed power in kVA: a number, or a sensor giving it (in kVA, or in A like the historic TIC's ISOUSC:
+  // 1 A = 0.2 kVA, per phase on a three-phase meter, so 1 A = 0.6 kVA there). 6 kVA by default, or while the
+  // sensor has no usable state.
   _subscribed() {
     var p = this._config.subscribed_power, v = p;
     if (typeof p === 'string' && /^[a-z_]+\.\w+$/.test(p.trim())) {
       var s = this._st(p.trim());
       v = this._numv(p.trim());
       var u = String(s?.attributes?.unit_of_measurement || 'kVA');
-      if (v != null) v = u === 'A' ? v * 0.2 : /^(VA|W)$/.test(u) ? v / 1000 : v;
+      if (v != null) v = u === 'A' ? v * (this._threePhase(this._resolve().ent) ? 0.6 : 0.2) : /^(VA|W)$/.test(u) ? v / 1000 : v;
     }
     var n = Number(v);
     return v != null && v !== '' && Number.isFinite(n) && n > 0 ? n : 6;
@@ -2764,12 +2774,8 @@ class ZlinkyCard extends HTMLElement {
     }
     var lang = m.lang;
 
-    // Three-phase details: when the other phases carry a voltage (standard TIC, ZHA), or, for the historic TIC which
-    // gives no voltage per phase (Zigbee2MQTT IINST1/2/3), when phase 2 or 3 currents are there without any phase
-    // voltage sensor. A single-phase meter whose ZHA phase B / C sensors read 0 V shows none.
-    var vb = this._numv(ent.voltage_b), vc = this._numv(ent.voltage_c);
-    var currentsOnly = !ent.voltage_b && !ent.voltage_c && (this._numv(ent.current_b) != null || this._numv(ent.current_c) != null);
-    var threePhase = vb > 0 || vc > 0 || currentsOnly;
+    // Three-phase details (see _threePhase); a single-phase meter shows none.
+    var threePhase = this._threePhase(ent);
 
     // Hero: meter, live power, active power / current / voltage, load gauge. On a three-phase meter the current and
     // voltage sensors are phase 1's (IRMS1, URMS1): labelled L1 so they do not read as totals.

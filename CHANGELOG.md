@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.11.1 - 2026-11-10
+
+### Fixes
+- **Three-phase, subscribed power from ISOUSC** ([#45](https://github.com/juju35/ha-zlinky-card/issues/45), reported by @julll190): on a three-phase meter, a `subscribed_power` sensor in amperes (the historic TIC's ISOUSC) is the current subscribed per phase, so 1 A now counts 0.6 kVA instead of 0.2 (25 A reads 15 kVA, not 5). The load gauge and the phase rows follow.
+
 ## 1.11.0 - 2026-11-10
 
 ### Features
