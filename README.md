@@ -49,6 +49,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - **Today**, **yesterday** and **this month**'s consumption from Home Assistant's long-term statistics, with the cost when a price per kWh is set
 - 24 h power curve with its peak (the highest reading, not the highest 5-minute mean), on a real time axis (a gap in the recorder's data shows as a break in the line)
 - Tempo contract: today's color (from the tariff period) and tomorrow's once announced (from `DEMAIN`, or any sensor naming a color)
+- EDF Zen Flex contract: today's day type, Éco, Sobriété or Bonus (from the tariff period, or a day-type sensor such as [edf-zen-flex](https://github.com/AuroreVgn/edf-zen-flex)'s) and tomorrow's
 - Contract comparison: your last 12 months of hourly consumption priced as Base and as Off-peak / Peak, with your prices and off-peak hours — which contract would have cost less, and by how much
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
 - Three-phase details on three-phase meters: apparent power (VA) and voltage per phase with the standard TIC (`SINSTS1`–`SINSTS3`), else current per phase, currents only with the historic TIC (`IINST1`–`IINST3`)
@@ -171,13 +172,13 @@ entities:
 | `show_index` | ❌ | `true` | Meter index, tiers and injection |
 | `show_phases` | ❌ | `true` | Per-phase details (three-phase meters only) |
 | `show_logo` | ❌ | `true` | Meter icon in the header |
-| `show_tempo` | ❌ | `true` | Tempo colors of today and tomorrow (only on a Tempo contract; two dots on the mini card) |
+| `show_tempo` | ❌ | `true` | Tempo colors, or Zen Flex day types, of today and tomorrow (only on those contracts; two dots on the mini card) |
 | `compare_base` / `compare_hc` / `compare_hp` | ❌ | — | Full card: the Base price and the Off-peak and Peak prices per kWh, for the [contract comparison](#contract-comparison) (all three and `hc_hours` turn it on) |
 | `hc_hours` | ❌ | — | Off-peak hours for the comparison, such as `22:30-06:30` or `01:00-07:00, 12:30-14:30` |
 | `sub_base` / `sub_hchp` | ❌ | — | Monthly subscription of each contract, added to the comparison |
 | `zoom` | ❌ | `true` | Mini card only: detail button that unfolds the full card |
 | `language` | ❌ | HA language | `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` |
-| `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `apparent_power_a`, `apparent_power_b`, `apparent_power_c` (apparent power per phase, SINSTS1…3), `injection`, `tariff`, `tempo` (today's Tempo color, e.g. from an RTE Tempo integration), `tomorrow` (tomorrow's Tempo color), `tier1`…`tier6` |
+| `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `apparent_power_a`, `apparent_power_b`, `apparent_power_c` (apparent power per phase, SINSTS1…3), `injection`, `tariff`, `tempo` (today's Tempo color or Zen Flex day type, e.g. from an RTE Tempo or edf-zen-flex integration), `tomorrow` (tomorrow's), `tier1`…`tier6` |
 
 ### Price per tier
 
@@ -195,13 +196,19 @@ price: [0.1296, 0.1609, 0.1486, 0.1894, 0.1568, 0.7562]
 ```
 
 ```yaml
+# Zen Flex: off-peak / peak on Éco days, then on Sobriété days, then on Bonus days
+tiers: [HC Éco, HP Éco, HC Sobriété, HP Sobriété, HC Bonus, HP Bonus]
+price: [0.15, 0.20, 0.15, 0.75, 0.15, 0.20]  # your contract's six prices, in this order (Bonus as Éco, say)
+```
+
+```yaml
 # EJP (normal, peak), the peak price from a sensor
 price: [0.1528, sensor.ejp_peak_price]
 ```
 
 A tier without a price (a shorter list) takes the last price of the list; a sensor that is unavailable takes the closest price before it (or the first one). When only the total index has statistics (a single tier in use, or a tier's statistics missing), every kWh of the period is priced at the current tier's price, read from the tariff period (`HC..`, `HPJB`, `HP BLEU`, `PM..`, a tier number, or one of your `tiers` names), or at the first price. Yesterday's and this month's tiles then show no cost when the tiers' prices differ (the current tier's price says nothing of the tiers that period was spent in); today's cost stays an estimate at the current tier's price.
 
-The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. Tiers are listed only when more than one carries an index. The phase section appears when phases 2 or 3 report a voltage, or, with the historic TIC (no voltage per phase), when the phase 2 and 3 currents are there. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
+The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. On Zen Flex, the indexes are `EASF01` / `EASF02` for Éco days (tiers 1 and 2), `EASF03` / `EASF04` for Sobriété days (tiers 3 and 4) and `EASF05` / `EASF06` for Bonus days (tiers 5 and 6), off-peak then peak; with ESPHome's `teleinfo`, indexes named after these periods (`Index Eco Heures Creuses`, `Index Sobriété Heures Pleines`, `Index Bonus Heures Creuses`…) are found by their names. The tariff period reads `HC Jnormal` / `HP Jnormal` on Éco days; any other `HC J…` / `HP J…` label is taken for a Sobriété day. The meter's label on a Sobriété day is not documented yet ([#47](https://github.com/juju35/ha-zlinky-card/issues/47)), so a day-type sensor (`entities.tempo`, `entities.tomorrow`: `eco` / `sobriete` / `bonus`, `ECO` / `SOBRIETE` / `BONUS` or EDF's `RAS` / `ZENF_PM` / `ZENF_BONIF`) is the surest source, and the only one for Bonus days and tomorrow. Tiers are listed only when more than one carries an index. The phase section appears when phases 2 or 3 report a voltage, or, with the historic TIC (no voltage per phase), when the phase 2 and 3 currents are there. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
 
 ### Contract comparison
 
