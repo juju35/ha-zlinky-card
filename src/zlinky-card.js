@@ -53,6 +53,8 @@ var ZlI18n = {
     cmp_same: 'Équivalents : {v} d\'écart',
     cmp_days: '{d} jours',
     ed_show_graph: 'Courbe 24 h',
+    ed_show_title: 'Titre',
+    ed_show_subtitle: 'Sous-titre',
     ed_show_stats: 'Consommations',
     ed_show_index: 'Index du compteur',
     ed_show_phases: 'Détail des phases',
@@ -144,6 +146,8 @@ var ZlI18n = {
     cmp_same: 'About the same: {v} apart',
     cmp_days: '{d} days',
     ed_show_graph: '24 h graph',
+    ed_show_title: 'Title',
+    ed_show_subtitle: 'Subtitle',
     ed_show_stats: 'Consumption',
     ed_show_index: 'Meter index',
     ed_show_phases: 'Phase details',
@@ -235,6 +239,8 @@ var ZlI18n = {
     cmp_same: 'Etwa gleich: {v} Unterschied',
     cmp_days: '{d} Tage',
     ed_show_graph: '24-h-Verlauf',
+    ed_show_title: 'Titel',
+    ed_show_subtitle: 'Untertitel',
     ed_show_stats: 'Verbrauch',
     ed_show_index: 'Zählerstände',
     ed_show_phases: 'Phasendetails',
@@ -326,6 +332,8 @@ var ZlI18n = {
     cmp_same: 'Prácticamente igual: {v} de diferencia',
     cmp_days: '{d} días',
     ed_show_graph: 'Curva de 24 h',
+    ed_show_title: 'Título',
+    ed_show_subtitle: 'Subtítulo',
     ed_show_stats: 'Consumos',
     ed_show_index: 'Índices del contador',
     ed_show_phases: 'Detalle de las fases',
@@ -417,6 +425,8 @@ var ZlI18n = {
     cmp_same: 'Готово исто: разлика {v}',
     cmp_days: '{d} дана',
     ed_show_graph: 'Крива за 24 h',
+    ed_show_title: 'Наслов',
+    ed_show_subtitle: 'Поднаслов',
     ed_show_stats: 'Потрошња',
     ed_show_index: 'Стање бројила',
     ed_show_phases: 'Детаљи фаза',
@@ -508,6 +518,8 @@ var ZlI18n = {
     cmp_same: 'Gotovo isto: razlika {v}',
     cmp_days: '{d} dana',
     ed_show_graph: 'Kriva za 24 h',
+    ed_show_title: 'Naslov',
+    ed_show_subtitle: 'Podnaslov',
     ed_show_stats: 'Potrošnja',
     ed_show_index: 'Stanje brojila',
     ed_show_phases: 'Detalji faza',
@@ -599,6 +611,8 @@ var ZlI18n = {
     cmp_same: 'Praticamente uguali: {v} di differenza',
     cmp_days: '{d} giorni',
     ed_show_graph: 'Curva 24 h',
+    ed_show_title: 'Titolo',
+    ed_show_subtitle: 'Sottotitolo',
     ed_show_stats: 'Consumi',
     ed_show_index: 'Letture del contatore',
     ed_show_phases: 'Dettaglio delle fasi',
@@ -690,6 +704,8 @@ var ZlI18n = {
     cmp_same: 'Ongeveer gelijk: {v} verschil',
     cmp_days: '{d} dagen',
     ed_show_graph: '24-uursgrafiek',
+    ed_show_title: 'Titel',
+    ed_show_subtitle: 'Ondertitel',
     ed_show_stats: 'Verbruik',
     ed_show_index: 'Meterstanden',
     ed_show_phases: 'Details per fase',
@@ -781,6 +797,8 @@ var ZlI18n = {
     cmp_same: 'Praticamente igual: {v} de diferença',
     cmp_days: '{d} dias',
     ed_show_graph: 'Curva de 24 h',
+    ed_show_title: 'Título',
+    ed_show_subtitle: 'Subtítulo',
     ed_show_stats: 'Consumos',
     ed_show_index: 'Leituras do contador',
     ed_show_phases: 'Detalhe das fases',
@@ -872,6 +890,8 @@ var ZlI18n = {
     cmp_same: 'Prawie to samo: różnica {v}',
     cmp_days: '{d} dni',
     ed_show_graph: 'Wykres 24 h',
+    ed_show_title: 'Tytuł',
+    ed_show_subtitle: 'Podtytuł',
     ed_show_stats: 'Zużycie',
     ed_show_index: 'Stany licznika',
     ed_show_phases: 'Szczegóły faz',
@@ -963,6 +983,8 @@ var ZlI18n = {
     cmp_same: 'Aproape la fel: diferență de {v}',
     cmp_days: '{d} zile',
     ed_show_graph: 'Grafic 24 h',
+    ed_show_title: 'Titlu',
+    ed_show_subtitle: 'Subtitlu',
     ed_show_stats: 'Consum',
     ed_show_index: 'Indexurile contorului',
     ed_show_phases: 'Detalii faze',
@@ -1054,6 +1076,8 @@ var ZlI18n = {
     cmp_same: 'Næsten det samme: {v} til forskel',
     cmp_days: '{d} dage',
     ed_show_graph: '24 t-graf',
+    ed_show_title: 'Titel',
+    ed_show_subtitle: 'Undertitel',
     ed_show_stats: 'Forbrug',
     ed_show_index: 'Målerstande',
     ed_show_phases: 'Fasedetaljer',
@@ -1145,6 +1169,8 @@ var ZlI18n = {
     cmp_same: 'Ungefär samma: {v} i skillnad',
     cmp_days: '{d} dagar',
     ed_show_graph: '24 h-diagram',
+    ed_show_title: 'Rubrik',
+    ed_show_subtitle: 'Underrubrik',
     ed_show_stats: 'Förbrukning',
     ed_show_index: 'Mätarställningar',
     ed_show_phases: 'Fasdetaljer',
@@ -1236,6 +1262,8 @@ var ZlI18n = {
     cmp_same: 'Почти еднакво: разлика {v}',
     cmp_days: '{d} дни',
     ed_show_graph: 'Графика за 24 h',
+    ed_show_title: 'Заглавие',
+    ed_show_subtitle: 'Подзаглавие',
     ed_show_stats: 'Потребление',
     ed_show_index: 'Показания на електромера',
     ed_show_phases: 'Подробности за фазите',
@@ -1327,6 +1355,8 @@ var ZlI18n = {
     cmp_same: 'Почти одинаково: разница {v}',
     cmp_days: '{d} дн.',
     ed_show_graph: 'График за 24 h',
+    ed_show_title: 'Заголовок',
+    ed_show_subtitle: 'Подзаголовок',
     ed_show_stats: 'Потребление',
     ed_show_index: 'Показания счетчика',
     ed_show_phases: 'Данные по фазам',
@@ -1418,6 +1448,8 @@ var ZlI18n = {
     cmp_same: 'Майже однаково: різниця {v}',
     cmp_days: '{d} дн.',
     ed_show_graph: 'Графік за 24 h',
+    ed_show_title: 'Заголовок',
+    ed_show_subtitle: 'Підзаголовок',
     ed_show_stats: 'Споживання',
     ed_show_index: 'Показники лічильника',
     ed_show_phases: 'Дані по фазах',
@@ -1509,6 +1541,8 @@ var ZlI18n = {
     cmp_same: 'Nagyjából ugyanannyi: {v} eltérés',
     cmp_days: '{d} nap',
     ed_show_graph: '24 h grafikon',
+    ed_show_title: 'Cím',
+    ed_show_subtitle: 'Alcím',
     ed_show_stats: 'Fogyasztás',
     ed_show_index: 'Mérőállások',
     ed_show_phases: 'Fázisok részletei',
@@ -1600,6 +1634,8 @@ var ZlI18n = {
     cmp_same: 'Takmer rovnaké: rozdiel {v}',
     cmp_days: '{d} dní',
     ed_show_graph: 'Graf za 24 h',
+    ed_show_title: 'Názov',
+    ed_show_subtitle: 'Podnázov',
     ed_show_stats: 'Spotreba',
     ed_show_index: 'Stavy elektromera',
     ed_show_phases: 'Podrobnosti fáz',
@@ -1691,6 +1727,8 @@ var ZlI18n = {
     cmp_same: 'Téměř stejné: rozdíl {v}',
     cmp_days: '{d} dní',
     ed_show_graph: 'Graf za 24 h',
+    ed_show_title: 'Název',
+    ed_show_subtitle: 'Podnázev',
     ed_show_stats: 'Spotřeba',
     ed_show_index: 'Stavy elektroměru',
     ed_show_phases: 'Podrobnosti fází',
@@ -1782,6 +1820,8 @@ var ZlI18n = {
     cmp_same: 'Skoraj enako: razlika {v}',
     cmp_days: '{d} dni',
     ed_show_graph: 'Graf 24 h',
+    ed_show_title: 'Naslov',
+    ed_show_subtitle: 'Podnaslov',
     ed_show_stats: 'Poraba',
     ed_show_index: 'Stanja števca',
     ed_show_phases: 'Podrobnosti faz',
@@ -1873,6 +1913,8 @@ var ZlI18n = {
     cmp_same: 'Gandrīz vienādi: {v} starpība',
     cmp_days: '{d} dienas',
     ed_show_graph: '24 h grafiks',
+    ed_show_title: 'Virsraksts',
+    ed_show_subtitle: 'Apakšvirsraksts',
     ed_show_stats: 'Patēriņš',
     ed_show_index: 'Skaitītāja rādījumi',
     ed_show_phases: 'Fāžu dati',
@@ -1964,6 +2006,8 @@ var ZlI18n = {
     cmp_same: 'Περίπου το ίδιο: διαφορά {v}',
     cmp_days: '{d} ημέρες',
     ed_show_graph: 'Γράφημα 24 h',
+    ed_show_title: 'Τίτλος',
+    ed_show_subtitle: 'Υπότιτλος',
     ed_show_stats: 'Κατανάλωση',
     ed_show_index: 'Ενδείξεις μετρητή',
     ed_show_phases: 'Λεπτομέρειες φάσεων',
@@ -2398,6 +2442,9 @@ class ZlinkyCard extends HTMLElement {
     this._config = Object.assign({
       show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true,
     }, config);
+    // show_title / show_subtitle: the header's title / subtitle, hidden by the stylesheet
+    this.toggleAttribute?.("hide-title", config.show_title === false);
+    this.toggleAttribute?.("hide-subtitle", config.show_subtitle === false);
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.addEventListener('click', (ev) => this._onClick(ev));
@@ -3005,6 +3052,7 @@ class ZlinkyCard extends HTMLElement {
       // The name and the pill share the line from a zero basis: the pill keeps its whole label and the name gives way
       // first, down to about 4 characters and its ellipsis; only past that does the pill shrink.
       '.titles { flex: 1 1 0; min-width: 5ch; font-size: 16px; }' +
+      ':host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.st { display: inline-flex; align-items: center; gap: 4px; flex: 0 1 auto; min-width: 0; max-width: 50%; overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
@@ -3162,7 +3210,7 @@ function zlPriceList(price) {
   return Array.isArray(price) || typeof price === 'string';
 }
 
-var ZL_EDITOR_DEFAULTS = { show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, zoom: true,
+var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, zoom: true,
   load_warning: ZL_LOAD_WARNING, load_critical: ZL_LOAD_CRITICAL };
 
 class ZlinkyCardEditor extends HTMLElement {
@@ -3209,6 +3257,8 @@ class ZlinkyCardEditor extends HTMLElement {
       { name: 'prices', selector: { text: { multiple: true } } },
       {
         type: 'grid', name: '', schema: [
+          { name: 'show_title', selector: { boolean: {} } },
+          { name: 'show_subtitle', selector: { boolean: {} } },
           { name: 'show_stats', selector: { boolean: {} } },
           { name: 'show_graph', selector: { boolean: {} } },
           { name: 'show_index', selector: { boolean: {} } },
