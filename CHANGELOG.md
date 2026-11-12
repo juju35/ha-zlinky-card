@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.12.0 - 2026-11-12
+
+### Features
+- **EDF Zen Flex** ([#47](https://github.com/juju35/ha-zlinky-card/issues/47), asked by @mickael13160): the card shows today's day type, Éco, Sobriété or Bonus, as it shows the Tempo color, and tomorrow's from a day-type sensor. The day type comes from the tariff period (`HC Jnormal` / `HP Jnormal` on Éco days; any other `HC J…` / `HP J…` label taken for Sobriété until the meter's label is confirmed) or from a sensor given as `entities.tempo` / `entities.tomorrow` (edf-zen-flex, MyElectricalData, EDF's codes). The tariff period picks tiers 1 / 2 on Éco days, 3 / 4 on Sobriété days, for the price of the current tier.
+
+### Fixes
+- The tariff period of ESPHome's `teleinfo` named in French (`…_periode_tarifaire_en_cours`) is now detected.
+- The calendar's name (`NGTF`, e.g. *pointe mobile*) is no longer taken for the tariff period.
+
 ## 1.11.1 - 2026-11-10
 
 ### Fixes

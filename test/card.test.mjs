@@ -931,6 +931,39 @@ test("Tempo: tomorrow not announced yet, no section outside a Tempo contract, sh
   assert.match(card.shadowRoot.innerHTML, /White/);
 });
 
+test("Zen Flex: LTARF named …_periode_tarifaire_en_cours is the tariff, NGTF is not; day type from LTARF", () => {
+  const p = "sensor.lixee_zlinky_tic_";
+  let card = make(ZlinkyCard, zhaHass({ extra: { [`${p}periode_tarifaire_en_cours`]: st("HC Jnormal"), [`${p}nom_calendrier_tarifaire`]: st("pointe mobile") } }));
+  assert.equal(card._resolve().ent.tariff, `${p}periode_tarifaire_en_cours`);
+  const html = card.shadowRoot.innerHTML;
+  assert.match(html, /class="tempo"/);
+  assert.match(html, /Éco/);
+  assert.doesNotMatch(html, /Pas encore connue/);
+  // NGTF alone is never taken for the tariff period.
+  card = make(ZlinkyCard, zhaHass({ extra: { [`${p}ngtf`]: st("pointe mobile") } }));
+  assert.equal(card._resolve().ent.tariff, undefined);
+  // Any other "H. J…" label that names no Tempo color reads as a Sobriété day.
+  card = make(ZlinkyCard, zhaHass({ extra: { [`${p}ltarf`]: st("HP Jpointe") } }));
+  assert.match(card.shadowRoot.innerHTML, /Sobriété/);
+  // "HP JOUR" (a peak / off-peak label) is no Zen Flex day.
+  card = make(ZlinkyCard, zhaHass({ extra: { [`${p}ltarf`]: st("HP JOUR") } }));
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /class="tempo"/);
+});
+
+test("Zen Flex: day types from a day-type sensor (edf-zen-flex, MyElectricalData, EDF codes)", () => {
+  const extra = { "sensor.edf_zen_flex_aujourdhui": st("sobriete"), "sensor.edf_zen_flex_demain": st("NON_DETERMINE") };
+  let card = make(ZlinkyCard, zhaHass({ extra }), { entities: { tempo: "sensor.edf_zen_flex_aujourdhui", tomorrow: "sensor.edf_zen_flex_demain" } });
+  let html = card.shadowRoot.innerHTML;
+  assert.match(html, /Sobriété/);
+  assert.match(html, /Pas encore connue/);
+  extra["sensor.edf_zen_flex_aujourdhui"] = st("ZENF_BONIF");
+  extra["sensor.edf_zen_flex_demain"] = st("ECO");
+  card = make(ZlinkyCard, { ...zhaHass({ extra }), language: "en" }, { entities: { tempo: "sensor.edf_zen_flex_aujourdhui", tomorrow: "sensor.edf_zen_flex_demain" } });
+  html = card.shadowRoot.innerHTML;
+  assert.match(html, /Bonus/);
+  assert.match(html, /Eco/);
+});
+
 // ── Price per tier ──────────────────────────────────────────────────────────
 const TP = "sensor.lixee_zlinky_tic_";
 const kwhState = (v) => st(String(v), { device_class: "energy", unit_of_measurement: "kWh" });
@@ -1038,6 +1071,8 @@ test("price per tier: with the total index only, the current tier's price from t
   assert.deepEqual(["HCJB", "HPJB", "HC JW", "HP BLANC", "HCJR", "HPJR"].map((t) => tierOf(t)), [1, 2, 3, 4, 5, 6]);
   assert.deepEqual(["HC..", "HP..", "HEURE CREUSE", "HEURE PLEINE", "HN..", "PM..", "TH..", "2"].map((t) => tierOf(t)), [1, 2, 1, 2, 1, 2, 1, 2]);
   assert.equal(tierOf("Nuit", ["Jour", "Nuit"]), 2);
+  // Zen Flex: Éco days on tiers 1 / 2, Sobriété days on 3 / 4.
+  assert.deepEqual(["HC Jnormal", "HP Jnormal", "HC Jpointe", "HP JPM", "HP JOUR"].map((t) => tierOf(t)), [1, 2, 3, 4, 2]);
 });
 
 test("editor: one price per tier replaces the single price field, and back", () => {
