@@ -3210,7 +3210,7 @@ function zlPriceList(price) {
   return Array.isArray(price) || typeof price === 'string';
 }
 
-var ZL_EDITOR_DEFAULTS = { show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, zoom: true,
+var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, zoom: true,
   load_warning: ZL_LOAD_WARNING, load_critical: ZL_LOAD_CRITICAL };
 
 class ZlinkyCardEditor extends HTMLElement {
