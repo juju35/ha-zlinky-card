@@ -157,7 +157,7 @@ entities:
 | Option | Required | Default | Description |
 |---|---|---|---|
 | `device_id` | ❌ | Auto | ZLinky device (the first ZLinky found is used if missing) |
-| `entity` | ❌ | — | Any entity of the ZLinky, used to find the device |
+| `entity` | ❌ | — | Any entity of the ZLinky, used to find the device when `device_id` is not set. YAML only (the visual editor sets `device_id` and keeps `entity`) |
 | `name` | ❌ | `Linky` | Card title |
 | `show_title` | ❌ | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
 | `show_subtitle` | ❌ | `true` | Show the subtitle under the title |
