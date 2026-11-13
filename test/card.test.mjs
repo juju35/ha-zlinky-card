@@ -1464,3 +1464,16 @@ test("Zen Flex over ESPHome: the six indexes by their French names, the total in
   assert.equal(card._tierNow() + 1, 1);
   assert.match(card.shadowRoot.innerHTML, /Éco/);
 });
+
+test("editor: entity, the alternative to device_id, is YAML only and kept by the editor", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  const sent = [];
+  ed.dispatchEvent = () => sent.push(ed._config);
+  ed.setConfig({ type: "custom:zlinky-card", entity: "sensor.lixee_zlinky_tic_consommation" });
+  ed.hass = zhaHass();
+  const names = schemaLeaves(ed._form.schema).map((s) => s.name);
+  assert.ok(names.includes("device_id") && !names.includes("entity"));
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data, show_graph: false } } });
+  assert.equal(sent.at(-1).entity, "sensor.lixee_zlinky_tic_consommation");
+});
