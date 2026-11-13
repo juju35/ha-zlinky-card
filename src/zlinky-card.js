@@ -86,6 +86,9 @@ var ZlI18n = {
     tempo_white: 'Blanc',
     tempo_red: 'Rouge',
     tempo_unknown: 'Pas encore connue',
+    zen_eco: 'Éco',
+    zen_sobriety: 'Sobriété',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Couleur Tempo',
     ed_load_warning: 'Seuil de charge modérée',
     ed_load_warning_helper: 'Charge modérée à partir de ce pourcentage de la puissance souscrite ; 50 % par défaut',
@@ -179,6 +182,9 @@ var ZlI18n = {
     tempo_white: 'White',
     tempo_red: 'Red',
     tempo_unknown: 'Not known yet',
+    zen_eco: 'Eco',
+    zen_sobriety: 'Sobriety',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo color',
     ed_load_warning: 'Moderate load threshold',
     ed_load_warning_helper: 'Moderate load from this share of the subscribed power; 50 % by default',
@@ -272,6 +278,9 @@ var ZlI18n = {
     tempo_white: 'Weiß',
     tempo_red: 'Rot',
     tempo_unknown: 'Noch nicht bekannt',
+    zen_eco: 'Eco',
+    zen_sobriety: 'Mäßigung',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo-Farbe',
     ed_load_warning: 'Schwelle mittlere Last',
     ed_load_warning_helper: 'Mittlere Last ab diesem Anteil der Anschlussleistung; standardmäßig 50 %',
@@ -365,6 +374,9 @@ var ZlI18n = {
     tempo_white: 'Blanco',
     tempo_red: 'Rojo',
     tempo_unknown: 'Aún no se conoce',
+    zen_eco: 'Eco',
+    zen_sobriety: 'Sobriedad',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Color Tempo',
     ed_load_warning: 'Umbral de carga moderada',
     ed_load_warning_helper: 'Carga moderada a partir de este porcentaje de la potencia contratada; 50 % por defecto',
@@ -458,6 +470,9 @@ var ZlI18n = {
     tempo_white: 'Бела',
     tempo_red: 'Црвена',
     tempo_unknown: 'Још није позната',
+    zen_eco: 'Еко',
+    zen_sobriety: 'Штедња',
+    zen_bonus: 'Бонус',
     ed_show_tempo: 'Темпо боја',
     ed_load_warning: 'Праг умереног оптерећења',
     ed_load_warning_helper: 'Умерено оптерећење од овог удела уговорене снаге; подразумевано 50 %',
@@ -551,6 +566,9 @@ var ZlI18n = {
     tempo_white: 'Bela',
     tempo_red: 'Crvena',
     tempo_unknown: 'Još nije poznata',
+    zen_eco: 'Eko',
+    zen_sobriety: 'Štednja',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo boja',
     ed_load_warning: 'Prag umerenog opterećenja',
     ed_load_warning_helper: 'Umereno opterećenje od ovog udela ugovorene snage; podrazumevano 50 %',
@@ -644,6 +662,9 @@ var ZlI18n = {
     tempo_white: 'Bianco',
     tempo_red: 'Rosso',
     tempo_unknown: 'Non ancora noto',
+    zen_eco: 'Eco',
+    zen_sobriety: 'Sobrietà',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Colore Tempo',
     ed_load_warning: 'Soglia di carico moderato',
     ed_load_warning_helper: 'Carico moderato da questa percentuale della potenza contrattuale; 50 % per impostazione predefinita',
@@ -737,6 +758,9 @@ var ZlI18n = {
     tempo_white: 'Wit',
     tempo_red: 'Rood',
     tempo_unknown: 'Nog niet bekend',
+    zen_eco: 'Eco',
+    zen_sobriety: 'Soberheid',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo-kleur',
     ed_load_warning: 'Drempel matige belasting',
     ed_load_warning_helper: 'Matige belasting vanaf dit aandeel van het gecontracteerde vermogen; standaard 50 %',
@@ -830,6 +854,9 @@ var ZlI18n = {
     tempo_white: 'Branco',
     tempo_red: 'Vermelho',
     tempo_unknown: 'Ainda não se sabe',
+    zen_eco: 'Eco',
+    zen_sobriety: 'Sobriedade',
+    zen_bonus: 'Bónus',
     ed_show_tempo: 'Cor Tempo',
     ed_load_warning: 'Limiar de carga moderada',
     ed_load_warning_helper: 'Carga moderada a partir desta percentagem da potência contratada; 50 % por omissão',
@@ -923,6 +950,9 @@ var ZlI18n = {
     tempo_white: 'Biały',
     tempo_red: 'Czerwony',
     tempo_unknown: 'Jeszcze nieznany',
+    zen_eco: 'Eko',
+    zen_sobriety: 'Oszczędność',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Kolor Tempo',
     ed_load_warning: 'Próg umiarkowanego obciążenia',
     ed_load_warning_helper: 'Umiarkowane obciążenie od tego udziału mocy umownej; domyślnie 50 %',
@@ -1016,6 +1046,9 @@ var ZlI18n = {
     tempo_white: 'Alb',
     tempo_red: 'Roșu',
     tempo_unknown: 'Încă necunoscută',
+    zen_eco: 'Eco',
+    zen_sobriety: 'Sobrietate',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Culoare Tempo',
     ed_load_warning: 'Prag de sarcină moderată',
     ed_load_warning_helper: 'Sarcină moderată de la acest procent din puterea contractată; implicit 50 %',
@@ -1109,6 +1142,9 @@ var ZlI18n = {
     tempo_white: 'Hvid',
     tempo_red: 'Rød',
     tempo_unknown: 'Endnu ikke kendt',
+    zen_eco: 'Øko',
+    zen_sobriety: 'Sparsomhed',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo-farve',
     ed_load_warning: 'Tærskel for moderat belastning',
     ed_load_warning_helper: 'Moderat belastning fra denne andel af den abonnerede effekt; 50 % som standard',
@@ -1202,6 +1238,9 @@ var ZlI18n = {
     tempo_white: 'Vit',
     tempo_red: 'Röd',
     tempo_unknown: 'Inte känd än',
+    zen_eco: 'Eko',
+    zen_sobriety: 'Sparsamhet',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo-färg',
     ed_load_warning: 'Tröskel för måttlig last',
     ed_load_warning_helper: 'Måttlig last från denna andel av den abonnerade effekten; 50 % som standard',
@@ -1295,6 +1334,9 @@ var ZlI18n = {
     tempo_white: 'Бял',
     tempo_red: 'Червен',
     tempo_unknown: 'Все още не е известен',
+    zen_eco: 'Еко',
+    zen_sobriety: 'Пестене',
+    zen_bonus: 'Бонус',
     ed_show_tempo: 'Цвят Tempo',
     ed_load_warning: 'Праг за умерено натоварване',
     ed_load_warning_helper: 'Умерено натоварване от този дял от договорената мощност; по подразбиране 50 %',
@@ -1388,6 +1430,9 @@ var ZlI18n = {
     tempo_white: 'Белый',
     tempo_red: 'Красный',
     tempo_unknown: 'Пока неизвестен',
+    zen_eco: 'Эко',
+    zen_sobriety: 'Умеренность',
+    zen_bonus: 'Бонус',
     ed_show_tempo: 'Цвет Tempo',
     ed_load_warning: 'Порог умеренной нагрузки',
     ed_load_warning_helper: 'Умеренная нагрузка с этой доли договорной мощности; по умолчанию 50 %',
@@ -1481,6 +1526,9 @@ var ZlI18n = {
     tempo_white: 'Білий',
     tempo_red: 'Червоний',
     tempo_unknown: 'Ще невідомий',
+    zen_eco: 'Еко',
+    zen_sobriety: 'Помірність',
+    zen_bonus: 'Бонус',
     ed_show_tempo: 'Колір Tempo',
     ed_load_warning: 'Поріг помірного навантаження',
     ed_load_warning_helper: 'Помірне навантаження з цієї частки договірної потужності; типово 50 %',
@@ -1574,6 +1622,9 @@ var ZlI18n = {
     tempo_white: 'Fehér',
     tempo_red: 'Piros',
     tempo_unknown: 'Még nem ismert',
+    zen_eco: 'Öko',
+    zen_sobriety: 'Takarékosság',
+    zen_bonus: 'Bónusz',
     ed_show_tempo: 'Tempo szín',
     ed_load_warning: 'Közepes terhelés küszöbe',
     ed_load_warning_helper: 'Közepes terhelés a szerződéses teljesítmény ezen arányától; alapértelmezés 50 %',
@@ -1667,6 +1718,9 @@ var ZlI18n = {
     tempo_white: 'Biela',
     tempo_red: 'Červená',
     tempo_unknown: 'Zatiaľ neznáma',
+    zen_eco: 'Eko',
+    zen_sobriety: 'Striedmosť',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Farba Tempo',
     ed_load_warning: 'Prah stredného zaťaženia',
     ed_load_warning_helper: 'Stredné zaťaženie od tohto podielu zmluvného výkonu; predvolene 50 %',
@@ -1760,6 +1814,9 @@ var ZlI18n = {
     tempo_white: 'Bílá',
     tempo_red: 'Červená',
     tempo_unknown: 'Zatím neznámá',
+    zen_eco: 'Eko',
+    zen_sobriety: 'Střídmost',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Barva Tempo',
     ed_load_warning: 'Práh středního zatížení',
     ed_load_warning_helper: 'Střední zatížení od tohoto podílu sjednaného příkonu; výchozí 50 %',
@@ -1853,6 +1910,9 @@ var ZlI18n = {
     tempo_white: 'Bela',
     tempo_red: 'Rdeča',
     tempo_unknown: 'Še ni znana',
+    zen_eco: 'Eko',
+    zen_sobriety: 'Varčnost',
+    zen_bonus: 'Bonus',
     ed_show_tempo: 'Barva Tempo',
     ed_load_warning: 'Prag zmerne obremenitve',
     ed_load_warning_helper: 'Zmerna obremenitev od tega deleža priključne moči; privzeto 50 %',
@@ -1946,6 +2006,9 @@ var ZlI18n = {
     tempo_white: 'Balta',
     tempo_red: 'Sarkana',
     tempo_unknown: 'Vēl nav zināma',
+    zen_eco: 'Eko',
+    zen_sobriety: 'Taupība',
+    zen_bonus: 'Bonuss',
     ed_show_tempo: 'Tempo krāsa',
     ed_load_warning: 'Mērenas slodzes slieksnis',
     ed_load_warning_helper: 'Mērena slodze no šīs līgumjaudas daļas; pēc noklusējuma 50 %',
@@ -2039,6 +2102,9 @@ var ZlI18n = {
     tempo_white: 'Λευκή',
     tempo_red: 'Κόκκινη',
     tempo_unknown: 'Δεν είναι ακόμη γνωστή',
+    zen_eco: 'Οικο',
+    zen_sobriety: 'Λιτότητα',
+    zen_bonus: 'Μπόνους',
     ed_show_tempo: 'Χρώμα Tempo',
     ed_load_warning: 'Όριο μέτριου φορτίου',
     ed_load_warning_helper: 'Μέτριο φορτίο από αυτό το ποσοστό της συμφωνημένης ισχύος· προεπιλογή 50 %',
@@ -2088,9 +2154,9 @@ function zlUnitCase(text) {
 // Zigbee2MQTT per-phase labels end in a letter + phase digit (`irms2`, `sinsts3`): a bare `_2` / `_3` is
 // Home Assistant's de-duplication suffix (re-paired device, second ZLinky), not a phase.
 var ZL_PHASE = /(phase_[bc23]|_ph_[bc]|_l[23]$|[a-z][23]$)/;
-var ZL_TIER = /(partie|tranche|tier|easf|index)_?0?([1-6])/;
+var ZL_TIER = /(partie|tranche|tier|easf|index)_?0?([1-6])|index_(eco|sobriete|bonus)_/;
 var ZL_ROLES = {
-  energy: { keys: ['summation_delivered'], id: /(_consommation|_summation_delivered|_east|_base|_energy|_energie)$/,
+  energy: { keys: ['summation_delivered'], id: /(_consommation|_summation_delivered|_east|_base|_energy|_energie|_energie_totale_soutiree)$/,
     test: (id, s) => s.attributes.device_class === 'energy' && !ZL_TIER.test(id) && !/(received|recu|injection|eait)/.test(id) },
   injection: { keys: ['summation_received'], id: /(_summation_received|_cumul_recu|_eait|_injection)$/ },
   power: { keys: ['active_power', 'power'], id: /(_puissance|_active_power|_power|_ccasn)$/,
@@ -2110,15 +2176,20 @@ var ZL_ROLES = {
   apparent_power_a: { keys: [], id: /_sinsts1$/ },
   apparent_power_b: { keys: ['apparent_power_ph_b'], id: /(puissance_apparente_phase_b|apparent_power_ph_b|_sinsts2)$/ },
   apparent_power_c: { keys: ['apparent_power_ph_c'], id: /(puissance_apparente_phase_c|apparent_power_ph_c|_sinsts3)$/ },
-  tariff: { keys: ['current_tarif', 'active_register_tier_delivered'], id: /(_ptec|_ltarf|_current_tarif|_periode_tarifaire|_tarif_en_cours|_ngtf)$/ },
+  // NGTF (the calendar's name, e.g. "pointe mobile") is not the tariff period: only LTARF / PTEC.
+  tariff: { keys: ['current_tarif', 'active_register_tier_delivered'], id: /(_ptec|_ltarf|_current_tarif|_periode_tarifaire(_en_cours)?|_tarif_en_cours)$/ },
   // Tempo: tomorrow's color (DEMAIN of the historic TIC). Today's color comes from the tariff period, or from
   // `entities.tempo` (any sensor whose state names a color, e.g. an RTE Tempo integration).
   tomorrow: { keys: ['tomorrow_color', 'demain'], id: /(_demain|_tomorrow_colou?r|_couleur_demain|_couleur_lendemain)$/ },
   tempo: { keys: [] },
 };
+// ESPHome `teleinfo` indexes named after the Zen Flex periods (#47): Éco, Sobriété then Bonus days, off-peak then
+// peak, in the order of EASF01 to EASF06.
+var ZL_ZEN_INDEX = ['eco_heures_creuses', 'eco_heures_pleines', 'sobriete_heures_creuses', 'sobriete_heures_pleines',
+  'bonus_heures_creuses', 'bonus_heures_pleines'];
 for (var zlN = 1; zlN <= 6; zlN++) {
   ZL_ROLES[`tier${zlN}`] = { keys: [`tier${zlN}_summation_delivered`],
-    id: new RegExp(`(consommation_(partie|tranche)_${zlN}|tier${zlN}_summation_delivered|_easf0${zlN}|_index_${zlN})$`) };
+    id: new RegExp(`(consommation_(partie|tranche)_${zlN}|tier${zlN}_summation_delivered|_easf0${zlN}|_index_${zlN}|_index_${ZL_ZEN_INDEX[zlN - 1]})$`) };
 }
 var ZL_TIERS = [1, 2, 3, 4, 5, 6].map((n) => `tier${n}`);
 
@@ -2138,6 +2209,7 @@ var ZL_OVERRIDABLE = ['energy', 'power', 'apparent_power', 'current', 'voltage',
 // Tempo day color named by a tariff period or a color text: "HPJB", "HC JR", "HP BLEU", "BLAN", "Rouge", "white"…
 // null for anything else (Base, off-peak / peak, "----" before tomorrow's color is announced).
 var ZL_TEMPO_COLORS = { blue: '#1e88e5', white: '#b0bec5', red: '#e53935' };
+var ZL_ZEN_COLORS = { eco: '#43a047', sobriety: '#e53935', bonus: '#00897b' };
 function zlTempo(text) {
   var t = String(text || '').toUpperCase();
   if (/BLEU|BLUE/.test(t)) return 'blue';
@@ -2145,6 +2217,19 @@ function zlTempo(text) {
   if (/ROUGE|ROUG\b|\bRED\b/.test(t)) return 'red';
   var m = /\bH[CP]\s*J([BWR])\b/.exec(t);
   return m ? { B: 'blue', W: 'white', R: 'red' }[m[1]] : null;
+}
+
+// EDF Zen Flex day type ('eco', 'sobriety' or 'bonus') named by a tariff period or a day-type sensor, or null.
+// LTARF reads "HC Jnormal" / "HP Jnormal" on an Éco day; the meter's label on a Sobriété day is not published,
+// so any other "HC J…" / "HP J…" that names no Tempo color counts as Sobriété (#47). Sensors: edf-zen-flex
+// (eco, sobriete, bonus), MyElectricalData (ECO, SOBRIETE, BONUS), EDF's own codes (RAS, ZENF_PM, ZENF_BONIF).
+function zlZenDay(text) {
+  var t = String(text || '').trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (/SOBRI|ZENF_PM/.test(t)) return 'sobriety';
+  if (/BONIF|BONUS/.test(t)) return 'bonus';
+  if (/^(ECO|RAS)$|J\s*NORMAL/.test(t)) return 'eco';
+  var m = /\bH[CP]\s*J\s*([A-Z]+)/.exec(t);
+  return m && !zlTempo(t) && !/^OURS?$/.test(m[1]) ? 'sobriety' : null;
 }
 
 // Tier (1 to 6, the index order of the TIC) named by a tariff period, or null. A configured tier name wins;
@@ -2160,6 +2245,9 @@ function zlTierOf(text, names) {
   var hp = !hc && /^HP|\bHP\b|PLEINE|PEAK/.test(u);
   var color = zlTempo(u);
   if (color) return hc || hp ? { blue: 1, white: 3, red: 5 }[color] + (hp ? 1 : 0) : null;
+  // Zen Flex: Éco days on EASF01 / EASF02, Sobriété days on EASF03 / EASF04, Bonus days on EASF05 / EASF06 (#47).
+  var zen = hc || hp ? zlZenDay(u) : null;
+  if (zen) return { eco: 1, sobriety: 3, bonus: 5 }[zen] + (hp ? 1 : 0);
   if (hc || /^HN|NORMAL/.test(u)) return 1;
   if (hp || /^PM|POINTE/.test(u)) return 2;
   return null;
@@ -2915,18 +3003,20 @@ class ZlinkyCard extends HTMLElement {
     '</ha-card>');
   }
 
-  // Tempo contract: today's color and tomorrow's (or "not known yet" until it is announced, around 11 am).
-  // Nothing when the tariff period names no Tempo color.
+  // Tempo or Zen Flex contract: today's color / day type and tomorrow's (or "not known yet" until it is announced).
+  // Nothing when the tariff period names neither.
   // The days shown: [{ label, color, name, tc, id }], today's then tomorrow's when its sensor is there; [] when hidden.
   _tempoDays(ent) {
     if (!this._config.show_tempo) return [];
     var src = ent.tempo || ent.tariff;
-    var today = this._avail(src) ? zlTempo(this._st(src).state) : null;
+    var kind = (id) => { var v = this._st(id).state; return zlTempo(v) || zlZenDay(v); };
+    var today = this._avail(src) ? kind(src) : null;
     if (!today) return [];
-    var day = (label, color, id) => ({ label, color, id, name: this._t(color ? `tempo_${color}` : 'tempo_unknown'),
-      tc: color ? ZL_TEMPO_COLORS[color] : 'var(--secondary-text-color)' });
+    var day = (label, color, id) => ({ label, color, id,
+      name: this._t(!color ? 'tempo_unknown' : ZL_TEMPO_COLORS[color] ? `tempo_${color}` : `zen_${color}`),
+      tc: color ? ZL_TEMPO_COLORS[color] || ZL_ZEN_COLORS[color] : 'var(--secondary-text-color)' });
     var days = [day(this._t('today'), today, src)];
-    if (ent.tomorrow && this._avail(ent.tomorrow)) days.push(day(this._t('tomorrow'), zlTempo(this._st(ent.tomorrow).state), ent.tomorrow));
+    if (ent.tomorrow && this._avail(ent.tomorrow)) days.push(day(this._t('tomorrow'), kind(ent.tomorrow), ent.tomorrow));
     return days;
   }
 
