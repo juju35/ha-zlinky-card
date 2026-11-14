@@ -67,6 +67,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/images/zha.png" alt="" width="16"> [ZHA](https://www.home-assistant.io/integrations/zha/) (built in) | The ZLinky_TIC entities, English or French entity ids |
 | [Zigbee2MQTT](https://www.zigbee2mqtt.io/devices/ZLinky_TIC.html) | The ZLinky_TIC entities, by their TIC labels |
+| [Tarif EDF](https://github.com/delphiki/hass-tarif-edf) (optional, `tarif_edf: true`) | The prices per kWh (Base, Off-peak / Peak or Tempo), the subscribed power and the Tempo colors — see [Tarif EDF](#tarif-edf) |
 
 Both expose the same data to the cards: live power, current and voltage, load against the subscribed power, consumption and cost from the long-term statistics, meter index and tiers, injection, three-phase details.
 
@@ -168,6 +169,7 @@ entities:
 | `subscribed_power` | ❌ | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA, per phase on a three-phase meter so 1 A = 0.6 kVA there). In the visual editor, the **Subscribed power sensor** field replaces the number |
 | `load_warning` | ❌ | `50` | Share of the subscribed power (%) from which the load is moderate (orange) |
 | `load_critical` | ❌ | `80` | Share of the subscribed power (%) from which the load is high (red) |
+| `tarif_edf` | ❌ | `false` | Take the prices per kWh, the subscribed power and the Tempo colors from the [Tarif EDF](#tarif-edf) integration (each only when you don't set it yourself) |
 | `price` | ❌ | — | Price per kWh, shows the cost of each consumption (currency from Home Assistant): a number, a sensor giving the current price per kWh, or [one price per tier](#price-per-tier) |
 | `subscription` | ❌ | — | Monthly subscription, a number or a sensor giving it (sensor: YAML only), added to last month and the month-end estimate of the [cost section](#cost-section) |
 | `tiers` | ❌ | `Index 1`… | Names of the tiers, in order (`[Off-peak, Peak]`, Tempo colors…) |
@@ -214,6 +216,24 @@ price: [0.1528, sensor.ejp_peak_price]
 A tier without a price (a shorter list) takes the last price of the list; a sensor that is unavailable takes the closest price before it (or the first one). When only the total index has statistics (a single tier in use, or a tier's statistics missing), every kWh of the period is priced at the current tier's price, read from the tariff period (`HC..`, `HPJB`, `HP BLEU`, `PM..`, a tier number, or one of your `tiers` names), or at the first price. Yesterday's and this month's tiles then show no cost when the tiers' prices differ (the current tier's price says nothing of the tiers that period was spent in); today's cost stays an estimate at the current tier's price.
 
 The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. On Zen Flex, the indexes are `EASF01` / `EASF02` for Éco days (tiers 1 and 2), `EASF03` / `EASF04` for Sobriété days (tiers 3 and 4) and `EASF05` / `EASF06` for Bonus days (tiers 5 and 6), off-peak then peak; with ESPHome's `teleinfo`, indexes named after these periods (`Index Eco Heures Creuses`, `Index Sobriété Heures Pleines`, `Index Bonus Heures Creuses`…) are found by their names. The tariff period reads `HC Jnormal` / `HP Jnormal` on Éco days; any other `HC J…` / `HP J…` label is taken for a Sobriété day. The meter's label on a Sobriété day is not documented yet ([#47](https://github.com/juju35/ha-zlinky-card/issues/47)), so a day-type sensor (`entities.tempo`, `entities.tomorrow`: `eco` / `sobriete` / `bonus`, `ECO` / `SOBRIETE` / `BONUS` or EDF's `RAS` / `ZENF_PM` / `ZENF_BONIF`) is the surest source, and the only one for Bonus days and tomorrow. Tiers are listed only when more than one carries an index. The phase section appears when phases 2 or 3 report a voltage, or, with the historic TIC (no voltage per phase), when the phase 2 and 3 currents are there. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
+
+### Tarif EDF
+
+With the [Tarif EDF](https://github.com/delphiki/hass-tarif-edf) integration installed, `tarif_edf: true` (in the visual editor: **Prices from the Tarif EDF integration**) is all the card needs for the prices — they follow EDF's price changes on their own:
+
+```yaml
+type: custom:zlinky-card
+tarif_edf: true
+subscription: 16.08   # the integration gives no subscription price
+```
+
+| Your contract | `price` it gives (in the meter's index order) |
+|---|---|
+| Base | `sensor.tarif_base_ttc` |
+| Off-peak / Peak | `[sensor.tarif_heures_creuses_ttc, sensor.tarif_heures_pleines_ttc]` |
+| Tempo | the six `sensor.tarif_{bleu,blanc,rouge}_tempo_heures_{creuses,pleines}_ttc`, in the order of [Tempo's indexes](#price-per-tier) |
+
+It also gives the subscribed power (`sensor.puissance_souscrite_*kva`) and, on Tempo, today's and tomorrow's colors (`sensor.tarif_tempo_couleur_aujourd_hui` / `_demain`) when the meter doesn't. Anything you set yourself wins: `price`, `subscribed_power`, `entities.tempo` / `entities.tomorrow`. The sensors are found by their entity ids (a second entry's `_2` suffix too), among the integration's own entities.
 
 ### Cost section
 

@@ -33,6 +33,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Optionnel : capteur donnant la puissance souscrite (kVA, ou A comme ISOUSC, par phase en triphasé). Remplace la valeur saisie',
     ed_price: 'Prix du kWh',
     ed_price_helper: 'Optionnel : affiche le coût à côté des consommations',
+    ed_tarif_edf: 'Prix de l\'intégration Tarif EDF',
+    ed_tarif_edf_helper: 'Prend les prix du kWh (Base, HC/HP ou Tempo), la puissance souscrite et les couleurs Tempo de l\'intégration Tarif EDF, sauf si vous les indiquez vous-même',
     ed_tiers: 'Noms des index',
     ed_tiers_helper: 'Dans l\'ordre des index 1 à 6 (ex. Heures creuses, Heures pleines)',
     ed_prices: 'Prix par index',
@@ -138,6 +140,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Optional: a sensor giving the subscribed power (kVA, or A like ISOUSC, per phase on three-phase). Replaces the number above',
     ed_price: 'Price per kWh',
     ed_price_helper: 'Optional: shows the cost next to the consumption',
+    ed_tarif_edf: 'Prices from the Tarif EDF integration',
+    ed_tarif_edf_helper: 'Takes the prices per kWh (Base, Off-peak/Peak or Tempo), the subscribed power and the Tempo colors from the Tarif EDF integration, unless you set them yourself',
     ed_tiers: 'Tier names',
     ed_tiers_helper: 'In index order, 1 to 6 (e.g. Off-peak, Peak)',
     ed_prices: 'Price per tier',
@@ -243,6 +247,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Optional: Sensor mit der vertraglichen Anschlussleistung (kVA oder A wie ISOUSC, bei Drehstrom je Phase). Ersetzt den eingegebenen Wert',
     ed_price: 'Preis pro kWh',
     ed_price_helper: 'Optional: zeigt die Kosten neben dem Verbrauch an',
+    ed_tarif_edf: 'Preise aus der Integration Tarif EDF',
+    ed_tarif_edf_helper: 'Übernimmt die kWh-Preise (Grundtarif, Neben-/Hauptzeit oder Tempo), die vertragliche Leistung und die Tempo-Farben aus der Integration Tarif EDF, sofern Sie sie nicht selbst angeben',
     ed_tiers: 'Namen der Zählwerke',
     ed_tiers_helper: 'In der Reihenfolge der Zählwerke 1 bis 6 (z. B. HC Nebenzeit, HP Hauptzeit)',
     ed_prices: 'Preis pro Zählwerk',
@@ -348,6 +354,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Opcional: sensor con la potencia contratada (kVA, o A como ISOUSC, por fase en trifásico). Sustituye al valor introducido',
     ed_price: 'Precio por kWh',
     ed_price_helper: 'Opcional: muestra el coste junto a los consumos',
+    ed_tarif_edf: 'Precios de la integración Tarif EDF',
+    ed_tarif_edf_helper: 'Toma los precios del kWh (Base, valle/punta o Tempo), la potencia contratada y los colores Tempo de la integración Tarif EDF, salvo que los indique usted',
     ed_tiers: 'Nombres de los índices',
     ed_tiers_helper: 'En el orden de los índices 1 a 6 (p. ej. HC horas valle, HP horas punta)',
     ed_prices: 'Precio por índice',
@@ -453,6 +461,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Опционо: сензор са уговореном снагом (kVA или ампери, по фази код трофазног). Замењује унету вредност',
     ed_price: 'Цена по kWh',
     ed_price_helper: 'Опционо: приказује трошак поред потрошње',
+    ed_tarif_edf: 'Цене из интеграције Tarif EDF',
+    ed_tarif_edf_helper: 'Преузима цене по kWh (Базна, нижа/виша тарифа или Темпо), одобрену снагу и Темпо боје из интеграције Tarif EDF, осим ако их сами не унесете',
     ed_tiers: 'Називи тарифа',
     ed_tiers_helper: 'Редом по тарифама од 1 до 6 (нпр. Нижа тарифа, Виша тарифа)',
     ed_prices: 'Цена по тарифи',
@@ -558,6 +568,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Opciono: senzor sa ugovorenom snagom (kVA, ili A kao ISOUSC, po fazi kod trofaznog). Zamenjuje unetu vrednost',
     ed_price: 'Cena po kWh',
     ed_price_helper: 'Opciono: prikazuje trošak pored potrošnje',
+    ed_tarif_edf: 'Cene iz integracije Tarif EDF',
+    ed_tarif_edf_helper: 'Preuzima cene po kWh (Bazna, niža/viša tarifa ili Tempo), odobrenu snagu i Tempo boje iz integracije Tarif EDF, osim ako ih sami ne unesete',
     ed_tiers: 'Nazivi tarifa',
     ed_tiers_helper: 'Redom po tarifama od 1 do 6 (npr. Niža tarifa, Viša tarifa)',
     ed_prices: 'Cena po tarifi',
@@ -663,6 +675,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Facoltativo: sensore con la potenza impegnata (kVA, o A come ISOUSC, per fase in trifase). Sostituisce il valore inserito',
     ed_price: 'Prezzo per kWh',
     ed_price_helper: 'Facoltativo: mostra il costo accanto ai consumi',
+    ed_tarif_edf: 'Prezzi dall\'integrazione Tarif EDF',
+    ed_tarif_edf_helper: 'Usa i prezzi del kWh (Base, fuori picco/picco o Tempo), la potenza impegnata e i colori Tempo dell\'integrazione Tarif EDF, salvo che li indichi tu',
     ed_tiers: 'Nomi delle fasce',
     ed_tiers_helper: 'Nell\'ordine delle fasce da 1 a 6 (es. Fuori punta, Punta)',
     ed_prices: 'Prezzo per fascia',
@@ -768,6 +782,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Optioneel: een sensor met het aansluitvermogen (kVA, of A zoals ISOUSC, per fase bij driefasig). Vervangt de ingevoerde waarde',
     ed_price: 'Prijs per kWh',
     ed_price_helper: 'Optioneel: toont de kosten naast het verbruik',
+    ed_tarif_edf: 'Prijzen uit de integratie Tarif EDF',
+    ed_tarif_edf_helper: 'Neemt de kWh-prijzen (Basis, dal/piek of Tempo), het gecontracteerde vermogen en de Tempo-kleuren over uit de integratie Tarif EDF, tenzij u ze zelf invult',
     ed_tiers: 'Namen van de telwerken',
     ed_tiers_helper: 'In de volgorde van telwerk 1 tot 6 (bijv. Daluren, Piekuren)',
     ed_prices: 'Prijs per telwerk',
@@ -873,6 +889,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Opcional: sensor com a potência contratada (kVA, ou A como ISOUSC, por fase em trifásico). Substitui o valor introduzido',
     ed_price: 'Preço por kWh',
     ed_price_helper: 'Opcional: mostra o custo junto aos consumos',
+    ed_tarif_edf: 'Preços da integração Tarif EDF',
+    ed_tarif_edf_helper: 'Usa os preços do kWh (Simples, vazio/fora de vazio ou Tempo), a potência contratada e as cores Tempo da integração Tarif EDF, salvo se os indicar',
     ed_tiers: 'Nomes das leituras',
     ed_tiers_helper: 'Pela ordem das leituras 1 a 6 (p. ex. Vazio, Fora de vazio)',
     ed_prices: 'Preço por leitura',
@@ -978,6 +996,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Opcjonalnie: czujnik podający moc umowną (kVA lub A jak ISOUSC, na fazę przy trójfazowym). Zastępuje wpisaną wartość',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Opcjonalnie: pokazuje koszt obok zużycia',
+    ed_tarif_edf: 'Ceny z integracji Tarif EDF',
+    ed_tarif_edf_helper: 'Pobiera ceny za kWh (Podstawowa, poza szczytem/szczyt lub Tempo), moc umowną i kolory Tempo z integracji Tarif EDF, chyba że podasz je sam',
     ed_tiers: 'Nazwy stref',
     ed_tiers_helper: 'W kolejności stref od 1 do 6 (np. Strefa nocna, Strefa dzienna)',
     ed_prices: 'Cena za strefę',
@@ -1083,6 +1103,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Opțional: senzor care dă puterea contractată (kVA sau A, ca ISOUSC, pe fază la trifazat). Înlocuiește valoarea introdusă',
     ed_price: 'Preț per kWh',
     ed_price_helper: 'Opțional: afișează costul lângă consum',
+    ed_tarif_edf: 'Prețuri din integrarea Tarif EDF',
+    ed_tarif_edf_helper: 'Preia prețurile pe kWh (Bază, gol/vârf sau Tempo), puterea contractată și culorile Tempo din integrarea Tarif EDF, dacă nu le indicați dumneavoastră',
     ed_tiers: 'Numele indexurilor',
     ed_tiers_helper: 'În ordinea indexurilor, de la 1 la 6 (ex. Noapte, Zi)',
     ed_prices: 'Preț per index',
@@ -1188,6 +1210,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Valgfrit: en sensor med den aftalte effekt (kVA eller A som ISOUSC, pr. fase ved trefaset). Erstatter den indtastede værdi',
     ed_price: 'Pris pr. kWh',
     ed_price_helper: 'Valgfrit: viser prisen ved siden af forbruget',
+    ed_tarif_edf: 'Priser fra integrationen Tarif EDF',
+    ed_tarif_edf_helper: 'Henter kWh-priserne (Basis, lav-/højlast eller Tempo), den tegnede effekt og Tempo-farverne fra integrationen Tarif EDF, medmindre du selv angiver dem',
     ed_tiers: 'Navne på tælleværker',
     ed_tiers_helper: 'I tælleværkernes rækkefølge, 1 til 6 (f.eks. Lavlast, Spidslast)',
     ed_prices: 'Pris pr. tælleværk',
@@ -1293,6 +1317,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Valfritt: en sensor med den abonnerade effekten (kVA eller A som ISOUSC, per fas vid trefas). Ersätter det angivna värdet',
     ed_price: 'Pris per kWh',
     ed_price_helper: 'Valfritt: visar kostnaden bredvid förbrukningen',
+    ed_tarif_edf: 'Priser från integrationen Tarif EDF',
+    ed_tarif_edf_helper: 'Hämtar kWh-priserna (Bas, låg-/höglast eller Tempo), den abonnerade effekten och Tempo-färgerna från integrationen Tarif EDF, om du inte anger dem själv',
     ed_tiers: 'Registernamn',
     ed_tiers_helper: 'I registerordning, 1 till 6 (t.ex. Lågpris, Högpris)',
     ed_prices: 'Pris per register',
@@ -1398,6 +1424,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'По избор: сензор с договорената мощност (kVA или A като ISOUSC, на фаза при трифазно). Заменя въведената стойност',
     ed_price: 'Цена за kWh',
     ed_price_helper: 'По избор: показва цената до потреблението',
+    ed_tarif_edf: 'Цени от интеграцията Tarif EDF',
+    ed_tarif_edf_helper: 'Взема цените за kWh (Базова, нощна/дневна или Tempo), договорената мощност и цветовете Tempo от интеграцията Tarif EDF, освен ако не ги зададете сами',
     ed_tiers: 'Имена на тарифите',
     ed_tiers_helper: 'По реда на тарифите, от 1 до 6 (напр. Нощна, Дневна)',
     ed_prices: 'Цена за тарифа',
@@ -1503,6 +1531,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Необязательно: датчик с мощностью по договору (kVA или A, как ISOUSC, на фазу при трёхфазном). Заменяет введённое значение',
     ed_price: 'Цена за kWh',
     ed_price_helper: 'Необязательно: показывает стоимость рядом с потреблением',
+    ed_tarif_edf: 'Цены из интеграции Tarif EDF',
+    ed_tarif_edf_helper: 'Берёт цены за кВт·ч (Базовый, ночной/дневной или Tempo), разрешённую мощность и цвета Tempo из интеграции Tarif EDF, если вы не задали их сами',
     ed_tiers: 'Названия тарифов',
     ed_tiers_helper: 'В порядке тарифов, от 1 до 6 (например, Ночь, День)',
     ed_prices: 'Цена по тарифам',
@@ -1608,6 +1638,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Необов’язково: датчик із потужністю за договором (kVA або A, як ISOUSC, на фазу при трифазному). Замінює введене значення',
     ed_price: 'Ціна за kWh',
     ed_price_helper: 'Необов’язково: показує вартість поруч зі споживанням',
+    ed_tarif_edf: 'Ціни з інтеграції Tarif EDF',
+    ed_tarif_edf_helper: 'Бере ціни за кВт·год (Базовий, нічний/денний або Tempo), дозволену потужність і кольори Tempo з інтеграції Tarif EDF, якщо ви не задали їх самі',
     ed_tiers: 'Назви тарифів',
     ed_tiers_helper: 'У порядку тарифів, від 1 до 6 (наприклад, Ніч, День)',
     ed_prices: 'Ціна за тарифами',
@@ -1713,6 +1745,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Opcionális: a lekötött teljesítményt adó érzékelő (kVA, vagy A, mint az ISOUSC, háromfázisnál fázisonként). A beírt érték helyébe lép',
     ed_price: 'kWh-ár',
     ed_price_helper: 'Opcionális: a költséget a fogyasztás mellett jeleníti meg',
+    ed_tarif_edf: 'Árak a Tarif EDF integrációból',
+    ed_tarif_edf_helper: 'A kWh-árakat (Alap, völgy/csúcs vagy Tempo), a lekötött teljesítményt és a Tempo-színeket a Tarif EDF integrációból veszi, ha nem adja meg őket maga',
     ed_tiers: 'Tarifák nevei',
     ed_tiers_helper: 'A tarifák sorrendjében, 1-től 6-ig (pl. Völgyidő, Csúcsidő)',
     ed_prices: 'Ár tarifánként',
@@ -1818,6 +1852,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Voliteľné: senzor so zmluvným výkonom (kVA alebo A ako ISOUSC, pri trojfázovom na fázu). Nahrádza zadanú hodnotu',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Voliteľné: zobrazí náklady vedľa spotreby',
+    ed_tarif_edf: 'Ceny z integrácie Tarif EDF',
+    ed_tarif_edf_helper: 'Preberá ceny za kWh (Základná, nízka/vysoká tarifa alebo Tempo), rezervovaný výkon a farby Tempo z integrácie Tarif EDF, ak ich nezadáte sami',
     ed_tiers: 'Názvy pásiem',
     ed_tiers_helper: 'V poradí pásiem od 1 do 6 (napr. Nízka tarifa, Vysoká tarifa)',
     ed_prices: 'Cena podľa pásma',
@@ -1923,6 +1959,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Volitelné: senzor s rezervovaným příkonem (kVA nebo A jako ISOUSC, u třífázového na fázi). Nahrazuje zadanou hodnotu',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Volitelné: zobrazí náklady vedle spotřeby',
+    ed_tarif_edf: 'Ceny z integrace Tarif EDF',
+    ed_tarif_edf_helper: 'Přebírá ceny za kWh (Základní, nízký/vysoký tarif nebo Tempo), rezervovaný výkon a barvy Tempo z integrace Tarif EDF, pokud je nezadáte sami',
     ed_tiers: 'Názvy pásem',
     ed_tiers_helper: 'V pořadí pásem od 1 do 6 (např. Nízký tarif, Vysoký tarif)',
     ed_prices: 'Cena podle pásma',
@@ -2028,6 +2066,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Neobvezno: senzor z dogovorjeno močjo (kVA ali A kot ISOUSC, pri trifaznem na fazo). Nadomesti vneseno vrednost',
     ed_price: 'Cena za kWh',
     ed_price_helper: 'Neobvezno: prikaže strošek poleg porabe',
+    ed_tarif_edf: 'Cene iz integracije Tarif EDF',
+    ed_tarif_edf_helper: 'Prevzame cene za kWh (Enotna, nižja/višja tarifa ali Tempo), priključno moč in barve Tempo iz integracije Tarif EDF, razen če jih vnesete sami',
     ed_tiers: 'Imena tarif',
     ed_tiers_helper: 'V vrstnem redu tarif od 1 do 6 (npr. Nizka tarifa, Visoka tarifa)',
     ed_prices: 'Cena po tarifi',
@@ -2133,6 +2173,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Neobligāti: sensors ar pieslēguma jaudu (kVA vai A kā ISOUSC, trīsfāžu gadījumā uz fāzi). Aizstāj ievadīto vērtību',
     ed_price: 'Cena par kWh',
     ed_price_helper: 'Neobligāti: rāda izmaksas blakus patēriņam',
+    ed_tarif_edf: 'Cenas no integrācijas Tarif EDF',
+    ed_tarif_edf_helper: 'Ņem kWh cenas (Pamata, nakts/dienas vai Tempo), pieslēguma jaudu un Tempo krāsas no integrācijas Tarif EDF, ja vien tās nenorādāt paši',
     ed_tiers: 'Zonu nosaukumi',
     ed_tiers_helper: 'Zonu secībā no 1 līdz 6 (piem., Nakts, Diena)',
     ed_prices: 'Cena pa zonām',
@@ -2238,6 +2280,8 @@ var ZlI18n = {
     ed_subscribed_power_entity_helper: 'Προαιρετικό: αισθητήρας με τη συμφωνημένη ισχύ (kVA ή A όπως το ISOUSC, ανά φάση στο τριφασικό). Αντικαθιστά την τιμή που δόθηκε',
     ed_price: 'Τιμή ανά kWh',
     ed_price_helper: 'Προαιρετικό: εμφανίζει το κόστος δίπλα στην κατανάλωση',
+    ed_tarif_edf: 'Τιμές από την ενσωμάτωση Tarif EDF',
+    ed_tarif_edf_helper: 'Παίρνει τις τιμές ανά kWh (Βασικό, νυχτερινό/ημερήσιο ή Tempo), τη συμφωνημένη ισχύ και τα χρώματα Tempo από την ενσωμάτωση Tarif EDF, εκτός αν τα ορίσετε εσείς',
     ed_tiers: 'Ονόματα ζωνών',
     ed_tiers_helper: 'Με τη σειρά των ζωνών, 1 έως 6 (π.χ. Νυχτερινό, Ημερήσιο)',
     ed_prices: 'Τιμή ανά ζώνη',
@@ -2457,6 +2501,44 @@ function zlPriceAt(prices, i) {
   for (var j = Math.min(i, prices.length - 1); j >= 0; j--) if (prices[j] != null) return prices[j];
   var first = prices.find((p) => p != null);
   return first == null ? null : first;
+}
+
+// Tarif EDF (delphiki/hass-tarif-edf): its price sensors per contract, in the meter's index order (the same order
+// as `price`: Tempo HCJB, HPJB, HCJW, HPJW, HCJR, HPJR; off-peak then peak; Base), its subscribed power and its
+// Tempo colors. Matched on the object id, with HA's "_2" suffix for a second entry allowed.
+var ZL_EDF_CONTRACTS = [
+  ['bleu_tempo_heures_creuses', 'bleu_tempo_heures_pleines', 'blanc_tempo_heures_creuses', 'blanc_tempo_heures_pleines',
+    'rouge_tempo_heures_creuses', 'rouge_tempo_heures_pleines'],
+  ['heures_creuses', 'heures_pleines'],
+  ['base'],
+];
+var zlEdfCache = new WeakMap();
+// { price: [entity ids] | null, power, today, tomorrow } from the Tarif EDF entities, or null when there are none.
+// With the registry's `platform`, only that integration's sensors count; without it, the sensor ids alone.
+function zlTarifEdf(hass) {
+  var reg = hass.entities || {};
+  var key = Object.keys(hass.states || {}).length;
+  var hit = zlEdfCache.get(reg);
+  if (hit && hit.key === key) return hit.v;
+  var ids = Object.keys(hass.states || {}).filter((id) => id.indexOf('sensor.') === 0);
+  var mine = ids.filter((id) => reg[id]?.platform === 'tarif_edf');
+  if (mine.length) ids = mine;
+  var find = (re) => ids.find((id) => re.test(id)) || null;
+  var price = null;
+  ZL_EDF_CONTRACTS.some((names) => {
+    var list = names.map((n) => find(new RegExp(`^sensor\\.tarif_${n}_ttc(_\\d+)?$`)));
+    if (list.every((x) => x)) price = list;
+    return !!price;
+  });
+  var v = {
+    price: price,
+    power: find(/^sensor\.puissance_souscrite_\w*kva(_\d+)?$/),
+    today: find(/^sensor\.tarif_tempo_couleur_aujourd_hui(_\d+)?$/),
+    tomorrow: find(/^sensor\.tarif_tempo_couleur_demain(_\d+)?$/),
+  };
+  if (!price && !v.power && !v.today) v = null;
+  zlEdfCache.set(reg, { key: key, v: v });
+  return v;
 }
 
 // Registry entries grouped by device, built once per `hass.entities` object (it only changes with the registry).
@@ -2816,6 +2898,12 @@ class ZlinkyCard extends HTMLElement {
       var taken = Object.values(ent);
       ent[role] = zlFindRole(hass, list.filter((e) => taken.indexOf(e.entity_id) < 0), role);
     });
+    // Tarif EDF: today's and tomorrow's Tempo colors when the meter gives none (an override still wins).
+    var edf = c.tarif_edf ? zlTarifEdf(hass) : null;
+    if (edf) {
+      if (!over.tempo && edf.today) ent.tempo = edf.today;
+      if (!ent.tomorrow && edf.tomorrow) ent.tomorrow = edf.tomorrow;
+    }
     // `n`: how many of the device's sensors have a state (tells "no sensor recognised" from "still starting").
     var r = { deviceId: deviceId, ent: ent, n: list.length };
     this._resolved = { reg: hass.entities, config: c, n: list.length, r: r };
@@ -3057,6 +3145,8 @@ class ZlinkyCard extends HTMLElement {
   // ids (a sensor giving the price per kWh) alone or in the list. [] without a price.
   _prices() {
     var p = this._config.price;
+    // `tarif_edf`: the Tarif EDF integration's prices, unless `price` is set.
+    if ((p == null || p === '') && this._config.tarif_edf) p = zlTarifEdf(this._hass)?.price || null;
     var list = Array.isArray(p) ? p : p == null || p === '' ? [] : [p];
     return list.map((x) => {
       if (typeof x === 'string' && /^[a-z_]+\.\w+$/.test(x.trim())) x = this._numv(x.trim());
@@ -3078,7 +3168,10 @@ class ZlinkyCard extends HTMLElement {
   // 1 A = 0.2 kVA, per phase on a three-phase meter, so 1 A = 0.6 kVA there). 6 kVA by default, or while the
   // sensor has no usable state.
   _subscribed() {
-    var p = this._config.subscribed_power, v = p;
+    var p = this._config.subscribed_power;
+    // `tarif_edf`: the integration's subscribed power, unless `subscribed_power` is set.
+    if ((p == null || p === '') && this._config.tarif_edf) p = zlTarifEdf(this._hass)?.power || p;
+    var v = p;
     if (typeof p === 'string' && /^[a-z_]+\.\w+$/.test(p.trim())) {
       var s = this._st(p.trim());
       v = this._numv(p.trim());
@@ -3576,7 +3669,7 @@ function zlPriceList(price) {
   return Array.isArray(price) || typeof price === 'string';
 }
 
-var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, show_cost: true, zoom: true,
+var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, show_cost: true, zoom: true, tarif_edf: false,
   load_warning: ZL_LOAD_WARNING, load_critical: ZL_LOAD_CRITICAL };
 
 class ZlinkyCardEditor extends HTMLElement {
@@ -3614,6 +3707,8 @@ class ZlinkyCardEditor extends HTMLElement {
           // A sensor as the subscription stays YAML only.
           .concat(typeof this._config.subscription === 'string' ? [] : [{ name: 'subscription', selector: { number: { min: 0, max: 200, step: 0.01, mode: 'box' } } }]),
       },
+      // Prices, subscribed power and Tempo colors from the Tarif EDF integration.
+      { name: 'tarif_edf', selector: { boolean: {} } },
       // A sensor as the subscribed power. Editor-only field, written back to `subscribed_power`.
       { name: 'subscribed_power_entity', selector: { entity: { domain: ['sensor', 'input_number', 'number'] } } },
       {
