@@ -50,6 +50,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - 24 h power curve with its peak (the highest reading, not the highest 5-minute mean), on a real time axis (a gap in the recorder's data shows as a break in the line)
 - Tempo contract: today's color (from the tariff period) and tomorrow's once announced (from `DEMAIN`, or any sensor naming a color)
 - EDF Zen Flex contract: today's day type, Éco, Sobriété or Bonus (from the tariff period, or a day-type sensor such as [edf-zen-flex](https://github.com/AuroreVgn/edf-zen-flex)'s) and tomorrow's
+- Cost section: this week, last month and a month-end estimate (this month's pace spread over the whole month, plus your subscription), with the change against last month
 - Contract comparison: your last 12 months of hourly consumption priced as Base and as Off-peak / Peak, with your prices and off-peak hours — which contract would have cost less, and by how much
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
 - Three-phase details on three-phase meters: apparent power (VA) and voltage per phase with the standard TIC (`SINSTS1`–`SINSTS3`), else current per phase, currents only with the historic TIC (`IINST1`–`IINST3`)
@@ -138,6 +139,7 @@ subscribed_power: 9
 load_warning: 50
 load_critical: 80
 price: 0.2016
+subscription: 15.65
 tiers:
   - Off-peak
   - Peak
@@ -146,6 +148,7 @@ show_graph: true
 show_index: true
 show_phases: true
 show_logo: true
+show_cost: true
 language: en
 entities:
   apparent_power: sensor.lixee_zlinky_tic_puissance_apparente
@@ -166,12 +169,14 @@ entities:
 | `load_warning` | ❌ | `50` | Share of the subscribed power (%) from which the load is moderate (orange) |
 | `load_critical` | ❌ | `80` | Share of the subscribed power (%) from which the load is high (red) |
 | `price` | ❌ | — | Price per kWh, shows the cost of each consumption (currency from Home Assistant): a number, a sensor giving the current price per kWh, or [one price per tier](#price-per-tier) |
+| `subscription` | ❌ | — | Monthly subscription, a number or a sensor giving it (sensor: YAML only), added to last month and the month-end estimate of the [cost section](#cost-section) |
 | `tiers` | ❌ | `Index 1`… | Names of the tiers, in order (`[Off-peak, Peak]`, Tempo colors…) |
 | `show_stats` | ❌ | `true` | Today / yesterday / this month |
 | `show_graph` | ❌ | `true` | 24 h power curve |
 | `show_index` | ❌ | `true` | Meter index, tiers and injection |
 | `show_phases` | ❌ | `true` | Per-phase details (three-phase meters only) |
 | `show_logo` | ❌ | `true` | Meter icon in the header |
+| `show_cost` | ❌ | `true` | Full card: the [cost section](#cost-section) (needs a `price`) |
 | `show_tempo` | ❌ | `true` | Tempo colors, or Zen Flex day types, of today and tomorrow (only on those contracts; two dots on the mini card) |
 | `compare_base` / `compare_hc` / `compare_hp` | ❌ | — | Full card: the Base price and the Off-peak and Peak prices per kWh, for the [contract comparison](#contract-comparison) (all three and `hc_hours` turn it on) |
 | `hc_hours` | ❌ | — | Off-peak hours for the comparison, such as `22:30-06:30` or `01:00-07:00, 12:30-14:30` |
@@ -209,6 +214,18 @@ price: [0.1528, sensor.ejp_peak_price]
 A tier without a price (a shorter list) takes the last price of the list; a sensor that is unavailable takes the closest price before it (or the first one). When only the total index has statistics (a single tier in use, or a tier's statistics missing), every kWh of the period is priced at the current tier's price, read from the tariff period (`HC..`, `HPJB`, `HP BLEU`, `PM..`, a tier number, or one of your `tiers` names), or at the first price. Yesterday's and this month's tiles then show no cost when the tiers' prices differ (the current tier's price says nothing of the tiers that period was spent in); today's cost stays an estimate at the current tier's price.
 
 The Tempo colors show when the tariff period names one (`HPJB`, `HC JR`, `HP BLEU`…); tomorrow's reads *Not known yet* until it is announced. On Zen Flex, the indexes are `EASF01` / `EASF02` for Éco days (tiers 1 and 2), `EASF03` / `EASF04` for Sobriété days (tiers 3 and 4) and `EASF05` / `EASF06` for Bonus days (tiers 5 and 6), off-peak then peak; with ESPHome's `teleinfo`, indexes named after these periods (`Index Eco Heures Creuses`, `Index Sobriété Heures Pleines`, `Index Bonus Heures Creuses`…) are found by their names. The tariff period reads `HC Jnormal` / `HP Jnormal` on Éco days; any other `HC J…` / `HP J…` label is taken for a Sobriété day. The meter's label on a Sobriété day is not documented yet ([#47](https://github.com/juju35/ha-zlinky-card/issues/47)), so a day-type sensor (`entities.tempo`, `entities.tomorrow`: `eco` / `sobriete` / `bonus`, `ECO` / `SOBRIETE` / `BONUS` or EDF's `RAS` / `ZENF_PM` / `ZENF_BONIF`) is the surest source, and the only one for Bonus days and tomorrow. Tiers are listed only when more than one carries an index. The phase section appears when phases 2 or 3 report a voltage, or, with the historic TIC (no voltage per phase), when the phase 2 and 3 currents are there. The Zigbee2MQTT distributor indexes `EASF07`–`EASF10` are not mapped: every standard French contract (Base, off-peak/peak, Tempo) fits in `tier1`…`tier6`.
+
+### Cost section
+
+With a `price`, the full card adds a **Cost** section under the 24 h graph: this week, last month and the **month-end estimate**, plus how that estimate compares with last month (red when it is higher, green when it is lower). Add your monthly `subscription` to have it counted in last month and the estimate (the section then says *subscription incl.*):
+
+```yaml
+type: custom:zlinky-card
+price: [0.1696, 0.2146]
+subscription: 15.65   # or a sensor giving it
+```
+
+The estimate spreads this month's energy cost so far over the whole month, at the same pace, in Home Assistant's time zone; it shows from the second day of the month, a few hours saying little of a whole month. Each period is priced like the consumption tiles: with [one price per tier](#price-per-tier), each tier's kWh at its own price; with a single price that changes (a sensor), at the current price. Two more statistics queries (this week, last month, and as many per tier) are made every 5 minutes, only while the section is shown. Hide it with `show_cost: false`. The mini card doesn't show it, even unfolded.
 
 ### Contract comparison
 
