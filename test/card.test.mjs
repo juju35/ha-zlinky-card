@@ -157,7 +157,8 @@ test("statistics: today / yesterday / month with cost, and the 24 h curve", asyn
   const card = make(ZlinkyCard, zhaHass({ callWS }), { price: 0.2 });
   await new Promise((r) => setTimeout(r, 10));
   const html = card.shadowRoot.innerHTML;
-  assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 3);
+  // Today, yesterday, this month, plus this week and last month for the cost section.
+  assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 5);
   assert.equal(calls.find((c) => c.type === "recorder/statistics_during_period").statistic_ids[0], "sensor.lixee_zlinky_tic_puissance_apparente");
   assert.match(html, /Aujourd&#39;hui|Aujourd'hui/);
   assert.match(html, /4,2/);
@@ -169,7 +170,7 @@ test("statistics: today / yesterday / month with cost, and the 24 h curve", asyn
   // Not fetched again on the next state update.
   card.hass = zhaHass({ callWS });
   await new Promise((r) => setTimeout(r, 10));
-  assert.equal(calls.length, 4);
+  assert.equal(calls.length, 6);
 });
 
 test("show_graph: false skips the 24 h curve query but keeps the tiles", async () => {
@@ -983,7 +984,7 @@ const tileCosts = (html) => [...html.matchAll(/class="tc">([^<]*)</g)].map((m) =
 test("price per tier: a flat price is unchanged and fetches no tier statistics", async () => {
   const calls = [];
   const extra = { [`${TP}consommation_partie_2`]: kwhState(1000) };
-  const card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS({ [`${TP}consommation`]: [4.2, 9.8, 210] }, calls) }), { price: 0.2 });
+  const card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS({ [`${TP}consommation`]: [4.2, 9.8, 210] }, calls) }), { price: 0.2, show_cost: false });
   await tick();
   assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 3);
   assert.deepEqual(tileCosts(card.shadowRoot.innerHTML).map((x) => x.replace(/\s/g, " ")), ["0,84 €", "1,96 €", "42,00 €"]);
@@ -993,7 +994,7 @@ test("price per tier: off-peak / peak cost sums each tier's kWh × its price", a
   const calls = [];
   const extra = { [`${TP}consommation_partie_1`]: kwhState(1000), [`${TP}consommation_partie_2`]: kwhState(2000) };
   const table = { [`${TP}consommation`]: [5, 10, 100], [`${TP}consommation_partie_1`]: [2, 4, 40], [`${TP}consommation_partie_2`]: [3, 6, 60] };
-  const card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS(table, calls) }), { price: [0.1696, 0.2146] });
+  const card = make(ZlinkyCard, zhaHass({ extra, callWS: statsWS(table, calls) }), { price: [0.1696, 0.2146], show_cost: false });
   await tick();
   assert.equal(calls.filter((c) => c.type === "recorder/statistic_during_period").length, 9);
   // 2 × 0.1696 + 3 × 0.2146 = 0.983; 4 × … = 1.966; 40 × … = 19.66 (a flat 0.1696 would give 0.85 / 1.70 / 16.96).
@@ -1476,4 +1477,93 @@ test("editor: entity, the alternative to device_id, is YAML only and kept by the
   assert.ok(names.includes("device_id") && !names.includes("entity"));
   ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data, show_graph: false } } });
   assert.equal(sent.at(-1).entity, "sensor.lixee_zlinky_tic_consommation");
+});
+
+// The cost section: this week, last month and the month-end estimate, on a fixed clock.
+// Recorder replies per statistic id: { id: { day0, day1, month0, month1, week0 } }.
+function costWS(table, calls = []) {
+  return (msg) => {
+    calls.push(msg);
+    if (msg.type !== "recorder/statistic_during_period") return Promise.resolve({});
+    const row = table[msg.statistic_id];
+    const k = `${msg.calendar.period}${Math.abs(msg.calendar.offset)}`;
+    return Promise.resolve({ change: row ? row[k] ?? null : null });
+  };
+}
+const costRows = (html) => {
+  const sec = html.split('icon="mdi:cash-multiple"')[1] || "";
+  return [...sec.split('<div class="section">')[0].matchAll(/<span>([^<]*)<\/span>(?:<span class="rv">([^<]*)<\/span>)?/g)]
+    .map((m) => (m[2] ? `${m[1]}: ${m[2]}` : m[1]).replace(/\s/g, " "));
+};
+
+test("cost section: this week, last month and the month-end estimate with the subscription", async (t) => {
+  // 15 Nov, 13:00 in Paris: 14 days and 13 hours of November's 30 gone.
+  t.mock.timers.enable({ apis: ["Date"], now: Date.parse("2026-11-15T12:00:00Z") });
+  const calls = [];
+  const hass = zhaHass({ callWS: costWS({ [`${TP}consommation`]: { day0: 4, day1: 9, month0: 210, month1: 300, week0: 20 } }, calls) });
+  hass.config = { time_zone: "Europe/Paris", currency: "EUR" };
+  const card = make(ZlinkyCard, hass, { price: 0.2, subscription: 15, language: "en" });
+  await tick();
+  const weeks = calls.filter((c) => c.calendar?.period === "week");
+  assert.deepEqual(weeks.map((c) => c.calendar.offset), [0]);
+  // 210 kWh × 0.2 = 42 € over 14.54 days → 86.65 € over 30, + 15 € = 101.65 €; last month 60 € + 15 € = 75 €.
+  assert.deepEqual(costRows(card.shadowRoot.innerHTML), [
+    "Cost", "This week: €4.00", "Last month: €75.00", "Month-end estimate: €101.65", "+36 % vs last month",
+  ]);
+  assert.match(card.shadowRoot.innerHTML, /class="aside">subscription incl\.</);
+  assert.match(card.shadowRoot.innerHTML, /cost-trend up/);
+});
+
+test("cost section: no estimate on the first day of the month, nothing without a price", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: Date.parse("2026-11-01T08:00:00Z") });
+  const hass = zhaHass({ callWS: costWS({ [`${TP}consommation`]: { day0: 4, month0: 4, month1: 300, week0: 20 } }) });
+  hass.config = { time_zone: "Europe/Paris", currency: "EUR" };
+  const card = make(ZlinkyCard, hass, { price: 0.2, language: "en" });
+  await tick();
+  assert.deepEqual(costRows(card.shadowRoot.innerHTML), ["Cost", "This week: €4.00", "Last month: €60.00"]);
+  assert.ok(!card.shadowRoot.innerHTML.includes("class=\"aside\">subscription"));
+  const calls = [];
+  const none = make(ZlinkyCard, zhaHass({ callWS: costWS({}, calls) }), {});
+  await tick();
+  assert.ok(!none.shadowRoot.innerHTML.includes("mdi:cash-multiple"));
+  assert.ok(!calls.some((c) => c.calendar?.period === "week"));
+});
+
+test("cost section: tier prices price last month per tier, a subscription sensor, hidden on the mini card", async (t) => {
+  // Midnight in Paris: 15 days of 30 gone.
+  t.mock.timers.enable({ apis: ["Date"], now: Date.parse("2026-11-15T23:00:00Z") });
+  const extra = { [`${TP}consommation_partie_1`]: kwhState(1000), [`${TP}consommation_partie_2`]: kwhState(2000), "sensor.sub": st("12.5") };
+  const table = {
+    [`${TP}consommation`]: { day0: 1, month0: 150, month1: 300, week0: 50 },
+    [`${TP}consommation_partie_1`]: { day0: 0, month0: 50, month1: 100, week0: 10 },
+    [`${TP}consommation_partie_2`]: { day0: 1, month0: 100, month1: 200, week0: 40 },
+  };
+  const hass = zhaHass({ extra, callWS: costWS(table) });
+  hass.config = { time_zone: "Europe/Paris", currency: "EUR" };
+  const card = make(ZlinkyCard, hass, { price: [0.1, 0.2], subscription: "sensor.sub", language: "en" });
+  await tick();
+  // Week 10 × 0.1 + 40 × 0.2 = 9; last month 10 + 40 + 12.5 = 62.5; month 25 € over 15 days → 50 + 12.5 = 62.5.
+  assert.deepEqual(costRows(card.shadowRoot.innerHTML), [
+    "Cost", "This week: €9.00", "Last month: €62.50", "Month-end estimate: €62.50", "±0 % vs last month",
+  ]);
+  const mini = make(ZlinkyMiniCard, hass, { price: 0.2 });
+  await tick();
+  assert.ok(!mini.shadowRoot.innerHTML.includes("mdi:cash-multiple"));
+});
+
+test("editor: subscription field and show_cost toggle, a subscription sensor stays YAML only", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  const sent = [];
+  ed.dispatchEvent = () => sent.push(ed._config);
+  ed.setConfig({ type: "custom:zlinky-card" });
+  ed.hass = zhaHass();
+  let names = schemaLeaves(ed._form.schema).map((s) => s.name);
+  assert.ok(names.includes("subscription") && names.includes("show_cost"));
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data, subscription: 15.65 } } });
+  assert.equal(sent.at(-1).subscription, 15.65);
+  assert.ok(!("show_cost" in sent.at(-1)));
+  ed.setConfig({ type: "custom:zlinky-card", subscription: "sensor.sub" });
+  names = schemaLeaves(ed._form.schema).map((s) => s.name);
+  assert.ok(!names.includes("subscription"));
 });

@@ -52,6 +52,15 @@ var ZlI18n = {
     cmp_saves: '{c} : {v} d\'économie',
     cmp_same: 'Équivalents : {v} d\'écart',
     cmp_days: '{d} jours',
+    cost_title: 'Coût',
+    week: 'Cette semaine',
+    last_month: 'Le mois dernier',
+    projection: 'Estimation fin de mois',
+    sub_incl: 'abonnement inclus',
+    vs_last: '{p} par rapport au mois dernier',
+    ed_show_cost: 'Coût',
+    ed_subscription: 'Abonnement par mois',
+    ed_subscription_helper: 'Facultatif : ajouté aux montants mensuels de la section Coût. Un nombre ou un capteur',
     ed_show_graph: 'Courbe 24 h',
     ed_show_title: 'Titre',
     ed_show_subtitle: 'Sous-titre',
@@ -148,6 +157,15 @@ var ZlI18n = {
     cmp_saves: '{c} saves {v}',
     cmp_same: 'About the same: {v} apart',
     cmp_days: '{d} days',
+    cost_title: 'Cost',
+    week: 'This week',
+    last_month: 'Last month',
+    projection: 'Month-end estimate',
+    sub_incl: 'subscription incl.',
+    vs_last: '{p} vs last month',
+    ed_show_cost: 'Cost',
+    ed_subscription: 'Subscription per month',
+    ed_subscription_helper: 'Optional: added to the monthly amounts of the Cost section. A number or a sensor',
     ed_show_graph: '24 h graph',
     ed_show_title: 'Title',
     ed_show_subtitle: 'Subtitle',
@@ -244,6 +262,15 @@ var ZlI18n = {
     cmp_saves: '{c} spart {v}',
     cmp_same: 'Etwa gleich: {v} Unterschied',
     cmp_days: '{d} Tage',
+    cost_title: 'Kosten',
+    week: 'Diese Woche',
+    last_month: 'Letzter Monat',
+    projection: 'Prognose Monatsende',
+    sub_incl: 'inkl. Grundgebühr',
+    vs_last: '{p} gegenüber dem Vormonat',
+    ed_show_cost: 'Kosten',
+    ed_subscription: 'Grundgebühr pro Monat',
+    ed_subscription_helper: 'Optional: zu den Monatsbeträgen des Abschnitts Kosten addiert. Eine Zahl oder ein Sensor',
     ed_show_graph: '24-h-Verlauf',
     ed_show_title: 'Titel',
     ed_show_subtitle: 'Untertitel',
@@ -340,6 +367,15 @@ var ZlI18n = {
     cmp_saves: '{c} ahorra {v}',
     cmp_same: 'Prácticamente igual: {v} de diferencia',
     cmp_days: '{d} días',
+    cost_title: 'Coste',
+    week: 'Esta semana',
+    last_month: 'El mes pasado',
+    projection: 'Estimación a fin de mes',
+    sub_incl: 'término fijo incluido',
+    vs_last: '{p} frente al mes pasado',
+    ed_show_cost: 'Coste',
+    ed_subscription: 'Término fijo al mes',
+    ed_subscription_helper: 'Opcional: se suma a los importes mensuales de la sección Coste. Un número o un sensor',
     ed_show_graph: 'Curva de 24 h',
     ed_show_title: 'Título',
     ed_show_subtitle: 'Subtítulo',
@@ -436,6 +472,15 @@ var ZlI18n = {
     cmp_saves: '{c} штеди {v}',
     cmp_same: 'Готово исто: разлика {v}',
     cmp_days: '{d} дана',
+    cost_title: 'Трошак',
+    week: 'Ове недеље',
+    last_month: 'Прошлог месеца',
+    projection: 'Процена за крај месеца',
+    sub_incl: 'са претплатом',
+    vs_last: '{p} у односу на прошли месец',
+    ed_show_cost: 'Трошак',
+    ed_subscription: 'Претплата месечно',
+    ed_subscription_helper: 'Опционо: додаје се месечним износима одељка Трошак. Број или сензор',
     ed_show_graph: 'Крива за 24 h',
     ed_show_title: 'Наслов',
     ed_show_subtitle: 'Поднаслов',
@@ -532,6 +577,15 @@ var ZlI18n = {
     cmp_saves: '{c} štedi {v}',
     cmp_same: 'Gotovo isto: razlika {v}',
     cmp_days: '{d} dana',
+    cost_title: 'Trošak',
+    week: 'Ove nedelje',
+    last_month: 'Prošlog meseca',
+    projection: 'Procena za kraj meseca',
+    sub_incl: 'sa pretplatom',
+    vs_last: '{p} u odnosu na prošli mesec',
+    ed_show_cost: 'Trošak',
+    ed_subscription: 'Pretplata mesečno',
+    ed_subscription_helper: 'Opciono: dodaje se mesečnim iznosima odeljka Trošak. Broj ili senzor',
     ed_show_graph: 'Kriva za 24 h',
     ed_show_title: 'Naslov',
     ed_show_subtitle: 'Podnaslov',
@@ -628,6 +682,15 @@ var ZlI18n = {
     cmp_saves: '{c} fa risparmiare {v}',
     cmp_same: 'Praticamente uguali: {v} di differenza',
     cmp_days: '{d} giorni',
+    cost_title: 'Costo',
+    week: 'Questa settimana',
+    last_month: 'Il mese scorso',
+    projection: 'Stima a fine mese',
+    sub_incl: 'quota fissa inclusa',
+    vs_last: '{p} rispetto al mese scorso',
+    ed_show_cost: 'Costo',
+    ed_subscription: 'Quota fissa al mese',
+    ed_subscription_helper: 'Facoltativo: aggiunta agli importi mensili della sezione Costo. Un numero o un sensore',
     ed_show_graph: 'Curva 24 h',
     ed_show_title: 'Titolo',
     ed_show_subtitle: 'Sottotitolo',
@@ -724,6 +787,15 @@ var ZlI18n = {
     cmp_saves: '{c} bespaart {v}',
     cmp_same: 'Ongeveer gelijk: {v} verschil',
     cmp_days: '{d} dagen',
+    cost_title: 'Kosten',
+    week: 'Deze week',
+    last_month: 'Vorige maand',
+    projection: 'Schatting einde maand',
+    sub_incl: 'incl. vastrecht',
+    vs_last: '{p} t.o.v. vorige maand',
+    ed_show_cost: 'Kosten',
+    ed_subscription: 'Vastrecht per maand',
+    ed_subscription_helper: 'Optioneel: opgeteld bij de maandbedragen van de sectie Kosten. Een getal of een sensor',
     ed_show_graph: '24-uursgrafiek',
     ed_show_title: 'Titel',
     ed_show_subtitle: 'Ondertitel',
@@ -820,6 +892,15 @@ var ZlI18n = {
     cmp_saves: '{c} poupa {v}',
     cmp_same: 'Praticamente igual: {v} de diferença',
     cmp_days: '{d} dias',
+    cost_title: 'Custo',
+    week: 'Esta semana',
+    last_month: 'No mês passado',
+    projection: 'Estimativa para o fim do mês',
+    sub_incl: 'potência contratada incluída',
+    vs_last: '{p} face ao mês passado',
+    ed_show_cost: 'Custo',
+    ed_subscription: 'Potência contratada por mês',
+    ed_subscription_helper: 'Opcional: somada aos valores mensais da secção Custo. Um número ou um sensor',
     ed_show_graph: 'Curva de 24 h',
     ed_show_title: 'Título',
     ed_show_subtitle: 'Subtítulo',
@@ -916,6 +997,15 @@ var ZlI18n = {
     cmp_saves: '{c}: oszczędność {v}',
     cmp_same: 'Prawie to samo: różnica {v}',
     cmp_days: '{d} dni',
+    cost_title: 'Koszt',
+    week: 'W tym tygodniu',
+    last_month: 'W zeszłym miesiącu',
+    projection: 'Prognoza na koniec miesiąca',
+    sub_incl: 'z opłatą stałą',
+    vs_last: '{p} względem zeszłego miesiąca',
+    ed_show_cost: 'Koszt',
+    ed_subscription: 'Opłata stała miesięcznie',
+    ed_subscription_helper: 'Opcjonalnie: doliczana do kwot miesięcznych w sekcji Koszt. Liczba lub czujnik',
     ed_show_graph: 'Wykres 24 h',
     ed_show_title: 'Tytuł',
     ed_show_subtitle: 'Podtytuł',
@@ -1012,6 +1102,15 @@ var ZlI18n = {
     cmp_saves: '{c} economisește {v}',
     cmp_same: 'Aproape la fel: diferență de {v}',
     cmp_days: '{d} zile',
+    cost_title: 'Cost',
+    week: 'Săptămâna aceasta',
+    last_month: 'Luna trecută',
+    projection: 'Estimare la final de lună',
+    sub_incl: 'abonament inclus',
+    vs_last: '{p} față de luna trecută',
+    ed_show_cost: 'Cost',
+    ed_subscription: 'Abonament pe lună',
+    ed_subscription_helper: 'Opțional: adăugat la sumele lunare din secțiunea Cost. Un număr sau un senzor',
     ed_show_graph: 'Grafic 24 h',
     ed_show_title: 'Titlu',
     ed_show_subtitle: 'Subtitlu',
@@ -1108,6 +1207,15 @@ var ZlI18n = {
     cmp_saves: '{c} sparer {v}',
     cmp_same: 'Næsten det samme: {v} til forskel',
     cmp_days: '{d} dage',
+    cost_title: 'Pris',
+    week: 'Denne uge',
+    last_month: 'Sidste måned',
+    projection: 'Skøn ved månedens udgang',
+    sub_incl: 'inkl. abonnement',
+    vs_last: '{p} i forhold til sidste måned',
+    ed_show_cost: 'Pris',
+    ed_subscription: 'Abonnement pr. måned',
+    ed_subscription_helper: 'Valgfrit: lægges til månedsbeløbene i afsnittet Pris. Et tal eller en sensor',
     ed_show_graph: '24 t-graf',
     ed_show_title: 'Titel',
     ed_show_subtitle: 'Undertitel',
@@ -1204,6 +1312,15 @@ var ZlI18n = {
     cmp_saves: '{c} sparar {v}',
     cmp_same: 'Ungefär samma: {v} i skillnad',
     cmp_days: '{d} dagar',
+    cost_title: 'Kostnad',
+    week: 'Den här veckan',
+    last_month: 'Förra månaden',
+    projection: 'Uppskattning vid månadens slut',
+    sub_incl: 'inkl. abonnemang',
+    vs_last: '{p} jämfört med förra månaden',
+    ed_show_cost: 'Kostnad',
+    ed_subscription: 'Abonnemang per månad',
+    ed_subscription_helper: 'Valfritt: läggs till månadsbeloppen i avsnittet Kostnad. Ett tal eller en sensor',
     ed_show_graph: '24 h-diagram',
     ed_show_title: 'Rubrik',
     ed_show_subtitle: 'Underrubrik',
@@ -1300,6 +1417,15 @@ var ZlI18n = {
     cmp_saves: '{c} спестява {v}',
     cmp_same: 'Почти еднакво: разлика {v}',
     cmp_days: '{d} дни',
+    cost_title: 'Разход',
+    week: 'Тази седмица',
+    last_month: 'Миналия месец',
+    projection: 'Прогноза за края на месеца',
+    sub_incl: 'с абонамента',
+    vs_last: '{p} спрямо миналия месец',
+    ed_show_cost: 'Разход',
+    ed_subscription: 'Абонамент на месец',
+    ed_subscription_helper: 'По избор: добавя се към месечните суми в раздел Разход. Число или сензор',
     ed_show_graph: 'Графика за 24 h',
     ed_show_title: 'Заглавие',
     ed_show_subtitle: 'Подзаглавие',
@@ -1396,6 +1522,15 @@ var ZlI18n = {
     cmp_saves: '{c} экономит {v}',
     cmp_same: 'Почти одинаково: разница {v}',
     cmp_days: '{d} дн.',
+    cost_title: 'Стоимость',
+    week: 'На этой неделе',
+    last_month: 'В прошлом месяце',
+    projection: 'Прогноз на конец месяца',
+    sub_incl: 'с абонентской платой',
+    vs_last: '{p} к прошлому месяцу',
+    ed_show_cost: 'Стоимость',
+    ed_subscription: 'Абонентская плата в месяц',
+    ed_subscription_helper: 'Необязательно: добавляется к месячным суммам раздела «Стоимость». Число или датчик',
     ed_show_graph: 'График за 24 h',
     ed_show_title: 'Заголовок',
     ed_show_subtitle: 'Подзаголовок',
@@ -1492,6 +1627,15 @@ var ZlI18n = {
     cmp_saves: '{c} заощаджує {v}',
     cmp_same: 'Майже однаково: різниця {v}',
     cmp_days: '{d} дн.',
+    cost_title: 'Вартість',
+    week: 'Цього тижня',
+    last_month: 'Минулого місяця',
+    projection: 'Прогноз на кінець місяця',
+    sub_incl: 'з абонплатою',
+    vs_last: '{p} до минулого місяця',
+    ed_show_cost: 'Вартість',
+    ed_subscription: 'Абонплата на місяць',
+    ed_subscription_helper: 'Необов’язково: додається до місячних сум розділу «Вартість». Число або датчик',
     ed_show_graph: 'Графік за 24 h',
     ed_show_title: 'Заголовок',
     ed_show_subtitle: 'Підзаголовок',
@@ -1588,6 +1732,15 @@ var ZlI18n = {
     cmp_saves: '{c}: {v} megtakarítás',
     cmp_same: 'Nagyjából ugyanannyi: {v} eltérés',
     cmp_days: '{d} nap',
+    cost_title: 'Költség',
+    week: 'Ezen a héten',
+    last_month: 'Múlt hónapban',
+    projection: 'Becslés a hónap végére',
+    sub_incl: 'alapdíjjal',
+    vs_last: '{p} a múlt hónaphoz képest',
+    ed_show_cost: 'Költség',
+    ed_subscription: 'Havi alapdíj',
+    ed_subscription_helper: 'Nem kötelező: a Költség rész havi összegeihez adódik. Szám vagy érzékelő',
     ed_show_graph: '24 h grafikon',
     ed_show_title: 'Cím',
     ed_show_subtitle: 'Alcím',
@@ -1684,6 +1837,15 @@ var ZlI18n = {
     cmp_saves: '{c} ušetrí {v}',
     cmp_same: 'Takmer rovnaké: rozdiel {v}',
     cmp_days: '{d} dní',
+    cost_title: 'Náklady',
+    week: 'Tento týždeň',
+    last_month: 'Minulý mesiac',
+    projection: 'Odhad ku koncu mesiaca',
+    sub_incl: 'vrátane stálej platby',
+    vs_last: '{p} oproti minulému mesiacu',
+    ed_show_cost: 'Náklady',
+    ed_subscription: 'Stála platba za mesiac',
+    ed_subscription_helper: 'Voliteľné: pripočíta sa k mesačným sumám sekcie Náklady. Číslo alebo senzor',
     ed_show_graph: 'Graf za 24 h',
     ed_show_title: 'Názov',
     ed_show_subtitle: 'Podnázov',
@@ -1780,6 +1942,15 @@ var ZlI18n = {
     cmp_saves: '{c} ušetří {v}',
     cmp_same: 'Téměř stejné: rozdíl {v}',
     cmp_days: '{d} dní',
+    cost_title: 'Náklady',
+    week: 'Tento týden',
+    last_month: 'Minulý měsíc',
+    projection: 'Odhad ke konci měsíce',
+    sub_incl: 'včetně stálé platby',
+    vs_last: '{p} oproti minulému měsíci',
+    ed_show_cost: 'Náklady',
+    ed_subscription: 'Stálá platba za měsíc',
+    ed_subscription_helper: 'Volitelné: přičte se k měsíčním částkám sekce Náklady. Číslo nebo senzor',
     ed_show_graph: 'Graf za 24 h',
     ed_show_title: 'Název',
     ed_show_subtitle: 'Podnázev',
@@ -1876,6 +2047,15 @@ var ZlI18n = {
     cmp_saves: '{c} prihrani {v}',
     cmp_same: 'Skoraj enako: razlika {v}',
     cmp_days: '{d} dni',
+    cost_title: 'Strošek',
+    week: 'Ta teden',
+    last_month: 'Prejšnji mesec',
+    projection: 'Ocena ob koncu meseca',
+    sub_incl: 'z naročnino',
+    vs_last: '{p} glede na prejšnji mesec',
+    ed_show_cost: 'Strošek',
+    ed_subscription: 'Naročnina na mesec',
+    ed_subscription_helper: 'Neobvezno: prišteje se mesečnim zneskom razdelka Strošek. Število ali senzor',
     ed_show_graph: 'Graf 24 h',
     ed_show_title: 'Naslov',
     ed_show_subtitle: 'Podnaslov',
@@ -1972,6 +2152,15 @@ var ZlI18n = {
     cmp_saves: '{c} ietaupa {v}',
     cmp_same: 'Gandrīz vienādi: {v} starpība',
     cmp_days: '{d} dienas',
+    cost_title: 'Izmaksas',
+    week: 'Šonedēļ',
+    last_month: 'Pagājušajā mēnesī',
+    projection: 'Prognoze mēneša beigās',
+    sub_incl: 'ar abonēšanas maksu',
+    vs_last: '{p} salīdzinot ar pagājušo mēnesi',
+    ed_show_cost: 'Izmaksas',
+    ed_subscription: 'Abonēšanas maksa mēnesī',
+    ed_subscription_helper: 'Neobligāti: pieskaita sadaļas Izmaksas mēneša summām. Skaitlis vai sensors',
     ed_show_graph: '24 h grafiks',
     ed_show_title: 'Virsraksts',
     ed_show_subtitle: 'Apakšvirsraksts',
@@ -2068,6 +2257,15 @@ var ZlI18n = {
     cmp_saves: '{c}: εξοικονόμηση {v}',
     cmp_same: 'Περίπου το ίδιο: διαφορά {v}',
     cmp_days: '{d} ημέρες',
+    cost_title: 'Κόστος',
+    week: 'Αυτή την εβδομάδα',
+    last_month: 'Τον προηγούμενο μήνα',
+    projection: 'Εκτίμηση τέλους μήνα',
+    sub_incl: 'με το πάγιο',
+    vs_last: '{p} σε σχέση με τον προηγούμενο μήνα',
+    ed_show_cost: 'Κόστος',
+    ed_subscription: 'Πάγιο ανά μήνα',
+    ed_subscription_helper: 'Προαιρετικό: προστίθεται στα μηνιαία ποσά της ενότητας Κόστος. Αριθμός ή αισθητήρας',
     ed_show_graph: 'Γράφημα 24 h',
     ed_show_title: 'Τίτλος',
     ed_show_subtitle: 'Υπότιτλος',
@@ -2514,6 +2712,21 @@ function zlCompare(hours, c, tz) {
   return { total: total, hc: hc, days: days, base: base, hchp: hchp };
 }
 
+// How far into its month `now` is, in Home Assistant's time zone: { elapsed, days } in days (elapsed counts the
+// hours of the current day too), for the month-end estimate.
+function zlMonthProgress(now, tz) {
+  var fmt;
+  try {
+    fmt = new Intl.DateTimeFormat('en-GB', { timeZone: tz || undefined, year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  } catch (_e) {
+    fmt = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  }
+  var p = {};
+  fmt.formatToParts(new Date(now)).forEach((x) => { p[x.type] = Number(x.value); });
+  var days = new Date(Date.UTC(p.year, p.month, 0)).getUTCDate();
+  return { elapsed: p.day - 1 + (p.hour * 60 + p.minute) / 1440, days: days };
+}
+
 // ── Base card ────────────────────────────────────────────────────────────────
 class ZlinkyCard extends HTMLElement {
   static getConfigElement() {
@@ -2528,7 +2741,7 @@ class ZlinkyCard extends HTMLElement {
   setConfig(config) {
     if (!config) throw new Error('Invalid configuration');
     this._config = Object.assign({
-      show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true,
+      show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, show_cost: true,
     }, config);
     // show_title / show_subtitle: the header's title / subtitle, hidden by the stylesheet
     this.toggleAttribute?.("hide-title", config.show_title === false);
@@ -2632,7 +2845,7 @@ class ZlinkyCard extends HTMLElement {
       var s = r.ent[k] && hass.states[r.ent[k]];
       return s ? s.state : null;
     }));
-    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, this._cmpVer, states, this._prices(), this._subscribed()]);
+    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, this._cmpVer, states, this._prices(), this._subscribed(), this._subscription()]);
     if (sig === this._sig) return;
     this._sig = sig;
     this._r = r;
@@ -2729,10 +2942,12 @@ class ZlinkyCard extends HTMLElement {
     // With one price per tier, each tier's index in use is fetched too: the cost sums each tier's kWh × its price.
     var tierIds = this._prices().length > 1 && r.ent.energy
       ? ZL_TIERS.filter((t) => this._avail(r.ent[t]) && (zlKwh(this._st(r.ent[t])) || 0) > 0) : [];
-    var key = `${r.ent.energy}|${curveId}|${wantCurve ? 1 : 0}|${tierIds.join(',')}`;
+    // The cost section also needs this week and last month.
+    var costOn = this._costOn() && !!r.ent.energy;
+    var key = `${r.ent.energy}|${curveId}|${wantCurve ? 1 : 0}|${tierIds.join(',')}|${costOn ? 1 : 0}`;
     var fresh = this._statsKey === key && Date.now() - (this._statsAt || 0) < ZL_STATS_REFRESH;
-    // Nothing to fetch when neither the tiles (or the mini's "today" line) nor the curve are shown.
-    if (fresh || !(c.show_stats || wantCurve)) return;
+    // Nothing to fetch when neither the tiles (or the mini's "today" line), the cost section nor the curve are shown.
+    if (fresh || !(c.show_stats || costOn || wantCurve)) return;
     this._statsBusy = true;
     this._statsKey = key;
     this._statsAt = Date.now();
@@ -2759,7 +2974,9 @@ class ZlinkyCard extends HTMLElement {
         .then((pts) => (pts.length > 1 ? pts : this._historyCurve(curveId)))
         .catch(() => { failed = true; return []; })
       : Promise.resolve([]);
-    var periods = [['today', 'day', 0], ['yesterday', 'day', -1], ['month', 'month', 0]];
+    var periods = [['today', 'day', 0], ['yesterday', 'day', -1], ['month', 'month', 0]]
+      .concat(costOn ? [['week', 'week', 0], ['last_month', 'month', -1]] : []);
+    var names = periods.map((p) => p[0]);
     // Per period, each tier's kWh ({ tier1: 1.2, tier2: 3.4 }), or null when one of them is missing.
     var split = (p) => Promise.all(tierIds.map((t) => change(p[1], p[2], r.ent[t]))).then((v) => {
       if (!tierIds.length || v.some((x) => x == null)) return null;
@@ -2770,12 +2987,16 @@ class ZlinkyCard extends HTMLElement {
     Promise.all(periods.map((p) => change(p[1], p[2])).concat([curve], periods.map(split))).then((res) => {
       // A reply for a previous config (setConfig while in flight) is dropped: the next update refetches.
       if (this._statsKey !== key) return;
-      var next = { key: key, today: res[0], yesterday: res[1], month: res[2], curve: res[3],
-        tiers: { today: res[4], yesterday: res[5], month: res[6] } };
+      var n = names.length;
+      var next = { key: key, curve: res[n], tiers: {} };
+      names.forEach((k, i) => {
+        next[k] = res[i];
+        next.tiers[k] = res[n + 1 + i];
+      });
       var prev = this._stats;
       // On a partial failure, keep the previous values of the same query rather than falling back to "—".
       if (failed && prev && prev.key === key) {
-        ['today', 'yesterday', 'month'].forEach((k) => {
+        names.forEach((k) => {
           if (next[k] == null) next[k] = prev[k];
           if (next.tiers[k] == null) next.tiers[k] = prev.tiers[k];
         });
@@ -2880,15 +3101,67 @@ class ZlinkyCard extends HTMLElement {
   // tiers' statistics a past period (yesterday, month) has no cost when the tiers' prices differ: the current
   // tier's price says nothing of the tiers that period was spent in (a red Tempo day priced at a blue one).
   _cost(kwh, period = 'today') {
+    var v = this._costValue(kwh, period);
+    return v == null ? '' : this._money(v);
+  }
+
+  // The same cost as a number, null when it cannot be told.
+  _costValue(kwh, period = 'today') {
     var prices = this._prices();
-    if (kwh == null || !prices.some((x) => x > 0)) return '';
+    if (kwh == null || !prices.some((x) => x > 0)) return null;
     var split = prices.length > 1 ? this._stats?.tiers?.[period] : null;
     var known = prices.filter((x) => x != null);
-    if (!split && period !== 'today' && known.some((x) => x !== known[0])) return '';
-    var v = split
+    if (!split && period !== 'today' && known.some((x) => x !== known[0])) return null;
+    return split
       ? Object.keys(split).reduce((sum, t) => sum + split[t] * zlPriceAt(prices, Number(t.slice(4)) - 1), 0)
       : kwh * zlPriceAt(prices, this._tierNow());
-    return zlMoney(this._fmtLang(), v, this._hass.config?.currency);
+  }
+
+  _money(v) { return zlMoney(this._fmtLang(), v, this._hass.config?.currency); }
+
+  // The cost section (full card): `show_cost` and a price.
+  _costOn() {
+    return !this._compact() && this._config.show_cost !== false && this._prices().some((x) => x > 0);
+  }
+
+  // `subscription`: the monthly subscription, a number or a sensor giving it; 0 without one.
+  _subscription() {
+    var x = this._config.subscription;
+    if (typeof x === 'string' && /^[a-z_]+\.\w+$/.test(x.trim())) x = this._numv(x.trim());
+    var n = x == null || x === '' ? NaN : Number(x);
+    return Number.isFinite(n) && n > 0 ? n : 0;
+  }
+
+  // This week, last month and the month-end estimate: this month's energy cost spread over the whole month at the
+  // pace so far, plus the subscription. The estimate waits for the first full day of the month (a few hours say
+  // nothing of a month), and compares with last month when it is known.
+  _costHtml(lang) {
+    var s = this._stats;
+    if (!this._costOn() || !s) return '';
+    var sub = this._subscription();
+    var week = this._costValue(s.week, 'week');
+    var last = this._costValue(s.last_month, 'last_month');
+    var month = this._costValue(s.month, 'month');
+    var prog = zlMonthProgress(Date.now(), this._hass.config?.time_zone);
+    var estimate = month != null && prog.elapsed >= 1 ? (month / prog.elapsed) * prog.days + sub : null;
+    if (last != null) last += sub;
+    if (week == null && last == null && estimate == null) return '';
+    var rows = [];
+    if (week != null) rows.push(`<div class="row"><span>${zlEsc(this._t('week'))}</span><span class="rv">${zlEsc(this._money(week))}</span></div>`);
+    if (last != null) rows.push(`<div class="row"><span>${zlEsc(this._t('last_month'))}</span><span class="rv">${zlEsc(this._money(last))}</span></div>`);
+    if (estimate != null) {
+      rows.push(`<div class="row cost-est"><span>${zlEsc(this._t('projection'))}</span><span class="rv">${zlEsc(this._money(estimate))}</span></div>`);
+      if (last > 0) {
+        var pct = Math.round(((estimate - last) / last) * 100);
+        var trend = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
+        var txt = this._t('vs_last').replace('{p}', `${pct > 0 ? '+' : pct < 0 ? '−' : '±'}${zlNum(lang, Math.abs(pct), 0)} %`);
+        rows.push(`<div class="row cmp-verdict cost-trend ${trend}"><span>${zlEsc(txt)}</span></div>`);
+      }
+    }
+    var aside = sub > 0 ? `<span class="aside">${zlEsc(this._t('sub_incl'))}</span>` : '';
+    return '<div class="section">' +
+      `<div class="section-title"><ha-icon icon="mdi:cash-multiple"></ha-icon><span>${zlEsc(this._t('cost_title'))}</span>${aside}</div>` +
+      rows.join('') + '</div>';
   }
 
   _render(r) {
@@ -2999,7 +3272,7 @@ class ZlinkyCard extends HTMLElement {
       '<div class="header sub2">' + m.logo +
         `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(m.sub)}</div></div>` +
         this._pill(m) + this._zoomButton() +
-      '</div>' + hero + this._tempo(ent) + stats + graph + this._compareHtml(lang) + index + phases +
+      '</div>' + hero + this._tempo(ent) + stats + graph + this._costHtml(lang) + this._compareHtml(lang) + index + phases +
     '</ha-card>');
   }
 
@@ -3223,6 +3496,9 @@ class ZlinkyCard extends HTMLElement {
       '.rows { display: flex; flex-direction: column; }' +
       '.row { display: flex; justify-content: space-between; gap: 8px; padding: 4px 10px; font-size: 12px; color: var(--secondary-text-color); }' +
       '.cmp-verdict { color: var(--primary-text-color); font-weight: 500; }' +
+      '.cost-est .rv { font-weight: 600; }' +
+      '.cost-trend.up { color: var(--error-color, #db4437); }' +
+      '.cost-trend.down { color: var(--success-color, #43a047); }' +
       '.rv { font-variant-numeric: tabular-nums; color: var(--primary-text-color); }' +
       '.phase { display: grid; grid-template-columns: 22px 1fr 60px 40px; align-items: center; gap: 8px; font-size: 12px; }' +
       '.pn { font-weight: 500; color: var(--secondary-text-color); }' +
@@ -3300,7 +3576,7 @@ function zlPriceList(price) {
   return Array.isArray(price) || typeof price === 'string';
 }
 
-var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, zoom: true,
+var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, show_cost: true, zoom: true,
   load_warning: ZL_LOAD_WARNING, load_critical: ZL_LOAD_CRITICAL };
 
 class ZlinkyCardEditor extends HTMLElement {
@@ -3334,7 +3610,9 @@ class ZlinkyCardEditor extends HTMLElement {
           { name: 'icon', selector: { icon: {} } },
         ].concat(typeof this._config.subscribed_power === 'string' ? []
           : [{ name: 'subscribed_power', selector: { number: { min: 3, max: 36, step: 1, mode: 'box', unit_of_measurement: 'kVA' } } }])
-          .concat(zlPriceList(this._config.price) ? [] : [{ name: 'price', selector: { number: { min: 0, max: 2, step: 0.0001, mode: 'box' } } }]),
+          .concat(zlPriceList(this._config.price) ? [] : [{ name: 'price', selector: { number: { min: 0, max: 2, step: 0.0001, mode: 'box' } } }])
+          // A sensor as the subscription stays YAML only.
+          .concat(typeof this._config.subscription === 'string' ? [] : [{ name: 'subscription', selector: { number: { min: 0, max: 200, step: 0.01, mode: 'box' } } }]),
       },
       // A sensor as the subscribed power. Editor-only field, written back to `subscribed_power`.
       { name: 'subscribed_power_entity', selector: { entity: { domain: ['sensor', 'input_number', 'number'] } } },
@@ -3355,6 +3633,7 @@ class ZlinkyCardEditor extends HTMLElement {
           { name: 'show_phases', selector: { boolean: {} } },
           { name: 'show_logo', selector: { boolean: {} } },
           { name: 'show_tempo', selector: { boolean: {} } },
+          { name: 'show_cost', selector: { boolean: {} } },
         ].concat(mini ? [{ name: 'zoom', selector: { boolean: {} } }] : []),
       },
       {
@@ -3436,10 +3715,12 @@ class ZlinkyCardEditor extends HTMLElement {
     var lang = this._lang();
     var wasList = zlPriceList(this._config.price);
     var wasSensor = typeof this._config.subscribed_power === 'string';
+    var wasSubSensor = typeof this._config.subscription === 'string';
     this._config = value;
     // A new language option relabels the form; per-tier prices hide the single price field, a subscribed power
     // sensor the number field (and back).
-    if (lang !== this._lang() || wasList !== zlPriceList(value.price) || wasSensor !== (typeof value.subscribed_power === 'string')) this._render();
+    if (lang !== this._lang() || wasList !== zlPriceList(value.price) || wasSensor !== (typeof value.subscribed_power === 'string')
+      || wasSubSensor !== (typeof value.subscription === 'string')) this._render();
     this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: value }, bubbles: true, composed: true }));
   }
 }

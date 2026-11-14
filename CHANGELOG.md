@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.14.0 - 2026-11-14
+
+### Features
+- **Cost section** (full card): with a `price`, this week's and last month's cost and a month-end estimate (this month's pace spread over the whole month, in Home Assistant's time zone, from the second day of the month), compared with last month. Priced per tier like the consumption tiles.
+- `subscription` option (number, or a sensor in YAML): the monthly subscription, added to last month and to the estimate. `show_cost` hides the section. Both in the visual editor.
+
 ## 1.13.1 - 2026-11-14
 
 ### Fixes
