@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.15.0 - 2026-11-14
+
+### Features
+- **Tarif EDF integration** (delphiki/hass-tarif-edf): `tarif_edf: true` (also in the visual editor) takes the prices per kWh from it — Base, Off-peak / Peak, or Tempo's six prices in the meter's index order — and the subscribed power, plus today's and tomorrow's Tempo colors when the meter gives none. `price`, `subscribed_power` and `entities.tempo` / `entities.tomorrow` set by hand still win.
+
 ## 1.14.0 - 2026-11-14
 
 ### Features

@@ -268,9 +268,9 @@ test("I18N parity: every language has exactly the English keys and placeholders"
   }
 });
 
-// Proper nouns, brands and units (Linky, ZLinky, LiXee, ZHA, kVA, kWh, h, Home Assistant) are the only Latin
+// Proper nouns, brands and units (Linky, ZLinky, LiXee, Tarif EDF, ZHA, kVA, kWh, h, Home Assistant) are the only Latin
 // words allowed in the Cyrillic dictionary; the Latin one has no Cyrillic at all.
-const SR_LATIN_OK = /\b(Z?Linky|LiXee|ZLinky_TIC|ZHA|Zigbee2MQTT|Home Assistant|kVA|kWh|h)\b|\{\w+\}/g;
+const SR_LATIN_OK = /\b(Z?Linky|LiXee|Tarif EDF|ZLinky_TIC|ZHA|Zigbee2MQTT|Home Assistant|kVA|kWh|h)\b|\{\w+\}/g;
 test("Serbian: no Latin letters in sr (apart from names and units), no Cyrillic in sr-Latn", () => {
   for (const [k, v] of Object.entries(ZlI18n.sr)) {
     assert.doesNotMatch(v.replace(SR_LATIN_OK, ""), /[A-Za-z]/, `sr.${k}: ${v}`);
@@ -1566,4 +1566,70 @@ test("editor: subscription field and show_cost toggle, a subscription sensor sta
   ed.setConfig({ type: "custom:zlinky-card", subscription: "sensor.sub" });
   names = schemaLeaves(ed._form.schema).map((s) => s.name);
   assert.ok(!names.includes("subscription"));
+});
+
+// Tarif EDF (delphiki/hass-tarif-edf): prices, subscribed power and Tempo colors with `tarif_edf: true`.
+function edfHass(extra, { platform = true, callWS } = {}) {
+  const hass = zhaHass({ extra, callWS });
+  for (const id of Object.keys(extra)) hass.entities[id] = { entity_id: id, device_id: "edf", ...(platform ? { platform: "tarif_edf" } : {}) };
+  return hass;
+}
+const eur = (v) => st(String(v), { unit_of_measurement: "EUR/kWh" });
+
+test("tarif_edf: Base price and subscribed power from the integration", async () => {
+  const extra = { "sensor.tarif_base_ttc": eur(0.1985), "sensor.tarif_actuel_base_9kva_ttc": eur(0.1985),
+    "sensor.puissance_souscrite_base_9kva": st("9", { unit_of_measurement: "kVA" }) };
+  const hass = edfHass(extra, { callWS: statsWS({ [`${TP}consommation`]: [10, 10, 10] }) });
+  const card = make(ZlinkyCard, hass, { tarif_edf: true });
+  await tick();
+  assert.deepEqual([...card._prices()], [0.1985]);
+  assert.equal(card._subscribed(), 9);
+  assert.equal(tileCosts(card.shadowRoot.innerHTML)[0].replace(/\s/g, " "), "1,99 €");
+  // Without the option nothing changes; an explicit price or subscribed power still wins.
+  assert.deepEqual([...make(ZlinkyCard, hass, {})._prices()], []);
+  assert.equal(make(ZlinkyCard, hass, {})._subscribed(), 6);
+  const own = make(ZlinkyCard, hass, { tarif_edf: true, price: 0.3, subscribed_power: 12 });
+  assert.deepEqual([...own._prices()], [0.3]);
+  assert.equal(own._subscribed(), 12);
+});
+
+test("tarif_edf: off-peak / peak and Tempo prices in the meter's index order, Tempo colors", () => {
+  const hchp = edfHass({ "sensor.tarif_heures_pleines_ttc": eur(0.2146), "sensor.tarif_heures_creuses_ttc": eur(0.1696) });
+  assert.deepEqual([...make(ZlinkyCard, hchp, { tarif_edf: true })._prices()], [0.1696, 0.2146]);
+  const names = ["bleu_tempo_heures_creuses", "bleu_tempo_heures_pleines", "blanc_tempo_heures_creuses",
+    "blanc_tempo_heures_pleines", "rouge_tempo_heures_creuses", "rouge_tempo_heures_pleines"];
+  const extra = { "sensor.tarif_tempo_heures_creuses_ttc": eur(0.1), "sensor.tarif_tempo_couleur_aujourd_hui": st("rouge"),
+    "sensor.tarif_tempo_couleur_demain": st("bleu") };
+  names.forEach((n, i) => { extra[`sensor.tarif_${n}_ttc`] = eur((i + 1) / 10); });
+  const card = make(ZlinkyCard, edfHass(extra), { tarif_edf: true, language: "en" });
+  assert.deepEqual([...card._prices()], [0.1, 0.2, 0.3, 0.4, 0.5, 0.6]);
+  const { ent } = card._resolve();
+  assert.equal(ent.tempo, "sensor.tarif_tempo_couleur_aujourd_hui");
+  assert.equal(ent.tomorrow, "sensor.tarif_tempo_couleur_demain");
+  assert.match(card.shadowRoot.innerHTML, /Red/);
+  assert.match(card.shadowRoot.innerHTML, /Blue/);
+});
+
+test("tarif_edf: a second entry's suffix, and only the integration's sensors when the registry tells", () => {
+  const suffixed = edfHass({ "sensor.tarif_base_ttc_2": eur(0.25) });
+  assert.deepEqual([...make(ZlinkyCard, suffixed, { tarif_edf: true })._prices()], [0.25]);
+  // A look-alike sensor of another integration is ignored once the registry names tarif_edf's own.
+  const hass = edfHass({ "sensor.tarif_heures_creuses_ttc": eur(0.1), "sensor.tarif_heures_pleines_ttc": eur(0.2) });
+  hass.states["sensor.tarif_base_ttc"] = eur(0.9);
+  hass.entities["sensor.tarif_base_ttc"] = { entity_id: "sensor.tarif_base_ttc", device_id: "x", platform: "template" };
+  assert.deepEqual([...make(ZlinkyCard, hass, { tarif_edf: true })._prices()], [0.1, 0.2]);
+});
+
+test("editor: tarif_edf toggle, off by default and not written", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  const sent = [];
+  ed.dispatchEvent = () => sent.push(ed._config);
+  ed.setConfig({ type: "custom:zlinky-card" });
+  ed.hass = zhaHass();
+  assert.ok(schemaLeaves(ed._form.schema).some((s) => s.name === "tarif_edf"));
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data } } });
+  assert.ok(!("tarif_edf" in sent.at(-1)));
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data, tarif_edf: true } } });
+  assert.equal(sent.at(-1).tarif_edf, true);
 });
