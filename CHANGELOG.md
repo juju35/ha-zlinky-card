@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.16.0 - 2026-11-15
+
+### Features
+- **Hide the load pill** (`show_load_pill: false`): removes the Low / Moderate / High load status pill at the top right of the header ([#60](https://github.com/juju35/ha-zlinky-card/issues/60), suggested by @thomasfav28).
+- **Disable the power tap** (`power_tap_action: none`): a tap on the big power readout no longer opens the more-info dialog ([#60](https://github.com/juju35/ha-zlinky-card/issues/60), suggested by @thomasfav28).
+
 ## 1.15.0 - 2026-11-14
 
 ### Features
