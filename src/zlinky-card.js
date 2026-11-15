@@ -101,6 +101,8 @@ var ZlI18n = {
     zen_sobriety: 'Sobriété',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Couleur Tempo',
+    ed_power_unit: 'Unité de la puissance apparente',
+    ed_power_unit_helper: 'Laisser vide pour VA',
     ed_load_warning: 'Seuil de charge modérée',
     ed_load_warning_helper: 'Charge modérée à partir de ce pourcentage de la puissance souscrite ; 50 % par défaut',
     ed_load_critical: 'Seuil de charge élevée',
@@ -208,6 +210,8 @@ var ZlI18n = {
     zen_sobriety: 'Sobriety',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo color',
+    ed_power_unit: 'Apparent power unit',
+    ed_power_unit_helper: 'Leave empty for VA',
     ed_load_warning: 'Moderate load threshold',
     ed_load_warning_helper: 'Moderate load from this share of the subscribed power; 50 % by default',
     ed_load_critical: 'High load threshold',
@@ -315,6 +319,8 @@ var ZlI18n = {
     zen_sobriety: 'Mäßigung',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo-Farbe',
+    ed_power_unit: 'Einheit der Scheinleistung',
+    ed_power_unit_helper: 'Leer lassen für VA',
     ed_load_warning: 'Schwelle mittlere Last',
     ed_load_warning_helper: 'Mittlere Last ab diesem Anteil der Anschlussleistung; standardmäßig 50 %',
     ed_load_critical: 'Schwelle hohe Last',
@@ -422,6 +428,8 @@ var ZlI18n = {
     zen_sobriety: 'Sobriedad',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Color Tempo',
+    ed_power_unit: 'Unidad de la potencia aparente',
+    ed_power_unit_helper: 'Dejar vacío para VA',
     ed_load_warning: 'Umbral de carga moderada',
     ed_load_warning_helper: 'Carga moderada a partir de este porcentaje de la potencia contratada; 50 % por defecto',
     ed_load_critical: 'Umbral de carga alta',
@@ -529,6 +537,8 @@ var ZlI18n = {
     zen_sobriety: 'Штедња',
     zen_bonus: 'Бонус',
     ed_show_tempo: 'Темпо боја',
+    ed_power_unit: 'Јединица привидне снаге',
+    ed_power_unit_helper: 'Оставите празно за VA',
     ed_load_warning: 'Праг умереног оптерећења',
     ed_load_warning_helper: 'Умерено оптерећење од овог удела уговорене снаге; подразумевано 50 %',
     ed_load_critical: 'Праг високог оптерећења',
@@ -636,6 +646,8 @@ var ZlI18n = {
     zen_sobriety: 'Štednja',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo boja',
+    ed_power_unit: 'Jedinica prividne snage',
+    ed_power_unit_helper: 'Ostavite prazno za VA',
     ed_load_warning: 'Prag umerenog opterećenja',
     ed_load_warning_helper: 'Umereno opterećenje od ovog udela ugovorene snage; podrazumevano 50 %',
     ed_load_critical: 'Prag visokog opterećenja',
@@ -743,6 +755,8 @@ var ZlI18n = {
     zen_sobriety: 'Sobrietà',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Colore Tempo',
+    ed_power_unit: 'Unità della potenza apparente',
+    ed_power_unit_helper: 'Lasciare vuoto per VA',
     ed_load_warning: 'Soglia di carico moderato',
     ed_load_warning_helper: 'Carico moderato da questa percentuale della potenza contrattuale; 50 % per impostazione predefinita',
     ed_load_critical: 'Soglia di carico elevato',
@@ -850,6 +864,8 @@ var ZlI18n = {
     zen_sobriety: 'Soberheid',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo-kleur',
+    ed_power_unit: 'Eenheid van het schijnbaar vermogen',
+    ed_power_unit_helper: 'Leeg laten voor VA',
     ed_load_warning: 'Drempel matige belasting',
     ed_load_warning_helper: 'Matige belasting vanaf dit aandeel van het gecontracteerde vermogen; standaard 50 %',
     ed_load_critical: 'Drempel hoge belasting',
@@ -957,6 +973,8 @@ var ZlI18n = {
     zen_sobriety: 'Sobriedade',
     zen_bonus: 'Bónus',
     ed_show_tempo: 'Cor Tempo',
+    ed_power_unit: 'Unidade da potência aparente',
+    ed_power_unit_helper: 'Deixar vazio para VA',
     ed_load_warning: 'Limiar de carga moderada',
     ed_load_warning_helper: 'Carga moderada a partir desta percentagem da potência contratada; 50 % por omissão',
     ed_load_critical: 'Limiar de carga elevada',
@@ -1064,6 +1082,8 @@ var ZlI18n = {
     zen_sobriety: 'Oszczędność',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Kolor Tempo',
+    ed_power_unit: 'Jednostka mocy pozornej',
+    ed_power_unit_helper: 'Pozostaw puste dla VA',
     ed_load_warning: 'Próg umiarkowanego obciążenia',
     ed_load_warning_helper: 'Umiarkowane obciążenie od tego udziału mocy umownej; domyślnie 50 %',
     ed_load_critical: 'Próg wysokiego obciążenia',
@@ -1171,6 +1191,8 @@ var ZlI18n = {
     zen_sobriety: 'Sobrietate',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Culoare Tempo',
+    ed_power_unit: 'Unitatea puterii aparente',
+    ed_power_unit_helper: 'Lăsați gol pentru VA',
     ed_load_warning: 'Prag de sarcină moderată',
     ed_load_warning_helper: 'Sarcină moderată de la acest procent din puterea contractată; implicit 50 %',
     ed_load_critical: 'Prag de sarcină ridicată',
@@ -1278,6 +1300,8 @@ var ZlI18n = {
     zen_sobriety: 'Sparsomhed',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo-farve',
+    ed_power_unit: 'Enhed for tilsyneladende effekt',
+    ed_power_unit_helper: 'Lad stå tomt for VA',
     ed_load_warning: 'Tærskel for moderat belastning',
     ed_load_warning_helper: 'Moderat belastning fra denne andel af den abonnerede effekt; 50 % som standard',
     ed_load_critical: 'Tærskel for høj belastning',
@@ -1385,6 +1409,8 @@ var ZlI18n = {
     zen_sobriety: 'Sparsamhet',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Tempo-färg',
+    ed_power_unit: 'Enhet för skenbar effekt',
+    ed_power_unit_helper: 'Lämna tomt för VA',
     ed_load_warning: 'Tröskel för måttlig last',
     ed_load_warning_helper: 'Måttlig last från denna andel av den abonnerade effekten; 50 % som standard',
     ed_load_critical: 'Tröskel för hög last',
@@ -1492,6 +1518,8 @@ var ZlI18n = {
     zen_sobriety: 'Пестене',
     zen_bonus: 'Бонус',
     ed_show_tempo: 'Цвят Tempo',
+    ed_power_unit: 'Единица за пълна мощност',
+    ed_power_unit_helper: 'Оставете празно за VA',
     ed_load_warning: 'Праг за умерено натоварване',
     ed_load_warning_helper: 'Умерено натоварване от този дял от договорената мощност; по подразбиране 50 %',
     ed_load_critical: 'Праг за високо натоварване',
@@ -1599,6 +1627,8 @@ var ZlI18n = {
     zen_sobriety: 'Умеренность',
     zen_bonus: 'Бонус',
     ed_show_tempo: 'Цвет Tempo',
+    ed_power_unit: 'Единица полной мощности',
+    ed_power_unit_helper: 'Оставьте пустым для VA',
     ed_load_warning: 'Порог умеренной нагрузки',
     ed_load_warning_helper: 'Умеренная нагрузка с этой доли договорной мощности; по умолчанию 50 %',
     ed_load_critical: 'Порог высокой нагрузки',
@@ -1706,6 +1736,8 @@ var ZlI18n = {
     zen_sobriety: 'Помірність',
     zen_bonus: 'Бонус',
     ed_show_tempo: 'Колір Tempo',
+    ed_power_unit: 'Одиниця повної потужності',
+    ed_power_unit_helper: 'Залиште порожнім для VA',
     ed_load_warning: 'Поріг помірного навантаження',
     ed_load_warning_helper: 'Помірне навантаження з цієї частки договірної потужності; типово 50 %',
     ed_load_critical: 'Поріг високого навантаження',
@@ -1813,6 +1845,8 @@ var ZlI18n = {
     zen_sobriety: 'Takarékosság',
     zen_bonus: 'Bónusz',
     ed_show_tempo: 'Tempo szín',
+    ed_power_unit: 'A látszólagos teljesítmény egysége',
+    ed_power_unit_helper: 'Hagyja üresen a VA-hoz',
     ed_load_warning: 'Közepes terhelés küszöbe',
     ed_load_warning_helper: 'Közepes terhelés a szerződéses teljesítmény ezen arányától; alapértelmezés 50 %',
     ed_load_critical: 'Magas terhelés küszöbe',
@@ -1920,6 +1954,8 @@ var ZlI18n = {
     zen_sobriety: 'Striedmosť',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Farba Tempo',
+    ed_power_unit: 'Jednotka zdanlivého výkonu',
+    ed_power_unit_helper: 'Nechajte prázdne pre VA',
     ed_load_warning: 'Prah stredného zaťaženia',
     ed_load_warning_helper: 'Stredné zaťaženie od tohto podielu zmluvného výkonu; predvolene 50 %',
     ed_load_critical: 'Prah vysokého zaťaženia',
@@ -2027,6 +2063,8 @@ var ZlI18n = {
     zen_sobriety: 'Střídmost',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Barva Tempo',
+    ed_power_unit: 'Jednotka zdánlivého výkonu',
+    ed_power_unit_helper: 'Ponechte prázdné pro VA',
     ed_load_warning: 'Práh středního zatížení',
     ed_load_warning_helper: 'Střední zatížení od tohoto podílu sjednaného příkonu; výchozí 50 %',
     ed_load_critical: 'Práh vysokého zatížení',
@@ -2134,6 +2172,8 @@ var ZlI18n = {
     zen_sobriety: 'Varčnost',
     zen_bonus: 'Bonus',
     ed_show_tempo: 'Barva Tempo',
+    ed_power_unit: 'Enota navidezne moči',
+    ed_power_unit_helper: 'Pustite prazno za VA',
     ed_load_warning: 'Prag zmerne obremenitve',
     ed_load_warning_helper: 'Zmerna obremenitev od tega deleža priključne moči; privzeto 50 %',
     ed_load_critical: 'Prag visoke obremenitve',
@@ -2241,6 +2281,8 @@ var ZlI18n = {
     zen_sobriety: 'Taupība',
     zen_bonus: 'Bonuss',
     ed_show_tempo: 'Tempo krāsa',
+    ed_power_unit: 'Šķietamās jaudas mērvienība',
+    ed_power_unit_helper: 'Atstājiet tukšu, lai būtu VA',
     ed_load_warning: 'Mērenas slodzes slieksnis',
     ed_load_warning_helper: 'Mērena slodze no šīs līgumjaudas daļas; pēc noklusējuma 50 %',
     ed_load_critical: 'Augstas slodzes slieksnis',
@@ -2348,6 +2390,8 @@ var ZlI18n = {
     zen_sobriety: 'Λιτότητα',
     zen_bonus: 'Μπόνους',
     ed_show_tempo: 'Χρώμα Tempo',
+    ed_power_unit: 'Μονάδα φαινόμενης ισχύος',
+    ed_power_unit_helper: 'Αφήστε κενό για VA',
     ed_load_warning: 'Όριο μέτριου φορτίου',
     ed_load_warning_helper: 'Μέτριο φορτίο από αυτό το ποσοστό της συμφωνημένης ισχύος· προεπιλογή 50 %',
     ed_load_critical: 'Όριο υψηλού φορτίου',
@@ -3133,7 +3177,9 @@ class ZlinkyCard extends HTMLElement {
     var watts = this._avail(ent.power) ? zlBase(this._st(ent.power)) : null;
     var va = this._avail(ent.apparent_power) ? zlBase(this._st(ent.apparent_power)) : null;
     var main = va != null ? va : watts;
-    var mainUnit = va != null ? 'VA' : 'W';
+    // The ZLinky reports apparent power (VA); `power_unit` relabels that reading (e.g. `W`) on the value and
+    // the drawn meter, for people who read it as watts. It only swaps the unit shown, with no conversion.
+    var mainUnit = va != null ? (c.power_unit || 'VA') : 'W';
     var subscribed = this._subscribed();
     var pct = main != null ? Math.max(0, Math.min(100, (main / (subscribed * 1000)) * 100)) : null;
     var level = online ? zlLoadLevel(pct, zlPct(c.load_warning, ZL_LOAD_WARNING), zlPct(c.load_critical, ZL_LOAD_CRITICAL)) : 'off';
@@ -3159,7 +3205,7 @@ class ZlinkyCard extends HTMLElement {
     var c = this._config, out = [];
     var num = (x, d) => zlNum(lang, x, d).replace(/[\s  ]/g, '');
     if (online) {
-      if (va != null) out.push({ l: 'P. APP', v: num(va, 0), u: 'VA' });
+      if (va != null) out.push({ l: 'P. APP', v: num(va, 0), u: c.power_unit || 'VA' });
       else if (watts != null) out.push({ l: 'P. ACT', v: num(watts, 0), u: 'W' });
       if (this._avail(ent.energy)) out.push({ l: 'INDEX', v: num(zlKwh(this._st(ent.energy)), 0), u: 'kWh' });
       var names = Array.isArray(c.tiers) ? c.tiers : [];
@@ -3813,6 +3859,8 @@ class ZlinkyCardEditor extends HTMLElement {
           { name: 'show_cost', selector: { boolean: {} } },
         ].concat(mini ? [{ name: 'zoom', selector: { boolean: {} } }] : []),
       },
+      // Free label for the apparent-power unit (empty = VA); only the unit shown changes, not the value.
+      { name: 'power_unit', selector: { text: {} } },
       {
         name: 'language',
         selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português (Portugal)' }, { value: 'pl', label: 'Polski' }, { value: 'ro', label: 'Română' }, { value: 'da', label: 'Dansk' }, { value: 'sv', label: 'Svenska' }, { value: 'bg', label: 'Български' }, { value: 'ru', label: 'Русский' }, { value: 'uk', label: 'Українська' }, { value: 'hu', label: 'Magyar' }, { value: 'sk', label: 'Slovenčina' }, { value: 'cs', label: 'Čeština' }, { value: 'sl', label: 'Slovenščina' }, { value: 'lv', label: 'Latviešu' }, { value: 'el', label: 'Ελληνικά' }] } },
