@@ -182,6 +182,7 @@ entities:
 | `show_tempo` | ❌ | `true` | Tempo colors, or Zen Flex day types, of today and tomorrow (only on those contracts; two dots on the mini card) |
 | `show_load_pill` | ❌ | `true` | Load status pill at the top right of the header (Low / Moderate / High load). `false` hides it |
 | `power_tap_action` | ❌ | `more-info` | Tap on the big power readout. `none` disables it (it stops opening the more-info dialog) |
+| `intensity_tap_action` | ❌ | `more-info` | Full card: tap on the current (intensity) chip. `none` disables it (it stops opening the more-info dialog) |
 | `compare_base` / `compare_hc` / `compare_hp` | ❌ | — | Full card: the Base price and the Off-peak and Peak prices per kWh, for the [contract comparison](#contract-comparison) (all three and `hc_hours` turn it on) |
 | `hc_hours` | ❌ | — | Off-peak hours for the comparison, such as `22:30-06:30` or `01:00-07:00, 12:30-14:30` |
 | `sub_base` / `sub_hchp` | ❌ | — | Monthly subscription of each contract, added to the comparison |

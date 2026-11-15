@@ -3342,7 +3342,8 @@ class ZlinkyCard extends HTMLElement {
     if (m.va != null && m.watts != null) chips.push(this._chip('mdi:flash-outline', zlPower(lang, m.watts, 'W'), ent.power));
     var amps = this._numv(ent.current), volts = this._numv(ent.voltage);
     var l1 = threePhase ? 'L1 ' : '';
-    if (amps != null) chips.push(this._chip('mdi:current-ac', `${l1}${zlAmps(lang, amps)} A`, ent.current));
+    // intensity_tap_action: 'none' makes the current chip a plain span, so a tap no longer opens more-info.
+    if (amps != null) chips.push(this._chip('mdi:current-ac', `${l1}${zlAmps(lang, amps)} A`, this._noTap(c.intensity_tap_action) ? null : ent.current));
     if (volts != null && volts > 0) chips.push(this._chip('mdi:sine-wave', `${l1}${zlNum(lang, volts, 0)} V`, ent.voltage));
     if (!m.online) chips.push(`<span class="chip"><ha-icon icon="mdi:lan-disconnect"></ha-icon>${this._t('offline')}</span>`);
     var hero = '<div class="hero">' + this._picture(m) +
@@ -3495,8 +3496,16 @@ class ZlinkyCard extends HTMLElement {
     zlMorph(root, tpl.content);
   }
 
+  // A more-info chip, or a plain span when no entity is resolved or its tap is disabled (a button there would
+  // show a pointer cursor and do nothing).
   _chip(icon, text, id) {
-    return `<button class="chip" data-more="${zlEsc(id || '')}"><ha-icon icon="${icon}"></ha-icon>${zlEsc(text)}</button>`;
+    var inner = `<ha-icon icon="${icon}"></ha-icon>${zlEsc(text)}`;
+    return id ? `<button class="chip" data-more="${zlEsc(id)}">${inner}</button>` : `<span class="chip">${inner}</span>`;
+  }
+
+  // Whether a *_tap_action config disables the tap: 'none' or { action: 'none' }.
+  _noTap(ta) {
+    return ta === 'none' || (ta != null && ta.action === 'none');
   }
 
   _row(label, value, id) {
@@ -3508,8 +3517,7 @@ class ZlinkyCard extends HTMLElement {
   _big(id, text) {
     var val = `<span class="val">${zlEsc(text)}</span>`;
     // power_tap_action: 'none' (or { action: 'none' }) makes the readout a plain span, so a tap no longer opens more-info.
-    var ta = this._config.power_tap_action;
-    var noTap = ta === 'none' || (ta && ta.action === 'none');
+    var noTap = this._noTap(this._config.power_tap_action);
     return id && !noTap ? `<button class="big" data-more="${zlEsc(id)}">${val}</button>` : `<span class="big">${val}</span>`;
   }
 

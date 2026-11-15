@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.18.0 - 2026-11-15
+
+### Features
+- **Disable the intensity tap** (`intensity_tap_action: none`): a tap on the current (intensity) chip no longer opens the more-info dialog ([#63](https://github.com/juju35/ha-zlinky-card/issues/63), suggested by @thomasfav28).
+
 ## 1.17.0 - 2026-11-15
 
 ### Features
