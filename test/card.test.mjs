@@ -268,9 +268,9 @@ test("I18N parity: every language has exactly the English keys and placeholders"
   }
 });
 
-// Proper nouns, brands and units (Linky, ZLinky, LiXee, Tarif EDF, ZHA, kVA, kWh, h, Home Assistant) are the only Latin
-// words allowed in the Cyrillic dictionary; the Latin one has no Cyrillic at all.
-const SR_LATIN_OK = /\b(Z?Linky|LiXee|Tarif EDF|ZLinky_TIC|ZHA|Zigbee2MQTT|Home Assistant|kVA|kWh|h)\b|\{\w+\}/g;
+// Proper nouns, brands and units (Linky, ZLinky, LiXee, Tarif EDF, ZHA, kVA, kWh, VA, W, h, Home Assistant) are the only
+// Latin words allowed in the Cyrillic dictionary; the Latin one has no Cyrillic at all.
+const SR_LATIN_OK = /\b(Z?Linky|LiXee|Tarif EDF|ZLinky_TIC|ZHA|Zigbee2MQTT|Home Assistant|kVA|kWh|VA|W|h)\b|\{\w+\}/g;
 test("Serbian: no Latin letters in sr (apart from names and units), no Cyrillic in sr-Latn", () => {
   for (const [k, v] of Object.entries(ZlI18n.sr)) {
     assert.doesNotMatch(v.replace(SR_LATIN_OK, ""), /[A-Za-z]/, `sr.${k}: ${v}`);

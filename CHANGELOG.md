@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.19.0 - 2026-11-15
+
+### Features
+- **Apparent power in watts** (`power_in_watts: true`, in the visual editor too): shows the apparent power with the unit **W** instead of **VA**, both on the big readout and the drawn meter screen. It only relabels the unit — the value stays the meter's apparent power (`SINSTS` / `PAPP`), with no conversion ([#65](https://github.com/juju35/ha-zlinky-card/issues/65), suggested by @thomasfav28).
+
 ## 1.18.0 - 2026-11-15
 
 ### Features
