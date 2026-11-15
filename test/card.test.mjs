@@ -120,6 +120,13 @@ test("full card: live power, load gauge, single phase without phase details", ()
   assert.doesNotMatch(html, /4[\s ]?760/);
 });
 
+test("power_unit relabels the apparent power (#65)", () => {
+  const html = make(ZlinkyCard, zhaHass(), { power_unit: "W" }).shadowRoot.innerHTML;
+  // The reading keeps its value, shown with the custom unit on the value and the drawn meter (P. APP).
+  assert.match(html, /440 W/);
+  assert.doesNotMatch(html, /440 VA/);
+});
+
 test("load level follows the subscribed power", () => {
   const hass = zhaHass();
   hass.states["sensor.lixee_zlinky_tic_puissance_apparente"] = st("5400", { device_class: "apparent_power", unit_of_measurement: "VA" });
@@ -268,9 +275,9 @@ test("I18N parity: every language has exactly the English keys and placeholders"
   }
 });
 
-// Proper nouns, brands and units (Linky, ZLinky, LiXee, Tarif EDF, ZHA, kVA, kWh, VA, W, h, Home Assistant) are the only
+// Proper nouns, brands and units (Linky, ZLinky, LiXee, Tarif EDF, ZHA, kVA, kWh, VA, h, Home Assistant) are the only
 // Latin words allowed in the Cyrillic dictionary; the Latin one has no Cyrillic at all.
-const SR_LATIN_OK = /\b(Z?Linky|LiXee|Tarif EDF|ZLinky_TIC|ZHA|Zigbee2MQTT|Home Assistant|kVA|kWh|VA|W|h)\b|\{\w+\}/g;
+const SR_LATIN_OK = /\b(Z?Linky|LiXee|Tarif EDF|ZLinky_TIC|ZHA|Zigbee2MQTT|Home Assistant|kVA|kWh|VA|h)\b|\{\w+\}/g;
 test("Serbian: no Latin letters in sr (apart from names and units), no Cyrillic in sr-Latn", () => {
   for (const [k, v] of Object.entries(ZlI18n.sr)) {
     assert.doesNotMatch(v.replace(SR_LATIN_OK, ""), /[A-Za-z]/, `sr.${k}: ${v}`);
