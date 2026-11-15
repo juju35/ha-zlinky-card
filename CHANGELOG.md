@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.20.0 - 2026-11-15
+
+### Features
+- **Meter size** (`meter_size`, in the visual editor too): the drawn Linky meter is larger by default so its on-screen readout stays legible, and a new option scales it from 50 % to 250 % on every layout (full card, compact and expanded mini).
+
 ## 1.19.0 - 2026-11-15
 
 ### Features
