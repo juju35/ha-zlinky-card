@@ -2824,6 +2824,7 @@ class ZlinkyCard extends HTMLElement {
     if (!config) throw new Error('Invalid configuration');
     this._config = Object.assign({
       show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, show_cost: true,
+      show_load_pill: true,
     }, config);
     // show_title / show_subtitle: the header's title / subtitle, hidden by the stylesheet
     this.toggleAttribute?.("hide-title", config.show_title === false);
@@ -3418,6 +3419,7 @@ class ZlinkyCard extends HTMLElement {
 
   // The status pill. On a narrow card it shows its dot only: the status stays in its tooltip and accessible name.
   _pill(m) {
+    if (this._config.show_load_pill === false) return '';
     var s = zlEsc(m.statusText);
     return `<span class="st" role="img" title="${s}" aria-label="${s}"><span class="dot"></span><span class="stt">${s}</span></span>`;
   }
@@ -3448,7 +3450,10 @@ class ZlinkyCard extends HTMLElement {
   // (a button there would show a pointer cursor and do nothing).
   _big(id, text) {
     var val = `<span class="val">${zlEsc(text)}</span>`;
-    return id ? `<button class="big" data-more="${zlEsc(id)}">${val}</button>` : `<span class="big">${val}</span>`;
+    // power_tap_action: 'none' (or { action: 'none' }) makes the readout a plain span, so a tap no longer opens more-info.
+    var ta = this._config.power_tap_action;
+    var noTap = ta === 'none' || (ta && ta.action === 'none');
+    return id && !noTap ? `<button class="big" data-more="${zlEsc(id)}">${val}</button>` : `<span class="big">${val}</span>`;
   }
 
   _miniHtml(m) {
