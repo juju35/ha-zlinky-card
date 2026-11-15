@@ -182,6 +182,7 @@ entities:
 | `show_tempo` | ❌ | `true` | Tempo colors, or Zen Flex day types, of today and tomorrow (only on those contracts; two dots on the mini card) |
 | `show_load_pill` | ❌ | `true` | Load status pill at the top right of the header (Low / Moderate / High load). `false` hides it |
 | `power_unit` | ❌ | `VA` | Label of the apparent-power unit, on the big readout and the drawn meter (e.g. `W` to read it as watts). Only relabels the unit — the value stays the meter's apparent power (`SINSTS` / `PAPP`), with no conversion |
+| `meter_size` | ❌ | `100` | Size of the drawn meter illustration, as a percentage of its default (50–250). Raise it to make the on-screen readout easier to read. Set from the visual editor too (both cards) |
 | `power_tap_action` | ❌ | `more-info` | Tap on the big power readout. `none` disables it (it stops opening the more-info dialog) |
 | `intensity_tap_action` | ❌ | `more-info` | Full card: tap on the current (intensity) chip. `none` disables it (it stops opening the more-info dialog) |
 | `compare_base` / `compare_hc` / `compare_hp` | ❌ | — | Full card: the Base price and the Off-peak and Peak prices per kWh, for the [contract comparison](#contract-comparison) (all three and `hc_hours` turn it on) |

@@ -103,6 +103,8 @@ var ZlI18n = {
     ed_show_tempo: 'Couleur Tempo',
     ed_power_unit: 'Unité de la puissance apparente',
     ed_power_unit_helper: 'Laisser vide pour VA',
+    ed_meter_size: 'Taille du compteur',
+    ed_meter_size_helper: 'En pourcentage ; 100 = taille par défaut',
     ed_load_warning: 'Seuil de charge modérée',
     ed_load_warning_helper: 'Charge modérée à partir de ce pourcentage de la puissance souscrite ; 50 % par défaut',
     ed_load_critical: 'Seuil de charge élevée',
@@ -212,6 +214,8 @@ var ZlI18n = {
     ed_show_tempo: 'Tempo color',
     ed_power_unit: 'Apparent power unit',
     ed_power_unit_helper: 'Leave empty for VA',
+    ed_meter_size: 'Meter size',
+    ed_meter_size_helper: 'As a percentage; 100 = default',
     ed_load_warning: 'Moderate load threshold',
     ed_load_warning_helper: 'Moderate load from this share of the subscribed power; 50 % by default',
     ed_load_critical: 'High load threshold',
@@ -321,6 +325,8 @@ var ZlI18n = {
     ed_show_tempo: 'Tempo-Farbe',
     ed_power_unit: 'Einheit der Scheinleistung',
     ed_power_unit_helper: 'Leer lassen für VA',
+    ed_meter_size: 'Zählergröße',
+    ed_meter_size_helper: 'In Prozent; 100 = Standard',
     ed_load_warning: 'Schwelle mittlere Last',
     ed_load_warning_helper: 'Mittlere Last ab diesem Anteil der Anschlussleistung; standardmäßig 50 %',
     ed_load_critical: 'Schwelle hohe Last',
@@ -430,6 +436,8 @@ var ZlI18n = {
     ed_show_tempo: 'Color Tempo',
     ed_power_unit: 'Unidad de la potencia aparente',
     ed_power_unit_helper: 'Dejar vacío para VA',
+    ed_meter_size: 'Tamaño del contador',
+    ed_meter_size_helper: 'En porcentaje; 100 = predeterminado',
     ed_load_warning: 'Umbral de carga moderada',
     ed_load_warning_helper: 'Carga moderada a partir de este porcentaje de la potencia contratada; 50 % por defecto',
     ed_load_critical: 'Umbral de carga alta',
@@ -539,6 +547,8 @@ var ZlI18n = {
     ed_show_tempo: 'Темпо боја',
     ed_power_unit: 'Јединица привидне снаге',
     ed_power_unit_helper: 'Оставите празно за VA',
+    ed_meter_size: 'Величина бројила',
+    ed_meter_size_helper: 'У процентима; 100 = подразумевано',
     ed_load_warning: 'Праг умереног оптерећења',
     ed_load_warning_helper: 'Умерено оптерећење од овог удела уговорене снаге; подразумевано 50 %',
     ed_load_critical: 'Праг високог оптерећења',
@@ -648,6 +658,8 @@ var ZlI18n = {
     ed_show_tempo: 'Tempo boja',
     ed_power_unit: 'Jedinica prividne snage',
     ed_power_unit_helper: 'Ostavite prazno za VA',
+    ed_meter_size: 'Veličina brojila',
+    ed_meter_size_helper: 'U procentima; 100 = podrazumevano',
     ed_load_warning: 'Prag umerenog opterećenja',
     ed_load_warning_helper: 'Umereno opterećenje od ovog udela ugovorene snage; podrazumevano 50 %',
     ed_load_critical: 'Prag visokog opterećenja',
@@ -757,6 +769,8 @@ var ZlI18n = {
     ed_show_tempo: 'Colore Tempo',
     ed_power_unit: 'Unità della potenza apparente',
     ed_power_unit_helper: 'Lasciare vuoto per VA',
+    ed_meter_size: 'Dimensione del contatore',
+    ed_meter_size_helper: 'In percentuale; 100 = predefinito',
     ed_load_warning: 'Soglia di carico moderato',
     ed_load_warning_helper: 'Carico moderato da questa percentuale della potenza contrattuale; 50 % per impostazione predefinita',
     ed_load_critical: 'Soglia di carico elevato',
@@ -866,6 +880,8 @@ var ZlI18n = {
     ed_show_tempo: 'Tempo-kleur',
     ed_power_unit: 'Eenheid van het schijnbaar vermogen',
     ed_power_unit_helper: 'Leeg laten voor VA',
+    ed_meter_size: 'Metergrootte',
+    ed_meter_size_helper: 'In procenten; 100 = standaard',
     ed_load_warning: 'Drempel matige belasting',
     ed_load_warning_helper: 'Matige belasting vanaf dit aandeel van het gecontracteerde vermogen; standaard 50 %',
     ed_load_critical: 'Drempel hoge belasting',
@@ -975,6 +991,8 @@ var ZlI18n = {
     ed_show_tempo: 'Cor Tempo',
     ed_power_unit: 'Unidade da potência aparente',
     ed_power_unit_helper: 'Deixar vazio para VA',
+    ed_meter_size: 'Tamanho do contador',
+    ed_meter_size_helper: 'Em percentagem; 100 = predefinido',
     ed_load_warning: 'Limiar de carga moderada',
     ed_load_warning_helper: 'Carga moderada a partir desta percentagem da potência contratada; 50 % por omissão',
     ed_load_critical: 'Limiar de carga elevada',
@@ -1084,6 +1102,8 @@ var ZlI18n = {
     ed_show_tempo: 'Kolor Tempo',
     ed_power_unit: 'Jednostka mocy pozornej',
     ed_power_unit_helper: 'Pozostaw puste dla VA',
+    ed_meter_size: 'Rozmiar licznika',
+    ed_meter_size_helper: 'W procentach; 100 = domyślny',
     ed_load_warning: 'Próg umiarkowanego obciążenia',
     ed_load_warning_helper: 'Umiarkowane obciążenie od tego udziału mocy umownej; domyślnie 50 %',
     ed_load_critical: 'Próg wysokiego obciążenia',
@@ -1193,6 +1213,8 @@ var ZlI18n = {
     ed_show_tempo: 'Culoare Tempo',
     ed_power_unit: 'Unitatea puterii aparente',
     ed_power_unit_helper: 'Lăsați gol pentru VA',
+    ed_meter_size: 'Dimensiunea contorului',
+    ed_meter_size_helper: 'În procente; 100 = implicit',
     ed_load_warning: 'Prag de sarcină moderată',
     ed_load_warning_helper: 'Sarcină moderată de la acest procent din puterea contractată; implicit 50 %',
     ed_load_critical: 'Prag de sarcină ridicată',
@@ -1302,6 +1324,8 @@ var ZlI18n = {
     ed_show_tempo: 'Tempo-farve',
     ed_power_unit: 'Enhed for tilsyneladende effekt',
     ed_power_unit_helper: 'Lad stå tomt for VA',
+    ed_meter_size: 'Målerstørrelse',
+    ed_meter_size_helper: 'I procent; 100 = standard',
     ed_load_warning: 'Tærskel for moderat belastning',
     ed_load_warning_helper: 'Moderat belastning fra denne andel af den abonnerede effekt; 50 % som standard',
     ed_load_critical: 'Tærskel for høj belastning',
@@ -1411,6 +1435,8 @@ var ZlI18n = {
     ed_show_tempo: 'Tempo-färg',
     ed_power_unit: 'Enhet för skenbar effekt',
     ed_power_unit_helper: 'Lämna tomt för VA',
+    ed_meter_size: 'Mätarstorlek',
+    ed_meter_size_helper: 'I procent; 100 = standard',
     ed_load_warning: 'Tröskel för måttlig last',
     ed_load_warning_helper: 'Måttlig last från denna andel av den abonnerade effekten; 50 % som standard',
     ed_load_critical: 'Tröskel för hög last',
@@ -1520,6 +1546,8 @@ var ZlI18n = {
     ed_show_tempo: 'Цвят Tempo',
     ed_power_unit: 'Единица за пълна мощност',
     ed_power_unit_helper: 'Оставете празно за VA',
+    ed_meter_size: 'Размер на брояча',
+    ed_meter_size_helper: 'В проценти; 100 = по подразбиране',
     ed_load_warning: 'Праг за умерено натоварване',
     ed_load_warning_helper: 'Умерено натоварване от този дял от договорената мощност; по подразбиране 50 %',
     ed_load_critical: 'Праг за високо натоварване',
@@ -1629,6 +1657,8 @@ var ZlI18n = {
     ed_show_tempo: 'Цвет Tempo',
     ed_power_unit: 'Единица полной мощности',
     ed_power_unit_helper: 'Оставьте пустым для VA',
+    ed_meter_size: 'Размер счётчика',
+    ed_meter_size_helper: 'В процентах; 100 = по умолчанию',
     ed_load_warning: 'Порог умеренной нагрузки',
     ed_load_warning_helper: 'Умеренная нагрузка с этой доли договорной мощности; по умолчанию 50 %',
     ed_load_critical: 'Порог высокой нагрузки',
@@ -1738,6 +1768,8 @@ var ZlI18n = {
     ed_show_tempo: 'Колір Tempo',
     ed_power_unit: 'Одиниця повної потужності',
     ed_power_unit_helper: 'Залиште порожнім для VA',
+    ed_meter_size: 'Розмір лічильника',
+    ed_meter_size_helper: 'У відсотках; 100 = за замовчуванням',
     ed_load_warning: 'Поріг помірного навантаження',
     ed_load_warning_helper: 'Помірне навантаження з цієї частки договірної потужності; типово 50 %',
     ed_load_critical: 'Поріг високого навантаження',
@@ -1847,6 +1879,8 @@ var ZlI18n = {
     ed_show_tempo: 'Tempo szín',
     ed_power_unit: 'A látszólagos teljesítmény egysége',
     ed_power_unit_helper: 'Hagyja üresen a VA-hoz',
+    ed_meter_size: 'Mérő mérete',
+    ed_meter_size_helper: 'Százalékban; 100 = alapértelmezett',
     ed_load_warning: 'Közepes terhelés küszöbe',
     ed_load_warning_helper: 'Közepes terhelés a szerződéses teljesítmény ezen arányától; alapértelmezés 50 %',
     ed_load_critical: 'Magas terhelés küszöbe',
@@ -1956,6 +1990,8 @@ var ZlI18n = {
     ed_show_tempo: 'Farba Tempo',
     ed_power_unit: 'Jednotka zdanlivého výkonu',
     ed_power_unit_helper: 'Nechajte prázdne pre VA',
+    ed_meter_size: 'Veľkosť merača',
+    ed_meter_size_helper: 'V percentách; 100 = predvolené',
     ed_load_warning: 'Prah stredného zaťaženia',
     ed_load_warning_helper: 'Stredné zaťaženie od tohto podielu zmluvného výkonu; predvolene 50 %',
     ed_load_critical: 'Prah vysokého zaťaženia',
@@ -2065,6 +2101,8 @@ var ZlI18n = {
     ed_show_tempo: 'Barva Tempo',
     ed_power_unit: 'Jednotka zdánlivého výkonu',
     ed_power_unit_helper: 'Ponechte prázdné pro VA',
+    ed_meter_size: 'Velikost měřiče',
+    ed_meter_size_helper: 'V procentech; 100 = výchozí',
     ed_load_warning: 'Práh středního zatížení',
     ed_load_warning_helper: 'Střední zatížení od tohoto podílu sjednaného příkonu; výchozí 50 %',
     ed_load_critical: 'Práh vysokého zatížení',
@@ -2174,6 +2212,8 @@ var ZlI18n = {
     ed_show_tempo: 'Barva Tempo',
     ed_power_unit: 'Enota navidezne moči',
     ed_power_unit_helper: 'Pustite prazno za VA',
+    ed_meter_size: 'Velikost števca',
+    ed_meter_size_helper: 'V odstotkih; 100 = privzeto',
     ed_load_warning: 'Prag zmerne obremenitve',
     ed_load_warning_helper: 'Zmerna obremenitev od tega deleža priključne moči; privzeto 50 %',
     ed_load_critical: 'Prag visoke obremenitve',
@@ -2283,6 +2323,8 @@ var ZlI18n = {
     ed_show_tempo: 'Tempo krāsa',
     ed_power_unit: 'Šķietamās jaudas mērvienība',
     ed_power_unit_helper: 'Atstājiet tukšu, lai būtu VA',
+    ed_meter_size: 'Skaitītāja izmērs',
+    ed_meter_size_helper: 'Procentos; 100 = noklusējums',
     ed_load_warning: 'Mērenas slodzes slieksnis',
     ed_load_warning_helper: 'Mērena slodze no šīs līgumjaudas daļas; pēc noklusējuma 50 %',
     ed_load_critical: 'Augstas slodzes slieksnis',
@@ -2392,6 +2434,8 @@ var ZlI18n = {
     ed_show_tempo: 'Χρώμα Tempo',
     ed_power_unit: 'Μονάδα φαινόμενης ισχύος',
     ed_power_unit_helper: 'Αφήστε κενό για VA',
+    ed_meter_size: 'Μέγεθος μετρητή',
+    ed_meter_size_helper: 'Σε ποσοστό· 100 = προεπιλογή',
     ed_load_warning: 'Όριο μέτριου φορτίου',
     ed_load_warning_helper: 'Μέτριο φορτίο από αυτό το ποσοστό της συμφωνημένης ισχύος· προεπιλογή 50 %',
     ed_load_critical: 'Όριο υψηλού φορτίου',
@@ -3236,7 +3280,11 @@ class ZlinkyCard extends HTMLElement {
     var i = ((this._scr % n) + n) % n;              // a tap advances _scr; wrap into range
     // More than one screen: the meter is a button that scrolls to the next one.
     var tap = n > 1 ? ` tap" role="button" tabindex="0" data-action="screen" aria-label="${zlEsc(this._t('meter'))}` : '';
-    return `<div class="picture${m.online ? ' live' : ''}${tap}" style="--zl-blink:${period.toFixed(2)}s">${zlMeterArt(m.screens[i])}</div>`;
+    // meter_size scales the illustration (percent of its default size), so the screen can be made easier to read.
+    var size = Number(this._config.meter_size);
+    var ms = Number.isFinite(size) ? Math.min(250, Math.max(50, size)) / 100 : 1;
+    var scale = ms !== 1 ? `;--zl-ms:${ms}` : '';
+    return `<div class="picture${m.online ? ' live' : ''}${tap}" style="--zl-blink:${period.toFixed(2)}s${scale}">${zlMeterArt(m.screens[i])}</div>`;
   }
 
   _loadBar(m) {
@@ -3646,8 +3694,8 @@ class ZlinkyCard extends HTMLElement {
       '.zoom ha-icon { --mdc-icon-size: 16px; }' +
       '.zoom:hover { background: color-mix(in srgb, var(--secondary-text-color) 16%, transparent); color: var(--primary-text-color); }' +
       '.hero, .content { display: flex; align-items: center; gap: 14px; }' +
-      '.picture { width: 72px; height: 90px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }' +
-      'ha-card.mini .picture { width: 54px; height: 68px; }' +
+      '.picture { width: calc(108px * var(--zl-ms, 1)); height: calc(135px * var(--zl-ms, 1)); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }' +
+      'ha-card.mini .picture { width: calc(82px * var(--zl-ms, 1)); height: calc(102px * var(--zl-ms, 1)); }' +
       '.picture svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.18)); }' +
       '.picture .lcd { font: 700 8px/1 "Roboto Mono", ui-monospace, Menlo, Consolas, monospace; fill: #242b0e; letter-spacing: 0.2px; }' +
       '.picture .unit { font: 700 4px/1 "Roboto Mono", ui-monospace, monospace; fill: #3a4418; }' +
@@ -3727,9 +3775,9 @@ class ZlinkyCard extends HTMLElement {
       // Narrow card (6 columns of the Sections view, ~156 to 250 px): the tiles put their unit under the value and
       // let their label wrap, the meter shrinks; then the mini's meter gets smaller and the pill shows its dot only.
       // Below 300 px the header's gaps tighten (10 → 6 px), so "Moderate load" still fits whole next to the name at 245 px.
-      '@container (max-width: 300px) { .header { gap: 6px; } .hero { gap: 10px; } .picture { width: 56px; height: 70px; } .tile { padding: 8px; }' +
+      '@container (max-width: 300px) { .header { gap: 6px; } .hero { gap: 10px; } .picture { width: calc(84px * var(--zl-ms, 1)); height: calc(105px * var(--zl-ms, 1)); } .tile { padding: 8px; }' +
         ' .tl { white-space: normal; overflow-wrap: break-word; } .tv small { display: block; } }' +
-      '@container (max-width: 200px) { ha-card.mini .picture { width: 36px; height: 45px; } ha-card.mini .content { gap: 8px; } }' +
+      '@container (max-width: 200px) { ha-card.mini .picture { width: calc(56px * var(--zl-ms, 1)); height: calc(70px * var(--zl-ms, 1)); } ha-card.mini .content { gap: 8px; } }' +
       // At the mini's narrowest (156 px) the dot-only pill keeps its 16 px (the name its 4 characters): it never gets squashed.
       '@container (max-width: 180px) { .titles { min-width: 4ch; } .stt { display: none; } .st { flex: none; padding: 5px; } }' +
     '</style><div class="sizer" aria-hidden="true">' + '<i></i> '.repeat(10) + '</div>';
@@ -3797,7 +3845,7 @@ function zlPriceList(price) {
   return Array.isArray(price) || typeof price === 'string';
 }
 
-var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, show_cost: true, zoom: true, tarif_edf: false,
+var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, show_cost: true, zoom: true, tarif_edf: false, meter_size: 100,
   load_warning: ZL_LOAD_WARNING, load_critical: ZL_LOAD_CRITICAL };
 
 class ZlinkyCardEditor extends HTMLElement {
@@ -3861,6 +3909,8 @@ class ZlinkyCardEditor extends HTMLElement {
       },
       // Free label for the apparent-power unit (empty = VA); only the unit shown changes, not the value.
       { name: 'power_unit', selector: { text: {} } },
+      // Meter illustration size as a percentage of its default (100 = default).
+      { name: 'meter_size', selector: { number: { min: 50, max: 250, step: 5, mode: 'slider', unit_of_measurement: '%' } } },
       {
         name: 'language',
         selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português (Portugal)' }, { value: 'pl', label: 'Polski' }, { value: 'ro', label: 'Română' }, { value: 'da', label: 'Dansk' }, { value: 'sv', label: 'Svenska' }, { value: 'bg', label: 'Български' }, { value: 'ru', label: 'Русский' }, { value: 'uk', label: 'Українська' }, { value: 'hu', label: 'Magyar' }, { value: 'sk', label: 'Slovenčina' }, { value: 'cs', label: 'Čeština' }, { value: 'sl', label: 'Slovenščina' }, { value: 'lv', label: 'Latviešu' }, { value: 'el', label: 'Ελληνικά' }] } },

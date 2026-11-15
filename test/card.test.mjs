@@ -833,7 +833,19 @@ test("narrow mini card: the meter shrinks, the reading ellipsizes and today's li
   assert.doesNotMatch(rules(css, ".line > span"), /nowrap/);
   assert.match(rules(css, ".big .val"), /text-overflow: ellipsis/);
   assert.match(rules(css, ".big .val"), /font-size: clamp\(/);
-  assert.match(css, /@container \(max-width: \d+px\) \{[^@]*ha-card\.mini \.picture \{ width: \d+px; height: \d+px; \}/);
+  assert.match(css, /@container \(max-width: \d+px\) \{[^@]*ha-card\.mini \.picture \{ width: calc\(\d+px \* var\(--zl-ms, 1\)\); height: calc\(\d+px \* var\(--zl-ms, 1\)\); \}/);
+});
+
+test("meter_size scales the illustration via --zl-ms, default stays implicit and out-of-range clamps", () => {
+  // Default: no --zl-ms, the picture keeps its base size.
+  const def = make(ZlinkyCard, zhaHass()).shadowRoot.innerHTML;
+  assert.doesNotMatch(def, /--zl-ms:/);
+  // A percentage becomes a scale factor on the picture.
+  const big = make(ZlinkyCard, zhaHass(), { meter_size: 160 }).shadowRoot.innerHTML;
+  assert.match(big, /class="picture[^"]*"[^>]*style="[^"]*--zl-ms:1\.6/);
+  // Below the floor and above the ceiling clamp to 0.5 and 2.5.
+  assert.match(make(ZlinkyCard, zhaHass(), { meter_size: 10 }).shadowRoot.innerHTML, /--zl-ms:0\.5/);
+  assert.match(make(ZlinkyCard, zhaHass(), { meter_size: 999 }).shadowRoot.innerHTML, /--zl-ms:2\.5/);
 });
 
 test("narrow full card: the tiles' unit goes under the value, and the card asks for 9 columns at least", () => {
