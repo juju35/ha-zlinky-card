@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.17.0 - 2026-11-15
+
+### Features
+- **Redesigned meter illustration**, true to a real Linky: anise-green body, a status LED on top that still blinks with the load, the "Linky" mark and a light recessed LCD.
+- **Scrolling meter screens**: tap (or press Enter) on the meter to cycle through its screens, like the scroll button on a real Linky — apparent (or active) power, total index, each tariff index in use, injection, current, voltage, subscribed power and the tariff in use. Only the screens the ZLinky actually exposes are shown.
+
 ## 1.16.0 - 2026-11-15
 
 ### Features

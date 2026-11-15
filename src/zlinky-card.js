@@ -2609,30 +2609,46 @@ function zlMorph(from, to) {
 }
 
 // ── Artwork ──────────────────────────────────────────────────────────────────
-// Front view of the meter. Its screen shows the live power and its LED blinks faster as the load rises.
-function zlMeterArt(screen) {
+// Short label for a tariff tier from its name: initials for a multi-word name
+// ("Heures creuses" → "HC"), else the first letters ("Base" → "BASE").
+function zlAbbr(name) {
+  var w = String(name || '').trim().split(/\s+/).filter(Boolean);
+  if (w.length > 1) return w.map((x) => x[0]).join('').toUpperCase().slice(0, 4);
+  return String(name || '').toUpperCase().slice(0, 6);
+}
+
+// Front view of a Linky meter, true to the real device: anise-green body, status
+// LED on top, "Linky" mark, light recessed LCD. `scr` is one rolling screen
+// { l: label, v: value, u: unit }; a tap cycles to the next (see _picture). The
+// LED (class "led"/"glow") blinks faster as the load rises.
+function zlMeterArt(scr) {
+  var l = zlEsc(scr?.l || ''), v = zlEsc(scr?.v || ''), u = zlEsc(scr?.u || '');
+  var uw = u ? u.length * 2.4 + 1.5 : 0;        // unit box width (unit font ≈ 2.4 u/char) + gap
+  var vx = (56.5 - uw).toFixed(1);              // same value font on every screen; it can't overflow
+  var lcd = `<text class="lbl" x="23.5" y="43">${l}</text>` +
+    `<text class="lcd" x="${vx}" y="57.6" text-anchor="end">${v}</text>` +
+    (u ? `<text class="unit" x="56.5" y="57.6" text-anchor="end">${u}</text>` : '');
   return '<svg viewBox="0 0 80 100" aria-hidden="true">' +
-    '<defs><linearGradient id="zl-mb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e4ee5a"/><stop offset=".5" stop-color="#c2d426"/><stop offset="1" stop-color="#97ad10"/></linearGradient>' +
-    '<linearGradient id="zl-mc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a7bb1a"/><stop offset="1" stop-color="#7d9108"/></linearGradient>' +
-    '<linearGradient id="zl-ms" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b3a14"/><stop offset="1" stop-color="#18220a"/></linearGradient>' +
+    '<defs><linearGradient id="zl-mb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a6c516"/><stop offset=".5" stop-color="#c6db28"/><stop offset="1" stop-color="#a6c516"/></linearGradient>' +
+    '<linearGradient id="zl-sh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/></linearGradient>' +
+    '<linearGradient id="zl-bz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f0"/><stop offset="1" stop-color="#d8d8d2"/></linearGradient>' +
+    '<linearGradient id="zl-ls" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfc6ad"/><stop offset=".5" stop-color="#d4d9c5"/><stop offset="1" stop-color="#c7cdb6"/></linearGradient>' +
     '<radialGradient id="zl-mg" cx=".5" cy=".5" r=".5"><stop offset="0" class="glow-c" stop-opacity=".6"/><stop offset="1" class="glow-c" stop-opacity="0"/></radialGradient></defs>' +
-    '<ellipse cx="40" cy="97" rx="30" ry="2.6" fill="#000" opacity=".12"/>' +
-    '<path d="M12 4h56a8 8 0 0 1 8 8v60H4V12a8 8 0 0 1 8-8Z" fill="url(#zl-mb)" stroke="#8aa30c" stroke-width="1"/>' +
-    '<path d="M4 72h72v14a8 8 0 0 1-8 8H12a8 8 0 0 1-8-8Z" fill="url(#zl-mc)" stroke="#7d9108" stroke-width="1"/>' +
-    '<path d="M10 8h60" stroke="#fff" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>' +
-    '<path d="M4 30Q40 14 76 22V12a8 8 0 0 0-8-8H12a8 8 0 0 0-8 8Z" fill="#fff" opacity=".14"/>' +
-    '<rect x="11" y="14" width="58" height="22" rx="4" fill="#5d6d0c" opacity=".35"/>' +
-    '<rect x="12" y="15" width="56" height="20" rx="3.5" fill="url(#zl-ms)"/>' +
-    `<text class="lcd" x="64" y="29.5" text-anchor="end">${zlEsc(screen)}</text>` +
-    '<path d="M15 18.5h12" stroke="#c9e04a" stroke-opacity=".35" stroke-width="1.2" stroke-linecap="round"/>' +
-    '<circle cx="21" cy="48" r="5" fill="#a7bb1a" stroke="#7d9108"/><path d="M18.6 48h4.8M21 45.6v4.8" stroke="#3d4a08" stroke-width="1.4" stroke-linecap="round"/>' +
-    '<circle cx="35" cy="48" r="5" fill="#a7bb1a" stroke="#7d9108"/><path d="M32.6 48h4.8" stroke="#3d4a08" stroke-width="1.4" stroke-linecap="round"/>' +
-    '<circle class="glow" cx="60" cy="48" r="8" fill="url(#zl-mg)"/>' +
-    '<circle class="led" cx="60" cy="48" r="2.6"/>' +
-    '<path d="M12 60h56" stroke="#7d9108" stroke-opacity=".45"/>' +
-    '<g fill="#3d4a08" opacity=".55"><rect x="14" y="78" width="8" height="10" rx="1.5"/><rect x="28" y="78" width="8" height="10" rx="1.5"/>' +
-      '<rect x="44" y="78" width="8" height="10" rx="1.5"/><rect x="58" y="78" width="8" height="10" rx="1.5"/></g>' +
-    '<path d="M36 63.5l-4 5h3l-1.5 3.5 4.5-5h-3Z" fill="#3d4a08" opacity=".6"/></svg>';
+    '<ellipse cx="40" cy="97.5" rx="30" ry="2.3" fill="#000" opacity=".12"/>' +
+    '<rect x="5" y="2" width="70" height="95" rx="10" fill="url(#zl-mb)" stroke="#8aa30c" stroke-width="1"/>' +
+    '<rect x="5" y="2" width="70" height="95" rx="10" fill="url(#zl-sh)"/>' +
+    '<circle class="glow" cx="40" cy="13" r="6" fill="url(#zl-mg)"/>' +
+    '<circle cx="40" cy="13" r="2.7" fill="#1f270a" opacity=".5"/>' +
+    '<circle class="led" cx="40" cy="13" r="2"/>' +
+    '<text class="brand" x="40" y="25.5" text-anchor="middle">Linky</text>' +
+    '<rect x="18" y="30" width="44" height="47" rx="4" fill="url(#zl-bz)" stroke="#b9b9b0" stroke-width="1"/>' +
+    '<rect x="21" y="33" width="38" height="31" rx="2.5" fill="#20260f"/>' +
+    '<rect x="22" y="34" width="36" height="29" rx="2" fill="url(#zl-ls)"/>' +
+    '<rect x="22" y="34" width="36" height="4" rx="2" fill="#000" opacity=".10"/>' +
+    lcd +
+    '<path d="M28 71.5h5" stroke="#55602c" stroke-width="1.7" stroke-linecap="round"/>' +
+    '<path d="M47 71.5h5M49.5 69v5" stroke="#55602c" stroke-width="1.7" stroke-linecap="round"/>' +
+    '<path d="M40 86v5M36 91h8" stroke="#6b7838" stroke-width="1.4" stroke-linecap="round"/></svg>';
 }
 
 // ── Formatting ───────────────────────────────────────────────────────────────
@@ -2832,6 +2848,11 @@ class ZlinkyCard extends HTMLElement {
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.addEventListener('click', (ev) => this._onClick(ev));
+      // Enter / Space on a role=button element (the scrolling meter) acts like a click.
+      this.shadowRoot.addEventListener('keydown', (ev) => {
+        if (ev.key !== 'Enter' && ev.key !== ' ') return;
+        if (ev.composedPath().some((n) => n.dataset && n.dataset.action === 'screen')) { ev.preventDefault(); this._onClick(ev); }
+      });
     }
     this._stats = null;
     this._statsKey = null;
@@ -3123,17 +3144,53 @@ class ZlinkyCard extends HTMLElement {
       color: ZL_LOAD_COLORS[level],
       statusText: online ? this._t(`load_${level}`) : this._t('offline'),
       mainText: main != null ? zlPower(lang, main, mainUnit) : '—',
-      screen: online && main != null ? zlPower(lang, main, mainUnit).replace(/\s/g, ' ') : '- - -',
+      screens: this._screens({ ent, lang, online, va, watts, subscribed, tariff }),
       // Header icon: an electric meter in a round badge, in the load color.
       logo: c.show_logo === false ? '' : '<span class="hbadge"><ha-icon icon="mdi:meter-electric-outline"></ha-icon></span>',
     };
+  }
+
+  // The meter's rolling screens, built only from the data the ZLinky actually
+  // exposes: apparent (or active) power, total index, each tariff index in use,
+  // injection, current, voltage, subscribed power, tariff in use. Fixed Linky-style
+  // labels (same on the device whatever the UI language). No grouping space in
+  // values, like the real LCD. Always at least one screen.
+  _screens({ ent, lang, online, va, watts, subscribed, tariff }) {
+    var c = this._config, out = [];
+    var num = (x, d) => zlNum(lang, x, d).replace(/[\s  ]/g, '');
+    if (online) {
+      if (va != null) out.push({ l: 'P. APP', v: num(va, 0), u: 'VA' });
+      else if (watts != null) out.push({ l: 'P. ACT', v: num(watts, 0), u: 'W' });
+      if (this._avail(ent.energy)) out.push({ l: 'INDEX', v: num(zlKwh(this._st(ent.energy)), 0), u: 'kWh' });
+      var names = Array.isArray(c.tiers) ? c.tiers : [];
+      ZL_TIERS.forEach((t) => {
+        if (this._avail(ent[t]) && (zlKwh(this._st(ent[t])) || 0) > 0) {
+          var n = Number(t.slice(4));
+          out.push({ l: names[n - 1] ? zlAbbr(names[n - 1]) : `IDX${n}`, v: num(zlKwh(this._st(ent[t])), 0), u: 'kWh' });
+        }
+      });
+      var inj = this._avail(ent.injection) ? zlKwh(this._st(ent.injection)) : null;
+      if (inj != null && inj > 0) out.push({ l: 'INJECT', v: num(inj, 0), u: 'kWh' });
+      var amps = this._numv(ent.current);
+      if (amps != null) out.push({ l: 'INTENS', v: num(amps, amps < 100 ? 1 : 0), u: 'A' });
+      var volts = this._numv(ent.voltage);
+      if (volts != null && volts > 0) out.push({ l: 'TENSION', v: num(volts, 0), u: 'V' });
+      if (subscribed != null) out.push({ l: 'ABONNT', v: num(subscribed, Number.isInteger(subscribed) ? 0 : 1), u: 'kVA' });
+      if (tariff) out.push({ l: 'TARIF', v: String(tariff).toUpperCase().slice(0, 7), u: '' });
+    }
+    return out.length ? out : [{ l: '', v: '- - -', u: '' }];
   }
 
   _picture(m) {
     if (this._config.icon) return `<div class="badge"><ha-icon icon="${zlEsc(this._config.icon)}"></ha-icon></div>`;
     // Blink period: 2.4 s at no load down to 0.35 s at full load.
     var period = m.pct == null ? 2.4 : Math.max(0.35, 2.4 - (m.pct / 100) * 2.05);
-    return `<div class="picture${m.online ? ' live' : ''}" style="--zl-blink:${period.toFixed(2)}s">${zlMeterArt(m.screen)}</div>`;
+    var n = m.screens.length;
+    if (this._scr == null) this._scr = 0;
+    var i = ((this._scr % n) + n) % n;              // a tap advances _scr; wrap into range
+    // More than one screen: the meter is a button that scrolls to the next one.
+    var tap = n > 1 ? ` tap" role="button" tabindex="0" data-action="screen" aria-label="${zlEsc(this._t('meter'))}` : '';
+    return `<div class="picture${m.online ? ' live' : ''}${tap}" style="--zl-blink:${period.toFixed(2)}s">${zlMeterArt(m.screens[i])}</div>`;
   }
 
   _loadBar(m) {
@@ -3485,6 +3542,12 @@ class ZlinkyCard extends HTMLElement {
       this._toggleZoom(ev);
       return;
     }
+    if (el.dataset.action === 'screen') {
+      // Scroll the meter to the next screen, like the + button on a real Linky.
+      this._scr = (this._scr || 0) + 1;
+      if (this._r) this._render(this._r);
+      return;
+    }
     if (el.dataset.more) {
       this.dispatchEvent(new CustomEvent('hass-more-info', { detail: { entityId: el.dataset.more }, bubbles: true, composed: true }));
     }
@@ -3532,8 +3595,14 @@ class ZlinkyCard extends HTMLElement {
       '.picture { width: 72px; height: 90px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }' +
       'ha-card.mini .picture { width: 54px; height: 68px; }' +
       '.picture svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.18)); }' +
-      '.picture .lcd { font: 600 10px/1 "Roboto Mono", ui-monospace, Menlo, Consolas, monospace; fill: #d6ef5a; letter-spacing: 0.2px; }' +
-      '.picture .led { fill: #6b7a10; }' +
+      '.picture .lcd { font: 700 8px/1 "Roboto Mono", ui-monospace, Menlo, Consolas, monospace; fill: #242b0e; letter-spacing: 0.2px; }' +
+      '.picture .unit { font: 700 4px/1 "Roboto Mono", ui-monospace, monospace; fill: #3a4418; }' +
+      '.picture .lbl { font: 700 4.6px/1 "Roboto Mono", ui-monospace, monospace; fill: #3a4418; letter-spacing: 0.6px; }' +
+      '.picture .brand { font: 700 8px/1 Roboto, sans-serif; fill: #73805a; letter-spacing: 0.3px; }' +
+      '.picture.tap { cursor: pointer; -webkit-tap-highlight-color: transparent; }' +
+      '.picture.tap:active svg { transform: scale(0.97); }' +
+      '.picture.tap:focus-visible { outline: 2px solid var(--zl-color); outline-offset: 2px; border-radius: 8px; }' +
+      '.picture .led { fill: #2a330a; }' +
       '.picture .glow { opacity: 0; } .picture .glow-c { stop-color: var(--zl-color); }' +
       '.picture.live .led { fill: var(--zl-color); animation: zl-blink var(--zl-blink, 2s) ease-in-out infinite; }' +
       '.picture.live .glow { animation: zl-glow var(--zl-blink, 2s) ease-in-out infinite; }' +
