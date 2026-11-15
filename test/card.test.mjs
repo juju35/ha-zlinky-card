@@ -1440,6 +1440,19 @@ test("single-phase hero current chip: no phase label, a decimal only when the so
   assert.match(html, /mdi:current-ac"><\/ha-icon>2\.4 A</);
 });
 
+test("intensity_tap_action: none makes the current chip a plain span, not a more-info button", () => {
+  const hass = zhaHass();
+  const def = make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML;
+  assert.match(def, /<button class="chip" data-more="[^"]*courant[^"]*"><ha-icon icon="mdi:current-ac"/);
+  const off = make(ZlinkyCard, hass, { language: "en", intensity_tap_action: "none" }).shadowRoot.innerHTML;
+  assert.match(off, /<span class="chip"><ha-icon icon="mdi:current-ac"/);
+  assert.doesNotMatch(off, /data-more="[^"]*courant/);
+  // { action: 'none' } is accepted too, and the power/voltage chips keep their tap.
+  const obj = make(ZlinkyCard, hass, { language: "en", intensity_tap_action: { action: "none" } }).shadowRoot.innerHTML;
+  assert.match(obj, /<span class="chip"><ha-icon icon="mdi:current-ac"/);
+  assert.match(obj, /<button class="chip" data-more="[^"]*tension[^"]*"><ha-icon icon="mdi:sine-wave"/);
+});
+
 // ESPHome `teleinfo` set up for Zen Flex with French names (#47): EAST, EASF01 to EASF06 in Wh, LTARF, NGTF.
 test("Zen Flex over ESPHome: the six indexes by their French names, the total index, LTARF; not NGTF", () => {
   const z = "sensor.linky_zen_flex_";
