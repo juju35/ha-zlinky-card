@@ -20,7 +20,7 @@ Pick the ZLinky, the card finds all its entities by itself.
 
 [![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-zlinky-card&category=plugin)
 
-While the meter is online, the card animates: the LED blinks and glows, faster as power rises. It settles to a still card when offline (and honours `prefers-reduced-motion`).
+The card opens on an illustrated header (a distribution board feeding a bulb, or fed by a solar panel), with the Linky meter drawn big in the card's body beside the reading and the consumption tiles, its live screen readable (the compact mini card keeps it in its panel on the banner). While the meter is online, it animates: the LED blinks and glows and the current flows along the cable, faster as power rises — to a lit bulb while consuming, back from a solar panel while producing — and a contactor shows off-peak (moon) or peak (sun) hours. The header icon takes the status color, and the scene turns to night after sunset or with Home Assistant's dark mode. It settles to a still card when offline (and honours `prefers-reduced-motion`).
 
 | | Light | Dark |
 |---|---|---|
@@ -39,6 +39,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini.png" alt="ZLinky mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-dark.png" alt="ZLinky mini card, dark theme" width="400"> |
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-tempo.png" alt="ZLinky mini card with the Tempo dots of today and tomorrow" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-tempo-dark.png" alt="ZLinky mini card with the Tempo dots, dark theme" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-zoom.png" alt="ZLinky mini card expanded to the full card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-zoom-dark.png" alt="ZLinky mini card expanded to the full card, dark theme" width="400"> |
 
 ## Features
 
@@ -54,7 +55,7 @@ While the meter is online, the card animates: the LED blinks and glows, faster a
 - Contract comparison: your last 12 months of hourly consumption priced as Base and as Off-peak / Peak, with your prices and off-peak hours — which contract would have cost less, and by how much
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
 - Three-phase details on three-phase meters: apparent power (VA) and voltage per phase with the standard TIC (`SINSTS1`–`SINSTS3`), else current per phase, currents only with the historic TIC (`IINST1`–`IINST3`)
-- An animated Linky meter: its screen shows the live power and its LED blinks faster as the load rises
+- An illustrated, animated header (consuming / producing / off-peak and peak states, day and night) and the Linky meter drawn big in the body (its screen shows the live power, its LED blinks faster as the load rises); the compact mini card keeps the meter in its panel on the banner
 - Tap any value to open its history
 - Visual editor in the dashboard UI (no YAML needed)
 - English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese, Polish, Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek, follows the Home Assistant language
@@ -124,7 +125,7 @@ subscribed_power: 9
 
 The mini card shows the meter, the live power, the load gauge, today's consumption (hidden with `show_stats: false`) and, on a Tempo contract, today's and tomorrow's colors as two dots (hidden with `show_tempo: false`). The detail button (top right) unfolds the full card; a click anywhere else on the page folds it back. It takes the same options as the full card, plus `zoom`.
 
-In the Sections view, the mini card fits 6 columns (half a section, down to about 156 px on a phone): on a narrow card the meter gets smaller, the reading scales down, today's line wraps and the status pill keeps its colored dot only (the status stays in its tooltip). The full card needs 9 columns at least.
+In the Sections view, the mini card fits 6 columns (half a section, down to about 156 px on a phone): on a narrow card the banner keeps only the meter in its panel (and, narrowest, drops the round icon), the reading scales down, today's line wraps and the status pill keeps its colored dot only (the status stays in its tooltip). The full card needs 9 columns at least.
 
 | Mini card, 180 px | Dark theme |
 |---|---|
@@ -150,6 +151,8 @@ show_index: true
 show_phases: true
 show_logo: true
 show_cost: true
+illustration: true
+illustration_theme: auto
 language: en
 entities:
   apparent_power: sensor.lixee_zlinky_tic_puissance_apparente
@@ -165,7 +168,9 @@ entities:
 | `name` | ❌ | `Linky` | Card title |
 | `show_title` | ❌ | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
 | `show_subtitle` | ❌ | `true` | Show the subtitle under the title |
-| `icon` | ❌ | Illustration | Replaces the meter illustration with an icon |
+| `icon` | ❌ | Illustration | Replaces the meter illustration with an icon (with the classic header) |
+| `illustration` | ❌ | `true` | Illustrated header: a 90 px banner with the consuming / producing / off-peak and peak states, the meter big in the body (in its panel on the compact mini card's banner). `false` keeps the classic header, the meter beside the reading. Set from the visual editor too (both cards) |
+| `illustration_theme` | ❌ | `auto` | `auto` (night when `sun.sun` is below the horizon or Home Assistant's theme is dark), `day` or `night`. Set from the visual editor too (both cards) |
 | `subscribed_power` | ❌ | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA, per phase on a three-phase meter so 1 A = 0.6 kVA there). In the visual editor, the **Subscribed power sensor** field replaces the number |
 | `load_warning` | ❌ | `50` | Share of the subscribed power (%) from which the load is moderate (orange) |
 | `load_critical` | ❌ | `80` | Share of the subscribed power (%) from which the load is high (red) |
@@ -177,12 +182,12 @@ entities:
 | `show_graph` | ❌ | `true` | 24 h power curve |
 | `show_index` | ❌ | `true` | Meter index, tiers and injection |
 | `show_phases` | ❌ | `true` | Per-phase details (three-phase meters only) |
-| `show_logo` | ❌ | `true` | Meter icon in the header |
+| `show_logo` | ❌ | `true` | Round status icon in the header (a flash on the illustrated header, in the status color) |
 | `show_cost` | ❌ | `true` | Full card: the [cost section](#cost-section) (needs a `price`) |
 | `show_tempo` | ❌ | `true` | Tempo colors, or Zen Flex day types, of today and tomorrow (only on those contracts; two dots on the mini card) |
 | `show_load_pill` | ❌ | `true` | Load status pill at the top right of the header (Low / Moderate / High load). `false` hides it |
 | `power_unit` | ❌ | `VA` | Label of the apparent-power unit, on the big readout and the drawn meter (e.g. `W` to read it as watts). Only relabels the unit — the value stays the meter's apparent power (`SINSTS` / `PAPP`), with no conversion |
-| `meter_size` | ❌ | `100` | Size of the drawn meter illustration, as a percentage of its default (50–250). Raise it to make the on-screen readout easier to read. Set from the visual editor too (both cards) |
+| `meter_size` | ❌ | `100` | Size of the drawn meter illustration, as a percentage of its default (50–250). Raise it to make the on-screen readout easier to read; on the compact mini card's banner the banner grows with it above 100. Set from the visual editor too (both cards) |
 | `power_tap_action` | ❌ | `more-info` | Tap on the big power readout. `none` disables it (it stops opening the more-info dialog) |
 | `intensity_tap_action` | ❌ | `more-info` | Full card: tap on the current (intensity) chip. `none` disables it (it stops opening the more-info dialog) |
 | `compare_base` / `compare_hc` / `compare_hp` | ❌ | — | Full card: the Base price and the Off-peak and Peak prices per kWh, for the [contract comparison](#contract-comparison) (all three and `hc_hours` turn it on) |

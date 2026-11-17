@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
+import { readFileSync } from "node:fs";
 
 const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, zlMorph, ZlI18n, zlLang, zlNum, zlMoney, zlCompare, zlHcRanges, customElements } = loadCard("zlinky-card.js", [
   "ZlinkyCard",
@@ -102,7 +103,11 @@ test("finds Zigbee2MQTT TIC entities", () => {
   assert.match(html, /1[\s ,.]?200 VA/);
   assert.match(html, /Index 1/);
   assert.match(html, /Index 2/);
-  assert.match(html, /HEURE CREUSE/);
+  // The illustrated header names the tariff period (Off-peak), the classic header keeps the meter's own label.
+  // The reading is shown big in the body, not repeated in the subtitle.
+  assert.match(html, /<div class="sub" title="Off-peak">Off-peak<\/div>/);
+  assert.doesNotMatch(html, /VA · Off-peak/);
+  assert.match(make(ZlinkyCard, hass, { illustration: false }).shadowRoot.innerHTML, /HEURE CREUSE/);
 });
 
 test("full card: live power, load gauge, single phase without phase details", () => {
@@ -793,15 +798,26 @@ test("focus ring: the generic button rule does not square off the round detail b
   assert.match(rules(css, ".chip"), /border-radius: 12px/);
 });
 
+test("banner: the meter stands on the strip clear of the banner's top; cost rows are flush with the card", () => {
+  const css = cardCss();
+  const pic = rules(css, "ha-card .banner .picture");
+  const h = Number(/height: calc\(([\d.]+)px/.exec(pic)[1]);
+  const lift = Number(/bottom: calc\(10px - ([\d.]+)px/.exec(pic)[1]);
+  // 80 px of wall above the 10 px strip: the meter's top stays at least 4 px under the banner's top.
+  assert.ok(80 - (h - lift) >= 4, `meter top margin ${80 - (h - lift)} px`);
+  assert.match(rules(css, ".section > .row"), /padding: 2px 0/);
+});
+
 test("narrow header: the title keeps ~4 characters, the pill shrinks and turns into its dot, buttons never shrink", () => {
   const css = cardCss();
   assert.match(rules(css, "ha-card"), /container-type: inline-size/);
   const titles = rules(css, ".titles");
   assert.match(titles, /min-width: [4-6]ch/);
   const pill = rules(css, ".st");
-  assert.match(pill, /flex: 0 1 auto/);
+  assert.match(pill, /flex: none/);
   assert.match(pill, /min-width: 0/);
-  assert.match(pill, /max-width: 50%/);
+  assert.match(pill, /max-width: 100%/);
+  assert.match(rules(css, ".trow .name"), /flex: 0 1 auto; min-width: 0/);
   assert.match(rules(css, ".zoom"), /flex: none/);
   assert.match(css, /@container \(max-width: \d+px\) \{[^@]*\.stt \{ display: none; \}/);
   // Shown as a dot only, the status stays in the tooltip and for screen readers.
@@ -811,11 +827,40 @@ test("narrow header: the title keeps ~4 characters, the pill shrinks and turns i
   }
 });
 
-test("with a subtitle, the status pill sits on the title's line", () => {
+test("the status pill sits right after the title, on its row; when it does not fit there it goes under the subtitle", () => {
   const css = cardCss();
-  assert.match(make(ZlinkyCard, zhaHass()).shadowRoot.innerHTML, /<div class="header sub2">/);
+  for (const config of [{}, { illustration: false }]) {
+    const html = make(ZlinkyCard, zhaHass(), { language: "en", ...config }).shadowRoot.innerHTML;
+    assert.match(html, /<div class="header sub2">/);
+    assert.match(html, /<div class="titles"><div class="trow"><div class="name">[^<]*<\/div><span class="st" role="img" title="Low load"[\s\S]*?<\/span><\/span><\/div><div class="sub"[^>]*>/);
+  }
   assert.doesNotMatch(make(ZlinkyMiniCard, zhaHass()).shadowRoot.innerHTML, /header sub2/);
-  assert.match(rules(css, ".header.sub2 .st"), /align-self: flex-start/);
+  assert.match(rules(css, ".trow"), /display: flex; align-items: center; gap: 8px/);
+  // Its place is measured (zlPlacePill), never by a width tier: data-wrap puts it under the subtitle, data-dot keeps its dot
+  assert.match(css, /\[data-wrap\] \.trow \{ display: contents; \} \[data-wrap\] \.titles > \.sub \{ order: 2; \}/);
+  assert.match(css, /\[data-wrap\] \.titles \.st \{ order: 3;/);
+  assert.match(css, /\[data-dot\] \.stt \{ display: none; \}/);
+  assert.doesNotMatch(css, /@container \(max-width: \d+px\) \{ (\.banner(\.zbtn)? )?\.trow \{ display: contents/);
+  // On the banner: the pill as on the sky, day and night
+  assert.match(rules(css, ".banner .st"), /background: color-mix\(in srgb, var\(--zl-color\) 18%, rgba\(255,255,255,\.78\)\); color: color-mix\(in srgb, var\(--zl-color\) 45%, #0d2a45\)/);
+  assert.match(rules(css, ".banner.night .st"), /background: color-mix\(in srgb, var\(--zl-color\) 30%, rgba\(8,18,38,\.55\)\); color: color-mix\(in srgb, var\(--zl-color\) 35%, #ffffff\)/);
+});
+
+test("mini card: the detail button sits in the banner's top right corner, out of the header; the picture steps aside", () => {
+  for (const zoomed of [false, true]) {
+    const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+    if (zoomed) card._setZoom(true);
+    const html = card.shadowRoot.innerHTML;
+    assert.match(html, zoomed ? /class="banner zl-cons bare zbtn"/ : /class="banner zl-cons zbtn"/);
+    assert.match(html, new RegExp(`<\\/div><\\/div><button class="zoom" data-action="zoom"[^>]*><ha-icon icon="mdi:arrow-${zoomed ? "collapse" : "expand"}"><\\/ha-icon><\\/button><\\/div>`));
+    const zoom = rules(html, ".banner > .zoom");
+    assert.match(zoom, /position: absolute; z-index: 2; top: 5px; right: 5px; width: 24px; height: 24px;/);
+    assert.match(zoom, /background: rgba\(255,255,255,\.55\)/);
+    assert.match(rules(html, ".banner.night > .zoom"), /background: rgba\(255,255,255,\.12\); box-shadow: inset 0 0 0 1px rgba\(255,255,255,\.2\)/);
+    assert.match(rules(html, ".banner.zbtn .zl-scene"), /right: 30px/);
+  }
+  // zoom: false, no button and no room kept for it
+  assert.doesNotMatch(make(ZlinkyMiniCard, zhaHass(), { zoom: false }).shadowRoot.innerHTML, /class="banner[^"]*zbtn"|<button class="zoom"/);
 });
 
 test("narrow mini card: the meter shrinks, the reading ellipsizes and today's line wraps instead of being cut", async () => {
@@ -864,7 +909,7 @@ test("the status pill keeps its whole label while the name has room: the name bl
   // flex: 1 1 auto let the name's own width win, so "Moderate load" became "Mod…" next to a long name at 245-320 px.
   assert.match(rules(css, ".titles"), /flex: 1 1 0[;\s]/);
   assert.doesNotMatch(rules(css, ".titles"), /flex: 1 1 auto/);
-  assert.match(rules(css, ".st"), /flex: 0 1 auto; min-width: 0/);
+  assert.match(rules(css, ".st"), /flex: none; min-width: 0; max-width: 100%/);
 });
 
 test("narrowest mini card (156 px): the dot-only pill never shrinks below its 16 px, the name keeps 4 characters", () => {
@@ -1664,4 +1709,124 @@ test("editor: tarif_edf toggle, off by default and not written", () => {
   assert.ok(!("tarif_edf" in sent.at(-1)));
   ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data, tarif_edf: true } } });
   assert.equal(sent.at(-1).tarif_edf, true);
+});
+
+// ── Illustrated header ───────────────────────────────────────────────────────
+
+test("illustrated header: the full card and the unfolded mini card draw the meter big in the body, the compact mini card in its panel on the banner", () => {
+  for (const Card of [ZlinkyCard, ZlinkyMiniCard]) {
+    const html = make(Card, zhaHass(), { language: "en" }).shadowRoot.innerHTML;
+    assert.match(html, /icon="mdi:flash"/);
+    // The meter is drawn once.
+    assert.equal(html.match(/class="picture/g).length, 1);
+    if (Card === ZlinkyMiniCard) {
+      assert.match(html, /<div class="banner zl-cons zbtn"><svg class="zl-scene"/);
+      assert.match(html, /<div class="ground"><\/div><div class="picture live/);
+      assert.match(html, /class="zl-gtl"/);
+    } else {
+      // The banner draws the distribution board and the bulb (no meter), the meter is the hero's picture, the
+      // consumption tiles beside it.
+      assert.match(html, /<div class="banner zl-cons bare"><svg class="zl-scene"/);
+      assert.match(html, /<g class="zl-board"><rect class="zl-gtl"/);
+      assert.match(html, /<g class="zl-load" transform="translate\(18 0\)">/);
+      assert.match(html, /<div class="hero big"><div class="picture live/);
+    }
+    for (const config of [{ illustration: false }, { icon: "mdi:home" }]) {
+      const classic = make(Card, zhaHass(), { language: "en", ...config }).shadowRoot.innerHTML;
+      assert.doesNotMatch(classic, /class="banner/);
+      assert.doesNotMatch(classic, /class="hero big"/);
+    }
+  }
+  const mini = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+  mini._setZoom(true);
+  const unfolded = mini.shadowRoot.innerHTML;
+  assert.match(unfolded, /<div class="banner zl-cons bare zbtn">/);
+  assert.match(unfolded, /<div class="hero big"><div class="picture live/);
+  assert.equal(unfolded.match(/class="picture/g).length, 1);
+  const css = cardCss();
+  assert.match(rules(css, ".banner"), /height: calc\(10px \+ 80px \* max\(1, var\(--zl-ms, 1\)\)\)/);
+  assert.match(css, /\.banner\.bare \{ height: 90px; \}/);
+  assert.match(rules(css, ".banner .ground"), /height: 10px/);
+  // Big in the body: 110 to 165 px wide (about 36 % of the card), times meter_size; the reading and the tiles beside it,
+  // the tiles below on a narrow card.
+  assert.match(css, /\.hero\.big > \.picture \{ grid-area: pic; align-self: center; width: calc\(clamp\(110px, 36cqw, 165px\) \* var\(--zl-ms, 1\)\);/);
+  assert.match(css, /grid-template-areas: "pic info" "pic tiles"/);
+  assert.match(css, /@container \(max-width: 330px\) \{ \.hero\.big \{ grid-template-areas: "pic info" "tiles tiles";/);
+});
+
+test("illustrated header: producing, off-peak / peak and offline states", () => {
+  const p = "sensor.lixee_zlinky_tic_";
+  const hass = zhaHass({ extra: { [`${p}ptec`]: st("HC..") } });
+  let html = make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML;
+  assert.match(html, /class="banner zl-cons zl-hc bare"/);
+  assert.match(html, /<div class="sub" title="Off-peak">Off-peak<\/div>/);
+  // Unfolded, the mini card's subtitle does not repeat the reading either.
+  const mini = make(ZlinkyMiniCard, hass, { language: "en" });
+  mini._setZoom(true);
+  assert.match(mini.shadowRoot.innerHTML, /<div class="sub" title="Off-peak">Off-peak<\/div>/);
+  assert.match(html, /class="zl-moon"/);
+  hass.states[`${p}ptec`] = st("HPJR");
+  assert.match(make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML, /class="banner zl-cons zl-hp bare"/);
+  // A negative active power: producing, in green, the solar panel instead of the bulb.
+  const prod = zhaHass();
+  prod.states[`${p}puissance`] = st("-900", { device_class: "power", unit_of_measurement: "W" });
+  html = make(ZlinkyCard, prod, { language: "en" }).shadowRoot.innerHTML;
+  assert.match(html, /class="banner zl-prod bare"/);
+  assert.match(html, /title="Producing"/);
+  assert.match(html, /class="zl-panel"/);
+  assert.match(html, /--zl-color: var\(--success-color/);
+  // The injection index rising also means producing.
+  const inj = zhaHass();
+  const card = make(ZlinkyCard, inj, { language: "en" });
+  assert.match(card.shadowRoot.innerHTML, /class="banner zl-cons bare"/);
+  inj.states[`${p}summation_received`] = st("0.4", { device_class: "energy", unit_of_measurement: "kWh" });
+  card.hass = { ...inj, states: { ...inj.states } };
+  assert.match(card.shadowRoot.innerHTML, /class="banner zl-prod bare"/);
+  // Offline: no flow, the icon in grey.
+  const off = zhaHass();
+  for (const id of Object.keys(off.states)) if (id.includes("zlinky")) off.states[id] = st("unavailable");
+  html = make(ZlinkyCard, off, { language: "en" }).shadowRoot.innerHTML;
+  assert.match(html, /class="banner zl-off bare"/);
+  assert.doesNotMatch(html, /class="zl-flow"/);
+  assert.match(html, /--zl-color: var\(--disabled-text-color/);
+});
+
+test("illustrated header: night from illustration_theme, else sun.sun below the horizon or the dark mode; unique ids per card", () => {
+  const night = (config, extra = {}) => /class="banner[^"]* night"/.test(make(ZlinkyCard, { ...zhaHass(), ...extra }, config).shadowRoot.innerHTML);
+  assert.equal(night({}), false);
+  assert.equal(night({}, { themes: { darkMode: true } }), true);
+  const sun = (s, dark = true) => ({ states: { ...zhaHass().states, "sun.sun": st(s) }, themes: { darkMode: dark } });
+  assert.equal(night({}, sun("above_horizon")), true, "dark theme while the sun is up: night");
+  assert.equal(night({}, sun("above_horizon", false)), false, "light theme while the sun is up: day");
+  assert.equal(night({}, sun("below_horizon", false)), true);
+  assert.equal(night({ illustration_theme: "night" }), true);
+  assert.equal(night({ illustration_theme: "night" }, sun("above_horizon", false)), true, "forced night wins over the sun");
+  assert.equal(night({ illustration_theme: "day" }, sun("above_horizon")), false, "forced day wins over the dark theme");
+  assert.equal(night({ illustration_theme: "day" }, sun("below_horizon")), false);
+  const a = make(ZlinkyCard, zhaHass()).shadowRoot.innerHTML;
+  const b = make(ZlinkyCard, zhaHass()).shadowRoot.innerHTML;
+  const ids = (h) => [...h.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]);
+  assert.ok(ids(a).length >= 6);
+  assert.equal(ids(a).filter((x) => ids(b).includes(x)).length, 0);
+  assert.match(cardCss(), /prefers-reduced-motion: reduce\) \{ \.picture \*, \.zl-scene \* \{ animation: none/);
+});
+
+test("editor: illustration and its theme, on both cards", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  for (const type of ["custom:zlinky-card", "custom:zlinky-mini-card"]) {
+    const ed = new Editor();
+    ed.setConfig({ type, language: "fr" });
+    ed.hass = zhaHass();
+    const leaves = schemaLeaves(ed._form.schema);
+    assert.ok(leaves.some((s) => s.name === "illustration"));
+    const theme = leaves.find((s) => s.name === "illustration_theme");
+    assert.deepEqual([...theme.selector.select.options.map((o) => o.label)], ["Automatique (soleil ou thème sombre)", "Jour", "Nuit"]);
+  }
+});
+
+test("screenshot harness: every MDI icon the card names has a path (the header's flash badge was drawn empty)", () => {
+  const src = readFileSync(new URL("../src/zlinky-card.js", import.meta.url), "utf8");
+  const shots = readFileSync(new URL("../scripts/screenshots.mjs", import.meta.url), "utf8");
+  const have = new Set([...shots.matchAll(/^\s*"([a-z0-9-]+)":\s*"M/gm)].map((m) => m[1]));
+  for (const [, name] of src.matchAll(/mdi:([a-z0-9-]+)/g)) assert.ok(have.has(name), `mdi:${name} has no path in scripts/screenshots.mjs`);
 });

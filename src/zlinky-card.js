@@ -105,6 +105,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Laisser vide pour VA',
     ed_meter_size: 'Taille du compteur',
     ed_meter_size_helper: 'En pourcentage ; 100 = taille par défaut',
+    producing: 'Production',
+    off_peak: 'Heures creuses',
+    peak_hours: 'Heures pleines',
+    ed_illustration: 'Illustration',
+    ed_illustration_helper: 'En-tête animé avec le compteur ; désactivé pour un en-tête classique',
+    ed_illustration_theme: 'Thème de l\'illustration',
+    theme_auto: 'Automatique (soleil ou thème sombre)',
+    theme_day: 'Jour',
+    theme_night: 'Nuit',
     ed_load_warning: 'Seuil de charge modérée',
     ed_load_warning_helper: 'Charge modérée à partir de ce pourcentage de la puissance souscrite ; 50 % par défaut',
     ed_load_critical: 'Seuil de charge élevée',
@@ -216,6 +225,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Leave empty for VA',
     ed_meter_size: 'Meter size',
     ed_meter_size_helper: 'As a percentage; 100 = default',
+    producing: 'Producing',
+    off_peak: 'Off-peak',
+    peak_hours: 'Peak',
+    ed_illustration: 'Illustration',
+    ed_illustration_helper: 'Animated header with the meter; off for a classic header',
+    ed_illustration_theme: 'Illustration theme',
+    theme_auto: 'Automatic (sun or dark theme)',
+    theme_day: 'Day',
+    theme_night: 'Night',
     ed_load_warning: 'Moderate load threshold',
     ed_load_warning_helper: 'Moderate load from this share of the subscribed power; 50 % by default',
     ed_load_critical: 'High load threshold',
@@ -327,6 +345,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Leer lassen für VA',
     ed_meter_size: 'Zählergröße',
     ed_meter_size_helper: 'In Prozent; 100 = Standard',
+    producing: 'Erzeugung',
+    off_peak: 'Niedertarif',
+    peak_hours: 'Hochtarif',
+    ed_illustration: 'Illustration',
+    ed_illustration_helper: 'Animierte Kopfzeile mit dem Zähler; aus für eine klassische Kopfzeile',
+    ed_illustration_theme: 'Illustrationsdesign',
+    theme_auto: 'Automatisch (Sonne oder dunkles Design)',
+    theme_day: 'Tag',
+    theme_night: 'Nacht',
     ed_load_warning: 'Schwelle mittlere Last',
     ed_load_warning_helper: 'Mittlere Last ab diesem Anteil der Anschlussleistung; standardmäßig 50 %',
     ed_load_critical: 'Schwelle hohe Last',
@@ -438,6 +465,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Dejar vacío para VA',
     ed_meter_size: 'Tamaño del contador',
     ed_meter_size_helper: 'En porcentaje; 100 = predeterminado',
+    producing: 'Produciendo',
+    off_peak: 'Horas valle',
+    peak_hours: 'Horas punta',
+    ed_illustration: 'Ilustración',
+    ed_illustration_helper: 'Cabecera animada con el contador; desactívela para una cabecera clásica',
+    ed_illustration_theme: 'Tema de la ilustración',
+    theme_auto: 'Automático (sol o tema oscuro)',
+    theme_day: 'Día',
+    theme_night: 'Noche',
     ed_load_warning: 'Umbral de carga moderada',
     ed_load_warning_helper: 'Carga moderada a partir de este porcentaje de la potencia contratada; 50 % por defecto',
     ed_load_critical: 'Umbral de carga alta',
@@ -549,6 +585,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Оставите празно за VA',
     ed_meter_size: 'Величина бројила',
     ed_meter_size_helper: 'У процентима; 100 = подразумевано',
+    producing: 'Производња',
+    off_peak: 'Јефтина тарифа',
+    peak_hours: 'Скупа тарифа',
+    ed_illustration: 'Илустрација',
+    ed_illustration_helper: 'Анимирано заглавље са бројилом; искључено за класично заглавље',
+    ed_illustration_theme: 'Тема илустрације',
+    theme_auto: 'Аутоматски (сунце или тамна тема)',
+    theme_day: 'Дан',
+    theme_night: 'Ноћ',
     ed_load_warning: 'Праг умереног оптерећења',
     ed_load_warning_helper: 'Умерено оптерећење од овог удела уговорене снаге; подразумевано 50 %',
     ed_load_critical: 'Праг високог оптерећења',
@@ -660,6 +705,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Ostavite prazno za VA',
     ed_meter_size: 'Veličina brojila',
     ed_meter_size_helper: 'U procentima; 100 = podrazumevano',
+    producing: 'Proizvodnja',
+    off_peak: 'Jeftina tarifa',
+    peak_hours: 'Skupa tarifa',
+    ed_illustration: 'Ilustracija',
+    ed_illustration_helper: 'Animirano zaglavlje sa brojilom; isključeno za klasično zaglavlje',
+    ed_illustration_theme: 'Tema ilustracije',
+    theme_auto: 'Automatski (sunce ili tamna tema)',
+    theme_day: 'Dan',
+    theme_night: 'Noć',
     ed_load_warning: 'Prag umerenog opterećenja',
     ed_load_warning_helper: 'Umereno opterećenje od ovog udela ugovorene snage; podrazumevano 50 %',
     ed_load_critical: 'Prag visokog opterećenja',
@@ -771,6 +825,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Lasciare vuoto per VA',
     ed_meter_size: 'Dimensione del contatore',
     ed_meter_size_helper: 'In percentuale; 100 = predefinito',
+    producing: 'In produzione',
+    off_peak: 'Ore vuote',
+    peak_hours: 'Ore piene',
+    ed_illustration: 'Illustrazione',
+    ed_illustration_helper: 'Intestazione animata con il contatore; disattivala per un\'intestazione classica',
+    ed_illustration_theme: 'Tema dell\'illustrazione',
+    theme_auto: 'Automatico (sole o tema scuro)',
+    theme_day: 'Giorno',
+    theme_night: 'Notte',
     ed_load_warning: 'Soglia di carico moderato',
     ed_load_warning_helper: 'Carico moderato da questa percentuale della potenza contrattuale; 50 % per impostazione predefinita',
     ed_load_critical: 'Soglia di carico elevato',
@@ -882,6 +945,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Leeg laten voor VA',
     ed_meter_size: 'Metergrootte',
     ed_meter_size_helper: 'In procenten; 100 = standaard',
+    producing: 'Productie',
+    off_peak: 'Daltarief',
+    peak_hours: 'Piektarief',
+    ed_illustration: 'Illustratie',
+    ed_illustration_helper: 'Geanimeerde kop met de meter; uit voor een klassieke kop',
+    ed_illustration_theme: 'Thema van de illustratie',
+    theme_auto: 'Automatisch (zon of donker thema)',
+    theme_day: 'Dag',
+    theme_night: 'Nacht',
     ed_load_warning: 'Drempel matige belasting',
     ed_load_warning_helper: 'Matige belasting vanaf dit aandeel van het gecontracteerde vermogen; standaard 50 %',
     ed_load_critical: 'Drempel hoge belasting',
@@ -993,6 +1065,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Deixar vazio para VA',
     ed_meter_size: 'Tamanho do contador',
     ed_meter_size_helper: 'Em percentagem; 100 = predefinido',
+    producing: 'A produzir',
+    off_peak: 'Horas de vazio',
+    peak_hours: 'Horas de ponta',
+    ed_illustration: 'Ilustração',
+    ed_illustration_helper: 'Cabeçalho animado com o contador; desligado para um cabeçalho clássico',
+    ed_illustration_theme: 'Tema da ilustração',
+    theme_auto: 'Automático (sol ou tema escuro)',
+    theme_day: 'Dia',
+    theme_night: 'Noite',
     ed_load_warning: 'Limiar de carga moderada',
     ed_load_warning_helper: 'Carga moderada a partir desta percentagem da potência contratada; 50 % por omissão',
     ed_load_critical: 'Limiar de carga elevada',
@@ -1104,6 +1185,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Pozostaw puste dla VA',
     ed_meter_size: 'Rozmiar licznika',
     ed_meter_size_helper: 'W procentach; 100 = domyślny',
+    producing: 'Produkcja',
+    off_peak: 'Poza szczytem',
+    peak_hours: 'Szczyt',
+    ed_illustration: 'Ilustracja',
+    ed_illustration_helper: 'Animowany nagłówek z licznikiem; wyłącz, aby mieć klasyczny nagłówek',
+    ed_illustration_theme: 'Motyw ilustracji',
+    theme_auto: 'Automatycznie (słońce lub ciemny motyw)',
+    theme_day: 'Dzień',
+    theme_night: 'Noc',
     ed_load_warning: 'Próg umiarkowanego obciążenia',
     ed_load_warning_helper: 'Umiarkowane obciążenie od tego udziału mocy umownej; domyślnie 50 %',
     ed_load_critical: 'Próg wysokiego obciążenia',
@@ -1215,6 +1305,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Lăsați gol pentru VA',
     ed_meter_size: 'Dimensiunea contorului',
     ed_meter_size_helper: 'În procente; 100 = implicit',
+    producing: 'Producție',
+    off_peak: 'Ore de gol',
+    peak_hours: 'Ore de vârf',
+    ed_illustration: 'Ilustrație',
+    ed_illustration_helper: 'Antet animat cu contorul; dezactivat pentru un antet clasic',
+    ed_illustration_theme: 'Tema ilustrației',
+    theme_auto: 'Automat (soare sau temă întunecată)',
+    theme_day: 'Zi',
+    theme_night: 'Noapte',
     ed_load_warning: 'Prag de sarcină moderată',
     ed_load_warning_helper: 'Sarcină moderată de la acest procent din puterea contractată; implicit 50 %',
     ed_load_critical: 'Prag de sarcină ridicată',
@@ -1326,6 +1425,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Lad stå tomt for VA',
     ed_meter_size: 'Målerstørrelse',
     ed_meter_size_helper: 'I procent; 100 = standard',
+    producing: 'Produktion',
+    off_peak: 'Lavlast',
+    peak_hours: 'Spidslast',
+    ed_illustration: 'Illustration',
+    ed_illustration_helper: 'Animeret overskrift med måleren; slå fra for en klassisk overskrift',
+    ed_illustration_theme: 'Illustrationstema',
+    theme_auto: 'Automatisk (sol eller mørkt tema)',
+    theme_day: 'Dag',
+    theme_night: 'Nat',
     ed_load_warning: 'Tærskel for moderat belastning',
     ed_load_warning_helper: 'Moderat belastning fra denne andel af den abonnerede effekt; 50 % som standard',
     ed_load_critical: 'Tærskel for høj belastning',
@@ -1437,6 +1545,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Lämna tomt för VA',
     ed_meter_size: 'Mätarstorlek',
     ed_meter_size_helper: 'I procent; 100 = standard',
+    producing: 'Produktion',
+    off_peak: 'Låglast',
+    peak_hours: 'Höglast',
+    ed_illustration: 'Illustration',
+    ed_illustration_helper: 'Animerad rubrik med mätaren; av för en klassisk rubrik',
+    ed_illustration_theme: 'Illustrationstema',
+    theme_auto: 'Automatiskt (sol eller mörkt tema)',
+    theme_day: 'Dag',
+    theme_night: 'Natt',
     ed_load_warning: 'Tröskel för måttlig last',
     ed_load_warning_helper: 'Måttlig last från denna andel av den abonnerade effekten; 50 % som standard',
     ed_load_critical: 'Tröskel för hög last',
@@ -1548,6 +1665,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Оставете празно за VA',
     ed_meter_size: 'Размер на брояча',
     ed_meter_size_helper: 'В проценти; 100 = по подразбиране',
+    producing: 'Производство',
+    off_peak: 'Извън пика',
+    peak_hours: 'Пикова тарифа',
+    ed_illustration: 'Илюстрация',
+    ed_illustration_helper: 'Анимирана заглавна част с брояча; изключете за класическа',
+    ed_illustration_theme: 'Тема на илюстрацията',
+    theme_auto: 'Автоматично (слънце или тъмна тема)',
+    theme_day: 'Ден',
+    theme_night: 'Нощ',
     ed_load_warning: 'Праг за умерено натоварване',
     ed_load_warning_helper: 'Умерено натоварване от този дял от договорената мощност; по подразбиране 50 %',
     ed_load_critical: 'Праг за високо натоварване',
@@ -1659,6 +1785,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Оставьте пустым для VA',
     ed_meter_size: 'Размер счётчика',
     ed_meter_size_helper: 'В процентах; 100 = по умолчанию',
+    producing: 'Производство',
+    off_peak: 'Внепиковые часы',
+    peak_hours: 'Пиковые часы',
+    ed_illustration: 'Иллюстрация',
+    ed_illustration_helper: 'Анимированный заголовок со счётчиком; выключите для классического',
+    ed_illustration_theme: 'Тема иллюстрации',
+    theme_auto: 'Автоматически (солнце или тёмная тема)',
+    theme_day: 'День',
+    theme_night: 'Ночь',
     ed_load_warning: 'Порог умеренной нагрузки',
     ed_load_warning_helper: 'Умеренная нагрузка с этой доли договорной мощности; по умолчанию 50 %',
     ed_load_critical: 'Порог высокой нагрузки',
@@ -1770,6 +1905,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Залиште порожнім для VA',
     ed_meter_size: 'Розмір лічильника',
     ed_meter_size_helper: 'У відсотках; 100 = за замовчуванням',
+    producing: 'Виробництво',
+    off_peak: 'Позапікові години',
+    peak_hours: 'Пікові години',
+    ed_illustration: 'Ілюстрація',
+    ed_illustration_helper: 'Анімований заголовок із лічильником; вимкніть для класичного',
+    ed_illustration_theme: 'Тема ілюстрації',
+    theme_auto: 'Автоматично (сонце або темна тема)',
+    theme_day: 'День',
+    theme_night: 'Ніч',
     ed_load_warning: 'Поріг помірного навантаження',
     ed_load_warning_helper: 'Помірне навантаження з цієї частки договірної потужності; типово 50 %',
     ed_load_critical: 'Поріг високого навантаження',
@@ -1881,6 +2025,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Hagyja üresen a VA-hoz',
     ed_meter_size: 'Mérő mérete',
     ed_meter_size_helper: 'Százalékban; 100 = alapértelmezett',
+    producing: 'Termelés',
+    off_peak: 'Völgyidőszak',
+    peak_hours: 'Csúcsidőszak',
+    ed_illustration: 'Illusztráció',
+    ed_illustration_helper: 'Animált fejléc a mérővel; kikapcsolva klasszikus fejléc',
+    ed_illustration_theme: 'Illusztráció témája',
+    theme_auto: 'Automatikus (nap vagy sötét téma)',
+    theme_day: 'Nappal',
+    theme_night: 'Éjszaka',
     ed_load_warning: 'Közepes terhelés küszöbe',
     ed_load_warning_helper: 'Közepes terhelés a szerződéses teljesítmény ezen arányától; alapértelmezés 50 %',
     ed_load_critical: 'Magas terhelés küszöbe',
@@ -1992,6 +2145,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Nechajte prázdne pre VA',
     ed_meter_size: 'Veľkosť merača',
     ed_meter_size_helper: 'V percentách; 100 = predvolené',
+    producing: 'Výroba',
+    off_peak: 'Nízka tarifa',
+    peak_hours: 'Vysoká tarifa',
+    ed_illustration: 'Ilustrácia',
+    ed_illustration_helper: 'Animovaná hlavička s meračom; vypnutím klasická hlavička',
+    ed_illustration_theme: 'Téma ilustrácie',
+    theme_auto: 'Automaticky (slnko alebo tmavá téma)',
+    theme_day: 'Deň',
+    theme_night: 'Noc',
     ed_load_warning: 'Prah stredného zaťaženia',
     ed_load_warning_helper: 'Stredné zaťaženie od tohto podielu zmluvného výkonu; predvolene 50 %',
     ed_load_critical: 'Prah vysokého zaťaženia',
@@ -2103,6 +2265,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Ponechte prázdné pro VA',
     ed_meter_size: 'Velikost měřiče',
     ed_meter_size_helper: 'V procentech; 100 = výchozí',
+    producing: 'Výroba',
+    off_peak: 'Nízký tarif',
+    peak_hours: 'Vysoký tarif',
+    ed_illustration: 'Ilustrace',
+    ed_illustration_helper: 'Animovaná hlavička s měřičem; vypnutím klasická hlavička',
+    ed_illustration_theme: 'Motiv ilustrace',
+    theme_auto: 'Automaticky (slunce nebo tmavý motiv)',
+    theme_day: 'Den',
+    theme_night: 'Noc',
     ed_load_warning: 'Práh středního zatížení',
     ed_load_warning_helper: 'Střední zatížení od tohoto podílu sjednaného příkonu; výchozí 50 %',
     ed_load_critical: 'Práh vysokého zatížení',
@@ -2214,6 +2385,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Pustite prazno za VA',
     ed_meter_size: 'Velikost števca',
     ed_meter_size_helper: 'V odstotkih; 100 = privzeto',
+    producing: 'Proizvodnja',
+    off_peak: 'Nizka tarifa',
+    peak_hours: 'Visoka tarifa',
+    ed_illustration: 'Ilustracija',
+    ed_illustration_helper: 'Animirana glava s števcem; izklopite za klasično glavo',
+    ed_illustration_theme: 'Tema ilustracije',
+    theme_auto: 'Samodejno (sonce ali temna tema)',
+    theme_day: 'Dan',
+    theme_night: 'Noč',
     ed_load_warning: 'Prag zmerne obremenitve',
     ed_load_warning_helper: 'Zmerna obremenitev od tega deleža priključne moči; privzeto 50 %',
     ed_load_critical: 'Prag visoke obremenitve',
@@ -2325,6 +2505,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Atstājiet tukšu, lai būtu VA',
     ed_meter_size: 'Skaitītāja izmērs',
     ed_meter_size_helper: 'Procentos; 100 = noklusējums',
+    producing: 'Ražošana',
+    off_peak: 'Ārpus maksimuma',
+    peak_hours: 'Maksimuma stundas',
+    ed_illustration: 'Ilustrācija',
+    ed_illustration_helper: 'Animēta galvene ar skaitītāju; izslēdziet klasiskai galvenei',
+    ed_illustration_theme: 'Ilustrācijas tēma',
+    theme_auto: 'Automātiski (saule vai tumšā tēma)',
+    theme_day: 'Diena',
+    theme_night: 'Nakts',
     ed_load_warning: 'Mērenas slodzes slieksnis',
     ed_load_warning_helper: 'Mērena slodze no šīs līgumjaudas daļas; pēc noklusējuma 50 %',
     ed_load_critical: 'Augstas slodzes slieksnis',
@@ -2436,6 +2625,15 @@ var ZlI18n = {
     ed_power_unit_helper: 'Αφήστε κενό για VA',
     ed_meter_size: 'Μέγεθος μετρητή',
     ed_meter_size_helper: 'Σε ποσοστό· 100 = προεπιλογή',
+    producing: 'Παραγωγή',
+    off_peak: 'Εκτός αιχμής',
+    peak_hours: 'Ώρες αιχμής',
+    ed_illustration: 'Εικονογράφηση',
+    ed_illustration_helper: 'Κεφαλίδα με κίνηση και τον μετρητή· απενεργοποιήστε για κλασική κεφαλίδα',
+    ed_illustration_theme: 'Θέμα εικονογράφησης',
+    theme_auto: 'Αυτόματα (ήλιος ή σκούρο θέμα)',
+    theme_day: 'Ημέρα',
+    theme_night: 'Νύχτα',
     ed_load_warning: 'Όριο μέτριου φορτίου',
     ed_load_warning_helper: 'Μέτριο φορτίο από αυτό το ποσοστό της συμφωνημένης ισχύος· προεπιλογή 50 %',
     ed_load_critical: 'Όριο υψηλού φορτίου',
@@ -2709,7 +2907,9 @@ function zlAbbr(name) {
 // LED on top, "Linky" mark, light recessed LCD. `scr` is one rolling screen
 // { l: label, v: value, u: unit }; a tap cycles to the next (see _picture). The
 // LED (class "led"/"glow") blinks faster as the load rises.
-function zlMeterArt(scr) {
+function zlMeterArt(scr, uid) {
+  // `uid` keeps each card's gradient ids apart (several cards on one page).
+  var k = uid ? `-${uid}` : '';
   var l = zlEsc(scr?.l || ''), v = zlEsc(scr?.v || ''), u = zlEsc(scr?.u || '');
   var uw = u ? u.length * 2.4 + 1.5 : 0;        // unit box width (unit font ≈ 2.4 u/char) + gap
   var vx = (56.5 - uw).toFixed(1);              // same value font on every screen; it can't overflow
@@ -2717,26 +2917,96 @@ function zlMeterArt(scr) {
     `<text class="lcd" x="${vx}" y="57.6" text-anchor="end">${v}</text>` +
     (u ? `<text class="unit" x="56.5" y="57.6" text-anchor="end">${u}</text>` : '');
   return '<svg viewBox="0 0 80 100" aria-hidden="true">' +
-    '<defs><linearGradient id="zl-mb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a6c516"/><stop offset=".5" stop-color="#c6db28"/><stop offset="1" stop-color="#a6c516"/></linearGradient>' +
-    '<linearGradient id="zl-sh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/></linearGradient>' +
-    '<linearGradient id="zl-bz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f0"/><stop offset="1" stop-color="#d8d8d2"/></linearGradient>' +
-    '<linearGradient id="zl-ls" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfc6ad"/><stop offset=".5" stop-color="#d4d9c5"/><stop offset="1" stop-color="#c7cdb6"/></linearGradient>' +
-    '<radialGradient id="zl-mg" cx=".5" cy=".5" r=".5"><stop offset="0" class="glow-c" stop-opacity=".6"/><stop offset="1" class="glow-c" stop-opacity="0"/></radialGradient></defs>' +
+    `<defs><linearGradient id="zl-mb${k}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a6c516"/><stop offset=".5" stop-color="#c6db28"/><stop offset="1" stop-color="#a6c516"/></linearGradient>` +
+    `<linearGradient id="zl-sh${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".32"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/></linearGradient>` +
+    `<linearGradient id="zl-bz${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f4f0"/><stop offset="1" stop-color="#d8d8d2"/></linearGradient>` +
+    `<linearGradient id="zl-ls${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfc6ad"/><stop offset=".5" stop-color="#d4d9c5"/><stop offset="1" stop-color="#c7cdb6"/></linearGradient>` +
+    `<radialGradient id="zl-mg${k}" cx=".5" cy=".5" r=".5"><stop offset="0" class="glow-c" stop-opacity=".6"/><stop offset="1" class="glow-c" stop-opacity="0"/></radialGradient></defs>` +
     '<ellipse cx="40" cy="97.5" rx="30" ry="2.3" fill="#000" opacity=".12"/>' +
-    '<rect x="5" y="2" width="70" height="95" rx="10" fill="url(#zl-mb)" stroke="#8aa30c" stroke-width="1"/>' +
-    '<rect x="5" y="2" width="70" height="95" rx="10" fill="url(#zl-sh)"/>' +
-    '<circle class="glow" cx="40" cy="13" r="6" fill="url(#zl-mg)"/>' +
+    `<rect x="5" y="2" width="70" height="95" rx="10" fill="url(#zl-mb${k})" stroke="#8aa30c" stroke-width="1"/>` +
+    `<rect x="5" y="2" width="70" height="95" rx="10" fill="url(#zl-sh${k})"/>` +
+    `<circle class="glow" cx="40" cy="13" r="6" fill="url(#zl-mg${k})"/>` +
     '<circle cx="40" cy="13" r="2.7" fill="#1f270a" opacity=".5"/>' +
     '<circle class="led" cx="40" cy="13" r="2"/>' +
     '<text class="brand" x="40" y="25.5" text-anchor="middle">Linky</text>' +
-    '<rect x="18" y="30" width="44" height="47" rx="4" fill="url(#zl-bz)" stroke="#b9b9b0" stroke-width="1"/>' +
+    `<rect x="18" y="30" width="44" height="47" rx="4" fill="url(#zl-bz${k})" stroke="#b9b9b0" stroke-width="1"/>` +
     '<rect x="21" y="33" width="38" height="31" rx="2.5" fill="#20260f"/>' +
-    '<rect x="22" y="34" width="36" height="29" rx="2" fill="url(#zl-ls)"/>' +
+    `<rect x="22" y="34" width="36" height="29" rx="2" fill="url(#zl-ls${k})"/>` +
     '<rect x="22" y="34" width="36" height="4" rx="2" fill="#000" opacity=".10"/>' +
     lcd +
     '<path d="M28 71.5h5" stroke="#55602c" stroke-width="1.7" stroke-linecap="round"/>' +
     '<path d="M47 71.5h5M49.5 69v5" stroke="#55602c" stroke-width="1.7" stroke-linecap="round"/>' +
     '<path d="M40 86v5M36 91h8" stroke="#6b7838" stroke-width="1.4" stroke-linecap="round"/></svg>';
+}
+
+// ── Illustrated header ───────────────────────────────────────────────────────
+// Tariff period from the meter's label: off-peak (`HC..`, `HEURE CREUSE`, `HCJB`…), peak (`HP..`, `HPJR`,
+// `HEURES PLEINES`…), else null (Base, EJP, an unknown label).
+function zlPeriod(text) {
+  var t = String(text || '').trim().toUpperCase();
+  if (!t) return null;
+  if (/^HC|CREUS/.test(t)) return 'hc';
+  if (/^HP|PLEIN/.test(t)) return 'hp';
+  return null;
+}
+
+// Night picture: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark theme (even
+// with the sun up).
+function zlIsNight(hass, config) {
+  var theme = config?.illustration_theme;
+  if (theme === 'night') return true;
+  if (theme === 'day') return false;
+  var sun = hass?.states?.['sun.sun'];
+  if (sun && sun.state !== 'unavailable' && sun.state !== 'unknown' && sun.state === 'below_horizon') return true;
+  return !!hass?.themes?.darkMode;
+}
+
+var zlUidN = 0;
+
+// The banner's picture, 200 × 80 at the right of the banner (1 unit = 1 px at meter_size 100): the technical
+// sheath (GTL) panel that holds the meter (the card's own drawing, laid over it as the .picture element), and on
+// the wall at its left, by state: the off-peak / peak contactor (moon or sun), and the cable to the home with the
+// current flowing along it, to a lit bulb while consuming, from a solar panel while producing (none offline).
+// `uid` keeps the ids of each card apart. Everything left of x 70 is plain wall: the title sits there.
+// `bare`: the scene without the meter's sheath (the meter is drawn big in the card's body): the bulb or the solar
+// panel and the contactor, fed by a cable coming from the right edge.
+function zlSceneSvg(uid, state, period, bare) {
+  var acc = '';
+  if (period) {
+    var glyph = period === 'hc'
+      ? '<path class="zl-moon" d="M116.6 26.4a3.6 3.6 0 1 0 3.2 5.4 2.9 2.9 0 1 1-3.2-5.4Z"/>'
+      : `<circle class="zl-sun" cx="116" cy="30" r="2.4"/><path class="zl-rays" d="${[0, 45, 90, 135, 180, 225, 270, 315]
+        .map((a) => { var r = (a * Math.PI) / 180, c = Math.cos(r), n = Math.sin(r); return `M${(116 + c * 3.6).toFixed(1)} ${(30 + n * 3.6).toFixed(1)}L${(116 + c * 4.8).toFixed(1)} ${(30 + n * 4.8).toFixed(1)}`; }).join('')}"/>`;
+    acc += '<g class="zl-contactor"><path class="zl-wire" d="M116 20V9H131"/>' +
+      '<rect class="zl-din" x="108" y="20" width="16" height="28" rx="2"/><rect class="zl-win" x="110.5" y="23.5" width="11" height="13" rx="1.5"/>' +
+      glyph + '<circle class="zl-ind" cx="116" cy="42.5" r="1.6"/></g>';
+  }
+  if (state !== 'off') {
+    var end = state === 'prod'
+      ? '<g class="zl-panel"><circle class="zl-sun" cx="84" cy="44" r="3.4"/><path class="zl-pv" d="M84 64H104L108 51H88Z"/>' +
+        '<path class="zl-pvl" d="M89 60.5H105.2M90.2 57H106.3M91.3 53.8H107.3M91 64L95 51M97.6 64L101.4 51"/><path class="zl-wire" d="M96 64V68"/></g>'
+      : `<g class="zl-bulb"><circle class="zl-halo" cx="96" cy="57" r="10" fill="url(#zl-halo-${uid})"/><circle class="zl-glass" cx="96" cy="57" r="4.6"/>` +
+        '<rect class="zl-base" x="93.6" y="61.2" width="4.8" height="3.6" rx=".8"/><rect class="zl-socket" x="92" y="64.6" width="8" height="3.6" rx="1"/></g>';
+    acc += '<path class="zl-cable" d="M131 68H96"/><path class="zl-flow" d="M131 68H96"/>' + end;
+  }
+  var defs = `<defs><radialGradient id="zl-halo-${uid}"><stop offset="0" stop-color="#ffd65a" stop-opacity=".75"/><stop offset="1" stop-color="#ffd65a" stop-opacity="0"/></radialGradient></defs>`;
+  if (bare) {
+    // The distribution board at the right: a row of breakers on its rail, the off-peak / peak contactor and the main
+    // breaker on the second rail; the cable leaves it to the bulb (or comes back from the solar panel).
+    var board = '<rect class="zl-gtl" x="138" y="4" width="58" height="72" rx="3"/><rect class="zl-gtl-in" x="141" y="7" width="52" height="66" rx="2"/>' +
+      '<path class="zl-wire" d="M142 21H192M142 52H192"/>' +
+      [0, 1, 2, 3, 4].map((i) => { var x = 144 + i * 9.4; return `<rect class="zl-din" x="${x}" y="12" width="8" height="18" rx="1.2"/><rect class="zl-win" x="${x + 2.2}" y="15" width="3.6" height="6" rx=".8"/>`; }).join('') +
+      '<rect class="zl-din" x="164" y="38" width="26" height="28" rx="2"/><rect class="zl-win" x="168" y="42" width="18" height="9" rx="1.5"/><rect class="zl-win" x="174.5" y="55" width="5" height="7" rx="1"/>';
+    var contactor = acc.match(/<g class="zl-contactor">[\s\S]*?<\/g>/);
+    var rest = acc.replace(/<g class="zl-contactor">[\s\S]*?<\/g>/, '').replace(/M131 68H96/g, 'M120 68H96');
+    return `<svg class="zl-scene" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">${defs}` +
+      `<g class="zl-board">${board}${contactor ? `<g transform="translate(36 18)">${contactor[0].replace(/<path class="zl-wire" d="M116 20V9H131"\/>/, '')}</g>` : ''}</g>` +
+      `<g class="zl-load" transform="translate(18 0)">${rest}</g></svg>`;
+  }
+  return `<svg class="zl-scene" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">${defs}` +
+    (bare ? '' :
+      '<rect class="zl-gtl" x="120" y="-2" width="78" height="84" rx="3"/><rect class="zl-gtl-in" x="123" y="1" width="72" height="80" rx="2"/>' +
+      `<g class="zl-acc" transform="translate(-8 0)">${acc}</g></svg>`);
 }
 
 // ── Formatting ───────────────────────────────────────────────────────────────
@@ -2797,6 +3067,10 @@ var ZL_LOAD_COLORS = {
   high: 'var(--error-color, #db4437)',
   off: 'var(--disabled-text-color, #9e9e9e)',
 };
+// Producing (the injection index rising, or a negative active power): the header's icon and the flow turn green.
+var ZL_PRODUCE_COLOR = 'var(--success-color, #43a047)';
+// How long after the injection index last rose the meter still counts as producing.
+var ZL_PRODUCE_HOLD = 10 * 60000;
 
 // Load level from the share of the subscribed power in use: `load_warning` / `load_critical` (%, 50 / 80 by default).
 var ZL_LOAD_WARNING = 50;
@@ -2914,6 +3188,34 @@ function zlMonthProgress(now, tz) {
 }
 
 // ── Base card ────────────────────────────────────────────────────────────────
+
+// The status pill's place, decided by measurement after each render and each new width (the same rule on every
+// card): on the title row, right after the title, only when the whole title and the pill's whole label fit there;
+// otherwise on its own line under the subtitle (one line), the title whole on its row (cut only when it does not fit
+// alone). When the label is still cut there, or the text block leaves the banner or runs over its ground strip, the
+// pill keeps its dot alone, on the title row (its label stays in title and aria-label). A card of 200 px or less
+// shows the dot alone anyway (CSS), beside the title.
+function zlPlacePill(head, row, ground) {
+  if (!head) return;
+  head.removeAttribute('data-wrap');
+  head.removeAttribute('data-dot');
+  var pill = row.querySelector(':scope > .st');
+  var text = pill?.querySelector('.stt');
+  if (!text?.getBoundingClientRect || text.getBoundingClientRect().width <= 1) return;
+  var name = row.querySelector(':scope > .name');
+  var gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+  var title = name && getComputedStyle(name).display !== 'none' ? (name.scrollWidth > name.clientWidth ? name.scrollWidth : name.getBoundingClientRect().width) + gap : 0;
+  if (title + pill.getBoundingClientRect().width <= row.getBoundingClientRect().width + 0.5) return;
+  head.setAttribute('data-wrap', '');
+  var box = row.parentElement.getBoundingClientRect();
+  var frame = head.getBoundingClientRect();
+  var out = ground && (box.bottom > ground.getBoundingClientRect().top + 0.5 || box.top < frame.top - 0.5);
+  if (text.scrollWidth > text.clientWidth + 0.5 || out) {
+    head.removeAttribute('data-wrap');
+    head.setAttribute('data-dot', '');
+  }
+}
+
 class ZlinkyCard extends HTMLElement {
   static getConfigElement() {
     return document.createElement('zlinky-card-editor');
@@ -2956,6 +3258,18 @@ class ZlinkyCard extends HTMLElement {
   }
 
   connectedCallback() {
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === 'function') {
+      this._resize ??= new ResizeObserver((entries) => {
+        var w = Math.round(entries[entries.length - 1].contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
     clearInterval(this._timer);
     this._timer = setInterval(() => {
       this._statsAt = 0;
@@ -2964,6 +3278,8 @@ class ZlinkyCard extends HTMLElement {
   }
 
   disconnectedCallback() {
+    this._resize?.disconnect();
+    this._fitWidth = null;
     clearInterval(this._timer);
   }
 
@@ -3229,15 +3545,67 @@ class ZlinkyCard extends HTMLElement {
     var level = online ? zlLoadLevel(pct, zlPct(c.load_warning, ZL_LOAD_WARNING), zlPct(c.load_critical, ZL_LOAD_CRITICAL)) : 'off';
     var tariff = this._avail(ent.tariff) ? this._st(ent.tariff).state : '';
     var sub = tariff ? `${this._t('meter')} · ${tariff}` : this._t('meter');
+    var producing = online && this._producing(ent, watts);
     return {
-      c, ent, lang, name, online, watts, va, main, mainUnit, subscribed, pct, level, sub,
-      color: ZL_LOAD_COLORS[level],
-      statusText: online ? this._t(`load_${level}`) : this._t('offline'),
+      c, ent, lang, name, online, watts, va, main, mainUnit, subscribed, pct, level, sub, tariff, producing,
+      period: zlPeriod(tariff),
+      color: producing ? ZL_PRODUCE_COLOR : ZL_LOAD_COLORS[level],
+      statusText: !online ? this._t('offline') : producing ? this._t('producing') : this._t(`load_${level}`),
       mainText: main != null ? zlPower(lang, main, mainUnit) : '—',
       screens: this._screens({ ent, lang, online, va, watts, subscribed, tariff }),
-      // Header icon: an electric meter in a round badge, in the load color.
-      logo: c.show_logo === false ? '' : '<span class="hbadge"><ha-icon icon="mdi:meter-electric-outline"></ha-icon></span>',
+      // Header icon in a round badge, in the status color: a flash on the illustrated header, else an electric meter.
+      logo: c.show_logo === false ? '' : `<span class="hbadge"><ha-icon icon="${this._bannerOn() ? 'mdi:flash' : 'mdi:meter-electric-outline'}"></ha-icon></span>`,
     };
+  }
+
+  // Producing: a negative active power, or the injection index risen in the last 10 minutes (the ZLinky gives no
+  // injected power of its own on most setups; its index only moves while the home sends energy to the grid).
+  _producing(ent, watts) {
+    if (watts != null && watts < 0) return true;
+    var inj = this._avail(ent.injection) ? zlKwh(this._st(ent.injection)) : null;
+    if (inj == null) return false;
+    var prev = this._inj;
+    this._inj = { id: ent.injection, v: inj, at: prev?.id === ent.injection && inj > prev.v ? Date.now() : prev?.id === ent.injection ? prev.at : 0 };
+    return !!this._inj.at && Date.now() - this._inj.at < ZL_PRODUCE_HOLD;
+  }
+
+  // The illustrated header (the meter in its panel on a 90 px banner), unless `illustration: false` or an `icon`
+  // replaces the meter: those keep the classic header, the meter (or the icon) beside the reading.
+  _bannerOn() {
+    return this._config.illustration !== false && !this._config.icon;
+  }
+
+  _uidv() {
+    if (!this._uid) this._uid = ++zlUidN;
+    return this._uid;
+  }
+
+  // meter_size as a scale factor (0.5–2.5), 1 by default.
+  _ms() {
+    var size = Number(this._config.meter_size);
+    return Number.isFinite(size) && this._config.meter_size != null ? Math.min(250, Math.max(50, size)) / 100 : 1;
+  }
+
+  // The banner: the wall and its panel, the ground strip, the card's meter over the panel, then the header (icon in
+  // the status color, title, subtitle, status pill, detail button) on the wall at the left. Night: darker wall,
+  // lit bulb. meter_size scales the picture; above 100 the banner grows with it (the meter is never cut).
+  // `meter: false` (full card, unfolded mini card): the meter is drawn big in the body, the banner keeps the bulb or
+  // the solar panel and the contactor at the right, and the text gets the rest.
+  _banner(m, titles, meter = true) {
+    var c = this._config;
+    var state = !m.online ? 'off' : m.producing ? 'prod' : 'cons';
+    var zoom = this._zoomButton();
+    var cls = `banner zl-${state}${m.period ? ` zl-${m.period}` : ''}${meter ? '' : ' bare'}${zlIsNight(this._hass, c) ? ' night' : ''}${zoom ? ' zbtn' : ''}`;
+    var ms = meter ? this._ms() : 1;
+    // The detail button sits in the banner's top right corner; the picture steps aside from it (.zbtn).
+    return `<div class="${cls}"${ms !== 1 ? ` style="--zl-ms:${ms}"` : ''}>${zlSceneSvg(this._uidv(), state, m.period, !meter)}<div class="ground"></div>` +
+      (meter ? this._picture(m) : '') + `<div class="header${titles.indexOf('class="sub"') >= 0 ? ' sub2' : ''}">${m.logo}${titles}</div>${zoom}</div>`;
+  }
+
+  // The banner's subtitle: the tariff period (Off-peak / Peak, else the meter's own label). The live reading is not
+  // repeated: the body shows it big just below (full card, unfolded mini card).
+  _bannerSub(m) {
+    return (m.period ? this._t(m.period === 'hc' ? 'off_peak' : 'peak_hours') : m.tariff) || this._t('meter');
   }
 
   // The meter's rolling screens, built only from the data the ZLinky actually
@@ -3281,10 +3649,9 @@ class ZlinkyCard extends HTMLElement {
     // More than one screen: the meter is a button that scrolls to the next one.
     var tap = n > 1 ? ` tap" role="button" tabindex="0" data-action="screen" aria-label="${zlEsc(this._t('meter'))}` : '';
     // meter_size scales the illustration (percent of its default size), so the screen can be made easier to read.
-    var size = Number(this._config.meter_size);
-    var ms = Number.isFinite(size) ? Math.min(250, Math.max(50, size)) / 100 : 1;
+    var ms = this._ms();
     var scale = ms !== 1 ? `;--zl-ms:${ms}` : '';
-    return `<div class="picture${m.online ? ' live' : ''}${tap}" style="--zl-blink:${period.toFixed(2)}s${scale}">${zlMeterArt(m.screens[i])}</div>`;
+    return `<div class="picture${m.online ? ' live' : ''}${tap}" style="--zl-blink:${period.toFixed(2)}s${scale}">${zlMeterArt(m.screens[i], this._uidv())}</div>`;
   }
 
   _loadBar(m) {
@@ -3440,11 +3807,15 @@ class ZlinkyCard extends HTMLElement {
     if (amps != null) chips.push(this._chip('mdi:current-ac', `${l1}${zlAmps(lang, amps)} A`, this._noTap(c.intensity_tap_action) ? null : ent.current));
     if (volts != null && volts > 0) chips.push(this._chip('mdi:sine-wave', `${l1}${zlNum(lang, volts, 0)} V`, ent.voltage));
     if (!m.online) chips.push(`<span class="chip"><ha-icon icon="mdi:lan-disconnect"></ha-icon>${this._t('offline')}</span>`);
-    var hero = '<div class="hero">' + this._picture(m) +
+    var banner = this._bannerOn();
+    // Under the illustrated header the meter is drawn big here, its screen readable (the banner keeps the scene).
+    // The tiles (today, yesterday, this month) join the hero under the illustrated header: beside the meter on a
+    // wide card, under the meter and the readings on a narrow one (see .hero.big).
+    var hero = (tilesHtml) => `<div class="hero${banner ? ' big' : ''}">` + this._picture(m) +
       '<div class="info">' +
         this._big(ent.apparent_power || ent.power, m.mainText) +
         (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') + this._loadBar(m) +
-      '</div></div>';
+      '</div>' + tilesHtml + '</div>';
 
     // 24 h curve.
     var graph = '';
@@ -3514,11 +3885,10 @@ class ZlinkyCard extends HTMLElement {
       phases = `<div class="section"><div class="section-title"><ha-icon icon="mdi:transmission-tower"></ha-icon><span>${this._t('phases')}</span></div>${lines.join('')}</div>`;
     }
 
-    this._setHtml(this._styles(m.color) + '<ha-card>' +
-      '<div class="header sub2">' + m.logo +
-        `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(m.sub)}</div></div>` +
-        this._pill(m) + this._zoomButton() +
-      '</div>' + hero + this._tempo(ent) + stats + graph + this._costHtml(lang) + this._compareHtml(lang) + index + phases +
+    var head = banner
+      ? this._banner(m, this._titles(m, this._bannerSub(m)), false)
+      : '<div class="header sub2">' + m.logo + this._titles(m, m.sub) + this._zoomButton() + '</div>';
+    this._setHtml(this._styles(m.color) + '<ha-card>' + head + hero(banner ? stats : '') + this._tempo(ent) + (banner ? '' : stats) + graph + this._costHtml(lang) + this._compareHtml(lang) + index + phases +
     '</ha-card>');
   }
 
@@ -3569,6 +3939,13 @@ class ZlinkyCard extends HTMLElement {
     return !reg.some((e) => e.entity_id.indexOf('sensor.') === 0);
   }
 
+  // The header's texts: the name and the status pill on the title row (8 px apart, the pill centred on the name), the
+  // subtitle under them. On a narrow card the pill goes to its own line under the subtitle (see the container tiers).
+  _titles(m, sub) {
+    return `<div class="titles"><div class="trow"><div class="name">${zlEsc(m.name)}</div>${this._pill(m)}</div>` +
+      (sub != null ? `<div class="sub" title="${zlEsc(sub)}">${zlEsc(sub)}</div>` : '') + '</div>';
+  }
+
   // The status pill. On a narrow card it shows its dot only: the status stays in its tooltip and accessible name.
   _pill(m) {
     if (this._config.show_load_pill === false) return '';
@@ -3583,11 +3960,20 @@ class ZlinkyCard extends HTMLElement {
     var root = this.shadowRoot;
     if (!root.firstChild) {
       root.innerHTML = html;
-      return;
+    } else {
+      var tpl = document.createElement('template');
+      tpl.innerHTML = html;
+      zlMorph(root, tpl.content);
     }
-    var tpl = document.createElement('template');
-    tpl.innerHTML = html;
-    zlMorph(root, tpl.content);
+    this._fitPill();
+  }
+
+  // The status pill's place, on the banner and on the classic header (see zlPlacePill).
+  _fitPill() {
+    var row = this.shadowRoot?.querySelector?.('.titles > .trow');
+    if (!row) return;
+    var banner = row.closest('.banner');
+    zlPlacePill(banner || row.closest('.header'), row, banner?.querySelector('.ground'));
   }
 
   // A more-info chip, or a plain span when no entity is resolved or its tap is disabled (a button there would
@@ -3624,12 +4010,11 @@ class ZlinkyCard extends HTMLElement {
       var segs = parts.map((x, i) => `<span class="seg">${zlEsc(x)}${i < parts.length - 1 ? ' ·' : ''}</span>`).join(' ');
       lines.push(`<div class="line"><ha-icon icon="mdi:calendar-today"></ha-icon><span>${segs}</span></div>`);
     }
+    var banner = this._bannerOn();
+    var titles = this._titles(m, null);
     return this._styles(m.color) + '<ha-card class="mini">' +
-      '<div class="header">' + m.logo +
-        `<div class="titles"><div class="name">${zlEsc(m.name)}</div></div>` +
-        this._pill(m) + this._zoomButton() +
-      '</div>' +
-      '<div class="content">' + this._picture(m) +
+      (banner ? this._banner(m, titles) : '<div class="header">' + m.logo + titles + this._zoomButton() + '</div>') +
+      '<div class="content">' + (banner ? '' : this._picture(m)) +
         '<div class="info">' +
           this._big(m.ent.apparent_power || m.ent.power, m.mainText) +
           this._loadBar(m) + lines.join('') + this._tempoMini(m.ent) +
@@ -3677,16 +4062,24 @@ class ZlinkyCard extends HTMLElement {
       '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
       // The name and the pill share the line from a zero basis: the pill keeps its whole label and the name gives way
       // first, down to about 4 characters and its ellipsis; only past that does the pill shrink.
-      '.titles { flex: 1 1 0; min-width: 5ch; font-size: 16px; }' +
-      ':host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }' +
+      '.titles { flex: 1 1 0; min-width: 5ch; font-size: 16px; display: flex; flex-direction: column; }' +
+      // The name gives way first (ellipsis, 4 characters kept); the pill keeps its whole label, at most 51 % of the line.
+      '.trow { display: flex; align-items: center; gap: 8px; min-width: 0; }' +
+      '.trow .name { flex: 0 1 auto; min-width: 0; }' +
+      ':host([hide-title]) .titles .name, :host([hide-subtitle]) .titles > .sub { display: none; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
-      '.st { display: inline-flex; align-items: center; gap: 4px; flex: 0 1 auto; min-width: 0; max-width: 50%; overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
+      '.st { display: inline-flex; align-items: center; gap: 4px; flex: none; min-width: 0; max-width: 100%; box-sizing: border-box; overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
         ' white-space: nowrap; background: color-mix(in srgb, var(--zl-color) 15%, transparent);' +
         ' color: color-mix(in srgb, var(--zl-color) 50%, var(--primary-text-color, #212121)); }' +
       '.stt { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
-      // With a subtitle the titles span two lines: the pill and the detail button stay on the title's line.
-      '.header.sub2 .st { align-self: flex-start; margin-top: 4px; }' +
+      // The pill right after the name only when the whole name and its whole label fit there (measured by the card, see
+      // zlPlacePill); otherwise on its own line under the subtitle (one line); when even that cuts its label or leaves
+      // the banner, and on a card of 200 px or less, its dot alone (label in its tooltip).
+      '[data-wrap] .trow { display: contents; } [data-wrap] .titles > .sub { order: 2; }' +
+      ' [data-wrap] .titles .st { order: 3; align-self: flex-start; max-width: 100%; margin-top: 2px; }' +
+      '[data-dot] .stt { display: none; } [data-dot] .titles .st { flex: none; padding: 5px; }' +
+      // With a subtitle the titles span two lines: the detail button stays on the title's line.
       '.header.sub2 .zoom { align-self: flex-start; margin-top: 0; }' +
       '.dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--zl-color); }' +
       '.zoom { flex: none; width: 24px; height: 24px; margin: -4px -4px -4px 0; border-radius: 50%;' +
@@ -3710,7 +4103,7 @@ class ZlinkyCard extends HTMLElement {
       '.picture.live .glow { animation: zl-glow var(--zl-blink, 2s) ease-in-out infinite; }' +
       '@keyframes zl-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }' +
       '@keyframes zl-glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.1; } }' +
-      '@media (prefers-reduced-motion: reduce) { .picture * { animation: none !important; } .fill { transition: none; } }' +
+      '@media (prefers-reduced-motion: reduce) { .picture *, .zl-scene * { animation: none !important; } .fill { transition: none; } }' +
       '.badge { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;' +
         ' background: color-mix(in srgb, var(--zl-color) 15%, transparent); color: var(--zl-color); }' +
       '.badge ha-icon { --mdc-icon-size: 32px; }' +
@@ -3764,6 +4157,8 @@ class ZlinkyCard extends HTMLElement {
       '.iv { font-variant-numeric: tabular-nums; font-size: 15px; font-weight: 500; color: var(--primary-text-color); }' +
       '.rows { display: flex; flex-direction: column; }' +
       '.row { display: flex; justify-content: space-between; gap: 8px; padding: 4px 10px; font-size: 12px; color: var(--secondary-text-color); }' +
+      // The cost and comparison rows sit straight under their section title, flush with the card's other content.
+      '.section > .row { padding: 2px 0; }' +
       '.cmp-verdict { color: var(--primary-text-color); font-weight: 500; }' +
       '.cost-est .rv { font-weight: 600; }' +
       '.cost-trend.up { color: var(--error-color, #db4437); }' +
@@ -3779,7 +4174,78 @@ class ZlinkyCard extends HTMLElement {
         ' .tl { white-space: normal; overflow-wrap: break-word; } .tv small { display: block; } }' +
       '@container (max-width: 200px) { ha-card.mini .picture { width: calc(56px * var(--zl-ms, 1)); height: calc(70px * var(--zl-ms, 1)); } ha-card.mini .content { gap: 8px; } }' +
       // At the mini's narrowest (156 px) the dot-only pill keeps its 16 px (the name its 4 characters): it never gets squashed.
-      '@container (max-width: 180px) { .titles { min-width: 4ch; } .stt { display: none; } .st { flex: none; padding: 5px; } }' +
+      // A card of 200 px or less (176 px of content): the pill's dot alone (label in its tooltip).
+      '@container (max-width: 176px) { .titles { min-width: 4ch; } .stt { display: none; } .st { flex: none; padding: 5px; } }' +
+      // ── Illustrated header: a 90 px banner edge to edge at the top of the card (the card's 12 px padding undone),
+      // the wall and the meter's panel at the right, a 10 px tiled floor strip along the bottom. meter_size scales the
+      // picture from its bottom right corner; above 100 the banner grows with it.
+      '.banner { position: relative; overflow: hidden; flex: none; margin: -12px -12px 0; height: calc(10px + 80px * max(1, var(--zl-ms, 1)));' +
+        ' border-radius: var(--ha-card-border-radius, 12px) var(--ha-card-border-radius, 12px) 0 0; background: #f1f2f4; color: #0d2a45; }' +
+      '.banner.night { background: #24272e; color: #fff; }' +
+      '.zl-scene { position: absolute; right: 0; bottom: 10px; width: calc(200px * var(--zl-ms, 1) * var(--zl-bk, 1)); height: calc(80px * var(--zl-ms, 1) * var(--zl-bk, 1)); }' +
+      '.banner .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px;' +
+        ' background: repeating-linear-gradient(90deg, #d9dfe3 0 18px, #c6cdd2 18px 19px); box-shadow: inset 0 2px 0 #b8c0c6; }' +
+      '.banner.night .ground { background: repeating-linear-gradient(90deg, #3a4250 0 18px, #2e3542 18px 19px); box-shadow: inset 0 2px 0 #4a5262; }' +
+      // The meter (the card's own drawing) over the panel, its body standing on the strip, 6 px clear of the banner's top.
+      'ha-card .banner .picture { position: absolute; right: calc(7.4px * var(--zl-ms, 1) * var(--zl-bk, 1)); bottom: calc(10px - 2.16px * var(--zl-ms, 1) * var(--zl-bk, 1)); width: calc(59.2px * var(--zl-ms, 1) * var(--zl-bk, 1)); height: calc(74px * var(--zl-ms, 1) * var(--zl-bk, 1)); }' +
+      '.banner .picture svg { filter: drop-shadow(0 1px 2px rgba(0,0,0,0.22)); }' +
+      '.zl-gtl { fill: #e3e7ec; stroke: #c9ced6; } .zl-gtl-in { fill: #f4f6f8; }' +
+      '.night .zl-gtl { fill: #2e3442; stroke: #3a4050; } .night .zl-gtl-in { fill: #262b36; }' +
+      '.zl-wire { fill: none; stroke: #8a95a3; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; } .night .zl-wire { stroke: #6b7684; }' +
+      '.zl-din { fill: #fff; stroke: #c3cad3; } .zl-win { fill: #e9edf2; } .night .zl-din { fill: #3a4050; stroke: #4a5262; } .night .zl-win { fill: #2a2f3a; }' +
+      '.zl-moon { fill: #5c6bc0; } .night .zl-moon { fill: #9fa8ff; filter: drop-shadow(0 0 1.4px #9fa8ff); }' +
+      '.zl-sun { fill: #f5b400; } .zl-rays { stroke: #f5b400; stroke-width: 1; stroke-linecap: round; }' +
+      '.zl-ind { fill: #43c463; } .zl-hp .zl-ind { fill: #f5b400; }' +
+      // The cable to the home and the current along it: dashes moving to the bulb (consuming), back to the meter from
+      // the solar panel (producing), in the status color, faster as the load rises (the LED's period).
+      '.zl-cable { fill: none; stroke: #a7b0bb; stroke-width: 2.4; stroke-linecap: round; } .night .zl-cable { stroke: #4f5966; }' +
+      '.zl-flow { fill: none; stroke: var(--zl-color); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 1.4 5; animation: zl-flow var(--zl-blink, 1.6s) linear infinite; }' +
+      '.zl-prod .zl-flow { animation-direction: reverse; animation-duration: 1.6s; }' +
+      '@keyframes zl-flow { to { stroke-dashoffset: -12.8; } }' +
+      '.zl-glass { fill: #ffe082; stroke: #e0b93a; stroke-width: .6; } .zl-base { fill: #b0b7c0; } .zl-socket { fill: #fff; stroke: #c3cad3; }' +
+      '.night .zl-glass { fill: #ffe9a6; filter: drop-shadow(0 0 2px #ffd65a); } .night .zl-socket { fill: #3a4050; stroke: #4a5262; }' +
+      '.zl-halo { animation: zl-glow 3s ease-in-out infinite; } .banner:not(.night) .zl-halo { opacity: .55; }' +
+      '.zl-pv { fill: #2b4f8a; stroke: #9fb3cc; stroke-width: .6; } .zl-pvl { stroke: #7f9bc4; stroke-width: .4; fill: none; }' +
+      '.night .zl-pv { fill: #22385e; } .night .zl-panel .zl-sun { fill: #f4f1dc; }' +
+      // The header on the wall, at the left of the picture (the picture starts 130 px from the right at meter_size 100).
+      '.banner .header { position: absolute; z-index: 1; left: 12px; top: 0; bottom: 10px; right: calc(130px * var(--zl-ms, 1) * var(--zl-bk, 1) + 4px); margin: 0; min-width: 0; }' +
+      // Without the meter (full card, unfolded mini card): a 90 px banner, the bulb or the panel and the contactor at
+      // the right, the text up to them.
+      '.banner.bare { height: 90px; } .banner.bare .zl-scene { width: calc(200px * var(--zl-bk, 1)); height: calc(80px * var(--zl-bk, 1)); }' +
+      '.banner.bare .header { right: calc(102px * var(--zl-bk, 1) + 4px); } .banner.bare.zbtn .header { right: calc(102px * var(--zl-bk, 1) + 34px); }' +
+      // The meter big in the body: about 40 % of the card (120 to 200 px wide), its screen readable; on a narrow card
+      // it stands above the readings.
+      // Beside it, its whole height used: the reading, its chips and the load bar, then the consumption tiles; on a
+      // narrow card the meter (about 110 px) stays beside the reading and the tiles take the full width below.
+      '.hero.big { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "pic info" "pic tiles"; column-gap: 14px; row-gap: 10px; align-items: start; }' +
+      '.hero.big > .picture { grid-area: pic; align-self: center; width: calc(clamp(110px, 36cqw, 165px) * var(--zl-ms, 1)); max-width: 100%; height: auto; aspect-ratio: 108 / 135; }' +
+      '.hero.big > .info { grid-area: info; gap: 6px; align-self: start; } .hero.big > .tiles { grid-area: tiles; align-self: end; }' +
+      '.hero.big > .tiles .tile { padding: 6px 8px; }' +
+      '@container (max-width: 330px) { .hero.big { grid-template-areas: "pic info" "tiles tiles"; column-gap: 10px; } .hero.big > .picture { width: calc(min(110px, 38cqw) * var(--zl-ms, 1)); } .hero.big > .info { align-self: center; } }' +
+
+      '.banner .hbadge { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--zl-color) 22%, transparent); }' +
+      '.banner.night .hbadge { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }' +
+      '.banner .name { color: inherit; } .banner .sub { font-size: 13px; color: #3b5b78; } .banner.night .sub { color: rgba(255,255,255,.78); }' +
+      '.banner .st { background: color-mix(in srgb, var(--zl-color) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--zl-color) 45%, #0d2a45); }' +
+      '.banner.night .st { background: color-mix(in srgb, var(--zl-color) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--zl-color) 35%, #ffffff); }' +
+      // The detail button in the banner's top right corner, 24 px, frosted (day) or glassy (night); the meter's panel
+      // and the header step 30 px aside from it.
+      '.banner > .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; width: 24px; height: 24px; margin: 0; border-radius: 50%; display: grid; place-items: center;' +
+        ' color: #33506b; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }' +
+      '.banner > .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }' +
+      '.banner.night > .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }' +
+      '.banner.night > .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }' +
+      '.banner.zbtn .zl-scene { right: 30px; } ha-card .banner.zbtn .picture { right: calc(30px + 7.4px * var(--zl-ms, 1) * var(--zl-bk, 1)); }' +
+      '.banner.zbtn .header { right: calc(130px * var(--zl-ms, 1) * var(--zl-bk, 1) + 34px); }' +
+      // Narrow card: the wall accessories go, the meter and its panel stay; narrower still, the icon gives the title room.
+      '@container (max-width: 300px) { .zl-acc { display: none; } .banner .header { right: calc(80px * var(--zl-ms, 1) * var(--zl-bk, 1) + 4px); } .banner.zbtn .header { right: calc(80px * var(--zl-ms, 1) * var(--zl-bk, 1) + 34px); } }' +
+      // Narrower cards: the meter and its panel are drawn smaller (80 %, then 65 %), so that the title stays whole and
+      // the status pill keeps its label beside it.
+      '@container (max-width: 340px) { .banner { --zl-bk: .8; } }' +
+      '@container (max-width: 270px) { .banner { --zl-bk: .65; } }' +
+      // Narrowest, without the meter: the board alone (the bulb or the panel gives the text its room).
+      '@container (max-width: 270px) { .banner.bare .zl-load { display: none; } .banner.bare .header { right: calc(64px * var(--zl-bk, 1) + 4px); } .banner.bare.zbtn .header { right: calc(64px * var(--zl-bk, 1) + 34px); } }' +
+      '@container (max-width: 210px) { .banner .hbadge { display: none; } .banner .header { left: 10px; } }' +
     '</style><div class="sizer" aria-hidden="true">' + '<i></i> '.repeat(10) + '</div>';
   }
 }
@@ -3845,7 +4311,7 @@ function zlPriceList(price) {
   return Array.isArray(price) || typeof price === 'string';
 }
 
-var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, show_cost: true, zoom: true, tarif_edf: false, meter_size: 100,
+var ZL_EDITOR_DEFAULTS = { show_title: true, show_subtitle: true, show_graph: true, show_stats: true, show_index: true, show_phases: true, show_logo: true, show_tempo: true, show_cost: true, zoom: true, tarif_edf: false, meter_size: 100, illustration: true, illustration_theme: 'auto',
   load_warning: ZL_LOAD_WARNING, load_critical: ZL_LOAD_CRITICAL };
 
 class ZlinkyCardEditor extends HTMLElement {
@@ -3906,6 +4372,13 @@ class ZlinkyCardEditor extends HTMLElement {
           { name: 'show_tempo', selector: { boolean: {} } },
           { name: 'show_cost', selector: { boolean: {} } },
         ].concat(mini ? [{ name: 'zoom', selector: { boolean: {} } }] : []),
+      },
+      // Illustrated header (both cards): the meter in its panel on a banner, day or night.
+      {
+        type: 'grid', name: '', schema: [
+          { name: 'illustration', selector: { boolean: {} } },
+          { name: 'illustration_theme', selector: { select: { mode: 'dropdown', options: ['auto', 'day', 'night'].map((v) => ({ value: v, label: t(`theme_${v}`) })) } } },
+        ],
       },
       // Free label for the apparent-power unit (empty = VA); only the unit shown changes, not the value.
       { name: 'power_unit', selector: { text: {} } },

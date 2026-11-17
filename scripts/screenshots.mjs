@@ -169,6 +169,8 @@ export async function animate(shot, { icons = {}, hass = {}, extra = "", fps = 2
 }
 
 const icons = {
+  "flash": "M7,2V13H10V22L17,10H13L17,2H7Z",
+  "scale-balance": "M12,3C10.73,3 9.6,3.8 9.18,5H3V7H4.95L2,14C1.53,16 3,17 5.5,17C8,17 9.56,16 9,14L6.05,7H9.17C9.5,7.85 10.15,8.5 11,8.83V20H2V22H22V20H13V8.82C13.85,8.5 14.5,7.85 14.82,7H17.95L15,14C14.53,16 16,17 18.5,17C21,17 22.56,16 22,14L19.05,7H21V5H14.83C14.4,3.8 13.27,3 12,3M12,5A1,1 0 0,1 13,6A1,1 0 0,1 12,7A1,1 0 0,1 11,6A1,1 0 0,1 12,5M5.5,10.25L7,14H4L5.5,10.25M18.5,10.25L20,14H17L18.5,10.25Z",
   "flash-outline": "M7,2H17L13.5,9H17L10,22V14H7V2M9,4V12H12V14.66L14,11H10.24L13.76,4H9Z",
   "chart-areaspline": "M17.45,15.18L22,7.31V19L22,21H2V3H4V15.54L9.5,6L16,9.78L20.24,2.45L21.97,3.45L16.74,12.5L10.23,8.75L4.31,19H6.57L10.96,11.44L17.45,15.18Z",
   "transmission-tower": "M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z",
@@ -241,6 +243,14 @@ await render(
     // The mini card's real width on a phone: 6 columns of a ~380 px section.
     { file: "mini-narrow", type: "zlinky-mini-card", theme: "light", width: 180, config: { price: 0.2016 } },
     { file: "mini-narrow-dark", type: "zlinky-mini-card", theme: "dark", width: 180, config: { price: 0.2016 } },
+    // The mini card expanded with its top right button: the full card, at the full card's width.
+    ...["light", "dark"].map((theme) => ({
+      file: theme === "dark" ? "mini-zoom-dark" : "mini-zoom", type: "zlinky-mini-card", theme, width: 460,
+      config: { price: 0.2016, tiers: ["Off-peak", "Peak"], subscription: 15.65 },
+      // A pointer click (a click count): no focus ring left on the button.
+      after: (page) => page.evaluate(() => document.querySelector("zlinky-mini-card").shadowRoot.querySelector('[data-action="zoom"]')
+        .dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, detail: 1 }))),
+    })),
   ],
   { icons, hass, extra: ws }
 );
