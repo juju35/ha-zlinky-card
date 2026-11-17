@@ -1821,7 +1821,7 @@ test("editor: illustration and its theme, on both cards", () => {
     const leaves = schemaLeaves(ed._form.schema);
     assert.ok(leaves.some((s) => s.name === "illustration"));
     const theme = leaves.find((s) => s.name === "illustration_theme");
-    assert.deepEqual([...theme.selector.select.options.map((o) => o.label)], ["Automatique (soleil ou thème sombre)", "Jour", "Nuit"]);
+    assert.deepEqual([...theme.selector.select.options.map((o) => o.label)], ["Automatique (suit le thème)", "Jour", "Nuit"]);
   }
 });
 
