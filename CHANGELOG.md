@@ -11,6 +11,9 @@
 - Screenshots: the header's flash icon (and the comparison section's scale icon) were drawn empty by the screenshot script, which lacked their paths.
 - Night picture with the dark theme even while the sun is up.
 
+### Fixes
+- Header: the banner's Linky meter no longer touches the top of the banner (6 px clear, still standing on the strip); the Cost and Base-or-off-peak rows line up with the rest of the card instead of being indented.
+
 ## 1.20.0 - 2026-11-15
 
 ### Features

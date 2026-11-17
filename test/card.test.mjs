@@ -796,6 +796,16 @@ test("focus ring: the generic button rule does not square off the round detail b
   assert.match(rules(css, ".chip"), /border-radius: 12px/);
 });
 
+test("banner: the meter stands on the strip clear of the banner's top; cost rows are flush with the card", () => {
+  const css = cardCss();
+  const pic = rules(css, "ha-card .banner .picture");
+  const h = Number(/height: calc\(([\d.]+)px/.exec(pic)[1]);
+  const lift = Number(/bottom: calc\(10px - ([\d.]+)px/.exec(pic)[1]);
+  // 80 px of wall above the 10 px strip: the meter's top stays at least 4 px under the banner's top.
+  assert.ok(80 - (h - lift) >= 4, `meter top margin ${80 - (h - lift)} px`);
+  assert.match(rules(css, ".section > .row"), /padding: 2px 0/);
+});
+
 test("narrow header: the title keeps ~4 characters, the pill shrinks and turns into its dot, buttons never shrink", () => {
   const css = cardCss();
   assert.match(rules(css, "ha-card"), /container-type: inline-size/);
