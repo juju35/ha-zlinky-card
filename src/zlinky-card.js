@@ -4161,12 +4161,12 @@ class ZlinkyCard extends HTMLElement {
       '.banner { position: relative; overflow: hidden; flex: none; margin: -12px -12px 0; height: calc(10px + 80px * max(1, var(--zl-ms, 1)));' +
         ' border-radius: var(--ha-card-border-radius, 12px) var(--ha-card-border-radius, 12px) 0 0; background: #f1f2f4; color: #0d2a45; }' +
       '.banner.night { background: #24272e; color: #fff; }' +
-      '.zl-scene { position: absolute; right: 0; bottom: 10px; width: calc(200px * var(--zl-ms, 1)); height: calc(80px * var(--zl-ms, 1)); }' +
+      '.zl-scene { position: absolute; right: 0; bottom: 10px; width: calc(200px * var(--zl-ms, 1) * var(--zl-bk, 1)); height: calc(80px * var(--zl-ms, 1) * var(--zl-bk, 1)); }' +
       '.banner .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px;' +
         ' background: repeating-linear-gradient(90deg, #d9dfe3 0 18px, #c6cdd2 18px 19px); box-shadow: inset 0 2px 0 #b8c0c6; }' +
       '.banner.night .ground { background: repeating-linear-gradient(90deg, #3a4250 0 18px, #2e3542 18px 19px); box-shadow: inset 0 2px 0 #4a5262; }' +
       // The meter (the card's own drawing) over the panel, its body standing on the strip, 6 px clear of the banner's top.
-      'ha-card .banner .picture { position: absolute; right: calc(7.4px * var(--zl-ms, 1)); bottom: calc(10px - 2.16px * var(--zl-ms, 1)); width: calc(59.2px * var(--zl-ms, 1)); height: calc(74px * var(--zl-ms, 1)); }' +
+      'ha-card .banner .picture { position: absolute; right: calc(7.4px * var(--zl-ms, 1) * var(--zl-bk, 1)); bottom: calc(10px - 2.16px * var(--zl-ms, 1) * var(--zl-bk, 1)); width: calc(59.2px * var(--zl-ms, 1) * var(--zl-bk, 1)); height: calc(74px * var(--zl-ms, 1) * var(--zl-bk, 1)); }' +
       '.banner .picture svg { filter: drop-shadow(0 1px 2px rgba(0,0,0,0.22)); }' +
       '.zl-gtl { fill: #e3e7ec; stroke: #c9ced6; } .zl-gtl-in { fill: #f4f6f8; }' +
       '.night .zl-gtl { fill: #2e3442; stroke: #3a4050; } .night .zl-gtl-in { fill: #262b36; }' +
@@ -4187,7 +4187,7 @@ class ZlinkyCard extends HTMLElement {
       '.zl-pv { fill: #2b4f8a; stroke: #9fb3cc; stroke-width: .6; } .zl-pvl { stroke: #7f9bc4; stroke-width: .4; fill: none; }' +
       '.night .zl-pv { fill: #22385e; } .night .zl-panel .zl-sun { fill: #f4f1dc; }' +
       // The header on the wall, at the left of the picture (the picture starts 130 px from the right at meter_size 100).
-      '.banner .header { position: absolute; z-index: 1; left: 12px; top: 0; bottom: 10px; right: calc(130px * var(--zl-ms, 1) + 4px); margin: 0; min-width: 0; }' +
+      '.banner .header { position: absolute; z-index: 1; left: 12px; top: 0; bottom: 10px; right: calc(130px * var(--zl-ms, 1) * var(--zl-bk, 1) + 4px); margin: 0; min-width: 0; }' +
 
       '.banner .hbadge { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--zl-color) 22%, transparent); }' +
       '.banner.night .hbadge { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }' +
@@ -4201,10 +4201,14 @@ class ZlinkyCard extends HTMLElement {
       '.banner > .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }' +
       '.banner.night > .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }' +
       '.banner.night > .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }' +
-      '.banner.zbtn .zl-scene { right: 30px; } ha-card .banner.zbtn .picture { right: calc(30px + 7.4px * var(--zl-ms, 1)); }' +
-      '.banner.zbtn .header { right: calc(130px * var(--zl-ms, 1) + 34px); }' +
+      '.banner.zbtn .zl-scene { right: 30px; } ha-card .banner.zbtn .picture { right: calc(30px + 7.4px * var(--zl-ms, 1) * var(--zl-bk, 1)); }' +
+      '.banner.zbtn .header { right: calc(130px * var(--zl-ms, 1) * var(--zl-bk, 1) + 34px); }' +
       // Narrow card: the wall accessories go, the meter and its panel stay; narrower still, the icon gives the title room.
-      '@container (max-width: 300px) { .zl-acc { display: none; } .banner .header { right: calc(80px * var(--zl-ms, 1) + 4px); } .banner.zbtn .header { right: calc(80px * var(--zl-ms, 1) + 34px); } }' +
+      '@container (max-width: 300px) { .zl-acc { display: none; } .banner .header { right: calc(80px * var(--zl-ms, 1) * var(--zl-bk, 1) + 4px); } .banner.zbtn .header { right: calc(80px * var(--zl-ms, 1) * var(--zl-bk, 1) + 34px); } }' +
+      // Narrower cards: the meter and its panel are drawn smaller (80 %, then 65 %), so that the title stays whole and
+      // the status pill keeps its label beside it.
+      '@container (max-width: 340px) { .banner { --zl-bk: .8; } }' +
+      '@container (max-width: 270px) { .banner { --zl-bk: .65; } }' +
       '@container (max-width: 210px) { .banner .hbadge { display: none; } .banner .header { left: 10px; } }' +
     '</style><div class="sizer" aria-hidden="true">' + '<i></i> '.repeat(10) + '</div>';
   }
