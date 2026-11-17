@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
+import { readFileSync } from "node:fs";
 
 const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, zlMorph, ZlI18n, zlLang, zlNum, zlMoney, zlCompare, zlHcRanges, customElements } = loadCard("zlinky-card.js", [
   "ZlinkyCard",
@@ -801,9 +802,10 @@ test("narrow header: the title keeps ~4 characters, the pill shrinks and turns i
   const titles = rules(css, ".titles");
   assert.match(titles, /min-width: [4-6]ch/);
   const pill = rules(css, ".st");
-  assert.match(pill, /flex: 0 1 auto/);
+  assert.match(pill, /flex: none/);
   assert.match(pill, /min-width: 0/);
-  assert.match(pill, /max-width: 50%/);
+  assert.match(pill, /max-width: 51%/);
+  assert.match(rules(css, ".trow .name"), /flex: 0 1 auto; min-width: 4ch/);
   assert.match(rules(css, ".zoom"), /flex: none/);
   assert.match(css, /@container \(max-width: \d+px\) \{[^@]*\.stt \{ display: none; \}/);
   // Shown as a dot only, the status stays in the tooltip and for screen readers.
@@ -813,11 +815,39 @@ test("narrow header: the title keeps ~4 characters, the pill shrinks and turns i
   }
 });
 
-test("with a subtitle, the status pill sits on the title's line", () => {
+test("the status pill sits right after the title, on its row; on a narrow card it goes under the subtitle", () => {
   const css = cardCss();
-  assert.match(make(ZlinkyCard, zhaHass()).shadowRoot.innerHTML, /<div class="header sub2">/);
+  for (const config of [{}, { illustration: false }]) {
+    const html = make(ZlinkyCard, zhaHass(), { language: "en", ...config }).shadowRoot.innerHTML;
+    assert.match(html, /<div class="header sub2">/);
+    assert.match(html, /<div class="titles"><div class="trow"><div class="name">[^<]*<\/div><span class="st" role="img" title="Low load"[\s\S]*?<\/span><\/span><\/div><div class="sub">/);
+  }
   assert.doesNotMatch(make(ZlinkyMiniCard, zhaHass()).shadowRoot.innerHTML, /header sub2/);
-  assert.match(rules(css, ".header.sub2 .st"), /align-self: flex-start/);
+  assert.match(rules(css, ".trow"), /display: flex; align-items: center; gap: 8px/);
+  assert.match(css, /@container \(max-width: 260px\) \{ \.trow \{ display: contents; \} \.titles > \.sub \{ order: 2; \} \.titles \.st \{ order: 3;/);
+  // Beside the meter's picture the banner header is narrower: the pill goes under the subtitle up to 400 px (430 with the detail button)
+  assert.match(css, /@container \(max-width: 400px\) \{ \.banner \.trow \{ display: contents; \}/);
+  assert.match(css, /@container \(max-width: 430px\) \{ \.banner\.zbtn \.trow \{ display: contents; \}/);
+  // On the banner: the pill as on the sky, day and night
+  assert.match(rules(css, ".banner .st"), /background: color-mix\(in srgb, var\(--zl-color\) 18%, rgba\(255,255,255,\.78\)\); color: color-mix\(in srgb, var\(--zl-color\) 45%, #0d2a45\)/);
+  assert.match(rules(css, ".banner.night .st"), /background: color-mix\(in srgb, var\(--zl-color\) 30%, rgba\(8,18,38,\.55\)\); color: color-mix\(in srgb, var\(--zl-color\) 35%, #ffffff\)/);
+});
+
+test("mini card: the detail button sits in the banner's top right corner, out of the header; the picture steps aside", () => {
+  for (const zoomed of [false, true]) {
+    const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+    if (zoomed) card._setZoom(true);
+    const html = card.shadowRoot.innerHTML;
+    assert.match(html, /class="banner zl-cons zbtn"/);
+    assert.match(html, new RegExp(`<\\/div><\\/div><button class="zoom" data-action="zoom"[^>]*><ha-icon icon="mdi:arrow-${zoomed ? "collapse" : "expand"}"><\\/ha-icon><\\/button><\\/div>`));
+    const zoom = rules(html, ".banner > .zoom");
+    assert.match(zoom, /position: absolute; z-index: 2; top: 5px; right: 5px; width: 24px; height: 24px;/);
+    assert.match(zoom, /background: rgba\(255,255,255,\.55\)/);
+    assert.match(rules(html, ".banner.night > .zoom"), /background: rgba\(255,255,255,\.12\); box-shadow: inset 0 0 0 1px rgba\(255,255,255,\.2\)/);
+    assert.match(rules(html, ".banner.zbtn .zl-scene"), /right: 30px/);
+  }
+  // zoom: false, no button and no room kept for it
+  assert.doesNotMatch(make(ZlinkyMiniCard, zhaHass(), { zoom: false }).shadowRoot.innerHTML, /class="banner[^"]*zbtn"|<button class="zoom"/);
 });
 
 test("narrow mini card: the meter shrinks, the reading ellipsizes and today's line wraps instead of being cut", async () => {
@@ -866,7 +896,7 @@ test("the status pill keeps its whole label while the name has room: the name bl
   // flex: 1 1 auto let the name's own width win, so "Moderate load" became "Mod…" next to a long name at 245-320 px.
   assert.match(rules(css, ".titles"), /flex: 1 1 0[;\s]/);
   assert.doesNotMatch(rules(css, ".titles"), /flex: 1 1 auto/);
-  assert.match(rules(css, ".st"), /flex: 0 1 auto; min-width: 0/);
+  assert.match(rules(css, ".st"), /flex: none; min-width: 0; max-width: 51%/);
 });
 
 test("narrowest mini card (156 px): the dot-only pill never shrinks below its 16 px, the name keeps 4 characters", () => {
@@ -1673,7 +1703,7 @@ test("editor: tarif_edf toggle, off by default and not written", () => {
 test("illustrated header: the meter in its panel on the banner, a flash icon, the classic header with illustration: false or an icon", () => {
   for (const Card of [ZlinkyCard, ZlinkyMiniCard]) {
     const html = make(Card, zhaHass(), { language: "en" }).shadowRoot.innerHTML;
-    assert.match(html, /<div class="banner zl-cons"><svg class="zl-scene"/);
+    assert.match(html, Card === ZlinkyMiniCard ? /<div class="banner zl-cons zbtn"><svg class="zl-scene"/ : /<div class="banner zl-cons"><svg class="zl-scene"/);
     assert.match(html, /<div class="ground"><\/div><div class="picture live/);
     assert.match(html, /icon="mdi:flash"/);
     // The meter is drawn once, in the banner (no second one beside the reading).
@@ -1748,4 +1778,11 @@ test("editor: illustration and its theme, on both cards", () => {
     const theme = leaves.find((s) => s.name === "illustration_theme");
     assert.deepEqual([...theme.selector.select.options.map((o) => o.label)], ["Automatique (soleil, mode sombre)", "Jour", "Nuit"]);
   }
+});
+
+test("screenshot harness: every MDI icon the card names has a path (the header's flash badge was drawn empty)", () => {
+  const src = readFileSync(new URL("../src/zlinky-card.js", import.meta.url), "utf8");
+  const shots = readFileSync(new URL("../scripts/screenshots.mjs", import.meta.url), "utf8");
+  const have = new Set([...shots.matchAll(/^\s*"([a-z0-9-]+)":\s*"M/gm)].map((m) => m[1]));
+  for (const [, name] of src.matchAll(/mdi:([a-z0-9-]+)/g)) assert.ok(have.has(name), `mdi:${name} has no path in scripts/screenshots.mjs`);
 });

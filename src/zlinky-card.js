@@ -3533,10 +3533,12 @@ class ZlinkyCard extends HTMLElement {
   _banner(m, titles) {
     var c = this._config;
     var state = !m.online ? 'off' : m.producing ? 'prod' : 'cons';
-    var cls = `banner zl-${state}${m.period ? ` zl-${m.period}` : ''}${zlIsNight(this._hass, c) ? ' night' : ''}`;
+    var zoom = this._zoomButton();
+    var cls = `banner zl-${state}${m.period ? ` zl-${m.period}` : ''}${zlIsNight(this._hass, c) ? ' night' : ''}${zoom ? ' zbtn' : ''}`;
     var ms = this._ms();
+    // The detail button sits in the banner's top right corner; the picture steps aside from it (.zbtn).
     return `<div class="${cls}"${ms !== 1 ? ` style="--zl-ms:${ms}"` : ''}>${zlSceneSvg(this._uidv(), state, m.period)}<div class="ground"></div>` +
-      this._picture(m) + `<div class="header${titles.indexOf('class="sub"') >= 0 ? ' sub2' : ''}">${m.logo}${titles}${this._pill(m)}${this._zoomButton()}</div></div>`;
+      this._picture(m) + `<div class="header${titles.indexOf('class="sub"') >= 0 ? ' sub2' : ''}">${m.logo}${titles}</div>${zoom}</div>`;
   }
 
   // The banner's subtitle: the live reading and the tariff period (Off-peak / Peak, else the meter's own label).
@@ -3820,10 +3822,8 @@ class ZlinkyCard extends HTMLElement {
     }
 
     var head = banner
-      ? this._banner(m, `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(this._bannerSub(m))}</div></div>`)
-      : '<div class="header sub2">' + m.logo +
-        `<div class="titles"><div class="name">${zlEsc(m.name)}</div><div class="sub">${zlEsc(m.sub)}</div></div>` +
-        this._pill(m) + this._zoomButton() + '</div>';
+      ? this._banner(m, this._titles(m, this._bannerSub(m)))
+      : '<div class="header sub2">' + m.logo + this._titles(m, m.sub) + this._zoomButton() + '</div>';
     this._setHtml(this._styles(m.color) + '<ha-card>' + head + hero + this._tempo(ent) + stats + graph + this._costHtml(lang) + this._compareHtml(lang) + index + phases +
     '</ha-card>');
   }
@@ -3873,6 +3873,13 @@ class ZlinkyCard extends HTMLElement {
     if (r.n) return true;
     var reg = this._hass.entities && r.deviceId ? zlRegistryByDevice(this._hass.entities).get(r.deviceId) || [] : [];
     return !reg.some((e) => e.entity_id.indexOf('sensor.') === 0);
+  }
+
+  // The header's texts: the name and the status pill on the title row (8 px apart, the pill centred on the name), the
+  // subtitle under them. On a narrow card the pill goes to its own line under the subtitle (see the container tiers).
+  _titles(m, sub) {
+    return `<div class="titles"><div class="trow"><div class="name">${zlEsc(m.name)}</div>${this._pill(m)}</div>` +
+      (sub != null ? `<div class="sub">${zlEsc(sub)}</div>` : '') + '</div>';
   }
 
   // The status pill. On a narrow card it shows its dot only: the status stays in its tooltip and accessible name.
@@ -3931,9 +3938,9 @@ class ZlinkyCard extends HTMLElement {
       lines.push(`<div class="line"><ha-icon icon="mdi:calendar-today"></ha-icon><span>${segs}</span></div>`);
     }
     var banner = this._bannerOn();
-    var titles = `<div class="titles"><div class="name">${zlEsc(m.name)}</div></div>`;
+    var titles = this._titles(m, null);
     return this._styles(m.color) + '<ha-card class="mini">' +
-      (banner ? this._banner(m, titles) : '<div class="header">' + m.logo + titles + this._pill(m) + this._zoomButton() + '</div>') +
+      (banner ? this._banner(m, titles) : '<div class="header">' + m.logo + titles + this._zoomButton() + '</div>') +
       '<div class="content">' + (banner ? '' : this._picture(m)) +
         '<div class="info">' +
           this._big(m.ent.apparent_power || m.ent.power, m.mainText) +
@@ -3982,16 +3989,18 @@ class ZlinkyCard extends HTMLElement {
       '.hbadge ha-icon { --mdc-icon-size: 24px; }' +
       // The name and the pill share the line from a zero basis: the pill keeps its whole label and the name gives way
       // first, down to about 4 characters and its ellipsis; only past that does the pill shrink.
-      '.titles { flex: 1 1 0; min-width: 5ch; font-size: 16px; }' +
-      ':host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }' +
+      '.titles { flex: 1 1 0; min-width: 5ch; font-size: 16px; display: flex; flex-direction: column; }' +
+      // The name gives way first (ellipsis, 4 characters kept); the pill keeps its whole label, at most 51 % of the line.
+      '.trow { display: flex; align-items: center; gap: 8px; min-width: 0; }' +
+      '.trow .name { flex: 0 1 auto; min-width: 4ch; }' +
+      ':host([hide-title]) .titles .name, :host([hide-subtitle]) .titles > .sub { display: none; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
-      '.st { display: inline-flex; align-items: center; gap: 4px; flex: 0 1 auto; min-width: 0; max-width: 50%; overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
+      '.st { display: inline-flex; align-items: center; gap: 4px; flex: none; min-width: 0; max-width: 51%; box-sizing: border-box; overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
         ' white-space: nowrap; background: color-mix(in srgb, var(--zl-color) 15%, transparent);' +
         ' color: color-mix(in srgb, var(--zl-color) 50%, var(--primary-text-color, #212121)); }' +
       '.stt { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
-      // With a subtitle the titles span two lines: the pill and the detail button stay on the title's line.
-      '.header.sub2 .st { align-self: flex-start; margin-top: 4px; }' +
+      // With a subtitle the titles span two lines: the detail button stays on the title's line.
       '.header.sub2 .zoom { align-self: flex-start; margin-top: 0; }' +
       '.dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--zl-color); }' +
       '.zoom { flex: none; width: 24px; height: 24px; margin: -4px -4px -4px 0; border-radius: 50%;' +
@@ -4084,7 +4093,9 @@ class ZlinkyCard extends HTMLElement {
         ' .tl { white-space: normal; overflow-wrap: break-word; } .tv small { display: block; } }' +
       '@container (max-width: 200px) { ha-card.mini .picture { width: calc(56px * var(--zl-ms, 1)); height: calc(70px * var(--zl-ms, 1)); } ha-card.mini .content { gap: 8px; } }' +
       // At the mini's narrowest (156 px) the dot-only pill keeps its 16 px (the name its 4 characters): it never gets squashed.
-      '@container (max-width: 180px) { .titles { min-width: 4ch; } .stt { display: none; } .st { flex: none; padding: 5px; } }' +
+      // Narrow card: the pill on its own line under the subtitle; 200 px or less: its dot alone (label in its tooltip).
+      '@container (max-width: 260px) { .trow { display: contents; } .titles > .sub { order: 2; } .titles .st { order: 3; align-self: flex-start; max-width: 100%; margin-top: 2px; } }' +
+      '@container (max-width: 200px) { .titles { min-width: 4ch; } .stt { display: none; } .st { flex: none; padding: 5px; } }' +
       // ── Illustrated header: a 90 px banner edge to edge at the top of the card (the card's 12 px padding undone),
       // the wall and the meter's panel at the right, a 10 px tiled floor strip along the bottom. meter_size scales the
       // picture from its bottom right corner; above 100 the banner grows with it.
@@ -4117,16 +4128,28 @@ class ZlinkyCard extends HTMLElement {
       '.zl-pv { fill: #2b4f8a; stroke: #9fb3cc; stroke-width: .6; } .zl-pvl { stroke: #7f9bc4; stroke-width: .4; fill: none; }' +
       '.night .zl-pv { fill: #22385e; } .night .zl-panel .zl-sun { fill: #f4f1dc; }' +
       // The header on the wall, at the left of the picture (the picture starts 130 px from the right at meter_size 100).
-      '.banner .header { position: absolute; z-index: 1; left: 12px; top: 0; bottom: 10px; right: calc(130px * var(--zl-ms) + 4px); margin: 0; min-width: 0; }' +
-      '.banner .header.sub2 .st, .banner .header.sub2 .zoom { align-self: center; margin-top: 0; }' +
+      '.banner .header { position: absolute; z-index: 1; left: 12px; top: 0; bottom: 10px; right: calc(130px * var(--zl-ms, 1) + 4px); margin: 0; min-width: 0; }' +
+      // Beside the picture the header has far less room than the card: below 250 px of header (about 95 px for the pill
+      // at 51 % of the titles) the pill goes under the subtitle, i.e. on a card up to 400 px (430 px with the detail button).
+      '@container (max-width: 400px) { .banner .trow { display: contents; } .banner .titles > .sub { order: 2; } .banner .titles .st { order: 3; align-self: flex-start; max-width: 100%; margin-top: 2px; } }' +
+      '@container (max-width: 430px) { .banner.zbtn .trow { display: contents; } .banner.zbtn .titles > .sub { order: 2; } .banner.zbtn .titles .st { order: 3; align-self: flex-start; max-width: 100%; margin-top: 2px; } }' +
+
       '.banner .hbadge { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--zl-color) 22%, transparent); }' +
       '.banner.night .hbadge { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }' +
       '.banner .name { color: inherit; } .banner .sub { font-size: 13px; color: #3b5b78; } .banner.night .sub { color: rgba(255,255,255,.78); }' +
-      '.banner .st { background: rgba(255,255,255,.7); color: color-mix(in srgb, var(--zl-color) 55%, #0d2a45); }' +
-      '.banner.night .st { background: rgba(255,255,255,.1); color: color-mix(in srgb, var(--zl-color) 45%, #fff); }' +
-      '.banner .zoom { color: #3b5b78; background: rgba(255,255,255,.55); margin: 0; } .banner.night .zoom { color: #fff; background: rgba(255,255,255,.12); }' +
+      '.banner .st { background: color-mix(in srgb, var(--zl-color) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--zl-color) 45%, #0d2a45); }' +
+      '.banner.night .st { background: color-mix(in srgb, var(--zl-color) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--zl-color) 35%, #ffffff); }' +
+      // The detail button in the banner's top right corner, 24 px, frosted (day) or glassy (night); the meter's panel
+      // and the header step 30 px aside from it.
+      '.banner > .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; width: 24px; height: 24px; margin: 0; border-radius: 50%; display: grid; place-items: center;' +
+        ' color: #33506b; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }' +
+      '.banner > .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }' +
+      '.banner.night > .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }' +
+      '.banner.night > .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }' +
+      '.banner.zbtn .zl-scene { right: 30px; } ha-card .banner.zbtn .picture { right: calc(30px + 4.2px * var(--zl-ms, 1)); }' +
+      '.banner.zbtn .header { right: calc(130px * var(--zl-ms, 1) + 34px); }' +
       // Narrow card: the wall accessories go, the meter and its panel stay; narrower still, the icon gives the title room.
-      '@container (max-width: 300px) { .zl-acc { display: none; } .banner .header { right: calc(80px * var(--zl-ms) + 4px); } }' +
+      '@container (max-width: 300px) { .zl-acc { display: none; } .banner .header { right: calc(80px * var(--zl-ms, 1) + 4px); } .banner.zbtn .header { right: calc(80px * var(--zl-ms, 1) + 34px); } }' +
       '@container (max-width: 210px) { .banner .hbadge { display: none; } .banner .header { left: 10px; } }' +
     '</style><div class="sizer" aria-hidden="true">' + '<i></i> '.repeat(10) + '</div>';
   }
