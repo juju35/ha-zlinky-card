@@ -13,6 +13,7 @@
 
 ### Fixes
 - Header: the banner's Linky meter no longer touches the top of the banner (6 px clear, still standing on the strip); the Cost and Base-or-off-peak rows line up with the rest of the card instead of being indented.
+- **No repeated reading**: the banner's subtitle tells the tariff period (else the meter's label) without the live power, which the body shows big just below (full card, unfolded mini card).
 
 ## 1.20.0 - 2026-11-15
 

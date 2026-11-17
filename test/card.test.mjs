@@ -104,7 +104,9 @@ test("finds Zigbee2MQTT TIC entities", () => {
   assert.match(html, /Index 1/);
   assert.match(html, /Index 2/);
   // The illustrated header names the tariff period (Off-peak), the classic header keeps the meter's own label.
-  assert.match(html, /1[\s ,.]?200 VA · Off-peak/);
+  // The reading is shown big in the body, not repeated in the subtitle.
+  assert.match(html, /<div class="sub">Off-peak<\/div>/);
+  assert.doesNotMatch(html, /VA · Off-peak/);
   assert.match(make(ZlinkyCard, hass, { illustration: false }).shadowRoot.innerHTML, /HEURE CREUSE/);
 });
 
@@ -1732,7 +1734,11 @@ test("illustrated header: producing, off-peak / peak and offline states", () => 
   const hass = zhaHass({ extra: { [`${p}ptec`]: st("HC..") } });
   let html = make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML;
   assert.match(html, /class="banner zl-cons zl-hc"/);
-  assert.match(html, /440 VA · Off-peak/);
+  assert.match(html, /<div class="sub">Off-peak<\/div>/);
+  // Unfolded, the mini card's subtitle does not repeat the reading either.
+  const mini = make(ZlinkyMiniCard, hass, { language: "en" });
+  mini._setZoom(true);
+  assert.match(mini.shadowRoot.innerHTML, /<div class="sub">Off-peak<\/div>/);
   assert.match(html, /class="zl-moon"/);
   hass.states[`${p}ptec`] = st("HPJR");
   assert.match(make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML, /class="banner zl-cons zl-hp"/);

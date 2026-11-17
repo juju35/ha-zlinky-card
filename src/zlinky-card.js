@@ -3542,10 +3542,10 @@ class ZlinkyCard extends HTMLElement {
       this._picture(m) + `<div class="header${titles.indexOf('class="sub"') >= 0 ? ' sub2' : ''}">${m.logo}${titles}</div>${zoom}</div>`;
   }
 
-  // The banner's subtitle: the live reading and the tariff period (Off-peak / Peak, else the meter's own label).
+  // The banner's subtitle: the tariff period (Off-peak / Peak, else the meter's own label). The live reading is not
+  // repeated: the body shows it big just below (full card, unfolded mini card).
   _bannerSub(m) {
-    var period = m.period ? this._t(m.period === 'hc' ? 'off_peak' : 'peak_hours') : m.tariff;
-    return [m.online && m.main != null ? m.mainText : '', period].filter((x) => x).join(' · ') || this._t('meter');
+    return (m.period ? this._t(m.period === 'hc' ? 'off_peak' : 'peak_hours') : m.tariff) || this._t('meter');
   }
 
   // The meter's rolling screens, built only from the data the ZLinky actually
