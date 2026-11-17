@@ -4,11 +4,12 @@
 
 ### Features
 - **Illustrated header** (both cards): a 90 px animated banner edge to edge at the top of the card, the enlarged Linky meter (the card's own drawing, its live screen and blinking LED) in its technical-sheath panel on the right, a tiled floor strip along the bottom, the title, subtitle and status pill on the wall at the left. The scene follows the meter: **consuming** (current flowing to a lit bulb, faster as the load rises), **producing** (current flowing back from a solar panel, in green — a negative active power or the injection index rising), and the **off-peak / peak** contactor (moon or sun, from the tariff period, also named in the subtitle). The header icon (a flash) always takes the status color: green / orange / red load, green while producing, grey offline.
-- **Night mode** for the illustration: follows `sun.sun`, then Home Assistant's dark mode; force it with `illustration_theme: day | night`. `illustration: false` keeps the classic header with the meter beside the reading (as does `icon`). Both options are in the visual editor of both cards. `meter_size` scales the banner's meter; above 100 the banner grows with it.
+- **Night mode** for the illustration: night when `sun.sun` is below the horizon or Home Assistant's theme is dark; force it with `illustration_theme: day | night`. `illustration: false` keeps the classic header with the meter beside the reading (as does `icon`). Both options are in the visual editor of both cards. `meter_size` scales the banner's meter; above 100 the banner grows with it.
 - **Status pill** right after the title on its row (8 px gap, centred on the title), in the icon's status colour, frosted on the banner day and night; it moves under the subtitle when the header is narrow (up to 400 px wide beside the meter, 260 px in the classic header) and shows its dot alone at 200 px or less.
 - Mini card: the expand / collapse button sits in the banner's top right corner (24 px, frosted), the meter's panel steps aside from it.
 - The banner's title block now stops at the meter's picture instead of running under it.
 - Screenshots: the header's flash icon (and the comparison section's scale icon) were drawn empty by the screenshot script, which lacked their paths.
+- Night picture with the dark theme even while the sun is up.
 
 ## 1.20.0 - 2026-11-15
 

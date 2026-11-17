@@ -20,7 +20,7 @@ Pick the ZLinky, the card finds all its entities by itself.
 
 [![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-zlinky-card&category=plugin)
 
-The card opens on an illustrated header: the Linky meter in its panel, with its live screen. While the meter is online, it animates: the LED blinks and glows and the current flows along the cable, faster as power rises — to a lit bulb while consuming, back from a solar panel while producing — and a contactor shows off-peak (moon) or peak (sun) hours. The header icon takes the status color, and the scene turns to night with the sun (or Home Assistant's dark mode). It settles to a still card when offline (and honours `prefers-reduced-motion`).
+The card opens on an illustrated header: the Linky meter in its panel, with its live screen. While the meter is online, it animates: the LED blinks and glows and the current flows along the cable, faster as power rises — to a lit bulb while consuming, back from a solar panel while producing — and a contactor shows off-peak (moon) or peak (sun) hours. The header icon takes the status color, and the scene turns to night after sunset or with Home Assistant's dark mode. It settles to a still card when offline (and honours `prefers-reduced-motion`).
 
 | | Light | Dark |
 |---|---|---|
@@ -170,7 +170,7 @@ entities:
 | `show_subtitle` | ❌ | `true` | Show the subtitle under the title |
 | `icon` | ❌ | Illustration | Replaces the meter illustration with an icon (with the classic header) |
 | `illustration` | ❌ | `true` | Illustrated header: the meter in its panel on a 90 px banner, with the consuming / producing / off-peak and peak states. `false` keeps the classic header, the meter beside the reading. Set from the visual editor too (both cards) |
-| `illustration_theme` | ❌ | `auto` | `auto` (night when `sun.sun` is below the horizon, else with Home Assistant's dark mode), `day` or `night`. Set from the visual editor too (both cards) |
+| `illustration_theme` | ❌ | `auto` | `auto` (night when `sun.sun` is below the horizon or Home Assistant's theme is dark), `day` or `night`. Set from the visual editor too (both cards) |
 | `subscribed_power` | ❌ | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA, per phase on a three-phase meter so 1 A = 0.6 kVA there). In the visual editor, the **Subscribed power sensor** field replaces the number |
 | `load_warning` | ❌ | `50` | Share of the subscribed power (%) from which the load is moderate (orange) |
 | `load_critical` | ❌ | `80` | Share of the subscribed power (%) from which the load is high (red) |
