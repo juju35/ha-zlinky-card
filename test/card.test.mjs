@@ -851,7 +851,7 @@ test("mini card: the detail button sits in the banner's top right corner, out of
     const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
     if (zoomed) card._setZoom(true);
     const html = card.shadowRoot.innerHTML;
-    assert.match(html, /class="banner zl-cons zbtn"/);
+    assert.match(html, zoomed ? /class="banner zl-cons bare zbtn"/ : /class="banner zl-cons zbtn"/);
     assert.match(html, new RegExp(`<\\/div><\\/div><button class="zoom" data-action="zoom"[^>]*><ha-icon icon="mdi:arrow-${zoomed ? "collapse" : "expand"}"><\\/ha-icon><\\/button><\\/div>`));
     const zoom = rules(html, ".banner > .zoom");
     assert.match(zoom, /position: absolute; z-index: 2; top: 5px; right: 5px; width: 24px; height: 24px;/);
@@ -1713,28 +1713,47 @@ test("editor: tarif_edf toggle, off by default and not written", () => {
 
 // ── Illustrated header ───────────────────────────────────────────────────────
 
-test("illustrated header: the meter in its panel on the banner, a flash icon, the classic header with illustration: false or an icon", () => {
+test("illustrated header: the full card and the unfolded mini card draw the meter big in the body, the compact mini card in its panel on the banner", () => {
   for (const Card of [ZlinkyCard, ZlinkyMiniCard]) {
     const html = make(Card, zhaHass(), { language: "en" }).shadowRoot.innerHTML;
-    assert.match(html, Card === ZlinkyMiniCard ? /<div class="banner zl-cons zbtn"><svg class="zl-scene"/ : /<div class="banner zl-cons"><svg class="zl-scene"/);
-    assert.match(html, /<div class="ground"><\/div><div class="picture live/);
     assert.match(html, /icon="mdi:flash"/);
-    // The meter is drawn once, in the banner (no second one beside the reading).
+    // The meter is drawn once.
     assert.equal(html.match(/class="picture/g).length, 1);
+    if (Card === ZlinkyMiniCard) {
+      assert.match(html, /<div class="banner zl-cons zbtn"><svg class="zl-scene"/);
+      assert.match(html, /<div class="ground"><\/div><div class="picture live/);
+      assert.match(html, /class="zl-gtl"/);
+    } else {
+      // The banner keeps the bulb and the cable (no sheath, no meter), the meter is the hero's picture.
+      assert.match(html, /<div class="banner zl-cons bare"><svg class="zl-scene"/);
+      assert.doesNotMatch(html, /class="zl-gtl"/);
+      assert.match(html, /<div class="hero big"><div class="picture live/);
+    }
     for (const config of [{ illustration: false }, { icon: "mdi:home" }]) {
       const classic = make(Card, zhaHass(), { language: "en", ...config }).shadowRoot.innerHTML;
       assert.doesNotMatch(classic, /class="banner/);
+      assert.doesNotMatch(classic, /class="hero big"/);
     }
   }
-  assert.match(rules(cardCss(), ".banner"), /height: calc\(10px \+ 80px \* max\(1, var\(--zl-ms, 1\)\)\)/);
-  assert.match(rules(cardCss(), ".banner .ground"), /height: 10px/);
+  const mini = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+  mini._setZoom(true);
+  const unfolded = mini.shadowRoot.innerHTML;
+  assert.match(unfolded, /<div class="banner zl-cons bare zbtn">/);
+  assert.match(unfolded, /<div class="hero big"><div class="picture live/);
+  assert.equal(unfolded.match(/class="picture/g).length, 1);
+  const css = cardCss();
+  assert.match(rules(css, ".banner"), /height: calc\(10px \+ 80px \* max\(1, var\(--zl-ms, 1\)\)\)/);
+  assert.match(css, /\.banner\.bare \{ height: 90px; \}/);
+  assert.match(rules(css, ".banner .ground"), /height: 10px/);
+  // Big in the body: 120 to 200 px wide (about 40 % of the card), times meter_size.
+  assert.match(css, /\.hero\.big \.picture \{ width: calc\(clamp\(120px, 40cqw, 200px\) \* var\(--zl-ms, 1\)\);/);
 });
 
 test("illustrated header: producing, off-peak / peak and offline states", () => {
   const p = "sensor.lixee_zlinky_tic_";
   const hass = zhaHass({ extra: { [`${p}ptec`]: st("HC..") } });
   let html = make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML;
-  assert.match(html, /class="banner zl-cons zl-hc"/);
+  assert.match(html, /class="banner zl-cons zl-hc bare"/);
   assert.match(html, /<div class="sub" title="Off-peak">Off-peak<\/div>/);
   // Unfolded, the mini card's subtitle does not repeat the reading either.
   const mini = make(ZlinkyMiniCard, hass, { language: "en" });
@@ -1742,27 +1761,27 @@ test("illustrated header: producing, off-peak / peak and offline states", () => 
   assert.match(mini.shadowRoot.innerHTML, /<div class="sub" title="Off-peak">Off-peak<\/div>/);
   assert.match(html, /class="zl-moon"/);
   hass.states[`${p}ptec`] = st("HPJR");
-  assert.match(make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML, /class="banner zl-cons zl-hp"/);
+  assert.match(make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML, /class="banner zl-cons zl-hp bare"/);
   // A negative active power: producing, in green, the solar panel instead of the bulb.
   const prod = zhaHass();
   prod.states[`${p}puissance`] = st("-900", { device_class: "power", unit_of_measurement: "W" });
   html = make(ZlinkyCard, prod, { language: "en" }).shadowRoot.innerHTML;
-  assert.match(html, /class="banner zl-prod"/);
+  assert.match(html, /class="banner zl-prod bare"/);
   assert.match(html, /title="Producing"/);
   assert.match(html, /class="zl-panel"/);
   assert.match(html, /--zl-color: var\(--success-color/);
   // The injection index rising also means producing.
   const inj = zhaHass();
   const card = make(ZlinkyCard, inj, { language: "en" });
-  assert.match(card.shadowRoot.innerHTML, /class="banner zl-cons"/);
+  assert.match(card.shadowRoot.innerHTML, /class="banner zl-cons bare"/);
   inj.states[`${p}summation_received`] = st("0.4", { device_class: "energy", unit_of_measurement: "kWh" });
   card.hass = { ...inj, states: { ...inj.states } };
-  assert.match(card.shadowRoot.innerHTML, /class="banner zl-prod"/);
+  assert.match(card.shadowRoot.innerHTML, /class="banner zl-prod bare"/);
   // Offline: no flow, the icon in grey.
   const off = zhaHass();
   for (const id of Object.keys(off.states)) if (id.includes("zlinky")) off.states[id] = st("unavailable");
   html = make(ZlinkyCard, off, { language: "en" }).shadowRoot.innerHTML;
-  assert.match(html, /class="banner zl-off"/);
+  assert.match(html, /class="banner zl-off bare"/);
   assert.doesNotMatch(html, /class="zl-flow"/);
   assert.match(html, /--zl-color: var\(--disabled-text-color/);
 });

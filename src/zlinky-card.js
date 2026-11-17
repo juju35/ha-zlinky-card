@@ -2968,7 +2968,9 @@ var zlUidN = 0;
 // the wall at its left, by state: the off-peak / peak contactor (moon or sun), and the cable to the home with the
 // current flowing along it, to a lit bulb while consuming, from a solar panel while producing (none offline).
 // `uid` keeps the ids of each card apart. Everything left of x 70 is plain wall: the title sits there.
-function zlSceneSvg(uid, state, period) {
+// `bare`: the scene without the meter's sheath (the meter is drawn big in the card's body): the bulb or the solar
+// panel and the contactor, fed by a cable coming from the right edge.
+function zlSceneSvg(uid, state, period, bare) {
   var acc = '';
   if (period) {
     var glyph = period === 'hc'
@@ -2987,10 +2989,12 @@ function zlSceneSvg(uid, state, period) {
         '<rect class="zl-base" x="93.6" y="61.2" width="4.8" height="3.6" rx=".8"/><rect class="zl-socket" x="92" y="64.6" width="8" height="3.6" rx="1"/></g>';
     acc += '<path class="zl-cable" d="M131 68H96"/><path class="zl-flow" d="M131 68H96"/>' + end;
   }
+  if (bare) acc = acc.replace(/M131 68H96/g, 'M140 68H96').replace('M116 20V9H131', 'M116 20V9H140');
   return `<svg class="zl-scene" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">` +
     `<defs><radialGradient id="zl-halo-${uid}"><stop offset="0" stop-color="#ffd65a" stop-opacity=".75"/><stop offset="1" stop-color="#ffd65a" stop-opacity="0"/></radialGradient></defs>` +
-    '<rect class="zl-gtl" x="120" y="-2" width="78" height="84" rx="3"/><rect class="zl-gtl-in" x="123" y="1" width="72" height="80" rx="2"/>' +
-    `<g class="zl-acc" transform="translate(-8 0)">${acc}</g></svg>`;
+    (bare ? `<g class="zl-acc" transform="translate(60 0)">${acc}</g></svg>` :
+      '<rect class="zl-gtl" x="120" y="-2" width="78" height="84" rx="3"/><rect class="zl-gtl-in" x="123" y="1" width="72" height="80" rx="2"/>' +
+      `<g class="zl-acc" transform="translate(-8 0)">${acc}</g></svg>`);
 }
 
 // ── Formatting ───────────────────────────────────────────────────────────────
@@ -3573,15 +3577,17 @@ class ZlinkyCard extends HTMLElement {
   // The banner: the wall and its panel, the ground strip, the card's meter over the panel, then the header (icon in
   // the status color, title, subtitle, status pill, detail button) on the wall at the left. Night: darker wall,
   // lit bulb. meter_size scales the picture; above 100 the banner grows with it (the meter is never cut).
-  _banner(m, titles) {
+  // `meter: false` (full card, unfolded mini card): the meter is drawn big in the body, the banner keeps the bulb or
+  // the solar panel and the contactor at the right, and the text gets the rest.
+  _banner(m, titles, meter = true) {
     var c = this._config;
     var state = !m.online ? 'off' : m.producing ? 'prod' : 'cons';
     var zoom = this._zoomButton();
-    var cls = `banner zl-${state}${m.period ? ` zl-${m.period}` : ''}${zlIsNight(this._hass, c) ? ' night' : ''}${zoom ? ' zbtn' : ''}`;
-    var ms = this._ms();
+    var cls = `banner zl-${state}${m.period ? ` zl-${m.period}` : ''}${meter ? '' : ' bare'}${zlIsNight(this._hass, c) ? ' night' : ''}${zoom ? ' zbtn' : ''}`;
+    var ms = meter ? this._ms() : 1;
     // The detail button sits in the banner's top right corner; the picture steps aside from it (.zbtn).
-    return `<div class="${cls}"${ms !== 1 ? ` style="--zl-ms:${ms}"` : ''}>${zlSceneSvg(this._uidv(), state, m.period)}<div class="ground"></div>` +
-      this._picture(m) + `<div class="header${titles.indexOf('class="sub"') >= 0 ? ' sub2' : ''}">${m.logo}${titles}</div>${zoom}</div>`;
+    return `<div class="${cls}"${ms !== 1 ? ` style="--zl-ms:${ms}"` : ''}>${zlSceneSvg(this._uidv(), state, m.period, !meter)}<div class="ground"></div>` +
+      (meter ? this._picture(m) : '') + `<div class="header${titles.indexOf('class="sub"') >= 0 ? ' sub2' : ''}">${m.logo}${titles}</div>${zoom}</div>`;
   }
 
   // The banner's subtitle: the tariff period (Off-peak / Peak, else the meter's own label). The live reading is not
@@ -3790,7 +3796,8 @@ class ZlinkyCard extends HTMLElement {
     if (volts != null && volts > 0) chips.push(this._chip('mdi:sine-wave', `${l1}${zlNum(lang, volts, 0)} V`, ent.voltage));
     if (!m.online) chips.push(`<span class="chip"><ha-icon icon="mdi:lan-disconnect"></ha-icon>${this._t('offline')}</span>`);
     var banner = this._bannerOn();
-    var hero = '<div class="hero">' + (banner ? '' : this._picture(m)) +
+    // Under the illustrated header the meter is drawn big here, its screen readable (the banner keeps the scene).
+    var hero = `<div class="hero${banner ? ' big' : ''}">` + this._picture(m) +
       '<div class="info">' +
         this._big(ent.apparent_power || ent.power, m.mainText) +
         (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') + this._loadBar(m) +
@@ -3865,7 +3872,7 @@ class ZlinkyCard extends HTMLElement {
     }
 
     var head = banner
-      ? this._banner(m, this._titles(m, this._bannerSub(m)))
+      ? this._banner(m, this._titles(m, this._bannerSub(m)), false)
       : '<div class="header sub2">' + m.logo + this._titles(m, m.sub) + this._zoomButton() + '</div>';
     this._setHtml(this._styles(m.color) + '<ha-card>' + head + hero + this._tempo(ent) + stats + graph + this._costHtml(lang) + this._compareHtml(lang) + index + phases +
     '</ha-card>');
@@ -4188,6 +4195,14 @@ class ZlinkyCard extends HTMLElement {
       '.night .zl-pv { fill: #22385e; } .night .zl-panel .zl-sun { fill: #f4f1dc; }' +
       // The header on the wall, at the left of the picture (the picture starts 130 px from the right at meter_size 100).
       '.banner .header { position: absolute; z-index: 1; left: 12px; top: 0; bottom: 10px; right: calc(130px * var(--zl-ms, 1) * var(--zl-bk, 1) + 4px); margin: 0; min-width: 0; }' +
+      // Without the meter (full card, unfolded mini card): a 90 px banner, the bulb or the panel and the contactor at
+      // the right, the text up to them.
+      '.banner.bare { height: 90px; } .banner.bare .zl-scene { width: calc(200px * var(--zl-bk, 1)); height: calc(80px * var(--zl-bk, 1)); }' +
+      '.banner.bare .header { right: calc(78px * var(--zl-bk, 1) + 4px); } .banner.bare.zbtn .header { right: calc(78px * var(--zl-bk, 1) + 34px); }' +
+      // The meter big in the body: about 40 % of the card (120 to 200 px wide), its screen readable; on a narrow card
+      // it stands above the readings.
+      '.hero.big .picture { width: calc(clamp(120px, 40cqw, 200px) * var(--zl-ms, 1)); max-width: 100%; height: auto; aspect-ratio: 108 / 135; }' +
+      '@container (max-width: 320px) { .hero.big { flex-direction: column; align-items: stretch; } .hero.big .picture { align-self: center; width: calc(min(150px, 62cqw) * var(--zl-ms, 1)); } }' +
 
       '.banner .hbadge { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--zl-color) 22%, transparent); }' +
       '.banner.night .hbadge { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }' +
@@ -4205,6 +4220,7 @@ class ZlinkyCard extends HTMLElement {
       '.banner.zbtn .header { right: calc(130px * var(--zl-ms, 1) * var(--zl-bk, 1) + 34px); }' +
       // Narrow card: the wall accessories go, the meter and its panel stay; narrower still, the icon gives the title room.
       '@container (max-width: 300px) { .zl-acc { display: none; } .banner .header { right: calc(80px * var(--zl-ms, 1) * var(--zl-bk, 1) + 4px); } .banner.zbtn .header { right: calc(80px * var(--zl-ms, 1) * var(--zl-bk, 1) + 34px); } }' +
+      '@container (max-width: 300px) { .banner.bare .zl-acc { display: inline; } }' +
       // Narrower cards: the meter and its panel are drawn smaller (80 %, then 65 %), so that the title stays whole and
       // the status pill keeps its label beside it.
       '@container (max-width: 340px) { .banner { --zl-bk: .8; } }' +
