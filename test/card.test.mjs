@@ -105,7 +105,7 @@ test("finds Zigbee2MQTT TIC entities", () => {
   assert.match(html, /Index 2/);
   // The illustrated header names the tariff period (Off-peak), the classic header keeps the meter's own label.
   // The reading is shown big in the body, not repeated in the subtitle.
-  assert.match(html, /<div class="sub">Off-peak<\/div>/);
+  assert.match(html, /<div class="sub" title="Off-peak">Off-peak<\/div>/);
   assert.doesNotMatch(html, /VA · Off-peak/);
   assert.match(make(ZlinkyCard, hass, { illustration: false }).shadowRoot.innerHTML, /HEURE CREUSE/);
 });
@@ -816,8 +816,8 @@ test("narrow header: the title keeps ~4 characters, the pill shrinks and turns i
   const pill = rules(css, ".st");
   assert.match(pill, /flex: none/);
   assert.match(pill, /min-width: 0/);
-  assert.match(pill, /max-width: 51%/);
-  assert.match(rules(css, ".trow .name"), /flex: 0 1 auto; min-width: 4ch/);
+  assert.match(pill, /max-width: 100%/);
+  assert.match(rules(css, ".trow .name"), /flex: 0 1 auto; min-width: 0/);
   assert.match(rules(css, ".zoom"), /flex: none/);
   assert.match(css, /@container \(max-width: \d+px\) \{[^@]*\.stt \{ display: none; \}/);
   // Shown as a dot only, the status stays in the tooltip and for screen readers.
@@ -827,19 +827,20 @@ test("narrow header: the title keeps ~4 characters, the pill shrinks and turns i
   }
 });
 
-test("the status pill sits right after the title, on its row; on a narrow card it goes under the subtitle", () => {
+test("the status pill sits right after the title, on its row; when it does not fit there it goes under the subtitle", () => {
   const css = cardCss();
   for (const config of [{}, { illustration: false }]) {
     const html = make(ZlinkyCard, zhaHass(), { language: "en", ...config }).shadowRoot.innerHTML;
     assert.match(html, /<div class="header sub2">/);
-    assert.match(html, /<div class="titles"><div class="trow"><div class="name">[^<]*<\/div><span class="st" role="img" title="Low load"[\s\S]*?<\/span><\/span><\/div><div class="sub">/);
+    assert.match(html, /<div class="titles"><div class="trow"><div class="name">[^<]*<\/div><span class="st" role="img" title="Low load"[\s\S]*?<\/span><\/span><\/div><div class="sub"[^>]*>/);
   }
   assert.doesNotMatch(make(ZlinkyMiniCard, zhaHass()).shadowRoot.innerHTML, /header sub2/);
   assert.match(rules(css, ".trow"), /display: flex; align-items: center; gap: 8px/);
-  assert.match(css, /@container \(max-width: 260px\) \{ \.trow \{ display: contents; \} \.titles > \.sub \{ order: 2; \} \.titles \.st \{ order: 3;/);
-  // Beside the meter's picture the banner header is narrower: the pill goes under the subtitle up to 400 px (430 with the detail button)
-  assert.match(css, /@container \(max-width: 400px\) \{ \.banner \.trow \{ display: contents; \}/);
-  assert.match(css, /@container \(max-width: 430px\) \{ \.banner\.zbtn \.trow \{ display: contents; \}/);
+  // Its place is measured (zlPlacePill), never by a width tier: data-wrap puts it under the subtitle, data-dot keeps its dot
+  assert.match(css, /\[data-wrap\] \.trow \{ display: contents; \} \[data-wrap\] \.titles > \.sub \{ order: 2; \}/);
+  assert.match(css, /\[data-wrap\] \.titles \.st \{ order: 3;/);
+  assert.match(css, /\[data-dot\] \.stt \{ display: none; \}/);
+  assert.doesNotMatch(css, /@container \(max-width: \d+px\) \{ (\.banner(\.zbtn)? )?\.trow \{ display: contents/);
   // On the banner: the pill as on the sky, day and night
   assert.match(rules(css, ".banner .st"), /background: color-mix\(in srgb, var\(--zl-color\) 18%, rgba\(255,255,255,\.78\)\); color: color-mix\(in srgb, var\(--zl-color\) 45%, #0d2a45\)/);
   assert.match(rules(css, ".banner.night .st"), /background: color-mix\(in srgb, var\(--zl-color\) 30%, rgba\(8,18,38,\.55\)\); color: color-mix\(in srgb, var\(--zl-color\) 35%, #ffffff\)/);
@@ -908,7 +909,7 @@ test("the status pill keeps its whole label while the name has room: the name bl
   // flex: 1 1 auto let the name's own width win, so "Moderate load" became "Mod…" next to a long name at 245-320 px.
   assert.match(rules(css, ".titles"), /flex: 1 1 0[;\s]/);
   assert.doesNotMatch(rules(css, ".titles"), /flex: 1 1 auto/);
-  assert.match(rules(css, ".st"), /flex: none; min-width: 0; max-width: 51%/);
+  assert.match(rules(css, ".st"), /flex: none; min-width: 0; max-width: 100%/);
 });
 
 test("narrowest mini card (156 px): the dot-only pill never shrinks below its 16 px, the name keeps 4 characters", () => {
@@ -1734,11 +1735,11 @@ test("illustrated header: producing, off-peak / peak and offline states", () => 
   const hass = zhaHass({ extra: { [`${p}ptec`]: st("HC..") } });
   let html = make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML;
   assert.match(html, /class="banner zl-cons zl-hc"/);
-  assert.match(html, /<div class="sub">Off-peak<\/div>/);
+  assert.match(html, /<div class="sub" title="Off-peak">Off-peak<\/div>/);
   // Unfolded, the mini card's subtitle does not repeat the reading either.
   const mini = make(ZlinkyMiniCard, hass, { language: "en" });
   mini._setZoom(true);
-  assert.match(mini.shadowRoot.innerHTML, /<div class="sub">Off-peak<\/div>/);
+  assert.match(mini.shadowRoot.innerHTML, /<div class="sub" title="Off-peak">Off-peak<\/div>/);
   assert.match(html, /class="zl-moon"/);
   hass.states[`${p}ptec`] = st("HPJR");
   assert.match(make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML, /class="banner zl-cons zl-hp"/);

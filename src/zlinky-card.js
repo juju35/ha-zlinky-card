@@ -3172,6 +3172,34 @@ function zlMonthProgress(now, tz) {
 }
 
 // ── Base card ────────────────────────────────────────────────────────────────
+
+// The status pill's place, decided by measurement after each render and each new width (the same rule on every
+// card): on the title row, right after the title, only when the whole title and the pill's whole label fit there;
+// otherwise on its own line under the subtitle (one line), the title whole on its row (cut only when it does not fit
+// alone). When the label is still cut there, or the text block leaves the banner or runs over its ground strip, the
+// pill keeps its dot alone, on the title row (its label stays in title and aria-label). A card of 200 px or less
+// shows the dot alone anyway (CSS), beside the title.
+function zlPlacePill(head, row, ground) {
+  if (!head) return;
+  head.removeAttribute('data-wrap');
+  head.removeAttribute('data-dot');
+  var pill = row.querySelector(':scope > .st');
+  var text = pill?.querySelector('.stt');
+  if (!text?.getBoundingClientRect || text.getBoundingClientRect().width <= 1) return;
+  var name = row.querySelector(':scope > .name');
+  var gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+  var title = name && getComputedStyle(name).display !== 'none' ? (name.scrollWidth > name.clientWidth ? name.scrollWidth : name.getBoundingClientRect().width) + gap : 0;
+  if (title + pill.getBoundingClientRect().width <= row.getBoundingClientRect().width + 0.5) return;
+  head.setAttribute('data-wrap', '');
+  var box = row.parentElement.getBoundingClientRect();
+  var frame = head.getBoundingClientRect();
+  var out = ground && (box.bottom > ground.getBoundingClientRect().top + 0.5 || box.top < frame.top - 0.5);
+  if (text.scrollWidth > text.clientWidth + 0.5 || out) {
+    head.removeAttribute('data-wrap');
+    head.setAttribute('data-dot', '');
+  }
+}
+
 class ZlinkyCard extends HTMLElement {
   static getConfigElement() {
     return document.createElement('zlinky-card-editor');
@@ -3214,6 +3242,18 @@ class ZlinkyCard extends HTMLElement {
   }
 
   connectedCallback() {
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === 'function') {
+      this._resize ??= new ResizeObserver((entries) => {
+        var w = Math.round(entries[entries.length - 1].contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
     clearInterval(this._timer);
     this._timer = setInterval(() => {
       this._statsAt = 0;
@@ -3222,6 +3262,8 @@ class ZlinkyCard extends HTMLElement {
   }
 
   disconnectedCallback() {
+    this._resize?.disconnect();
+    this._fitWidth = null;
     clearInterval(this._timer);
   }
 
@@ -3880,7 +3922,7 @@ class ZlinkyCard extends HTMLElement {
   // subtitle under them. On a narrow card the pill goes to its own line under the subtitle (see the container tiers).
   _titles(m, sub) {
     return `<div class="titles"><div class="trow"><div class="name">${zlEsc(m.name)}</div>${this._pill(m)}</div>` +
-      (sub != null ? `<div class="sub">${zlEsc(sub)}</div>` : '') + '</div>';
+      (sub != null ? `<div class="sub" title="${zlEsc(sub)}">${zlEsc(sub)}</div>` : '') + '</div>';
   }
 
   // The status pill. On a narrow card it shows its dot only: the status stays in its tooltip and accessible name.
@@ -3897,11 +3939,20 @@ class ZlinkyCard extends HTMLElement {
     var root = this.shadowRoot;
     if (!root.firstChild) {
       root.innerHTML = html;
-      return;
+    } else {
+      var tpl = document.createElement('template');
+      tpl.innerHTML = html;
+      zlMorph(root, tpl.content);
     }
-    var tpl = document.createElement('template');
-    tpl.innerHTML = html;
-    zlMorph(root, tpl.content);
+    this._fitPill();
+  }
+
+  // The status pill's place, on the banner and on the classic header (see zlPlacePill).
+  _fitPill() {
+    var row = this.shadowRoot?.querySelector?.('.titles > .trow');
+    if (!row) return;
+    var banner = row.closest('.banner');
+    zlPlacePill(banner || row.closest('.header'), row, banner?.querySelector('.ground'));
   }
 
   // A more-info chip, or a plain span when no entity is resolved or its tap is disabled (a button there would
@@ -3993,14 +4044,20 @@ class ZlinkyCard extends HTMLElement {
       '.titles { flex: 1 1 0; min-width: 5ch; font-size: 16px; display: flex; flex-direction: column; }' +
       // The name gives way first (ellipsis, 4 characters kept); the pill keeps its whole label, at most 51 % of the line.
       '.trow { display: flex; align-items: center; gap: 8px; min-width: 0; }' +
-      '.trow .name { flex: 0 1 auto; min-width: 4ch; }' +
+      '.trow .name { flex: 0 1 auto; min-width: 0; }' +
       ':host([hide-title]) .titles .name, :host([hide-subtitle]) .titles > .sub { display: none; }' +
       '.name { font-size: 16px; font-weight: 500; line-height: 1.25; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
       '.sub { font-size: 12px; color: var(--secondary-text-color); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
-      '.st { display: inline-flex; align-items: center; gap: 4px; flex: none; min-width: 0; max-width: 51%; box-sizing: border-box; overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
+      '.st { display: inline-flex; align-items: center; gap: 4px; flex: none; min-width: 0; max-width: 100%; box-sizing: border-box; overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
         ' white-space: nowrap; background: color-mix(in srgb, var(--zl-color) 15%, transparent);' +
         ' color: color-mix(in srgb, var(--zl-color) 50%, var(--primary-text-color, #212121)); }' +
       '.stt { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
+      // The pill right after the name only when the whole name and its whole label fit there (measured by the card, see
+      // zlPlacePill); otherwise on its own line under the subtitle (one line); when even that cuts its label or leaves
+      // the banner, and on a card of 200 px or less, its dot alone (label in its tooltip).
+      '[data-wrap] .trow { display: contents; } [data-wrap] .titles > .sub { order: 2; }' +
+      ' [data-wrap] .titles .st { order: 3; align-self: flex-start; max-width: 100%; margin-top: 2px; }' +
+      '[data-dot] .stt { display: none; } [data-dot] .titles .st { flex: none; padding: 5px; }' +
       // With a subtitle the titles span two lines: the detail button stays on the title's line.
       '.header.sub2 .zoom { align-self: flex-start; margin-top: 0; }' +
       '.dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--zl-color); }' +
@@ -4096,9 +4153,8 @@ class ZlinkyCard extends HTMLElement {
         ' .tl { white-space: normal; overflow-wrap: break-word; } .tv small { display: block; } }' +
       '@container (max-width: 200px) { ha-card.mini .picture { width: calc(56px * var(--zl-ms, 1)); height: calc(70px * var(--zl-ms, 1)); } ha-card.mini .content { gap: 8px; } }' +
       // At the mini's narrowest (156 px) the dot-only pill keeps its 16 px (the name its 4 characters): it never gets squashed.
-      // Narrow card: the pill on its own line under the subtitle; 200 px or less: its dot alone (label in its tooltip).
-      '@container (max-width: 260px) { .trow { display: contents; } .titles > .sub { order: 2; } .titles .st { order: 3; align-self: flex-start; max-width: 100%; margin-top: 2px; } }' +
-      '@container (max-width: 200px) { .titles { min-width: 4ch; } .stt { display: none; } .st { flex: none; padding: 5px; } }' +
+      // A card of 200 px or less (176 px of content): the pill's dot alone (label in its tooltip).
+      '@container (max-width: 176px) { .titles { min-width: 4ch; } .stt { display: none; } .st { flex: none; padding: 5px; } }' +
       // ── Illustrated header: a 90 px banner edge to edge at the top of the card (the card's 12 px padding undone),
       // the wall and the meter's panel at the right, a 10 px tiled floor strip along the bottom. meter_size scales the
       // picture from its bottom right corner; above 100 the banner grows with it.
@@ -4132,10 +4188,6 @@ class ZlinkyCard extends HTMLElement {
       '.night .zl-pv { fill: #22385e; } .night .zl-panel .zl-sun { fill: #f4f1dc; }' +
       // The header on the wall, at the left of the picture (the picture starts 130 px from the right at meter_size 100).
       '.banner .header { position: absolute; z-index: 1; left: 12px; top: 0; bottom: 10px; right: calc(130px * var(--zl-ms, 1) + 4px); margin: 0; min-width: 0; }' +
-      // Beside the picture the header has far less room than the card: below 250 px of header (about 95 px for the pill
-      // at 51 % of the titles) the pill goes under the subtitle, i.e. on a card up to 400 px (430 px with the detail button).
-      '@container (max-width: 400px) { .banner .trow { display: contents; } .banner .titles > .sub { order: 2; } .banner .titles .st { order: 3; align-self: flex-start; max-width: 100%; margin-top: 2px; } }' +
-      '@container (max-width: 430px) { .banner.zbtn .trow { display: contents; } .banner.zbtn .titles > .sub { order: 2; } .banner.zbtn .titles .st { order: 3; align-self: flex-start; max-width: 100%; margin-top: 2px; } }' +
 
       '.banner .hbadge { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--zl-color) 22%, transparent); }' +
       '.banner.night .hbadge { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }' +
