@@ -102,7 +102,9 @@ test("finds Zigbee2MQTT TIC entities", () => {
   assert.match(html, /1[\s ,.]?200 VA/);
   assert.match(html, /Index 1/);
   assert.match(html, /Index 2/);
-  assert.match(html, /HEURE CREUSE/);
+  // The illustrated header names the tariff period (Off-peak), the classic header keeps the meter's own label.
+  assert.match(html, /1[\s ,.]?200 VA · Off-peak/);
+  assert.match(make(ZlinkyCard, hass, { illustration: false }).shadowRoot.innerHTML, /HEURE CREUSE/);
 });
 
 test("full card: live power, load gauge, single phase without phase details", () => {
@@ -1664,4 +1666,86 @@ test("editor: tarif_edf toggle, off by default and not written", () => {
   assert.ok(!("tarif_edf" in sent.at(-1)));
   ed._valueChanged({ stopPropagation() {}, detail: { value: { ...ed._form.data, tarif_edf: true } } });
   assert.equal(sent.at(-1).tarif_edf, true);
+});
+
+// ── Illustrated header ───────────────────────────────────────────────────────
+
+test("illustrated header: the meter in its panel on the banner, a flash icon, the classic header with illustration: false or an icon", () => {
+  for (const Card of [ZlinkyCard, ZlinkyMiniCard]) {
+    const html = make(Card, zhaHass(), { language: "en" }).shadowRoot.innerHTML;
+    assert.match(html, /<div class="banner zl-cons"><svg class="zl-scene"/);
+    assert.match(html, /<div class="ground"><\/div><div class="picture live/);
+    assert.match(html, /icon="mdi:flash"/);
+    // The meter is drawn once, in the banner (no second one beside the reading).
+    assert.equal(html.match(/class="picture/g).length, 1);
+    for (const config of [{ illustration: false }, { icon: "mdi:home" }]) {
+      const classic = make(Card, zhaHass(), { language: "en", ...config }).shadowRoot.innerHTML;
+      assert.doesNotMatch(classic, /class="banner/);
+    }
+  }
+  assert.match(rules(cardCss(), ".banner"), /height: calc\(10px \+ 80px \* max\(1, var\(--zl-ms, 1\)\)\)/);
+  assert.match(rules(cardCss(), ".banner .ground"), /height: 10px/);
+});
+
+test("illustrated header: producing, off-peak / peak and offline states", () => {
+  const p = "sensor.lixee_zlinky_tic_";
+  const hass = zhaHass({ extra: { [`${p}ptec`]: st("HC..") } });
+  let html = make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML;
+  assert.match(html, /class="banner zl-cons zl-hc"/);
+  assert.match(html, /440 VA · Off-peak/);
+  assert.match(html, /class="zl-moon"/);
+  hass.states[`${p}ptec`] = st("HPJR");
+  assert.match(make(ZlinkyCard, hass, { language: "en" }).shadowRoot.innerHTML, /class="banner zl-cons zl-hp"/);
+  // A negative active power: producing, in green, the solar panel instead of the bulb.
+  const prod = zhaHass();
+  prod.states[`${p}puissance`] = st("-900", { device_class: "power", unit_of_measurement: "W" });
+  html = make(ZlinkyCard, prod, { language: "en" }).shadowRoot.innerHTML;
+  assert.match(html, /class="banner zl-prod"/);
+  assert.match(html, /title="Producing"/);
+  assert.match(html, /class="zl-panel"/);
+  assert.match(html, /--zl-color: var\(--success-color/);
+  // The injection index rising also means producing.
+  const inj = zhaHass();
+  const card = make(ZlinkyCard, inj, { language: "en" });
+  assert.match(card.shadowRoot.innerHTML, /class="banner zl-cons"/);
+  inj.states[`${p}summation_received`] = st("0.4", { device_class: "energy", unit_of_measurement: "kWh" });
+  card.hass = { ...inj, states: { ...inj.states } };
+  assert.match(card.shadowRoot.innerHTML, /class="banner zl-prod"/);
+  // Offline: no flow, the icon in grey.
+  const off = zhaHass();
+  for (const id of Object.keys(off.states)) if (id.includes("zlinky")) off.states[id] = st("unavailable");
+  html = make(ZlinkyCard, off, { language: "en" }).shadowRoot.innerHTML;
+  assert.match(html, /class="banner zl-off"/);
+  assert.doesNotMatch(html, /class="zl-flow"/);
+  assert.match(html, /--zl-color: var\(--disabled-text-color/);
+});
+
+test("illustrated header: night from illustration_theme, sun.sun, then the dark mode; unique ids per card", () => {
+  const night = (config, extra = {}) => /class="banner[^"]* night"/.test(make(ZlinkyCard, { ...zhaHass(), ...extra }, config).shadowRoot.innerHTML);
+  assert.equal(night({}), false);
+  assert.equal(night({}, { themes: { darkMode: true } }), true);
+  const sun = (s) => ({ states: { ...zhaHass().states, "sun.sun": st(s) }, themes: { darkMode: true } });
+  assert.equal(night({}, sun("above_horizon")), false);
+  assert.equal(night({}, sun("below_horizon")), true);
+  assert.equal(night({ illustration_theme: "night" }), true);
+  assert.equal(night({ illustration_theme: "day" }, sun("below_horizon")), false);
+  const a = make(ZlinkyCard, zhaHass()).shadowRoot.innerHTML;
+  const b = make(ZlinkyCard, zhaHass()).shadowRoot.innerHTML;
+  const ids = (h) => [...h.matchAll(/ id="([^"]+)"/g)].map((m) => m[1]);
+  assert.ok(ids(a).length >= 6);
+  assert.equal(ids(a).filter((x) => ids(b).includes(x)).length, 0);
+  assert.match(cardCss(), /prefers-reduced-motion: reduce\) \{ \.picture \*, \.zl-scene \* \{ animation: none/);
+});
+
+test("editor: illustration and its theme, on both cards", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  for (const type of ["custom:zlinky-card", "custom:zlinky-mini-card"]) {
+    const ed = new Editor();
+    ed.setConfig({ type, language: "fr" });
+    ed.hass = zhaHass();
+    const leaves = schemaLeaves(ed._form.schema);
+    assert.ok(leaves.some((s) => s.name === "illustration"));
+    const theme = leaves.find((s) => s.name === "illustration_theme");
+    assert.deepEqual([...theme.selector.select.options.map((o) => o.label)], ["Automatique (soleil, mode sombre)", "Jour", "Nuit"]);
+  }
 });

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.21.0 - 2026-11-17
+
+### Features
+- **Illustrated header** (both cards): a 90 px animated banner edge to edge at the top of the card, the enlarged Linky meter (the card's own drawing, its live screen and blinking LED) in its technical-sheath panel on the right, a tiled floor strip along the bottom, the title, subtitle and status pill on the wall at the left. The scene follows the meter: **consuming** (current flowing to a lit bulb, faster as the load rises), **producing** (current flowing back from a solar panel, in green — a negative active power or the injection index rising), and the **off-peak / peak** contactor (moon or sun, from the tariff period, also named in the subtitle). The header icon (a flash) always takes the status color: green / orange / red load, green while producing, grey offline.
+- **Night mode** for the illustration: follows `sun.sun`, then Home Assistant's dark mode; force it with `illustration_theme: day | night`. `illustration: false` keeps the classic header with the meter beside the reading (as does `icon`). Both options are in the visual editor of both cards. `meter_size` scales the banner's meter; above 100 the banner grows with it.
 ## 1.20.0 - 2026-11-15
 
 ### Features
