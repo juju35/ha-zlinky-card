@@ -1724,9 +1724,11 @@ test("illustrated header: the full card and the unfolded mini card draw the mete
       assert.match(html, /<div class="ground"><\/div><div class="picture live/);
       assert.match(html, /class="zl-gtl"/);
     } else {
-      // The banner keeps the bulb and the cable (no sheath, no meter), the meter is the hero's picture.
+      // The banner draws the distribution board and the bulb (no meter), the meter is the hero's picture, the
+      // consumption tiles beside it.
       assert.match(html, /<div class="banner zl-cons bare"><svg class="zl-scene"/);
-      assert.doesNotMatch(html, /class="zl-gtl"/);
+      assert.match(html, /<g class="zl-board"><rect class="zl-gtl"/);
+      assert.match(html, /<g class="zl-load" transform="translate\(18 0\)">/);
       assert.match(html, /<div class="hero big"><div class="picture live/);
     }
     for (const config of [{ illustration: false }, { icon: "mdi:home" }]) {
@@ -1745,8 +1747,11 @@ test("illustrated header: the full card and the unfolded mini card draw the mete
   assert.match(rules(css, ".banner"), /height: calc\(10px \+ 80px \* max\(1, var\(--zl-ms, 1\)\)\)/);
   assert.match(css, /\.banner\.bare \{ height: 90px; \}/);
   assert.match(rules(css, ".banner .ground"), /height: 10px/);
-  // Big in the body: 120 to 200 px wide (about 40 % of the card), times meter_size.
-  assert.match(css, /\.hero\.big \.picture \{ width: calc\(clamp\(120px, 40cqw, 200px\) \* var\(--zl-ms, 1\)\);/);
+  // Big in the body: 110 to 165 px wide (about 36 % of the card), times meter_size; the reading and the tiles beside it,
+  // the tiles below on a narrow card.
+  assert.match(css, /\.hero\.big > \.picture \{ grid-area: pic; align-self: center; width: calc\(clamp\(110px, 36cqw, 165px\) \* var\(--zl-ms, 1\)\);/);
+  assert.match(css, /grid-template-areas: "pic info" "pic tiles"/);
+  assert.match(css, /@container \(max-width: 330px\) \{ \.hero\.big \{ grid-template-areas: "pic info" "tiles tiles";/);
 });
 
 test("illustrated header: producing, off-peak / peak and offline states", () => {

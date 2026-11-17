@@ -20,7 +20,7 @@ Pick the ZLinky, the card finds all its entities by itself.
 
 [![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-zlinky-card&category=plugin)
 
-The card opens on an illustrated header, with the Linky meter drawn big in the card's body, its live screen readable (the compact mini card keeps it in its panel on the banner). While the meter is online, it animates: the LED blinks and glows and the current flows along the cable, faster as power rises — to a lit bulb while consuming, back from a solar panel while producing — and a contactor shows off-peak (moon) or peak (sun) hours. The header icon takes the status color, and the scene turns to night after sunset or with Home Assistant's dark mode. It settles to a still card when offline (and honours `prefers-reduced-motion`).
+The card opens on an illustrated header (a distribution board feeding a bulb, or fed by a solar panel), with the Linky meter drawn big in the card's body beside the reading and the consumption tiles, its live screen readable (the compact mini card keeps it in its panel on the banner). While the meter is online, it animates: the LED blinks and glows and the current flows along the cable, faster as power rises — to a lit bulb while consuming, back from a solar panel while producing — and a contactor shows off-peak (moon) or peak (sun) hours. The header icon takes the status color, and the scene turns to night after sunset or with Home Assistant's dark mode. It settles to a still card when offline (and honours `prefers-reduced-motion`).
 
 | | Light | Dark |
 |---|---|---|
