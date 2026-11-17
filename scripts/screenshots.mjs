@@ -243,6 +243,14 @@ await render(
     // The mini card's real width on a phone: 6 columns of a ~380 px section.
     { file: "mini-narrow", type: "zlinky-mini-card", theme: "light", width: 180, config: { price: 0.2016 } },
     { file: "mini-narrow-dark", type: "zlinky-mini-card", theme: "dark", width: 180, config: { price: 0.2016 } },
+    // The mini card expanded with its top right button: the full card, at the full card's width.
+    ...["light", "dark"].map((theme) => ({
+      file: theme === "dark" ? "mini-zoom-dark" : "mini-zoom", type: "zlinky-mini-card", theme, width: 460,
+      config: { price: 0.2016, tiers: ["Off-peak", "Peak"], subscription: 15.65 },
+      // A pointer click (a click count): no focus ring left on the button.
+      after: (page) => page.evaluate(() => document.querySelector("zlinky-mini-card").shadowRoot.querySelector('[data-action="zoom"]')
+        .dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, detail: 1 }))),
+    })),
   ],
   { icons, hass, extra: ws }
 );

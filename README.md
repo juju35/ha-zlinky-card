@@ -39,6 +39,7 @@ The card opens on an illustrated header: the Linky meter in its panel, with its 
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini.png" alt="ZLinky mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-dark.png" alt="ZLinky mini card, dark theme" width="400"> |
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-tempo.png" alt="ZLinky mini card with the Tempo dots of today and tomorrow" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-tempo-dark.png" alt="ZLinky mini card with the Tempo dots, dark theme" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-zoom.png" alt="ZLinky mini card expanded to the full card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/mini-zoom-dark.png" alt="ZLinky mini card expanded to the full card, dark theme" width="400"> |
 
 ## Features
 
