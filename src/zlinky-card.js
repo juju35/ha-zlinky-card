@@ -2950,14 +2950,12 @@ function zlPeriod(text) {
   return null;
 }
 
-// Night picture: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark theme (even
-// with the sun up).
+// Night picture: forced by illustration_theme, else Home Assistant's dark theme alone (a light theme keeps the day
+// picture after sunset).
 function zlIsNight(hass, config) {
   var theme = config?.illustration_theme;
   if (theme === 'night') return true;
   if (theme === 'day') return false;
-  var sun = hass?.states?.['sun.sun'];
-  if (sun && sun.state !== 'unavailable' && sun.state !== 'unknown' && sun.state === 'below_horizon') return true;
   return !!hass?.themes?.darkMode;
 }
 

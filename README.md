@@ -170,7 +170,7 @@ entities:
 | `show_subtitle` | ❌ | `true` | Show the subtitle under the title |
 | `icon` | ❌ | Illustration | Replaces the meter illustration with an icon (with the classic header) |
 | `illustration` | ❌ | `true` | Illustrated header: a 90 px banner with the consuming / producing / off-peak and peak states, the meter big in the body (in its panel on the compact mini card's banner). `false` keeps the classic header, the meter beside the reading. Set from the visual editor too (both cards) |
-| `illustration_theme` | ❌ | `auto` | `auto` (night when `sun.sun` is below the horizon or Home Assistant's theme is dark), `day` or `night`. Set from the visual editor too (both cards) |
+| `illustration_theme` | ❌ | `auto` | `auto` (follows the Home Assistant theme: night with a dark theme, day with a light theme), `day` or `night`. Set from the visual editor too (both cards) |
 | `subscribed_power` | ❌ | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA, per phase on a three-phase meter so 1 A = 0.6 kVA there). In the visual editor, the **Subscribed power sensor** field replaces the number |
 | `load_warning` | ❌ | `50` | Share of the subscribed power (%) from which the load is moderate (orange) |
 | `load_critical` | ❌ | `80` | Share of the subscribed power (%) from which the load is high (red) |

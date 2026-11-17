@@ -1791,14 +1791,15 @@ test("illustrated header: producing, off-peak / peak and offline states", () => 
   assert.match(html, /--zl-color: var\(--disabled-text-color/);
 });
 
-test("illustrated header: night from illustration_theme, else sun.sun below the horizon or the dark mode; unique ids per card", () => {
+test("illustrated header: night from illustration_theme, else the dark mode alone; unique ids per card", () => {
   const night = (config, extra = {}) => /class="banner[^"]* night"/.test(make(ZlinkyCard, { ...zhaHass(), ...extra }, config).shadowRoot.innerHTML);
   assert.equal(night({}), false);
   assert.equal(night({}, { themes: { darkMode: true } }), true);
   const sun = (s, dark = true) => ({ states: { ...zhaHass().states, "sun.sun": st(s) }, themes: { darkMode: dark } });
   assert.equal(night({}, sun("above_horizon")), true, "dark theme while the sun is up: night");
   assert.equal(night({}, sun("above_horizon", false)), false, "light theme while the sun is up: day");
-  assert.equal(night({}, sun("below_horizon", false)), true);
+  assert.equal(night({}, sun("below_horizon", false)), false, "light theme after sunset: day");
+  assert.equal(night({}, sun("below_horizon")), true);
   assert.equal(night({ illustration_theme: "night" }), true);
   assert.equal(night({ illustration_theme: "night" }, sun("above_horizon", false)), true, "forced night wins over the sun");
   assert.equal(night({ illustration_theme: "day" }, sun("above_horizon")), false, "forced day wins over the dark theme");
