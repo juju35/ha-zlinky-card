@@ -21,7 +21,7 @@ export function loadCard(file, names, extra = {}) {
     },
     CustomEvent: class {},
     customElements: { get: (n) => registry.get(n), define: (n, c) => registry.set(n, c) },
-    document: { documentElement: { lang: "en" }, createElement: (tag) => ({ tagName: tag, addEventListener() {} }) },
+    document: { documentElement: { lang: "en" }, createElement: (tag) => ({ tagName: tag, addEventListener() {} }), addEventListener() {}, removeEventListener() {} },
     navigator: { language: "en" },
     localStorage: { getItem: () => null, setItem() {} },
     setInterval: () => 0,

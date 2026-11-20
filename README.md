@@ -161,41 +161,41 @@ entities:
 
 ### Options reference
 
-| Option | Required | Default | Description |
+| Option | Card | Default | Description |
 |---|---|---|---|
-| `device_id` | ❌ | Auto | ZLinky device (the first ZLinky found is used if missing) |
-| `entity` | ❌ | — | Any entity of the ZLinky, used to find the device when `device_id` is not set. YAML only (the visual editor sets `device_id` and keeps `entity`) |
-| `name` | ❌ | `Linky` | Card title |
-| `show_title` | ❌ | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
-| `show_subtitle` | ❌ | `true` | Show the subtitle under the title |
-| `icon` | ❌ | Illustration | Replaces the meter illustration with an icon (with the classic header) |
-| `illustration` | ❌ | `true` | Illustrated header: a 90 px banner with the consuming / producing / off-peak and peak states, the meter big in the body (in its panel on the compact mini card's banner). `false` keeps the classic header, the meter beside the reading. Set from the visual editor too (both cards) |
-| `illustration_theme` | ❌ | `auto` | `auto` (follows the Home Assistant theme: night with a dark theme, day with a light theme), `day` or `night`. Set from the visual editor too (both cards) |
-| `subscribed_power` | ❌ | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA, per phase on a three-phase meter so 1 A = 0.6 kVA there). In the visual editor, the **Subscribed power sensor** field replaces the number |
-| `load_warning` | ❌ | `50` | Share of the subscribed power (%) from which the load is moderate (orange) |
-| `load_critical` | ❌ | `80` | Share of the subscribed power (%) from which the load is high (red) |
-| `tarif_edf` | ❌ | `false` | Take the prices per kWh, the subscribed power and the Tempo colors from the [Tarif EDF](#tarif-edf) integration (each only when you don't set it yourself) |
-| `price` | ❌ | — | Price per kWh, shows the cost of each consumption (currency from Home Assistant): a number, a sensor giving the current price per kWh, or [one price per tier](#price-per-tier) |
-| `subscription` | ❌ | — | Monthly subscription, a number or a sensor giving it (sensor: YAML only), added to last month and the month-end estimate of the [cost section](#cost-section) |
-| `tiers` | ❌ | `Index 1`… | Names of the tiers, in order (`[Off-peak, Peak]`, Tempo colors…) |
-| `show_stats` | ❌ | `true` | Today / yesterday / this month |
-| `show_graph` | ❌ | `true` | 24 h power curve |
-| `show_index` | ❌ | `true` | Meter index, tiers and injection |
-| `show_phases` | ❌ | `true` | Per-phase details (three-phase meters only) |
-| `show_logo` | ❌ | `true` | Round status icon in the header (a flash on the illustrated header, in the status color) |
-| `show_cost` | ❌ | `true` | Full card: the [cost section](#cost-section) (needs a `price`) |
-| `show_tempo` | ❌ | `true` | Tempo colors, or Zen Flex day types, of today and tomorrow (only on those contracts; two dots on the mini card) |
-| `show_load_pill` | ❌ | `true` | Load status pill at the top right of the header (Low / Moderate / High load). `false` hides it |
-| `power_unit` | ❌ | `VA` | Label of the apparent-power unit, on the big readout and the drawn meter (e.g. `W` to read it as watts). Only relabels the unit — the value stays the meter's apparent power (`SINSTS` / `PAPP`), with no conversion |
-| `meter_size` | ❌ | `100` | Size of the drawn meter illustration, as a percentage of its default (50–250). Raise it to make the on-screen readout easier to read; on the compact mini card's banner the banner grows with it above 100. Set from the visual editor too (both cards) |
-| `power_tap_action` | ❌ | `more-info` | Tap on the big power readout. `none` disables it (it stops opening the more-info dialog) |
-| `intensity_tap_action` | ❌ | `more-info` | Full card: tap on the current (intensity) chip. `none` disables it (it stops opening the more-info dialog) |
-| `compare_base` / `compare_hc` / `compare_hp` | ❌ | — | Full card: the Base price and the Off-peak and Peak prices per kWh, for the [contract comparison](#contract-comparison) (all three and `hc_hours` turn it on) |
-| `hc_hours` | ❌ | — | Off-peak hours for the comparison, such as `22:30-06:30` or `01:00-07:00, 12:30-14:30` |
-| `sub_base` / `sub_hchp` | ❌ | — | Monthly subscription of each contract, added to the comparison |
-| `zoom` | ❌ | `true` | Mini card only: detail button that unfolds the full card |
-| `language` | ❌ | HA language | `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` |
-| `entities` | ❌ | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `apparent_power_a`, `apparent_power_b`, `apparent_power_c` (apparent power per phase, SINSTS1…3), `injection`, `tariff`, `tempo` (today's Tempo color or Zen Flex day type, e.g. from an RTE Tempo or edf-zen-flex integration), `tomorrow` (tomorrow's), `tier1`…`tier6` |
+| `device_id` | both | Auto | ZLinky device (the first ZLinky found is used if missing) |
+| `entity` | both | — | Any entity of the ZLinky, used to find the device when `device_id` is not set. YAML only (the visual editor sets `device_id` and keeps `entity`) |
+| `name` | both | `Linky` | Card title |
+| `show_title` | both | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
+| `show_subtitle` | both | `true` | Show the subtitle under the title |
+| `icon` | both | Illustration | Replaces the meter illustration with an icon (with the classic header) |
+| `illustration` | both | `true` | Illustrated header: a 90 px banner with the consuming / producing / off-peak and peak states, the meter big in the body (in its panel on the compact mini card's banner). `false` keeps the classic header, the meter beside the reading. Set from the visual editor too (both cards) |
+| `illustration_theme` | both | `auto` | `auto` (follows the Home Assistant theme: night with a dark theme, day with a light theme), `day` or `night`. Set from the visual editor too (both cards) |
+| `subscribed_power` | both | `6` | Subscribed power for the load gauge: a number in kVA, or a sensor giving it (in kVA, or in A like the historic TIC's `ISOUSC`: 1 A = 0.2 kVA, per phase on a three-phase meter so 1 A = 0.6 kVA there). In the visual editor, the **Subscribed power sensor** field replaces the number |
+| `load_warning` | both | `50` | Share of the subscribed power (%) from which the load is moderate (orange) |
+| `load_critical` | both | `80` | Share of the subscribed power (%) from which the load is high (red) |
+| `tarif_edf` | both | `false` | Take the prices per kWh, the subscribed power and the Tempo colors from the [Tarif EDF](#tarif-edf) integration (each only when you don't set it yourself) |
+| `price` | both | — | Price per kWh, shows the cost of each consumption (currency from Home Assistant): a number, a sensor giving the current price per kWh, or [one price per tier](#price-per-tier) |
+| `subscription` | both | — | Monthly subscription, a number or a sensor giving it (sensor: YAML only), added to last month and the month-end estimate of the [cost section](#cost-section) |
+| `tiers` | both | `Index 1`… | Names of the tiers, in order (`[Off-peak, Peak]`, Tempo colors…) |
+| `show_stats` | both | `true` | Today / yesterday / this month |
+| `show_graph` | both | `true` | 24 h power curve |
+| `show_index` | both | `true` | Meter index, tiers and injection |
+| `show_phases` | both | `true` | Per-phase details (three-phase meters only) |
+| `show_logo` | both | `true` | Round status icon in the header (a flash on the illustrated header, in the status color) |
+| `show_cost` | full | `true` | The [cost section](#cost-section) (needs a `price`) |
+| `show_tempo` | both | `true` | Tempo colors, or Zen Flex day types, of today and tomorrow (only on those contracts; two dots on the mini card) |
+| `show_load_pill` | both | `true` | Load status pill at the top right of the header (Low / Moderate / High load). `false` hides it. Set from the visual editor too |
+| `power_unit` | both | `VA` | Label of the apparent-power unit, on the big readout and the drawn meter (e.g. `W` to read it as watts). Only relabels the unit — the value stays the meter's apparent power (`SINSTS` / `PAPP`), with no conversion |
+| `meter_size` | both | `100` | Size of the drawn meter illustration, as a percentage of its default (50–250). Raise it to make the on-screen readout easier to read; on the compact mini card's banner the banner grows with it above 100. Set from the visual editor too (both cards) |
+| `power_tap_action` | both | `more-info` | Tap on the big power readout. `none` disables it (it stops opening the more-info dialog). YAML only |
+| `intensity_tap_action` | full | `more-info` | Tap on the current (intensity) chip. `none` disables it (it stops opening the more-info dialog). YAML only |
+| `compare_base` / `compare_hc` / `compare_hp` | full | — | The Base price and the Off-peak and Peak prices per kWh, for the [contract comparison](#contract-comparison) (all three and `hc_hours` turn it on) |
+| `hc_hours` | full | — | Off-peak hours for the comparison, such as `22:30-06:30` or `01:00-07:00, 12:30-14:30` |
+| `sub_base` / `sub_hchp` | full | — | Monthly subscription of each contract, added to the comparison |
+| `zoom` | mini | `true` | Detail button that unfolds the full card |
+| `language` | both | HA language | `en`, `fr`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` |
+| `entities` | both | Auto | Override any detected entity: `energy`, `power`, `apparent_power`, `current`, `voltage`, `current_b`, `current_c`, `voltage_b`, `voltage_c`, `apparent_power_a`, `apparent_power_b`, `apparent_power_c` (apparent power per phase, SINSTS1…3), `injection`, `tariff`, `tempo` (today's Tempo color or Zen Flex day type, e.g. from an RTE Tempo or edf-zen-flex integration), `tomorrow` (tomorrow's), `tier1`…`tier6` |
 
 ### Price per tier
 

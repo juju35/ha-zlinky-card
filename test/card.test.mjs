@@ -254,6 +254,18 @@ test("mini card: compact, unfolds with the detail button", () => {
   assert.doesNotMatch(noZoom.shadowRoot.innerHTML, /data-action="zoom"/);
 });
 
+test("mini card: a tap elsewhere folds it (pointer, for iOS), not a tap on the card or in a dialog", () => {
+  const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+  const at = (...path) => ({ composedPath: () => path });
+  card._setZoom(true);
+  card._outside.tap(at(card));
+  assert.equal(card._zoomed, true);
+  card._outside.tap(at({ localName: "ha-more-info-dialog" }));
+  assert.equal(card._zoomed, true);
+  card._outside.tap(at({ localName: "div" }));
+  assert.equal(card._zoomed, false);
+});
+
 test("escapes user text and registers the cards", () => {
   const html = make(ZlinkyCard, zhaHass(), { name: "<b>x</b>" }).shadowRoot.innerHTML;
   assert.match(html, /&lt;b&gt;x&lt;\/b&gt;/);
@@ -1830,4 +1842,35 @@ test("screenshot harness: every MDI icon the card names has a path (the header's
   const shots = readFileSync(new URL("../scripts/screenshots.mjs", import.meta.url), "utf8");
   const have = new Set([...shots.matchAll(/^\s*"([a-z0-9-]+)":\s*"M/gm)].map((m) => m[1]));
   for (const [, name] of src.matchAll(/mdi:([a-z0-9-]+)/g)) assert.ok(have.has(name), `mdi:${name} has no path in scripts/screenshots.mjs`);
+});
+
+test("editor: the load pill can be hidden from the visual editor, its default left out of the YAML", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  ed.setConfig({ type: "custom:zlinky-card" });
+  ed.hass = zhaHass();
+  assert.ok(schemaLeaves(ed._form.schema).some((s) => s.name === "show_load_pill"));
+  assert.equal(ed._form.data.show_load_pill, true);
+  let out;
+  ed.dispatchEvent = () => { out = ed._config; };
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { show_load_pill: true } } });
+  assert.equal(out.show_load_pill, undefined);
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { show_load_pill: false } } });
+  assert.equal(out.show_load_pill, false);
+});
+
+test("a switch to the dark theme redraws the night picture without waiting for a new reading", () => {
+  const hass = zhaHass();
+  const card = make(ZlinkyCard, hass, { language: "en" });
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /class="banner[^"]* night/);
+  card.hass = { ...hass, themes: { darkMode: true } };
+  assert.match(card.shadowRoot.innerHTML, /class="banner[^"]* night/);
+});
+
+test("mini card: back to the compact view once off the page", () => {
+  const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+  card._setZoom(true);
+  assert.equal(card._zoomed, true);
+  card.disconnectedCallback();
+  assert.equal(card._zoomed, false);
 });
