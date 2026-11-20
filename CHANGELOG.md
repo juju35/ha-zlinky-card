@@ -10,8 +10,10 @@
 - The mini card goes back to its compact view when it leaves the page (another view, a conditional card hidden), as the other mini cards.
 - Frosted chips on the banner get the `-webkit-backdrop-filter` prefix for older Safari and the iOS companion app.
 - The status pill is measured again once Home Assistant's card frame has drawn its content (it has no size before), so that it is in its place from the first frame instead of moving at the next resize.
+- The unfolded mini card folds back on a tap anywhere else on iOS too (Safari and the companion app send no click for a tap on a non-clickable spot): a press and a release outside the card are caught on the pointer, as on the other mini cards.
 
 ### Maintenance
+- README: the options table has a *Card* column (both / full / mini) like the other ha-* cards, instead of a *Required* column.
 - Browser test that state updates never replace the card's nodes nor change its height (an unrelated entity changes nothing; the card's own readings are patched in place).
 
 ## 1.21.1 - 2026-11-18
