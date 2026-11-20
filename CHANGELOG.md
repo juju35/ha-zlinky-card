@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.22.0 - 2026-11-20
+
+### Features
+- Visual editor: *Load pill* toggle (`show_load_pill`), translated in every language.
+
+### Fixes
+- Switching Home Assistant to the dark theme (or back) redraws the illustrated header at once, instead of at the next meter reading.
+- The mini card goes back to its compact view when it leaves the page (another view, a conditional card hidden), as the other mini cards.
+- Frosted chips on the banner get the `-webkit-backdrop-filter` prefix for older Safari and the iOS companion app.
+
 ## 1.21.1 - 2026-11-18
 
 ### Fixes
