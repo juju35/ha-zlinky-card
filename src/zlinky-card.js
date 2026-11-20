@@ -4289,6 +4289,34 @@ class ZlinkyCard extends HTMLElement {
 // removes it) switches it to the full card and back, and a click anywhere else on the page folds it again.
 var zlInDialog = (ev) => ev.composedPath().some((n) => ['ha-more-info-dialog', 'ha-dialog', 'dialog'].indexOf(n.localName) >= 0);
 
+// "A click elsewhere" is caught on the pointer, not only on the click event: on iOS (Safari and the companion app) a
+// tap on something that is not clickable (the background, an empty spot, a card with no action) sends no click to the
+// page. It counts when the press and the release are both outside the card (a drag that ends outside does not fold
+// it), and a scroll does not count (the browser cancels the pointer). Keyboard clicks still go through the click
+// event (detail 0). `tap(ev)` (a press and a release at the same spot) is for the tests.
+var zlWatchOutside = (isOut, handler) => {
+  var downOutside = false;
+  var onDown = (ev) => { downOutside = isOut(ev); };
+  var onUp = (ev) => {
+    if (downOutside && isOut(ev)) handler(ev);
+    downOutside = false;
+  };
+  var onClick = (ev) => { if (ev.detail === 0 && isOut(ev)) handler(ev); };
+  return {
+    on() {
+      document.addEventListener('pointerdown', onDown, true);
+      document.addEventListener('pointerup', onUp, true);
+      document.addEventListener('click', onClick, true);
+    },
+    tap(ev) { onDown(ev); onUp(ev); },
+    off() {
+      document.removeEventListener('pointerdown', onDown, true);
+      document.removeEventListener('pointerup', onUp, true);
+      document.removeEventListener('click', onClick, true);
+    },
+  };
+};
+
 class ZlinkyMiniCard extends ZlinkyCard {
   static getConfigElement() {
     var el = ZlinkyCard.getConfigElement();
@@ -4298,19 +4326,20 @@ class ZlinkyMiniCard extends ZlinkyCard {
 
   constructor() {
     super();
-    this._onUnzoom = (ev) => {
-      if (this._zoomed && !ev.composedPath().includes(this) && !zlInDialog(ev)) this._setZoom(false);
-    };
+    this._outside = zlWatchOutside(
+      (ev) => !ev.composedPath().includes(this) && !zlInDialog(ev),
+      () => { if (this._zoomed) this._setZoom(false); },
+    );
   }
 
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener('click', this._onUnzoom, true);
+    this._outside.on();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    document.removeEventListener('click', this._onUnzoom, true);
+    this._outside.off();
     // Back to the compact view once off the page (another view, a conditional card hidden), as the other mini cards.
     this._zoomed = false;
     this._sig = null;

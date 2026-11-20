@@ -254,6 +254,18 @@ test("mini card: compact, unfolds with the detail button", () => {
   assert.doesNotMatch(noZoom.shadowRoot.innerHTML, /data-action="zoom"/);
 });
 
+test("mini card: a tap elsewhere folds it (pointer, for iOS), not a tap on the card or in a dialog", () => {
+  const card = make(ZlinkyMiniCard, zhaHass(), { language: "en" });
+  const at = (...path) => ({ composedPath: () => path });
+  card._setZoom(true);
+  card._outside.tap(at(card));
+  assert.equal(card._zoomed, true);
+  card._outside.tap(at({ localName: "ha-more-info-dialog" }));
+  assert.equal(card._zoomed, true);
+  card._outside.tap(at({ localName: "div" }));
+  assert.equal(card._zoomed, false);
+});
+
 test("escapes user text and registers the cards", () => {
   const html = make(ZlinkyCard, zhaHass(), { name: "<b>x</b>" }).shadowRoot.innerHTML;
   assert.match(html, /&lt;b&gt;x&lt;\/b&gt;/);
