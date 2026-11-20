@@ -10,6 +10,9 @@
 - The mini card goes back to its compact view when it leaves the page (another view, a conditional card hidden), as the other mini cards.
 - Frosted chips on the banner get the `-webkit-backdrop-filter` prefix for older Safari and the iOS companion app.
 
+### Maintenance
+- Browser test that state updates never replace the card's nodes nor change its height (an unrelated entity changes nothing; the card's own readings are patched in place).
+
 ## 1.21.1 - 2026-11-18
 
 ### Fixes
