@@ -3278,6 +3278,7 @@ class ZlinkyCard extends HTMLElement {
   }
 
   connectedCallback() {
+    Promise.resolve().then(() => this._fitAfterCard());
     // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
     if (typeof ResizeObserver === 'function') {
       this._resize ??= new ResizeObserver((entries) => {
@@ -3986,6 +3987,19 @@ class ZlinkyCard extends HTMLElement {
       zlMorph(root, tpl.content);
     }
     this._fitPill();
+    this._fitAfterCard();
+  }
+
+  // <ha-card> (Lit) draws its slot a microtask after it is created: until then the card's content has no size, and the
+  // status pill measured then would take the wrong line (the card then changed height once measured again). A new
+  // <ha-card> is measured once more as soon as it has rendered, before the frame is painted.
+  // Rendered before the card is on the page, <ha-card> is only upgraded once connected: called again then (see
+  // connectedCallback).
+  _fitAfterCard() {
+    const card = this.shadowRoot?.querySelector?.('ha-card');
+    if (!card?.updateComplete || card === this._fitCard) return;
+    this._fitCard = card;
+    card.updateComplete?.then?.(() => this._fitPill());
   }
 
   // The status pill's place, on the banner and on the classic header (see zlPlacePill).

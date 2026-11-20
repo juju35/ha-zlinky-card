@@ -16,9 +16,12 @@ try {
 } catch {}
 after(() => browser?.close());
 
-// ha-icon as in Home Assistant: empty (no size) until its icon is loaded, a little later.
-const STUBS = `customElements.define("ha-card", class extends HTMLElement { constructor() { super();
-  this.attachShadow({ mode: "open" }).innerHTML = "<style>:host{display:block;border:1px solid #ddd}</style><slot></slot>"; } });
+// ha-card as in Home Assistant (Lit): its slot is only drawn a microtask after it is connected, so that its content has
+// no size until then. ha-icon: empty (no size) until its icon is loaded, a little later.
+const STUBS = `customElements.define("ha-card", class extends HTMLElement { constructor() { super(); this.attachShadow({ mode: "open" });
+  this.updateComplete = new Promise((res) => { this._done = res; }); }
+  connectedCallback() { if (this._drawn) return; this._drawn = true; Promise.resolve().then(() => {
+    this.shadowRoot.innerHTML = "<style>:host{display:block;border:1px solid #ddd}</style><slot></slot>"; this._done(true); }); } });
 customElements.define("ha-icon", class extends HTMLElement { constructor() { super(); this.attachShadow({ mode: "open" }); }
   connectedCallback() { setTimeout(() => { this.shadowRoot.innerHTML = '<span style="display:inline-block;width:var(--mdc-icon-size,24px);height:var(--mdc-icon-size,24px)"></span>'; }, 16); } });`;
 

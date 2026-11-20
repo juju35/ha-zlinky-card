@@ -9,6 +9,7 @@
 - Switching Home Assistant to the dark theme (or back) redraws the illustrated header at once, instead of at the next meter reading.
 - The mini card goes back to its compact view when it leaves the page (another view, a conditional card hidden), as the other mini cards.
 - Frosted chips on the banner get the `-webkit-backdrop-filter` prefix for older Safari and the iOS companion app.
+- The status pill is measured again once Home Assistant's card frame has drawn its content (it has no size before), so that it is in its place from the first frame instead of moving at the next resize.
 
 ### Maintenance
 - Browser test that state updates never replace the card's nodes nor change its height (an unrelated entity changes nothing; the card's own readings are patched in place).
