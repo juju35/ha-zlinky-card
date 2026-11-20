@@ -1832,6 +1832,21 @@ test("screenshot harness: every MDI icon the card names has a path (the header's
   for (const [, name] of src.matchAll(/mdi:([a-z0-9-]+)/g)) assert.ok(have.has(name), `mdi:${name} has no path in scripts/screenshots.mjs`);
 });
 
+test("editor: the load pill can be hidden from the visual editor, its default left out of the YAML", () => {
+  const Editor = customElements.get("zlinky-card-editor");
+  const ed = new Editor();
+  ed.setConfig({ type: "custom:zlinky-card" });
+  ed.hass = zhaHass();
+  assert.ok(schemaLeaves(ed._form.schema).some((s) => s.name === "show_load_pill"));
+  assert.equal(ed._form.data.show_load_pill, true);
+  let out;
+  ed.dispatchEvent = () => { out = ed._config; };
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { show_load_pill: true } } });
+  assert.equal(out.show_load_pill, undefined);
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { show_load_pill: false } } });
+  assert.equal(out.show_load_pill, false);
+});
+
 test("a switch to the dark theme redraws the night picture without waiting for a new reading", () => {
   const hass = zhaHass();
   const card = make(ZlinkyCard, hass, { language: "en" });
