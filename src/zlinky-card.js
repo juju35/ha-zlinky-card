@@ -3357,7 +3357,7 @@ class ZlinkyCard extends HTMLElement {
       var s = r.ent[k] && hass.states[r.ent[k]];
       return s ? s.state : null;
     }));
-    var sig = JSON.stringify([this._lang(), this._fmtLang(), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, this._cmpVer, states, this._prices(), this._subscribed(), this._subscription()]);
+    var sig = JSON.stringify([this._lang(), this._fmtLang(), zlIsNight(hass, this._config), r.deviceId, r.n, this._zoomed, this._statsKey, this._statsVer, this._cmpVer, states, this._prices(), this._subscribed(), this._subscription()]);
     if (sig === this._sig) return;
     this._sig = sig;
     this._r = r;
@@ -4229,7 +4229,7 @@ class ZlinkyCard extends HTMLElement {
       // The detail button in the banner's top right corner, 24 px, frosted (day) or glassy (night); the meter's panel
       // and the header step 30 px aside from it.
       '.banner > .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; width: 24px; height: 24px; margin: 0; border-radius: 50%; display: grid; place-items: center;' +
-        ' color: #33506b; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }' +
+        ' color: #33506b; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }' +
       '.banner > .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }' +
       '.banner.night > .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }' +
       '.banner.night > .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }' +
@@ -4275,6 +4275,9 @@ class ZlinkyMiniCard extends ZlinkyCard {
   disconnectedCallback() {
     super.disconnectedCallback();
     document.removeEventListener('click', this._onUnzoom, true);
+    // Back to the compact view once off the page (another view, a conditional card hidden), as the other mini cards.
+    this._zoomed = false;
+    this._sig = null;
   }
 
   getCardSize() { return this._zoomed ? super.getCardSize() : 2; }
