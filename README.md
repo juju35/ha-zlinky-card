@@ -185,11 +185,11 @@ entities:
 | `show_logo` | ❌ | `true` | Round status icon in the header (a flash on the illustrated header, in the status color) |
 | `show_cost` | ❌ | `true` | Full card: the [cost section](#cost-section) (needs a `price`) |
 | `show_tempo` | ❌ | `true` | Tempo colors, or Zen Flex day types, of today and tomorrow (only on those contracts; two dots on the mini card) |
-| `show_load_pill` | ❌ | `true` | Load status pill at the top right of the header (Low / Moderate / High load). `false` hides it |
+| `show_load_pill` | ❌ | `true` | Load status pill at the top right of the header (Low / Moderate / High load). `false` hides it. Set from the visual editor too |
 | `power_unit` | ❌ | `VA` | Label of the apparent-power unit, on the big readout and the drawn meter (e.g. `W` to read it as watts). Only relabels the unit — the value stays the meter's apparent power (`SINSTS` / `PAPP`), with no conversion |
 | `meter_size` | ❌ | `100` | Size of the drawn meter illustration, as a percentage of its default (50–250). Raise it to make the on-screen readout easier to read; on the compact mini card's banner the banner grows with it above 100. Set from the visual editor too (both cards) |
-| `power_tap_action` | ❌ | `more-info` | Tap on the big power readout. `none` disables it (it stops opening the more-info dialog) |
-| `intensity_tap_action` | ❌ | `more-info` | Full card: tap on the current (intensity) chip. `none` disables it (it stops opening the more-info dialog) |
+| `power_tap_action` | ❌ | `more-info` | Tap on the big power readout. `none` disables it (it stops opening the more-info dialog). YAML only |
+| `intensity_tap_action` | ❌ | `more-info` | Full card: tap on the current (intensity) chip. `none` disables it (it stops opening the more-info dialog). YAML only |
 | `compare_base` / `compare_hc` / `compare_hp` | ❌ | — | Full card: the Base price and the Off-peak and Peak prices per kWh, for the [contract comparison](#contract-comparison) (all three and `hc_hours` turn it on) |
 | `hc_hours` | ❌ | — | Off-peak hours for the comparison, such as `22:30-06:30` or `01:00-07:00, 12:30-14:30` |
 | `sub_base` / `sub_hchp` | ❌ | — | Monthly subscription of each contract, added to the comparison |
