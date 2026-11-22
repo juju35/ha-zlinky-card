@@ -4867,7 +4867,7 @@ window.customCards = window.customCards || [];
 ].forEach(([type, cls, name, description]) => {
   if (customElements.get(type)) return;
   customElements.define(type, cls);
-  window.customCards.push({ type, name, description, preview: true, documentationURL: 'https://github.com/juju35/ha-zlinky-card' });
+  window.customCards.push({ type, name, description, preview: false, documentationURL: 'https://github.com/juju35/ha-zlinky-card' });
 });
 
 console.info(`%c ZLINKY-CARD %c v${ZLINKY_CARD_VERSION} `, 'color:#3d4a08;background:#c2d426;font-weight:700', 'color:#7d9108;background:#fff');
