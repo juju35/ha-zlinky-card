@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.23.0 - 2026-11-22
+
+### Features
+- HA Linky support (#77): `linky_prm` points the card at the statistics the [HA Linky](https://github.com/bokub/ha-linky) app imports (`linky:<PRM>`, and `linky:<PRM>_cost` for the cost), for setups without a ZLinky. The meter shows yesterday, this week, this month and last month, the pill says *Data D-1*, the tiles show this week, this month and last month, the last 30 days are drawn as bars and a tap on a bar opens that day hour by hour (off-peak hours tinted with `hc_hours`). The cost section and the contract comparison work on these statistics too. Translated in every language, and in the visual editor.
+
+### Maintenance
+- README: HA Linky in the supported integrations, with its logo, a section and its screenshots (`card-linky`, light and dark).
+
 ## 1.22.0 - 2026-11-20
 
 ### Features

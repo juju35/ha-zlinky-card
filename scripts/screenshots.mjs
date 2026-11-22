@@ -170,6 +170,8 @@ export async function animate(shot, { icons = {}, hass = {}, extra = "", fps = 2
 
 const icons = {
   "flash": "M7,2V13H10V22L17,10H13L17,2H7Z",
+  "chart-bar": "M22,21H2V3H4V19H6V10H10V19H12V6H16V19H18V14H22V21Z",
+  "clock-outline": "M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z",
   "scale-balance": "M12,3C10.73,3 9.6,3.8 9.18,5H3V7H4.95L2,14C1.53,16 3,17 5.5,17C8,17 9.56,16 9,14L6.05,7H9.17C9.5,7.85 10.15,8.5 11,8.83V20H2V22H22V20H13V8.82C13.85,8.5 14.5,7.85 14.82,7H17.95L15,14C14.53,16 16,17 18.5,17C21,17 22.56,16 22,14L19.05,7H21V5H14.83C14.4,3.8 13.27,3 12,3M12,5A1,1 0 0,1 13,6A1,1 0 0,1 12,7A1,1 0 0,1 11,6A1,1 0 0,1 12,5M5.5,10.25L7,14H4L5.5,10.25M18.5,10.25L20,14H17L18.5,10.25Z",
   "flash-outline": "M7,2H17L13.5,9H17L10,22V14H7V2M9,4V12H12V14.66L14,11H10.24L13.76,4H9Z",
   "chart-areaspline": "M17.45,15.18L22,7.31V19L22,21H2V3H4V15.54L9.5,6L16,9.78L20.24,2.45L21.97,3.45L16.74,12.5L10.23,8.75L4.31,19H6.57L10.96,11.44L17.45,15.18Z",
@@ -278,6 +280,37 @@ const compare = { price: 0.2016, tiers: ["Off-peak", "Peak"], show_graph: false,
 await render(
   ["light", "dark"].map((theme) => ({ file: theme === "dark" ? "card-compare-dark" : "card-compare", type: "zlinky-card", theme, width: 460, config: compare })),
   { icons, hass, extra: ws }
+);
+
+// HA Linky (bokub/ha-linky): no ZLinky, only the statistics the app imports (the day after). Yesterday's bar is opened
+// so the capture shows its hours too, off-peak tinted.
+const linkyWs = `window.__ws = async (msg) => {
+  const day = 86400000, d0 = Math.floor(Date.now() / day) * day;
+  if (msg.type === "recorder/statistic_during_period") {
+    const { period, offset } = msg.calendar;
+    if (msg.statistic_id.endsWith("_cost")) return { change: { day: 1.94, week: 11.9, month: offset ? 69.2 : 42.8 }[period] };
+    return { change: { day: 8.4, week: 52.1, month: offset ? 301.2 : 186.4 }[period] };
+  }
+  if (msg.period === "day") {
+    const rows = [];
+    for (let i = 32; i >= 1; i--) rows.push({ start: d0 - i * day, change: 7.2 + 3.1 * Math.sin(i * 1.7) ** 2 + (i % 7 < 2 ? 2.4 : 0) });
+    return { [msg.statistic_ids[0]]: rows };
+  }
+  const start = Date.parse(msg.start_time), rows = [];
+  for (let h = 0; h < 24; h++) {
+    const heater = h < 6 ? 0.55 : 0, use = (h >= 7 && h < 9 ? 0.7 : 0) + (h >= 12 && h < 14 ? 0.4 : 0) + (h >= 18 && h < 22 ? 0.9 : 0);
+    rows.push({ start: start + h * 3600000, change: 0.12 + heater + use });
+  }
+  return { [msg.statistic_ids[0]]: rows };
+};`;
+await render(
+  ["light", "dark"].map((theme) => ({
+    file: theme === "dark" ? "card-linky-dark" : "card-linky", type: "zlinky-card", theme, width: 460,
+    config: { linky_prm: "00000000000000", hc_hours: "22:30-06:30" },
+    after: (page) => page.evaluate(() => document.querySelector("zlinky-card").shadowRoot.querySelector(".dbar.last")
+      .dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, detail: 1 }))),
+  })),
+  { icons, hass: { states: {}, entities: {}, devices: {}, config: { currency: "EUR" } }, extra: linkyWs }
 );
 
 // Every animation is recorded in both themes with the same setup: <file>.gif light, <file>-dark.gif dark.

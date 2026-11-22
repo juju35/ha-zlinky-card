@@ -294,7 +294,7 @@ test("I18N parity: every language has exactly the English keys and placeholders"
 
 // Proper nouns, brands and units (Linky, ZLinky, LiXee, Tarif EDF, ZHA, kVA, kWh, VA, h, Home Assistant) are the only
 // Latin words allowed in the Cyrillic dictionary; the Latin one has no Cyrillic at all.
-const SR_LATIN_OK = /\b(Z?Linky|LiXee|Tarif EDF|ZLinky_TIC|ZHA|Zigbee2MQTT|Home Assistant|kVA|kWh|VA|h)\b|\{\w+\}/g;
+const SR_LATIN_OK = /\b(HA Linky|PRM|Z?Linky|LiXee|Tarif EDF|ZLinky_TIC|ZHA|Zigbee2MQTT|Home Assistant|kVA|kWh|VA|h)\b|\{\w+\}/g;
 test("Serbian: no Latin letters in sr (apart from names and units), no Cyrillic in sr-Latn", () => {
   for (const [k, v] of Object.entries(ZlI18n.sr)) {
     assert.doesNotMatch(v.replace(SR_LATIN_OK, ""), /[A-Za-z]/, `sr.${k}: ${v}`);
@@ -1873,4 +1873,82 @@ test("mini card: back to the compact view once off the page", () => {
   assert.equal(card._zoomed, true);
   card.disconnectedCallback();
   assert.equal(card._zoomed, false);
+});
+
+// HA Linky (bokub/ha-linky): statistics only, `linky:<PRM>` in Wh and `linky:<PRM>_cost` in €, the day after.
+function linkyCalls({ cost = true } = {}) {
+  const calls = [];
+  const day0 = Date.parse("2026-11-01T00:00:00Z");
+  const callWS = (msg) => {
+    calls.push(msg);
+    if (msg.type === "recorder/statistic_during_period") {
+      const { period, offset } = msg.calendar;
+      if (msg.statistic_id.endsWith("_cost")) return Promise.resolve(cost ? { change: { day: 1.94, week: 11.9, month: offset ? 69.2 : 42.8 }[period] } : {});
+      return Promise.resolve({ change: { day: 8.4, week: 52.1, month: offset ? 301 : 186 }[period] });
+    }
+    if (msg.period === "day") {
+      return Promise.resolve({ [msg.statistic_ids[0]]: Array.from({ length: 32 }, (_, i) => ({ start: day0 + i * 86400000, change: 5 + (i % 7) })) });
+    }
+    const start = Date.parse(msg.start_time);
+    return Promise.resolve({ [msg.statistic_ids[0]]: Array.from({ length: 26 }, (_, i) => ({ start: start + i * 3600000, change: i < 6 ? 0.8 : 0.3 })) });
+  };
+  return { calls, callWS };
+}
+
+test("HA Linky: statistics only — yesterday on the meter, week / month / last month tiles, own cost, 30 daily bars", async () => {
+  const { calls, callWS } = linkyCalls();
+  const hass = { language: "en", states: {}, entities: {}, devices: {}, config: { currency: "EUR", time_zone: "UTC" }, callWS };
+  const card = make(ZlinkyCard, hass, { linky_prm: "123 456 789 01234" });
+  await new Promise((r) => setTimeout(r, 10));
+  const html = card.shadowRoot.innerHTML;
+  const ids = new Set(calls.map((c) => c.statistic_id || c.statistic_ids[0]));
+  assert.deepEqual([...ids].sort(), ["linky:12345678901234", "linky:12345678901234_cost"]);
+  assert.doesNotMatch(html, /No ZLinky|class="empty"/);
+  assert.match(html, /Data D-1/);
+  assert.match(html, /HA Linky/);
+  assert.match(html, /HIER/);
+  assert.match(html, /8\.4 kWh/);
+  assert.match(html, /Yesterday · €1\.94/);
+  assert.match(html, /This week/);
+  assert.match(html, /Last month/);
+  assert.match(html, /€69\.20/);
+  assert.doesNotMatch(html, /picture live/);
+  assert.equal((html.match(/<rect class="dbar/g) || []).length, 30);
+  assert.match(html, /Last 30 days/);
+  assert.doesNotMatch(html, /hour by hour/);
+});
+
+test("HA Linky: a tap on a day bar opens its hours (off-peak share), a second tap closes them", async () => {
+  const { calls, callWS } = linkyCalls();
+  const hass = { language: "en", states: {}, entities: {}, devices: {}, config: { currency: "EUR", time_zone: "UTC" }, callWS };
+  const card = make(ZlinkyCard, hass, { linky_prm: "12345678901234", hc_hours: "00:00-06:00" });
+  await new Promise((r) => setTimeout(r, 10));
+  const day = card._stats.days[29].start;
+  card._pickDay(day);
+  await new Promise((r) => setTimeout(r, 10));
+  const q = calls.find((c) => c.period === "hour");
+  assert.equal(Date.parse(q.start_time), day);
+  let html = card.shadowRoot.innerHTML;
+  assert.match(html, /hour by hour/);
+  // 24 hours kept (the mock returns 26), the first 6 off-peak: 4.8 of 10.2 kWh.
+  assert.equal((html.match(/class="hbar/g) || []).length, 24);
+  assert.equal((html.match(/class="hbar hc"/g) || []).length, 6);
+  assert.match(html, /47 % off-peak/);
+  card._pickDay(day);
+  html = card.shadowRoot.innerHTML;
+  assert.doesNotMatch(html, /hour by hour/);
+});
+
+test("HA Linky: without its cost statistic the price option prices the periods; the mini shows this month", async () => {
+  const { callWS } = linkyCalls({ cost: false });
+  const hass = { language: "en", states: {}, entities: {}, devices: {}, config: { currency: "EUR", time_zone: "UTC" }, callWS };
+  const card = make(ZlinkyCard, hass, { linky_prm: "12345678901234", price: 0.25 });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.match(card.shadowRoot.innerHTML, /Yesterday · €2\.10/);
+  const mini = make(ZlinkyMiniCard, hass, { linky_prm: "12345678901234", price: 0.25 });
+  await new Promise((r) => setTimeout(r, 10));
+  const m = mini.shadowRoot.innerHTML;
+  assert.match(m, /This month/);
+  assert.match(m, /186 kWh/);
+  assert.doesNotMatch(m, /<rect class="dbar/);
 });
