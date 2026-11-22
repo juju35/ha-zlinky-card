@@ -122,6 +122,12 @@ var ZlI18n = {
     en_tempo: 'Couleur Tempo du jour',
     en_tomorrow: 'Couleur Tempo de demain',
     en_tier1: 'Index 1', en_tier2: 'Index 2', en_tier3: 'Index 3', en_tier4: 'Index 4', en_tier5: 'Index 5', en_tier6: 'Index 6',
+    linky_d1: 'Données J-1',
+    last_30d: '30 derniers jours',
+    avg_day: 'moy. {v} kWh/j',
+    day_hours: '{d} heure par heure',
+    ed_linky_prm: 'Compteur HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM importé par l\'app HA Linky (14 chiffres) : la carte lit ses statistiques à la place d\'un ZLinky',
   },
   en: {
     title: 'Linky',
@@ -243,6 +249,12 @@ var ZlI18n = {
     en_tempo: 'Tempo color today',
     en_tomorrow: 'Tempo color tomorrow',
     en_tier1: 'Index 1', en_tier2: 'Index 2', en_tier3: 'Index 3', en_tier4: 'Index 4', en_tier5: 'Index 5', en_tier6: 'Index 6',
+    linky_d1: 'Data D-1',
+    last_30d: 'Last 30 days',
+    avg_day: 'avg {v} kWh/day',
+    day_hours: '{d} hour by hour',
+    ed_linky_prm: 'HA Linky meter (PRM)',
+    ed_linky_prm_helper: 'PRM imported by the HA Linky app (14 digits): the card reads its statistics instead of a ZLinky',
   },
   de: {
     title: 'Linky',
@@ -364,6 +376,12 @@ var ZlI18n = {
     en_tempo: 'Tempo-Farbe heute',
     en_tomorrow: 'Tempo-Farbe morgen',
     en_tier1: 'Zählwerk 1', en_tier2: 'Zählwerk 2', en_tier3: 'Zählwerk 3', en_tier4: 'Zählwerk 4', en_tier5: 'Zählwerk 5', en_tier6: 'Zählwerk 6',
+    linky_d1: 'Daten vom Vortag',
+    last_30d: 'Letzte 30 Tage',
+    avg_day: 'Ø {v} kWh/Tag',
+    day_hours: '{d} stündlich',
+    ed_linky_prm: 'HA-Linky-Zähler (PRM)',
+    ed_linky_prm_helper: 'Von der HA-Linky-App importierte PRM (14 Ziffern): Die Karte liest deren Statistiken statt eines ZLinky',
   },
   es: {
     title: 'Linky',
@@ -485,6 +503,12 @@ var ZlI18n = {
     en_tempo: 'Color Tempo de hoy',
     en_tomorrow: 'Color Tempo de mañana',
     en_tier1: 'Índice 1', en_tier2: 'Índice 2', en_tier3: 'Índice 3', en_tier4: 'Índice 4', en_tier5: 'Índice 5', en_tier6: 'Índice 6',
+    linky_d1: 'Datos D-1',
+    last_30d: 'Últimos 30 días',
+    avg_day: 'media {v} kWh/día',
+    day_hours: '{d} hora a hora',
+    ed_linky_prm: 'Contador HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM importado por la app HA Linky (14 dígitos): la tarjeta lee sus estadísticas en lugar de un ZLinky',
   },
   sr: {
     title: 'Linky',
@@ -606,6 +630,12 @@ var ZlI18n = {
     en_tempo: 'Темпо боја данас',
     en_tomorrow: 'Темпо боја сутра',
     en_tier1: 'Тарифа 1', en_tier2: 'Тарифа 2', en_tier3: 'Тарифа 3', en_tier4: 'Тарифа 4', en_tier5: 'Тарифа 5', en_tier6: 'Тарифа 6',
+    linky_d1: 'Подаци Д-1',
+    last_30d: 'Последњих 30 дана',
+    avg_day: 'прос. {v} kWh/дан',
+    day_hours: '{d} по сатима',
+    ed_linky_prm: 'HA Linky бројило (PRM)',
+    ed_linky_prm_helper: 'PRM који увози апликација HA Linky (14 цифара): картица чита њену статистику уместо ZLinky уређаја',
   },
   'sr-Latn': {
     title: 'Linky',
@@ -727,6 +757,12 @@ var ZlI18n = {
     en_tempo: 'Tempo boja danas',
     en_tomorrow: 'Tempo boja sutra',
     en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
+    linky_d1: 'Podaci D-1',
+    last_30d: 'Poslednjih 30 dana',
+    avg_day: 'pros. {v} kWh/dan',
+    day_hours: '{d} po satima',
+    ed_linky_prm: 'HA Linky brojilo (PRM)',
+    ed_linky_prm_helper: 'PRM koji uvozi aplikacija HA Linky (14 cifara): kartica čita njenu statistiku umesto ZLinky uređaja',
   },
   it: {
     title: 'Linky',
@@ -848,6 +884,12 @@ var ZlI18n = {
     en_tempo: 'Colore Tempo di oggi',
     en_tomorrow: 'Colore Tempo di domani',
     en_tier1: 'Fascia 1', en_tier2: 'Fascia 2', en_tier3: 'Fascia 3', en_tier4: 'Fascia 4', en_tier5: 'Fascia 5', en_tier6: 'Fascia 6',
+    linky_d1: 'Dati G-1',
+    last_30d: 'Ultimi 30 giorni',
+    avg_day: 'media {v} kWh/g',
+    day_hours: '{d} ora per ora',
+    ed_linky_prm: 'Contatore HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM importato dall\'app HA Linky (14 cifre): la scheda legge le sue statistiche al posto di uno ZLinky',
   },
   nl: {
     title: 'Linky',
@@ -969,6 +1011,12 @@ var ZlI18n = {
     en_tempo: 'Tempo-kleur vandaag',
     en_tomorrow: 'Tempo-kleur morgen',
     en_tier1: 'Telwerk 1', en_tier2: 'Telwerk 2', en_tier3: 'Telwerk 3', en_tier4: 'Telwerk 4', en_tier5: 'Telwerk 5', en_tier6: 'Telwerk 6',
+    linky_d1: 'Gegevens D-1',
+    last_30d: 'Laatste 30 dagen',
+    avg_day: 'gem. {v} kWh/dag',
+    day_hours: '{d} per uur',
+    ed_linky_prm: 'HA Linky-meter (PRM)',
+    ed_linky_prm_helper: 'PRM geïmporteerd door de HA Linky-app (14 cijfers): de kaart leest de statistieken in plaats van een ZLinky',
   },
   pt: {
     title: 'Linky',
@@ -1090,6 +1138,12 @@ var ZlI18n = {
     en_tempo: 'Cor Tempo de hoje',
     en_tomorrow: 'Cor Tempo de amanhã',
     en_tier1: 'Leitura 1', en_tier2: 'Leitura 2', en_tier3: 'Leitura 3', en_tier4: 'Leitura 4', en_tier5: 'Leitura 5', en_tier6: 'Leitura 6',
+    linky_d1: 'Dados D-1',
+    last_30d: 'Últimos 30 dias',
+    avg_day: 'média {v} kWh/dia',
+    day_hours: '{d} hora a hora',
+    ed_linky_prm: 'Contador HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM importado pela app HA Linky (14 dígitos): o cartão lê as suas estatísticas em vez de um ZLinky',
   },
   pl: {
     title: 'Linky',
@@ -1211,6 +1265,12 @@ var ZlI18n = {
     en_tempo: 'Kolor Tempo dziś',
     en_tomorrow: 'Kolor Tempo jutro',
     en_tier1: 'Strefa 1', en_tier2: 'Strefa 2', en_tier3: 'Strefa 3', en_tier4: 'Strefa 4', en_tier5: 'Strefa 5', en_tier6: 'Strefa 6',
+    linky_d1: 'Dane D-1',
+    last_30d: 'Ostatnie 30 dni',
+    avg_day: 'śr. {v} kWh/dzień',
+    day_hours: '{d} godzina po godzinie',
+    ed_linky_prm: 'Licznik HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM importowany przez aplikację HA Linky (14 cyfr): karta odczytuje jej statystyki zamiast ZLinky',
   },
   ro: {
     title: 'Linky',
@@ -1332,6 +1392,12 @@ var ZlI18n = {
     en_tempo: 'Culoare Tempo azi',
     en_tomorrow: 'Culoare Tempo mâine',
     en_tier1: 'Index 1', en_tier2: 'Index 2', en_tier3: 'Index 3', en_tier4: 'Index 4', en_tier5: 'Index 5', en_tier6: 'Index 6',
+    linky_d1: 'Date Z-1',
+    last_30d: 'Ultimele 30 de zile',
+    avg_day: 'medie {v} kWh/zi',
+    day_hours: '{d} oră cu oră',
+    ed_linky_prm: 'Contor HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM importat de aplicația HA Linky (14 cifre): cardul citește statisticile ei în locul unui ZLinky',
   },
   da: {
     title: 'Linky',
@@ -1453,6 +1519,12 @@ var ZlI18n = {
     en_tempo: 'Tempo-farve i dag',
     en_tomorrow: 'Tempo-farve i morgen',
     en_tier1: 'Tælleværk 1', en_tier2: 'Tælleværk 2', en_tier3: 'Tælleværk 3', en_tier4: 'Tælleværk 4', en_tier5: 'Tælleværk 5', en_tier6: 'Tælleværk 6',
+    linky_d1: 'Data D-1',
+    last_30d: 'Seneste 30 dage',
+    avg_day: 'gns. {v} kWh/dag',
+    day_hours: '{d} time for time',
+    ed_linky_prm: 'HA Linky-måler (PRM)',
+    ed_linky_prm_helper: 'PRM importeret af HA Linky-appen (14 cifre): kortet læser dens statistik i stedet for en ZLinky',
   },
   sv: {
     title: 'Linky',
@@ -1574,6 +1646,12 @@ var ZlI18n = {
     en_tempo: 'Tempo-färg i dag',
     en_tomorrow: 'Tempo-färg i morgon',
     en_tier1: 'Register 1', en_tier2: 'Register 2', en_tier3: 'Register 3', en_tier4: 'Register 4', en_tier5: 'Register 5', en_tier6: 'Register 6',
+    linky_d1: 'Data D-1',
+    last_30d: 'Senaste 30 dagarna',
+    avg_day: 'snitt {v} kWh/dag',
+    day_hours: '{d} timme för timme',
+    ed_linky_prm: 'HA Linky-mätare (PRM)',
+    ed_linky_prm_helper: 'PRM som importeras av HA Linky-appen (14 siffror): kortet läser dess statistik i stället för en ZLinky',
   },
   bg: {
     title: 'Linky',
@@ -1695,6 +1773,12 @@ var ZlI18n = {
     en_tempo: 'Цвят Tempo днес',
     en_tomorrow: 'Цвят Tempo утре',
     en_tier1: 'Тарифа 1', en_tier2: 'Тарифа 2', en_tier3: 'Тарифа 3', en_tier4: 'Тарифа 4', en_tier5: 'Тарифа 5', en_tier6: 'Тарифа 6',
+    linky_d1: 'Данни Д-1',
+    last_30d: 'Последните 30 дни',
+    avg_day: 'ср. {v} kWh/ден',
+    day_hours: '{d} час по час',
+    ed_linky_prm: 'Електромер HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM, импортиран от приложението HA Linky (14 цифри): картата чете неговата статистика вместо ZLinky',
   },
   ru: {
     title: 'Linky',
@@ -1816,6 +1900,12 @@ var ZlI18n = {
     en_tempo: 'Цвет Tempo сегодня',
     en_tomorrow: 'Цвет Tempo завтра',
     en_tier1: 'Тариф 1', en_tier2: 'Тариф 2', en_tier3: 'Тариф 3', en_tier4: 'Тариф 4', en_tier5: 'Тариф 5', en_tier6: 'Тариф 6',
+    linky_d1: 'Данные Д-1',
+    last_30d: 'Последние 30 дней',
+    avg_day: 'ср. {v} кВт·ч/день',
+    day_hours: '{d} по часам',
+    ed_linky_prm: 'Счётчик HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM, импортируемый приложением HA Linky (14 цифр): карточка читает его статистику вместо ZLinky',
   },
   uk: {
     title: 'Linky',
@@ -1937,6 +2027,12 @@ var ZlI18n = {
     en_tempo: 'Колір Tempo сьогодні',
     en_tomorrow: 'Колір Tempo завтра',
     en_tier1: 'Тариф 1', en_tier2: 'Тариф 2', en_tier3: 'Тариф 3', en_tier4: 'Тариф 4', en_tier5: 'Тариф 5', en_tier6: 'Тариф 6',
+    linky_d1: 'Дані Д-1',
+    last_30d: 'Останні 30 днів',
+    avg_day: 'сер. {v} кВт·год/день',
+    day_hours: '{d} погодинно',
+    ed_linky_prm: 'Лічильник HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM, імпортований застосунком HA Linky (14 цифр): картка читає його статистику замість ZLinky',
   },
   hu: {
     title: 'Linky',
@@ -2058,6 +2154,12 @@ var ZlI18n = {
     en_tempo: 'Mai Tempo szín',
     en_tomorrow: 'Holnapi Tempo szín',
     en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
+    linky_d1: 'Előző napi adatok',
+    last_30d: 'Utolsó 30 nap',
+    avg_day: 'átl. {v} kWh/nap',
+    day_hours: '{d} óránként',
+    ed_linky_prm: 'HA Linky mérő (PRM)',
+    ed_linky_prm_helper: 'A HA Linky alkalmazás által importált PRM (14 számjegy): a kártya ennek statisztikáit olvassa ZLinky helyett',
   },
   sk: {
     title: 'Linky',
@@ -2179,6 +2281,12 @@ var ZlI18n = {
     en_tempo: 'Farba Tempo dnes',
     en_tomorrow: 'Farba Tempo zajtra',
     en_tier1: 'Pásmo 1', en_tier2: 'Pásmo 2', en_tier3: 'Pásmo 3', en_tier4: 'Pásmo 4', en_tier5: 'Pásmo 5', en_tier6: 'Pásmo 6',
+    linky_d1: 'Údaje D-1',
+    last_30d: 'Posledných 30 dní',
+    avg_day: 'priem. {v} kWh/deň',
+    day_hours: '{d} po hodinách',
+    ed_linky_prm: 'Elektromer HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM importovaný aplikáciou HA Linky (14 číslic): karta číta jej štatistiky namiesto ZLinky',
   },
   cs: {
     title: 'Linky',
@@ -2300,6 +2408,12 @@ var ZlI18n = {
     en_tempo: 'Barva Tempo dnes',
     en_tomorrow: 'Barva Tempo zítra',
     en_tier1: 'Pásmo 1', en_tier2: 'Pásmo 2', en_tier3: 'Pásmo 3', en_tier4: 'Pásmo 4', en_tier5: 'Pásmo 5', en_tier6: 'Pásmo 6',
+    linky_d1: 'Data D-1',
+    last_30d: 'Posledních 30 dní',
+    avg_day: 'prům. {v} kWh/den',
+    day_hours: '{d} po hodinách',
+    ed_linky_prm: 'Elektroměr HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM importovaný aplikací HA Linky (14 číslic): karta čte její statistiky místo ZLinky',
   },
   sl: {
     title: 'Linky',
@@ -2421,6 +2535,12 @@ var ZlI18n = {
     en_tempo: 'Barva Tempo danes',
     en_tomorrow: 'Barva Tempo jutri',
     en_tier1: 'Tarifa 1', en_tier2: 'Tarifa 2', en_tier3: 'Tarifa 3', en_tier4: 'Tarifa 4', en_tier5: 'Tarifa 5', en_tier6: 'Tarifa 6',
+    linky_d1: 'Podatki D-1',
+    last_30d: 'Zadnjih 30 dni',
+    avg_day: 'povp. {v} kWh/dan',
+    day_hours: '{d} po urah',
+    ed_linky_prm: 'Števec HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM, ki ga uvozi aplikacija HA Linky (14 števk): kartica bere njeno statistiko namesto ZLinky',
   },
   lv: {
     title: 'Linky',
@@ -2542,6 +2662,12 @@ var ZlI18n = {
     en_tempo: 'Tempo krāsa šodien',
     en_tomorrow: 'Tempo krāsa rīt',
     en_tier1: 'Zona 1', en_tier2: 'Zona 2', en_tier3: 'Zona 3', en_tier4: 'Zona 4', en_tier5: 'Zona 5', en_tier6: 'Zona 6',
+    linky_d1: 'Dati D-1',
+    last_30d: 'Pēdējās 30 dienas',
+    avg_day: 'vid. {v} kWh/dienā',
+    day_hours: '{d} pa stundām',
+    ed_linky_prm: 'HA Linky skaitītājs (PRM)',
+    ed_linky_prm_helper: 'PRM, ko importē lietotne HA Linky (14 cipari): kartīte lasa tās statistiku ZLinky vietā',
   },
   el: {
     title: 'Linky',
@@ -2663,6 +2789,12 @@ var ZlI18n = {
     en_tempo: 'Χρώμα Tempo σήμερα',
     en_tomorrow: 'Χρώμα Tempo αύριο',
     en_tier1: 'Ζώνη 1', en_tier2: 'Ζώνη 2', en_tier3: 'Ζώνη 3', en_tier4: 'Ζώνη 4', en_tier5: 'Ζώνη 5', en_tier6: 'Ζώνη 6',
+    linky_d1: 'Δεδομένα Η-1',
+    last_30d: 'Τελευταίες 30 ημέρες',
+    avg_day: 'μ.ό. {v} kWh/ημέρα',
+    day_hours: '{d} ανά ώρα',
+    ed_linky_prm: 'Μετρητής HA Linky (PRM)',
+    ed_linky_prm_helper: 'PRM που εισάγεται από την εφαρμογή HA Linky (14 ψηφία): η κάρτα διαβάζει τα στατιστικά της αντί για ZLinky',
   },
 };
 
@@ -3169,17 +3301,31 @@ function zlMinuteOfDay(fmt, ms) {
   return h * 60 + Number(parts.find((p) => p.type === 'minute')?.value || 0);
 }
 
+// Hours and minutes in the time zone `tz` (Home Assistant's), for zlMinuteOfDay.
+function zlTimeFmt(tz) {
+  try {
+    return new Intl.DateTimeFormat('en-GB', { timeZone: tz || undefined, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  } catch (_e) {
+    return new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  }
+}
+
+// A day as "Sat 21 Nov" in the UI language, in Home Assistant's time zone.
+function zlDayLabel(lang, ms, tz) {
+  var o = { weekday: 'short', day: 'numeric', month: 'short' };
+  try {
+    return new Intl.DateTimeFormat(lang, { ...o, timeZone: tz || undefined }).format(new Date(ms));
+  } catch (_e) {
+    return new Intl.DateTimeFormat(lang, o).format(new Date(ms));
+  }
+}
+
 // Hourly kWh ({ start, kwh }) priced both ways. An hour counts as off-peak when its middle is (hourly statistics
 // can't split 22:30). Subscriptions are monthly, counted over the days the statistics cover.
 function zlCompare(hours, c, tz) {
   var ranges = zlHcRanges(c.hc_hours);
   if (!hours.length || !ranges.length) return null;
-  var fmt;
-  try {
-    fmt = new Intl.DateTimeFormat('en-GB', { timeZone: tz || undefined, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
-  } catch (_e) {
-    fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
-  }
+  var fmt = zlTimeFmt(tz);
   var total = 0, hc = 0;
   hours.forEach((h) => {
     total += h.kwh;
@@ -3206,6 +3352,23 @@ function zlMonthProgress(now, tz) {
   var days = new Date(Date.UTC(p.year, p.month, 0)).getUTCDate();
   return { elapsed: p.day - 1 + (p.hour * 60 + p.minute) / 1440, days: days };
 }
+
+// HA Linky (bokub/ha-linky): the app imports the meter's data from Enedis as long-term statistics, without any
+// entity — `linky:<PRM>` (Wh, hourly, the day after), and `linky:<PRM>_cost` (€) when it prices them. `linky_prm`
+// (the 14-digit PRM, or the whole statistic id) points the card at them; null when it is not set.
+function zlLinkyId(c) {
+  var prm = String(c?.linky_prm ?? '').replace(/\s/g, '').replace(/^linky:/, '');
+  return prm ? `linky:${prm}` : null;
+}
+
+// Statistics rows (`change` per period) as [{ start, kwh }], the unusable ones dropped.
+function zlRows(rows) {
+  return (rows || []).map((p) => ({ start: typeof p.start === 'number' ? p.start : Date.parse(p.start), kwh: Number(p.change) }))
+    .filter((p) => Number.isFinite(p.start) && Number.isFinite(p.kwh) && p.kwh >= 0);
+}
+
+// The days of the HA Linky bars: 30, yesterday last (the data comes the day after).
+var ZL_LINKY_DAYS = 30;
 
 // ── Base card ────────────────────────────────────────────────────────────────
 
@@ -3261,13 +3424,15 @@ class ZlinkyCard extends HTMLElement {
       // Enter / Space on a role=button element (the scrolling meter) acts like a click.
       this.shadowRoot.addEventListener('keydown', (ev) => {
         if (ev.key !== 'Enter' && ev.key !== ' ') return;
-        if (ev.composedPath().some((n) => n.dataset && n.dataset.action === 'screen')) { ev.preventDefault(); this._onClick(ev); }
+        if (ev.composedPath().some((n) => n.dataset && (n.dataset.action === 'screen' || n.dataset.action === 'day'))) { ev.preventDefault(); this._onClick(ev); }
       });
     }
     this._stats = null;
     this._statsKey = null;
     this._cmp = null;
     this._cmpKey = null;
+    this._day = null;
+    this._hours = null;
     this._sig = null;
     this._update();
   }
@@ -3327,6 +3492,14 @@ class ZlinkyCard extends HTMLElement {
 
   _resolve() {
     var hass = this._hass, c = this._config;
+    // HA Linky: no device and no entity, the statistics stand for the total index.
+    var lk = zlLinkyId(c);
+    if (lk) {
+      if (this._resolved?.config === c && this._resolved.r.linky === lk) return this._resolved.r;
+      var rl = { deviceId: null, ent: { energy: lk }, n: 0, linky: lk };
+      this._resolved = { reg: hass.entities, config: c, n: 0, r: rl };
+      return rl;
+    }
     var deviceId = this._deviceId();
     // Role matching only depends on the registry, the device, the config and which of the device's entities
     // have a state: cache it and rebuild only when one of them changes (`hass.entities` is replaced on registry
@@ -3481,8 +3654,14 @@ class ZlinkyCard extends HTMLElement {
     var costOn = this._costOn() && !!r.ent.energy;
     var key = `${r.ent.energy}|${curveId}|${wantCurve ? 1 : 0}|${tierIds.join(',')}|${costOn ? 1 : 0}`;
     var fresh = this._statsKey === key && Date.now() - (this._statsAt || 0) < ZL_STATS_REFRESH;
+    var lk = r.linky;
+    // HA Linky: the 30 daily bars, on the full card (or the mini once unfolded) with `show_graph`.
+    var wantDays = !!(lk && c.show_graph && !this._compact());
+    key += `|${wantDays ? 1 : 0}`;
+    fresh = this._statsKey === key && Date.now() - (this._statsAt || 0) < ZL_STATS_REFRESH;
     // Nothing to fetch when neither the tiles (or the mini's "today" line), the cost section nor the curve are shown.
-    if (fresh || !(c.show_stats || costOn || wantCurve)) return;
+    // HA Linky always fetches: its meter screens and its main reading are statistics too.
+    if (fresh || !(lk || c.show_stats || costOn || wantCurve)) return;
     this._statsBusy = true;
     this._statsKey = key;
     this._statsAt = Date.now();
@@ -3509,8 +3688,10 @@ class ZlinkyCard extends HTMLElement {
         .then((pts) => (pts.length > 1 ? pts : this._historyCurve(curveId)))
         .catch(() => { failed = true; return []; })
       : Promise.resolve([]);
-    var periods = [['today', 'day', 0], ['yesterday', 'day', -1], ['month', 'month', 0]]
-      .concat(costOn ? [['week', 'week', 0], ['last_month', 'month', -1]] : []);
+    // HA Linky has nothing for today yet: yesterday, this week, this month and last month.
+    var periods = lk ? [['yesterday', 'day', -1], ['week', 'week', 0], ['month', 'month', 0], ['last_month', 'month', -1]]
+      : [['today', 'day', 0], ['yesterday', 'day', -1], ['month', 'month', 0]]
+        .concat(costOn ? [['week', 'week', 0], ['last_month', 'month', -1]] : []);
     var names = periods.map((p) => p[0]);
     // Per period, each tier's kWh ({ tier1: 1.2, tier2: 3.4 }), or null when one of them is missing.
     var split = (p) => Promise.all(tierIds.map((t) => change(p[1], p[2], r.ent[t]))).then((v) => {
@@ -3519,14 +3700,26 @@ class ZlinkyCard extends HTMLElement {
       tierIds.forEach((t, i) => { o[t] = v[i]; });
       return o;
     });
-    Promise.all(periods.map((p) => change(p[1], p[2])).concat([curve], periods.map(split))).then((res) => {
+    // HA Linky's own cost statistic (€ per period), when the app prices the data; missing is not a failure.
+    var costs = lk
+      ? Promise.all(periods.map((p) => hass.callWS({ type: 'recorder/statistic_during_period', statistic_id: `${lk}_cost`,
+        calendar: { period: p[1], offset: p[2] }, types: ['change'] })
+        .then((x) => (x?.change != null ? Number(x.change) : null)).catch(() => null)))
+      : Promise.resolve([]);
+    var days = wantDays
+      ? hass.callWS({ type: 'recorder/statistics_during_period', statistic_ids: [lk], period: 'day', types: ['change'],
+        start_time: new Date(Date.now() - (ZL_LINKY_DAYS + 2) * 86400000).toISOString(), units: { energy: 'kWh' } })
+        .then((x) => zlRows(x?.[lk]).slice(-ZL_LINKY_DAYS)).catch(() => { failed = true; return []; })
+      : Promise.resolve([]);
+    Promise.all(periods.map((p) => change(p[1], p[2])).concat([curve], periods.map(split), [costs, days])).then((res) => {
       // A reply for a previous config (setConfig while in flight) is dropped: the next update refetches.
       if (this._statsKey !== key) return;
       var n = names.length;
-      var next = { key: key, curve: res[n], tiers: {} };
+      var next = { key: key, curve: res[n], tiers: {}, costs: {}, days: res[2 * n + 2] };
       names.forEach((k, i) => {
         next[k] = res[i];
         next.tiers[k] = res[n + 1 + i];
+        next.costs[k] = res[2 * n + 1][i] ?? null;
       });
       var prev = this._stats;
       // On a partial failure, keep the previous values of the same query rather than falling back to "—".
@@ -3536,6 +3729,7 @@ class ZlinkyCard extends HTMLElement {
           if (next.tiers[k] == null) next.tiers[k] = prev.tiers[k];
         });
         if (!next.curve.length) next.curve = prev.curve;
+        if (!next.days.length && prev.days) next.days = prev.days;
       }
       this._stats = next;
       this._statsVer = (this._statsVer || 0) + 1;
@@ -3554,6 +3748,9 @@ class ZlinkyCard extends HTMLElement {
   _model(r) {
     var c = this._config, ent = r.ent, lang = this._fmtLang();
     var name = c.name || this._t('title');
+    // Header icon in a round badge, in the status color: a flash on the illustrated header, else an electric meter.
+    var logo = c.show_logo === false ? '' : `<span class="hbadge"><ha-icon icon="${this._bannerOn() ? 'mdi:flash' : 'mdi:meter-electric-outline'}"></ha-icon></span>`;
+    if (r.linky) return this._linkyModel(r, lang, name, logo);
     var online = this._avail(ent.energy) || this._avail(ent.apparent_power) || this._avail(ent.power);
     var watts = this._avail(ent.power) ? zlBase(this._st(ent.power)) : null;
     var va = this._avail(ent.apparent_power) ? zlBase(this._st(ent.apparent_power)) : null;
@@ -3574,8 +3771,27 @@ class ZlinkyCard extends HTMLElement {
       statusText: !online ? this._t('offline') : producing ? this._t('producing') : this._t(`load_${level}`),
       mainText: main != null ? zlPower(lang, main, mainUnit) : '—',
       screens: this._screens({ ent, lang, online, va, watts, subscribed, tariff }),
-      // Header icon in a round badge, in the status color: a flash on the illustrated header, else an electric meter.
-      logo: c.show_logo === false ? '' : `<span class="hbadge"><ha-icon icon="${this._bannerOn() ? 'mdi:flash' : 'mdi:meter-electric-outline'}"></ha-icon></span>`,
+      logo,
+    };
+  }
+
+  // HA Linky: no live reading. The main value is yesterday's kWh, the pill says the data is the day before's,
+  // the meter's screens scroll through yesterday, this week, this month and last month, and the LED stays still.
+  _linkyModel(r, lang, name, logo) {
+    var c = this._config, s = this._stats || {};
+    var online = s.yesterday != null || s.month != null;
+    var level = online ? 'low' : 'off';
+    var num = (x) => zlNum(lang, x, x < 100 ? 1 : 0);
+    var screens = [['HIER', s.yesterday], ['SEMAINE', s.week], ['MOIS', s.month], ['MOIS-1', s.last_month]]
+      .filter(([, v]) => v != null).map(([l, v]) => ({ l, v: num(v).replace(/[\s  ]/g, ''), u: 'kWh' }));
+    return {
+      c, ent: r.ent, lang, name, online, linky: true, watts: null, va: null, main: null, mainUnit: 'kWh',
+      subscribed: this._subscribed(), pct: null, level, sub: 'HA Linky', tariff: '', producing: false, period: null,
+      color: ZL_LOAD_COLORS[level],
+      statusText: this._t(online ? 'linky_d1' : 'offline'),
+      mainText: s.yesterday != null ? `${num(s.yesterday)} kWh` : '—',
+      screens: screens.length ? screens : [{ l: '', v: '- - -', u: '' }],
+      logo,
     };
   }
 
@@ -3626,6 +3842,7 @@ class ZlinkyCard extends HTMLElement {
   // The banner's subtitle: the tariff period (Off-peak / Peak, else the meter's own label). The live reading is not
   // repeated: the body shows it big just below (full card, unfolded mini card).
   _bannerSub(m) {
+    if (m.linky) return m.sub;
     return (m.period ? this._t(m.period === 'hc' ? 'off_peak' : 'peak_hours') : m.tariff) || this._t('meter');
   }
 
@@ -3672,7 +3889,7 @@ class ZlinkyCard extends HTMLElement {
     // meter_size scales the illustration (percent of its default size), so the screen can be made easier to read.
     var ms = this._ms();
     var scale = ms !== 1 ? `;--zl-ms:${ms}` : '';
-    return `<div class="picture${m.online ? ' live' : ''}${tap}" style="--zl-blink:${period.toFixed(2)}s${scale}">${zlMeterArt(m.screens[i], this._uidv())}</div>`;
+    return `<div class="picture${m.online && !m.linky ? ' live' : ''}${tap}" style="--zl-blink:${period.toFixed(2)}s${scale}">${zlMeterArt(m.screens[i], this._uidv())}</div>`;
   }
 
   _loadBar(m) {
@@ -3740,6 +3957,9 @@ class ZlinkyCard extends HTMLElement {
 
   // The same cost as a number, null when it cannot be told.
   _costValue(kwh, period = 'today') {
+    // HA Linky's own cost statistic wins: priced by the app hour by hour, tiers included.
+    var own = this._linkyCost(period);
+    if (own != null) return own;
     var prices = this._prices();
     if (kwh == null || !prices.some((x) => x > 0)) return null;
     var split = prices.length > 1 ? this._stats?.tiers?.[period] : null;
@@ -3750,11 +3970,17 @@ class ZlinkyCard extends HTMLElement {
       : kwh * zlPriceAt(prices, this._tierNow());
   }
 
+  // The HA Linky cost statistic's value for a period, null without it (or off HA Linky).
+  _linkyCost(period) {
+    return this._hass && this._resolve().linky ? this._stats?.costs?.[period] ?? null : null;
+  }
+
   _money(v) { return zlMoney(this._fmtLang(), v, this._hass.config?.currency); }
 
   // The cost section (full card): `show_cost` and a price.
   _costOn() {
-    return !this._compact() && this._config.show_cost !== false && this._prices().some((x) => x > 0);
+    return !this._compact() && this._config.show_cost !== false &&
+      (this._prices().some((x) => x > 0) || ['week', 'month', 'last_month'].some((k) => this._linkyCost(k) != null));
   }
 
   // `subscription`: the monthly subscription, a number or a sensor giving it; 0 without one.
@@ -3776,7 +4002,9 @@ class ZlinkyCard extends HTMLElement {
     var last = this._costValue(s.last_month, 'last_month');
     var month = this._costValue(s.month, 'month');
     var prog = zlMonthProgress(Date.now(), this._hass.config?.time_zone);
-    var estimate = month != null && prog.elapsed >= 1 ? (month / prog.elapsed) * prog.days + sub : null;
+    // HA Linky's month stops at yesterday: only the whole days elapsed count.
+    var elapsed = this._resolve().linky ? Math.floor(prog.elapsed) : prog.elapsed;
+    var estimate = month != null && elapsed >= 1 ? (month / elapsed) * prog.days + sub : null;
     if (last != null) last += sub;
     if (week == null && last == null && estimate == null) return '';
     var rows = [];
@@ -3799,7 +4027,7 @@ class ZlinkyCard extends HTMLElement {
 
   _render(r) {
     var c = this._config, ent = r.ent;
-    if (!r.deviceId && !c.entities) {
+    if (!r.deviceId && !c.entities && !r.linky) {
       this._setHtml(`${this._styles()}<ha-card><div class="empty"><ha-icon icon="mdi:meter-electric-outline"></ha-icon>${this._t('no_device')}</div></ha-card>`);
       return;
     }
@@ -3827,6 +4055,10 @@ class ZlinkyCard extends HTMLElement {
     // intensity_tap_action: 'none' makes the current chip a plain span, so a tap no longer opens more-info.
     if (amps != null) chips.push(this._chip('mdi:current-ac', `${l1}${zlAmps(lang, amps)} A`, this._noTap(c.intensity_tap_action) ? null : ent.current));
     if (volts != null && volts > 0) chips.push(this._chip('mdi:sine-wave', `${l1}${zlNum(lang, volts, 0)} V`, ent.voltage));
+    if (m.linky && this._stats?.yesterday != null) {
+      var ycost = this._cost(this._stats.yesterday, 'yesterday');
+      chips.push(this._chip('mdi:calendar-today', [this._t('yesterday'), ycost].filter((x) => x).join(' · ')));
+    }
     if (!m.online) chips.push(`<span class="chip"><ha-icon icon="mdi:lan-disconnect"></ha-icon>${this._t('offline')}</span>`);
     var banner = this._bannerOn();
     // Under the illustrated header the meter is drawn big here, its screen readable (the banner keeps the scene).
@@ -3852,7 +4084,8 @@ class ZlinkyCard extends HTMLElement {
     // Consumption tiles.
     var stats = '';
     if (c.show_stats && ent.energy && this._stats) {
-      var tiles = [['today', this._stats.today], ['yesterday', this._stats.yesterday], ['month', this._stats.month]]
+      // HA Linky: yesterday is the main reading, so the tiles are this week, this month and last month.
+      var tiles = (r.linky ? ['week', 'month', 'last_month'] : ['today', 'yesterday', 'month']).map((k) => [k, this._stats[k]])
         .map(([k, v]) => {
           var cost = this._cost(v, k);
           return `<div class="tile"><span class="tl">${this._t(k)}</span>` +
@@ -3909,8 +4142,76 @@ class ZlinkyCard extends HTMLElement {
     var head = banner
       ? this._banner(m, this._titles(m, this._bannerSub(m)), false)
       : '<div class="header sub2">' + m.logo + this._titles(m, m.sub) + this._zoomButton() + '</div>';
-    this._setHtml(this._styles(m.color) + '<ha-card>' + head + hero(banner ? stats : '') + this._tempo(ent) + (banner ? '' : stats) + graph + this._costHtml(lang) + this._compareHtml(lang) + index + phases +
+    this._setHtml(this._styles(m.color) + '<ha-card>' + head + hero(banner ? stats : '') + this._tempo(ent) + (banner ? '' : stats) + graph + (r.linky ? this._daysHtml(lang) : '') + this._costHtml(lang) + this._compareHtml(lang) + index + phases +
     '</ha-card>');
+  }
+
+  // HA Linky: the last 30 days as bars (yesterday last). A tap on a bar opens that day hour by hour underneath
+  // (off-peak hours tinted when `hc_hours` is set); a tap on the same bar closes it.
+  _daysHtml(lang) {
+    var days = this._stats?.days;
+    if (!this._config.show_graph || !days?.length) return '';
+    var tz = this._hass.config?.time_zone;
+    var W = 300, H = 64, n = days.length, gap = 2;
+    var bw = (W - gap * (n - 1)) / n;
+    var max = Math.max(...days.map((d) => d.kwh), 0.001);
+    var avg = days.reduce((a, d) => a + d.kwh, 0) / n;
+    var label = (d) => `${zlDayLabel(this._fmtLang(), d.start, tz)} · ${zlNum(lang, d.kwh, 1)} kWh`;
+    var bars = days.map((d, i) => {
+      var h = Math.max(1.5, (d.kwh / max) * (H - 4));
+      var cls = `dbar${d.start === this._day ? ' on' : ''}${i === n - 1 ? ' last' : ''}`;
+      var tip = zlEsc(label(d));
+      return `<rect class="${cls}" data-action="day" data-day="${d.start}" role="button" tabindex="0" aria-label="${tip}" ` +
+        `x="${(i * (bw + gap)).toFixed(1)}" y="${(H - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="1.5"><title>${tip}</title></rect>`;
+    }).join('');
+    var html = '<div class="section">' +
+      `<div class="section-title"><ha-icon icon="mdi:chart-bar"></ha-icon><span>${zlEsc(this._t('last_30d'))}</span><span class="aside">${zlEsc(this._t('avg_day').replace('{v}', zlNum(lang, avg, 1)))}</span></div>` +
+      `<svg class="dbars" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${bars}</svg></div>`;
+    var day = days.find((d) => d.start === this._day);
+    var hours = day && this._hours?.start === day.start ? this._hours.list : null;
+    if (!day || !hours?.length) return html;
+    var ranges = zlHcRanges(this._config.hc_hours);
+    var fmt = ranges.length ? zlTimeFmt(tz) : null;
+    var hmax = Math.max(...hours.map((h) => h.kwh), 0.001), hw = (W - 23 * gap) / 24;
+    var hc = 0;
+    var hbars = hours.slice(0, 24).map((h, i) => {
+      var off = fmt && zlInRanges(zlMinuteOfDay(fmt, h.start + 1800000), ranges);
+      if (off) hc += h.kwh;
+      var hh = Math.max(1.5, (h.kwh / hmax) * (H - 4));
+      return `<rect class="hbar${off ? ' hc' : ''}" x="${(i * (hw + gap)).toFixed(1)}" y="${(H - hh).toFixed(1)}" width="${hw.toFixed(1)}" height="${hh.toFixed(1)}" rx="1.5"/>`;
+    }).join('');
+    var total = hours.reduce((a, h) => a + h.kwh, 0);
+    var aside = fmt && total > 0 ? this._t('cmp_share').replace('{p}', zlNum(lang, Math.round((hc / total) * 100), 0)) : `${zlNum(lang, total, 1)} kWh`;
+    return html + '<div class="section">' +
+      `<div class="section-title"><ha-icon icon="mdi:clock-outline"></ha-icon><span>${zlEsc(this._t('day_hours').replace('{d}', zlDayLabel(this._fmtLang(), day.start, tz)))}</span><span class="aside">${zlEsc(aside)}</span></div>` +
+      `<svg class="dbars" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">${hbars}</svg>` +
+      '<div class="haxis"><span>0 h</span><span>6 h</span><span>12 h</span><span>18 h</span><span>24 h</span></div></div>';
+  }
+
+  // A tap on a day bar: opens (or closes) that day's hours, fetched once per day.
+  _pickDay(start) {
+    this._day = this._day === start ? null : start;
+    if (this._day != null && this._hours?.start !== start) this._fetchHours(start);
+    if (this._r) this._render(this._r);
+  }
+
+  // One day's hourly kWh from the HA Linky statistics, up to the next day's start (a DST day has 23 or 25 hours).
+  _fetchHours(start) {
+    var id = this._r?.linky;
+    if (!id || !this._hass?.callWS) return;
+    var days = this._stats?.days || [];
+    var i = days.findIndex((d) => d.start === start);
+    var end = days[i + 1]?.start ?? start + 86400000;
+    this._hours = { start, list: null };
+    this._hass.callWS({ type: 'recorder/statistics_during_period', statistic_ids: [id], period: 'hour', types: ['change'],
+      start_time: new Date(start).toISOString(), end_time: new Date(end).toISOString(), units: { energy: 'kWh' } })
+      .then((x) => zlRows(x?.[id]).filter((h) => h.start >= start && h.start < end))
+      .catch(() => [])
+      .then((list) => {
+        if (this._hours?.start !== start) return;
+        this._hours = { start, list };
+        if (this._r) this._render(this._r);
+      });
   }
 
   // Tempo or Zen Flex contract: today's color / day type and tomorrow's (or "not known yet" until it is announced).
@@ -4036,11 +4337,13 @@ class ZlinkyCard extends HTMLElement {
   }
 
   _miniHtml(m) {
-    var today = this._config.show_stats ? this._stats?.today : null;
+    // HA Linky: yesterday is the main reading, the line gives this month instead of today.
+    var lineKey = m.linky ? 'month' : 'today';
+    var today = this._config.show_stats ? this._stats?.[lineKey] : null;
     var lines = [];
     if (today != null) {
       // Each part is kept whole: on a narrow card the line wraps between them instead of cutting the cost off.
-      var parts = [this._t('today'), `${zlNum(m.lang, today, 1)} kWh`, this._cost(today)].filter((x) => x);
+      var parts = [this._t(lineKey), `${zlNum(m.lang, today, today < 100 ? 1 : 0)} kWh`, this._cost(today, lineKey)].filter((x) => x);
       var segs = parts.map((x, i) => `<span class="seg">${zlEsc(x)}${i < parts.length - 1 ? ' ·' : ''}</span>`).join(' ');
       lines.push(`<div class="line"><ha-icon icon="mdi:calendar-today"></ha-icon><span>${segs}</span></div>`);
     }
@@ -4061,6 +4364,10 @@ class ZlinkyCard extends HTMLElement {
     if (!el) return;
     if (el.dataset.action === 'zoom') {
       this._toggleZoom(ev);
+      return;
+    }
+    if (el.dataset.action === 'day') {
+      this._pickDay(Number(el.dataset.day));
       return;
     }
     if (el.dataset.action === 'screen') {
@@ -4185,6 +4492,13 @@ class ZlinkyCard extends HTMLElement {
       '.graph { height: 64px; border-radius: 10px; overflow: hidden; }' +
       '.spark { width: 100%; height: 100%; display: block; }' +
       '.spark-c { stop-color: var(--zl-color); } .spark-l { stroke: var(--zl-color); }' +
+      // HA Linky's daily bars (yesterday darker, the open day outlined) and the open day's hourly bars.
+      '.dbars { width: 100%; height: 64px; display: block; }' +
+      '.dbar, .hbar { fill: color-mix(in srgb, var(--zl-color) 55%, transparent); }' +
+      '.dbar { cursor: pointer; outline: none; } .dbar.last { fill: var(--zl-color); }' +
+      '.dbar.on, .dbar:focus-visible { fill: var(--zl-color); stroke: var(--primary-text-color); stroke-width: 1.2px; vector-effect: non-scaling-stroke; }' +
+      '.hbar.hc { fill: color-mix(in srgb, var(--info-color, #039be5) 70%, transparent); }' +
+      '.haxis { display: flex; justify-content: space-between; font-size: 10px; color: var(--secondary-text-color); margin-top: 2px; }' +
       '.index { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 12px; background: var(--secondary-background-color, rgba(128,128,128,0.1)); }' +
       '.index ha-icon { --mdc-icon-size: 18px; color: var(--zl-green); }' +
       '.il { flex: 1; font-size: 13px; color: var(--secondary-text-color); }' +
@@ -4405,6 +4719,8 @@ class ZlinkyCardEditor extends HTMLElement {
     var mini = this.mini || /-mini-card$/.test(this._config.type || '');
     return [
       { name: 'device_id', selector: { device: { filter: [{ manufacturer: 'LiXee' }, { model: 'ZLinky_TIC' }] } } },
+      // HA Linky (no ZLinky): the PRM whose statistics the app imports.
+      { name: 'linky_prm', selector: { text: {} } },
       {
         type: 'grid', name: '', schema: [
           { name: 'name', selector: { text: {} } },

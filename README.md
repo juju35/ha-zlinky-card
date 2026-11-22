@@ -12,11 +12,12 @@
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/images/zha.png" alt="ZHA" width="64">
+  <a href="https://github.com/bokub/ha-linky"><img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/images/ha-linky.png" alt="HA Linky" width="64"></a>
 </p>
 
 Custom Lovelace card for the [LiXee ZLinky_TIC](https://lixee.fr/) Zigbee module, which reads the French **Linky** smart meter's TIC output, in Home Assistant (through [ZHA](https://www.home-assistant.io/integrations/zha/) or [Zigbee2MQTT](https://www.zigbee2mqtt.io/devices/ZLinky_TIC.html)).
 
-Pick the ZLinky, the card finds all its entities by itself.
+Pick the ZLinky, the card finds all its entities by itself. No ZLinky? The card also reads the statistics imported by the [HA Linky](https://github.com/bokub/ha-linky) app — see [HA Linky](#ha-linky).
 
 [![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-zlinky-card&category=plugin)
 
@@ -56,6 +57,7 @@ The card opens on an illustrated header (a distribution board feeding a bulb, or
 - Meter index, the tiers in use (off-peak / peak, Tempo… named as you like) and the injection index when you produce
 - Three-phase details on three-phase meters: apparent power (VA) and voltage per phase with the standard TIC (`SINSTS1`–`SINSTS3`), else current per phase, currents only with the historic TIC (`IINST1`–`IINST3`)
 - An illustrated, animated header (consuming / producing / off-peak and peak states, day and night) and the Linky meter drawn big in the body (its screen shows the live power, its LED blinks faster as the load rises); the compact mini card keeps the meter in its panel on the banner
+- HA Linky mode (no ZLinky): the statistics imported by the [HA Linky](https://github.com/bokub/ha-linky) app, the day after — yesterday on the meter, this week / this month / last month, the cost, the last 30 days as bars and any day hour by hour
 - Tap any value to open its history
 - Visual editor in the dashboard UI (no YAML needed)
 - English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese, Polish, Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek, follows the Home Assistant language
@@ -68,14 +70,15 @@ The card opens on an illustrated header (a distribution board feeding a bulb, or
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/images/zha.png" alt="" width="16"> [ZHA](https://www.home-assistant.io/integrations/zha/) (built in) | The ZLinky_TIC entities, English or French entity ids |
 | [Zigbee2MQTT](https://www.zigbee2mqtt.io/devices/ZLinky_TIC.html) | The ZLinky_TIC entities, by their TIC labels |
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/images/ha-linky.png" alt="" width="16"> [HA Linky](https://github.com/bokub/ha-linky) (app, `linky_prm`) | The `linky:<PRM>` statistics (and `linky:<PRM>_cost`) it imports from Enedis, the day after — no entity, no live data — see [HA Linky](#ha-linky) |
 | [Tarif EDF](https://github.com/delphiki/hass-tarif-edf) (optional, `tarif_edf: true`) | The prices per kWh (Base, Off-peak / Peak or Tempo), the subscribed power and the Tempo colors — see [Tarif EDF](#tarif-edf) |
 
-Both expose the same data to the cards: live power, current and voltage, load against the subscribed power, consumption and cost from the long-term statistics, meter index and tiers, injection, three-phase details.
+ZHA and Zigbee2MQTT expose the same data to the cards: live power, current and voltage, load against the subscribed power, consumption and cost from the long-term statistics, meter index and tiers, injection, three-phase details.
 
 ## Prerequisites
 
 - Home Assistant 2024.8 or later
-- A ZLinky_TIC paired with ZHA or Zigbee2MQTT
+- A ZLinky_TIC paired with ZHA or Zigbee2MQTT, or the [HA Linky](https://github.com/bokub/ha-linky) app syncing your meter
 - The consumption tiles use the recorder's statistics: the energy sensors need a `state_class` (the ZLinky's have one). The curve uses the power sensor's statistics too, or, when it has none, its state history from the recorder
 
 ## Installation
@@ -164,6 +167,7 @@ entities:
 | Option | Card | Default | Description |
 |---|---|---|---|
 | `device_id` | both | Auto | ZLinky device (the first ZLinky found is used if missing) |
+| `linky_prm` | both | — | [HA Linky](#ha-linky): the 14-digit PRM whose statistics the app imports (`linky:<PRM>`); the card then reads them instead of a ZLinky |
 | `entity` | both | — | Any entity of the ZLinky, used to find the device when `device_id` is not set. YAML only (the visual editor sets `device_id` and keeps `entity`) |
 | `name` | both | `Linky` | Card title |
 | `show_title` | both | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
@@ -275,6 +279,22 @@ sub_hchp: 16.08
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-compare.png" alt="ZLinky card comparing the Base and Off-peak / Peak contracts" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-compare-dark.png" alt="ZLinky card comparing the contracts, dark theme" width="400"> |
 
 The section shows each contract's cost, the share of your consumption in off-peak hours and which one saves how much (*About the same* when they are less than 2 % apart), over the days the statistics cover (fewer than 365 the first year). Hours are read in Home Assistant's time zone; an hour counts as off-peak when its middle is (hourly statistics can't split 22:30). Tempo isn't compared: its cost depends on each past day's color, which the meter doesn't keep — on a Tempo contract, the consumption tiles already price each color with [one price per tier](#price-per-tier).
+
+## HA Linky
+
+The [HA Linky](https://github.com/bokub/ha-linky) app imports your meter's data from Enedis straight into Home Assistant's long-term statistics — `linky:<PRM>` for the consumption, `linky:<PRM>_cost` when you set its prices — without creating any entity, so there is nothing to pick as a device or an entity. Give the card your PRM instead:
+
+```yaml
+type: custom:zlinky-card
+linky_prm: "12345678901234"
+hc_hours: 22:30-06:30   # optional: off-peak share of a day, and the contract comparison
+```
+
+Enedis sends a day's data the next morning, so there is no live reading: the pill says *Data D-1*, the meter's screens scroll through yesterday, this week, this month and last month (tap the meter), its LED stays still, and the main reading is yesterday's consumption. The tiles show this week, this month and last month. With `show_graph`, the last 30 days are drawn as bars (yesterday darker); tap a bar to open that day hour by hour underneath, off-peak hours tinted when `hc_hours` is set, and tap it again to close it. The cost comes from the app's `_cost` statistic when there is one, else from `price` (one price, or one per tier); the cost section's month-end estimate counts the whole days only. The contract comparison works too. Index, live power, load gauge, phases and the 24 h curve need a ZLinky.
+
+| HA Linky | HA Linky, dark theme |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-linky.png" alt="ZLinky card reading the HA Linky statistics, a day opened hour by hour" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/screenshots/card-linky-dark.png" alt="ZLinky card reading the HA Linky statistics, dark theme" width="400"> |
 
 ## Development
 
