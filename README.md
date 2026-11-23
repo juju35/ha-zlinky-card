@@ -69,9 +69,9 @@ The card opens on an illustrated header (a distribution board feeding a bulb, or
 | Integration | What the cards read |
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/images/zha.png" alt="" width="16"> [ZHA](https://www.home-assistant.io/integrations/zha/) (built in) | The ZLinky_TIC entities, English or French entity ids |
-| [Zigbee2MQTT](https://www.zigbee2mqtt.io/devices/ZLinky_TIC.html) | The ZLinky_TIC entities, by their TIC labels |
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/images/zigbee2mqtt.png" alt="" width="16"> [Zigbee2MQTT](https://www.zigbee2mqtt.io/devices/ZLinky_TIC.html) | The ZLinky_TIC entities, by their TIC labels |
 | <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/images/ha-linky.png" alt="" width="16"> [HA Linky](https://github.com/bokub/ha-linky) (app, `linky_prm`) | The `linky:<PRM>` statistics (and `linky:<PRM>_cost`) it imports from Enedis, the day after — no entity, no live data — see [HA Linky](#ha-linky) |
-| [Tarif EDF](https://github.com/delphiki/hass-tarif-edf) (optional, `tarif_edf: true`) | The prices per kWh (Base, Off-peak / Peak or Tempo), the subscribed power and the Tempo colors — see [Tarif EDF](#tarif-edf) |
+| <img src="https://raw.githubusercontent.com/juju35/ha-zlinky-card/main/images/tarif_edf.png" alt="" width="16"> [Tarif EDF](https://github.com/delphiki/hass-tarif-edf) (optional, `tarif_edf: true`) | The prices per kWh (Base, Off-peak / Peak or Tempo), the subscribed power and the Tempo colors — see [Tarif EDF](#tarif-edf) |
 
 ZHA and Zigbee2MQTT expose the same data to the cards: live power, current and voltage, load against the subscribed power, consumption and cost from the long-term statistics, meter index and tiers, injection, three-phase details.
 
