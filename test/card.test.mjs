@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
 import { readFileSync } from "node:fs";
+import { source } from "./source.mjs";
 
 const { ZlinkyCard, ZlinkyMiniCard, zlFindDevice, zlSpark, zlMorph, ZlI18n, zlLang, zlNum, zlMoney, zlCompare, zlHcRanges, customElements } = loadCard("zlinky-card.js", [
   "ZlinkyCard",
@@ -1838,7 +1839,7 @@ test("editor: illustration and its theme, on both cards", () => {
 });
 
 test("screenshot harness: every MDI icon the card names has a path (the header's flash badge was drawn empty)", () => {
-  const src = readFileSync(new URL("../src/zlinky-card.js", import.meta.url), "utf8");
+  const src = source;
   const shots = readFileSync(new URL("../scripts/screenshots.mjs", import.meta.url), "utf8");
   const have = new Set([...shots.matchAll(/^\s*"([a-z0-9-]+)":\s*"M/gm)].map((m) => m[1]));
   for (const [, name] of src.matchAll(/mdi:([a-z0-9-]+)/g)) assert.ok(have.has(name), `mdi:${name} has no path in scripts/screenshots.mjs`);
